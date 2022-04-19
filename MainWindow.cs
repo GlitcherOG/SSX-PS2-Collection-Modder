@@ -460,6 +460,10 @@ namespace SSX_Modder
             {
                 bigfHandler.LoadBig(openFileDialog.FileName);
                 BigExtract.Enabled = true;
+                if(bigfHandler.bigFiles.Count==0)
+                {
+                    MessageBox.Show("Error loading file");
+                }
                 for (int i = 0; i < bigfHandler.bigFiles.Count; i++)
                 {
                     BigBox1.Items.Add(bigfHandler.bigFiles[i].path);

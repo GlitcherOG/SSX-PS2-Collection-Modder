@@ -25,6 +25,10 @@ namespace SSX_Modder.FileHandlers
                 stream.Read(tempByte, 0, tempByte.Length);
                 bigHeader.MagicWords = Encoding.ASCII.GetString(tempByte);
                 //Figure out what any of these mean
+                if(bigHeader.MagicWords!="BIGF")
+                {
+                    return;
+                }
 
                 tempByte = new byte[4];
                 stream.Read(tempByte, 0, tempByte.Length);

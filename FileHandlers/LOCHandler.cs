@@ -165,4 +165,19 @@ namespace SSX_Modder.FileHandlers
             return -1;
         }
     }
+    // LOCH
+    // 0-3 Magic Words
+    // 4-7 LOCT Offset (Or Size)
+    // 8-11 Unknown (Flag? Always 0)
+    // 12-15 Unknown 2 (Flag? Always 1)
+    // 16-19 LOCL Offset
+
+    // LOCT
+
+    // LOCL
+    // 0-3 Magic words
+    // 4-7 File Size
+    // 8-11 Unknown
+    // 12-15 Ammount
+    // 16-19 Offset Start
 }
