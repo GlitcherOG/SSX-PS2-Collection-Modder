@@ -472,7 +472,9 @@ namespace SSX_Modder
                 int i = BigBox1.SelectedIndex;
                 BigPathLabel.Text = bigfHandler.bigHeader.bigFiles[i].path;
                 byte[] temp = BitConverter.GetBytes(bigfHandler.bigHeader.bigFiles[i].offset);
-                BigOffsetLabel.Text = BitConverter.ToString(temp);
+                if (BitConverter.IsLittleEndian)
+                    Array.Reverse(temp);
+                BigOffsetLabel.Text = "0x"+BitConverter.ToString(temp).Replace("-","");
                 BigSizeLabel.Text = bigfHandler.bigHeader.bigFiles[i].size.ToString();
             }
         }

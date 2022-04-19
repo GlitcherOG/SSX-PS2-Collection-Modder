@@ -11,8 +11,10 @@ namespace SSX_Modder.FileHandlers
     {
         public BIGFHeader bigHeader;
         string bigPath;
+        bool BuildMode;
         public void LoadBig(string path)
         {
+            BuildMode = false;
             bigPath = path;
             bigHeader = new BIGFHeader();
             bigHeader.bigFiles = new List<BIGFFiles>();
