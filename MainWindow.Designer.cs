@@ -1341,6 +1341,7 @@ namespace SSX_Modder
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.tabControl1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(829, 449);
             this.Name = "MainWindow";
             this.Text = "SSX Modder";

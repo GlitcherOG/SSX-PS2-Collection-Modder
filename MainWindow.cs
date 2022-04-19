@@ -458,7 +458,8 @@ namespace SSX_Modder
             };
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                bigfHandler.LoadBig(openFileDialog.FileName);
+                BigBox1.Items.Clear();
+                   bigfHandler.LoadBig(openFileDialog.FileName);
                 BigExtract.Enabled = true;
                 if(bigfHandler.bigFiles.Count==0)
                 {
