@@ -10,6 +10,7 @@ namespace SSX_Modder.FileHandlers
     class BigFHandler
     {
         public BIGFHeader bigHeader;
+        public List<BIGFFiles> bigFiles;
         string bigPath;
         bool BuildMode;
         public void LoadBig(string path)
@@ -17,7 +18,7 @@ namespace SSX_Modder.FileHandlers
             BuildMode = false;
             bigPath = path;
             bigHeader = new BIGFHeader();
-            bigHeader.bigFiles = new List<BIGFFiles>();
+            bigFiles = new List<BIGFFiles>();
             using (Stream stream = File.Open(path, FileMode.Open))
             {
                 byte[] tempByte = new byte[4];
@@ -75,11 +76,35 @@ namespace SSX_Modder.FileHandlers
                     byte[] FilePath = new byte[a];
                     stream.Read(FilePath, 0, a);
                     temp.path = Encoding.ASCII.GetString(FilePath);
-                    bigHeader.bigFiles.Add(temp);
+                    bigFiles.Add(temp);
                     stream.Position += 1;
                 }
                 bigHeader.footer = new byte[8];
                 stream.Read(bigHeader.footer, 0, bigHeader.footer.Length);
+                stream.Dispose();
+            }
+        }
+
+        public void ExtractBig(string path = null)
+        {
+            using (Stream stream = File.Open(bigPath, FileMode.Open))
+            {
+                for (int i = 0; i < bigFiles.Count; i++)
+                {
+                    Stream stream1 = new MemoryStream();
+                    byte[] temp = new byte[bigFiles[i].size];
+                    stream.Position = bigFiles[i].offset;
+                    stream.Read(temp, 0, temp.Length);
+                    stream1.Write(temp, 0, temp.Length);
+
+                    Directory.CreateDirectory(Path.GetDirectoryName(path + "//" + bigFiles[i].path));
+                    var file = File.Create(path + "//" + bigFiles[i].path);
+                    stream1.Position = 0;
+                    stream1.CopyTo(file);
+                    file.Close();
+                    stream1.Dispose();
+                }
+                stream.Dispose();
             }
         }
     }
@@ -100,7 +125,6 @@ namespace SSX_Modder.FileHandlers
         public int fileSize;
         public int ammount;
         public int startOffset;
-        public List<BIGFFiles> bigFiles;
         public byte[] footer;
     }
 

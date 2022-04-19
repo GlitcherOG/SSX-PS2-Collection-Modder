@@ -12,6 +12,7 @@ using SSX_Modder.FileHandlers;
 using DiscUtils;
 using DiscUtils.Iso9660;
 using System.Diagnostics;
+using Microsoft.WindowsAPICodePack.Dialogs;
 
 namespace SSX_Modder
 {
@@ -458,9 +459,10 @@ namespace SSX_Modder
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 bigfHandler.LoadBig(openFileDialog.FileName);
-                for (int i = 0; i < bigfHandler.bigHeader.bigFiles.Count; i++)
+                BigExtract.Enabled = true;
+                for (int i = 0; i < bigfHandler.bigFiles.Count; i++)
                 {
-                    BigBox1.Items.Add(bigfHandler.bigHeader.bigFiles[i].path);
+                    BigBox1.Items.Add(bigfHandler.bigFiles[i].path);
                 }
             }
         }
@@ -470,12 +472,28 @@ namespace SSX_Modder
             if(BigBox1.SelectedIndex!=-1)
             {
                 int i = BigBox1.SelectedIndex;
-                BigPathLabel.Text = bigfHandler.bigHeader.bigFiles[i].path;
-                byte[] temp = BitConverter.GetBytes(bigfHandler.bigHeader.bigFiles[i].offset);
+                BigPathLabel.Text = bigfHandler.bigFiles[i].path;
+                byte[] temp = BitConverter.GetBytes(bigfHandler.bigFiles[i].offset);
                 if (BitConverter.IsLittleEndian)
                     Array.Reverse(temp);
                 BigOffsetLabel.Text = "0x"+BitConverter.ToString(temp).Replace("-","");
-                BigSizeLabel.Text = bigfHandler.bigHeader.bigFiles[i].size.ToString();
+                BigSizeLabel.Text = bigfHandler.bigFiles[i].size.ToString();
+            }
+        }
+
+        private void BigExtract_Click(object sender, EventArgs e)
+        {
+            CommonOpenFileDialog openFileDialog = new CommonOpenFileDialog
+            {
+                InitialDirectory = workspacePath,
+                IsFolderPicker = true,
+            };
+            if (openFileDialog.ShowDialog() == CommonFileDialogResult.Ok)
+            {
+                SetStatus("Extracting Please Wait....");
+                bigfHandler.ExtractBig(openFileDialog.FileName);
+                SetStatus("");
+                Process.Start(openFileDialog.FileName);
             }
         }
     }

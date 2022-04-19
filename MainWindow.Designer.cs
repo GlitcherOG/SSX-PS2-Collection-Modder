@@ -38,7 +38,7 @@ namespace SSX_Modder
             this.BigLabel2 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.BigExtract = new System.Windows.Forms.Button();
             this.BigPathLabel = new System.Windows.Forms.Label();
             this.BigLabel1 = new System.Windows.Forms.Label();
             this.BigLoad = new System.Windows.Forms.Button();
@@ -185,7 +185,7 @@ namespace SSX_Modder
             this.tabBig.Controls.Add(this.BigLabel2);
             this.tabBig.Controls.Add(this.button3);
             this.tabBig.Controls.Add(this.button2);
-            this.tabBig.Controls.Add(this.button1);
+            this.tabBig.Controls.Add(this.BigExtract);
             this.tabBig.Controls.Add(this.BigPathLabel);
             this.tabBig.Controls.Add(this.BigLabel1);
             this.tabBig.Controls.Add(this.BigLoad);
@@ -253,15 +253,16 @@ namespace SSX_Modder
             this.button2.Text = "Build BIG File";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // BigExtract
             // 
-            this.button1.Enabled = false;
-            this.button1.Location = new System.Drawing.Point(349, 297);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(87, 23);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Extract Big File";
-            this.button1.UseVisualStyleBackColor = true;
+            this.BigExtract.Enabled = false;
+            this.BigExtract.Location = new System.Drawing.Point(349, 297);
+            this.BigExtract.Name = "BigExtract";
+            this.BigExtract.Size = new System.Drawing.Size(87, 23);
+            this.BigExtract.TabIndex = 4;
+            this.BigExtract.Text = "Extract Big File";
+            this.BigExtract.UseVisualStyleBackColor = true;
+            this.BigExtract.Click += new System.EventHandler(this.BigExtract_Click);
             // 
             // BigPathLabel
             // 
@@ -1485,7 +1486,7 @@ namespace SSX_Modder
         private System.Windows.Forms.Label BigLabel2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button BigExtract;
     }
 }
 
