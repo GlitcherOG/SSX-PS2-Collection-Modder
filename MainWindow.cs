@@ -336,7 +336,7 @@ namespace SSX_Modder
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
                 InitialDirectory = workspacePath + "/disk/",
-                Filter = "Config File (*.INF)|*.INF|All files (*.*)|*.*",
+                Filter = "Music Config |MUSIC.INF|Config File (*.INF)|*.INF|All files (*.*)|*.*",
                 FilterIndex = 1,
                 //RestoreDirectory = true
             };
@@ -437,5 +437,10 @@ namespace SSX_Modder
             }
         }
         #endregion
+
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            Process.Start(workspacePath);
+        }
     }
 }
