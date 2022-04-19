@@ -31,6 +31,18 @@ namespace SSX_Modder
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabBig = new System.Windows.Forms.TabPage();
+            this.BigSizeLabel = new System.Windows.Forms.Label();
+            this.BigLabel3 = new System.Windows.Forms.Label();
+            this.BigOffsetLabel = new System.Windows.Forms.Label();
+            this.BigLabel2 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.BigPathLabel = new System.Windows.Forms.Label();
+            this.BigLabel1 = new System.Windows.Forms.Label();
+            this.BigLoad = new System.Windows.Forms.Button();
+            this.BigBox1 = new System.Windows.Forms.ListBox();
             this.tabCharacters = new System.Windows.Forms.TabPage();
             this.label32 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
@@ -123,6 +135,7 @@ namespace SSX_Modder
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.tabControl1.SuspendLayout();
+            this.tabBig.SuspendLayout();
             this.tabCharacters.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.charnumericUpDown6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.charnumericUpDown5)).BeginInit();
@@ -154,6 +167,7 @@ namespace SSX_Modder
             this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl1.Controls.Add(this.tabBig);
             this.tabControl1.Controls.Add(this.tabCharacters);
             this.tabControl1.Controls.Add(this.tabMusic);
             this.tabControl1.Controls.Add(this.tabLoc);
@@ -162,6 +176,129 @@ namespace SSX_Modder
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(788, 357);
             this.tabControl1.TabIndex = 0;
+            // 
+            // tabBig
+            // 
+            this.tabBig.Controls.Add(this.BigSizeLabel);
+            this.tabBig.Controls.Add(this.BigLabel3);
+            this.tabBig.Controls.Add(this.BigOffsetLabel);
+            this.tabBig.Controls.Add(this.BigLabel2);
+            this.tabBig.Controls.Add(this.button3);
+            this.tabBig.Controls.Add(this.button2);
+            this.tabBig.Controls.Add(this.button1);
+            this.tabBig.Controls.Add(this.BigPathLabel);
+            this.tabBig.Controls.Add(this.BigLabel1);
+            this.tabBig.Controls.Add(this.BigLoad);
+            this.tabBig.Controls.Add(this.BigBox1);
+            this.tabBig.Location = new System.Drawing.Point(4, 22);
+            this.tabBig.Name = "tabBig";
+            this.tabBig.Size = new System.Drawing.Size(780, 331);
+            this.tabBig.TabIndex = 6;
+            this.tabBig.Text = "Big Files";
+            this.tabBig.UseVisualStyleBackColor = true;
+            // 
+            // BigSizeLabel
+            // 
+            this.BigSizeLabel.AutoSize = true;
+            this.BigSizeLabel.Location = new System.Drawing.Point(253, 91);
+            this.BigSizeLabel.Name = "BigSizeLabel";
+            this.BigSizeLabel.Size = new System.Drawing.Size(13, 13);
+            this.BigSizeLabel.TabIndex = 10;
+            this.BigSizeLabel.Text = "0";
+            // 
+            // BigLabel3
+            // 
+            this.BigLabel3.AutoSize = true;
+            this.BigLabel3.Location = new System.Drawing.Point(253, 78);
+            this.BigLabel3.Name = "BigLabel3";
+            this.BigLabel3.Size = new System.Drawing.Size(62, 13);
+            this.BigLabel3.TabIndex = 9;
+            this.BigLabel3.Text = "Size (Bytes)";
+            // 
+            // BigOffsetLabel
+            // 
+            this.BigOffsetLabel.AutoSize = true;
+            this.BigOffsetLabel.Location = new System.Drawing.Point(253, 54);
+            this.BigOffsetLabel.Name = "BigOffsetLabel";
+            this.BigOffsetLabel.Size = new System.Drawing.Size(13, 13);
+            this.BigOffsetLabel.TabIndex = 8;
+            this.BigOffsetLabel.Text = "0";
+            // 
+            // BigLabel2
+            // 
+            this.BigLabel2.AutoSize = true;
+            this.BigLabel2.Location = new System.Drawing.Point(253, 41);
+            this.BigLabel2.Name = "BigLabel2";
+            this.BigLabel2.Size = new System.Drawing.Size(35, 13);
+            this.BigLabel2.TabIndex = 7;
+            this.BigLabel2.Text = "Offset";
+            // 
+            // button3
+            // 
+            this.button3.Enabled = false;
+            this.button3.Location = new System.Drawing.Point(597, 297);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(87, 23);
+            this.button3.TabIndex = 6;
+            this.button3.Text = "Load Folder";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Enabled = false;
+            this.button2.Location = new System.Drawing.Point(690, 297);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(87, 23);
+            this.button2.TabIndex = 5;
+            this.button2.Text = "Build BIG File";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Enabled = false;
+            this.button1.Location = new System.Drawing.Point(349, 297);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(87, 23);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "Extract Big File";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // BigPathLabel
+            // 
+            this.BigPathLabel.AutoSize = true;
+            this.BigPathLabel.Location = new System.Drawing.Point(253, 17);
+            this.BigPathLabel.Name = "BigPathLabel";
+            this.BigPathLabel.Size = new System.Drawing.Size(25, 13);
+            this.BigPathLabel.TabIndex = 3;
+            this.BigPathLabel.Text = "Null";
+            // 
+            // BigLabel1
+            // 
+            this.BigLabel1.AutoSize = true;
+            this.BigLabel1.Location = new System.Drawing.Point(253, 4);
+            this.BigLabel1.Name = "BigLabel1";
+            this.BigLabel1.Size = new System.Drawing.Size(29, 13);
+            this.BigLabel1.TabIndex = 2;
+            this.BigLabel1.Text = "Path";
+            // 
+            // BigLoad
+            // 
+            this.BigLoad.Location = new System.Drawing.Point(256, 297);
+            this.BigLoad.Name = "BigLoad";
+            this.BigLoad.Size = new System.Drawing.Size(87, 23);
+            this.BigLoad.TabIndex = 1;
+            this.BigLoad.Text = "Load Big File";
+            this.BigLoad.UseVisualStyleBackColor = true;
+            this.BigLoad.Click += new System.EventHandler(this.BigLoad_Click);
+            // 
+            // BigBox1
+            // 
+            this.BigBox1.FormattingEnabled = true;
+            this.BigBox1.Location = new System.Drawing.Point(4, 4);
+            this.BigBox1.Name = "BigBox1";
+            this.BigBox1.Size = new System.Drawing.Size(243, 316);
+            this.BigBox1.TabIndex = 0;
+            this.BigBox1.SelectedIndexChanged += new System.EventHandler(this.BigBox1_SelectedIndexChanged);
             // 
             // tabCharacters
             // 
@@ -1208,6 +1345,8 @@ namespace SSX_Modder
             this.Text = "SSX Modder";
             this.Load += new System.EventHandler(this.MainWindow_Load);
             this.tabControl1.ResumeLayout(false);
+            this.tabBig.ResumeLayout(false);
+            this.tabBig.PerformLayout();
             this.tabCharacters.ResumeLayout(false);
             this.tabCharacters.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.charnumericUpDown6)).EndInit();
@@ -1335,6 +1474,18 @@ namespace SSX_Modder
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.ToolStripButton toolStripButton3;
+        private System.Windows.Forms.TabPage tabBig;
+        private System.Windows.Forms.Button BigLoad;
+        private System.Windows.Forms.ListBox BigBox1;
+        private System.Windows.Forms.Label BigPathLabel;
+        private System.Windows.Forms.Label BigLabel1;
+        private System.Windows.Forms.Label BigSizeLabel;
+        private System.Windows.Forms.Label BigLabel3;
+        private System.Windows.Forms.Label BigOffsetLabel;
+        private System.Windows.Forms.Label BigLabel2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
     }
 }
 

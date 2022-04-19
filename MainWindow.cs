@@ -17,7 +17,7 @@ namespace SSX_Modder
 {
     public partial class MainWindow : Form
     {
-        string workspacePath = Application.StartupPath + "/disk/SSX3/";
+        string workspacePath = Application.StartupPath + "\\disk\\SSX3\\";
         public MainWindow()
         {
             InitializeComponent();
@@ -117,10 +117,10 @@ namespace SSX_Modder
         {
             SaveFileDialog openFileDialog = new SaveFileDialog
             {
-                InitialDirectory = workspacePath + " /disk/",
+                InitialDirectory = Application.StartupPath,
                 Filter = "Iso Image (*.iso)|*.iso|All files (*.*)|*.*",
                 FilterIndex = 1,
-                //RestoreDirectory = true
+                RestoreDirectory = false
             };
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -177,11 +177,11 @@ namespace SSX_Modder
         {
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
-                InitialDirectory = workspacePath + "/disk/",
+                InitialDirectory = workspacePath,
                 Filter = "Loc File (*.loc)|*.loc|All files (*.*)|*.*",
-                FilterIndex = 1
-            };
-            //openFileDialog.RestoreDirectory = true;
+                FilterIndex = 1,
+                RestoreDirectory = false,
+        };
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -219,9 +219,10 @@ namespace SSX_Modder
         {
             SaveFileDialog openFileDialog = new SaveFileDialog
             {
-                InitialDirectory = "C:\\Users\\User\\source\\repos\\SSX Modder\\bin\\Debug\\disk\\SSX3\\DATA\\LOCALE",
+                InitialDirectory = workspacePath + "/DATA/LOCALE",
                 Filter = "Loc File (*.loc)|*.loc|All files (*.*)|*.*",
-                FilterIndex = 1
+                FilterIndex = 1,
+                RestoreDirectory = false
             };
             //openFileDialog.RestoreDirectory = true;
 
@@ -246,10 +247,11 @@ namespace SSX_Modder
         {
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
-                InitialDirectory = workspacePath + "/disk/",
+                InitialDirectory = workspacePath + "DATA\\BE",
                 Filter = "Character DBL|CHARDB.DBL|DataBase List (*.DBL)|*.DBL|All files (*.*)|*.*",
-                FilterIndex = 1
-            };
+                FilterIndex = 1,
+                RestoreDirectory = false
+        };
             //openFileDialog.RestoreDirectory = true;
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -310,10 +312,10 @@ namespace SSX_Modder
         {
             SaveFileDialog openFileDialog = new SaveFileDialog
             {
-                InitialDirectory = workspacePath + "/disk/",
+                InitialDirectory = workspacePath + "DATA\\BE",
                 Filter = "Data Base List (*.DBL)|*.DBL|All files (*.*)|*.*",
                 FilterIndex = 1,
-                //RestoreDirectory = true
+                RestoreDirectory = false
             };
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -335,10 +337,10 @@ namespace SSX_Modder
         {
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
-                InitialDirectory = workspacePath + "/disk/",
+                InitialDirectory = workspacePath + "DATA\\CONFIG",
                 Filter = "Music Config |MUSIC.INF|Config File (*.INF)|*.INF|All files (*.*)|*.*",
                 FilterIndex = 1,
-                //RestoreDirectory = true
+                RestoreDirectory = false
             };
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -426,10 +428,10 @@ namespace SSX_Modder
         {
             SaveFileDialog openFileDialog = new SaveFileDialog
             {
-                InitialDirectory = workspacePath + "/disk/",
+                InitialDirectory = workspacePath + "DATA\\CONFIG",
                 Filter = "Config File (*.INF)|*.INF|All files (*.*)|*.*",
                 FilterIndex = 1,
-                //RestoreDirectory = true
+                RestoreDirectory = false
             };
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -441,6 +443,38 @@ namespace SSX_Modder
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
             Process.Start(workspacePath);
+        }
+
+        BigFHandler bigfHandler = new BigFHandler();
+        private void BigLoad_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                InitialDirectory = workspacePath,
+                Filter = "BIG File (*.BIG)|*.BIG|All files (*.*)|*.*",
+                FilterIndex = 1,
+                RestoreDirectory = false
+            };
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                bigfHandler.LoadBig(openFileDialog.FileName);
+                for (int i = 0; i < bigfHandler.bigHeader.bigFiles.Count; i++)
+                {
+                    BigBox1.Items.Add(bigfHandler.bigHeader.bigFiles[i].path);
+                }
+            }
+        }
+
+        private void BigBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(BigBox1.SelectedIndex!=-1)
+            {
+                int i = BigBox1.SelectedIndex;
+                BigPathLabel.Text = bigfHandler.bigHeader.bigFiles[i].path;
+                byte[] temp = BitConverter.GetBytes(bigfHandler.bigHeader.bigFiles[i].offset);
+                BigOffsetLabel.Text = BitConverter.ToString(temp);
+                BigSizeLabel.Text = bigfHandler.bigHeader.bigFiles[i].size.ToString();
+            }
         }
     }
 }
