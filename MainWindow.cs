@@ -11,12 +11,13 @@ using System.Windows.Forms;
 using SSX_Modder.FileHandlers;
 using DiscUtils;
 using DiscUtils.Iso9660;
+using System.Diagnostics;
 
 namespace SSX_Modder
 {
     public partial class MainWindow : Form
     {
-        string workspacePath = Application.StartupPath + "/";
+        string workspacePath = Application.StartupPath + "/disk/SSX3/";
         public MainWindow()
         {
             InitializeComponent();
@@ -63,11 +64,11 @@ namespace SSX_Modder
             using (FileStream ISOStream = File.Open(ISOName, FileMode.Open))
             {
                 CDReader Reader = new CDReader(ISOStream, true, true);
-                if(Directory.Exists(ExtractionPath + Path.GetFileNameWithoutExtension(ISOName)))
+                if(Directory.Exists(ExtractionPath))
                 {
-                    Directory.Delete(ExtractionPath + Path.GetFileNameWithoutExtension(ISOName),true);
+                    Directory.Delete(ExtractionPath,true);
                 }
-                ExtractDirectory(Reader.Root, ExtractionPath + Path.GetFileNameWithoutExtension(ISOName) + "\\", "");
+                ExtractDirectory(Reader.Root, ExtractionPath + "\\", "");
                 Reader.Dispose();
             }
         }
@@ -125,13 +126,12 @@ namespace SSX_Modder
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 SetStatus("Starting Building...");
-                if (openFileDialog.CheckFileExists)
-                {
-                    File.Delete(openFileDialog.FileName);
-                }
-                CreateIsoImage(Path.GetFullPath(workspacePath + "/disk/" + Path.GetFileNameWithoutExtension("SSX3")), openFileDialog.FileName, "SSX3");
-                MessageBox.Show("Building Done");
-                SetStatus("");
+                //CreateIsoImage(Path.GetFullPath(workspacePath + "/disk/" + Path.GetFileNameWithoutExtension("SSX3")), openFileDialog.FileName, "SSX3");
+                ProcessStartInfo startInfo = new ProcessStartInfo();
+                startInfo.FileName = @"C:\Program Files (x86)\ImgBurn\ImgBurn.exe";
+                string test = Path.Combine(workspacePath, "");
+                startInfo.Arguments = "/MODE BUILD /BUILDINPUTMODE IMAGEFILE /SRC \"" + test + "\" /DEST \"" + openFileDialog.FileName + "\" /FILESYSTEM \"ISO9660 + UDF\" /UDFREVISION \"1.02\" /VOLUMELABEL \"SSX3\" /ERASE /OVERWITE YES /START /CLOSESUCCESS /NOIMAGEDETAILS /ROOTFOLDER";
+                Process.Start(startInfo);
             }
         }
         public string CreateIsoImage(string sourceDrive, string targetIso, string volumeName)
