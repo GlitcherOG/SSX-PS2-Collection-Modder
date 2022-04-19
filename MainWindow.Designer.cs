@@ -31,6 +31,7 @@ namespace SSX_Modder
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabCharacters = new System.Windows.Forms.TabPage();
+            this.label32 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
@@ -58,7 +59,6 @@ namespace SSX_Modder
             this.charSave = new System.Windows.Forms.Button();
             this.charSaveAs = new System.Windows.Forms.Button();
             this.charLoad = new System.Windows.Forms.Button();
-            this.tabControls = new System.Windows.Forms.TabPage();
             this.tabMusic = new System.Windows.Forms.TabPage();
             this.MusSaveAs = new System.Windows.Forms.Button();
             this.MusINFnumericUpDown12 = new System.Windows.Forms.NumericUpDown();
@@ -120,7 +120,6 @@ namespace SSX_Modder
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.label32 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabCharacters.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.charnumericUpDown6)).BeginInit();
@@ -154,7 +153,6 @@ namespace SSX_Modder
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabCharacters);
-            this.tabControl1.Controls.Add(this.tabControls);
             this.tabControl1.Controls.Add(this.tabMusic);
             this.tabControl1.Controls.Add(this.tabLoc);
             this.tabControl1.Location = new System.Drawing.Point(14, 29);
@@ -199,6 +197,15 @@ namespace SSX_Modder
             this.tabCharacters.TabIndex = 5;
             this.tabCharacters.Text = "Characters";
             this.tabCharacters.UseVisualStyleBackColor = true;
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(389, 122);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(41, 13);
+            this.label32.TabIndex = 28;
+            this.label32.Text = "Stance";
             // 
             // label31
             // 
@@ -500,16 +507,6 @@ namespace SSX_Modder
             this.charLoad.UseVisualStyleBackColor = true;
             this.charLoad.Click += new System.EventHandler(this.charLoad_Click);
             this.charLoad.MouseLeave += new System.EventHandler(this.ResetStatus);
-            // 
-            // tabControls
-            // 
-            this.tabControls.Location = new System.Drawing.Point(4, 22);
-            this.tabControls.Name = "tabControls";
-            this.tabControls.Padding = new System.Windows.Forms.Padding(3);
-            this.tabControls.Size = new System.Drawing.Size(780, 331);
-            this.tabControls.TabIndex = 0;
-            this.tabControls.Text = "Controls";
-            this.tabControls.UseVisualStyleBackColor = true;
             // 
             // tabMusic
             // 
@@ -1165,8 +1162,8 @@ namespace SSX_Modder
             this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(104, 22);
-            this.toolStripButton2.Text = "Build Iso (Broken)";
+            this.toolStripButton2.Size = new System.Drawing.Size(113, 22);
+            this.toolStripButton2.Text = "Build with ImgBurn";
             this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
             // statusStrip1
@@ -1183,15 +1180,6 @@ namespace SSX_Modder
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(389, 122);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(41, 13);
-            this.label32.TabIndex = 28;
-            this.label32.Text = "Stance";
             // 
             // MainWindow
             // 
@@ -1242,7 +1230,6 @@ namespace SSX_Modder
         #endregion
 
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabControls;
         private System.Windows.Forms.TabPage tabMusic;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
