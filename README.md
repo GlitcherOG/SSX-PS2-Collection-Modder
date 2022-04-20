@@ -10,9 +10,9 @@ This is a modding tool i came up and started making when i caught covid as a way
 - Music Config Adding and Removing
 - Control Editor Menu
 - Fix Iso Extracting Freezing
-- BIG File Making
 - MUS Extractor
 - SSH Converter
 - Built in ISO Packer
 - Mod Pack Maker
+- GS Collection
 

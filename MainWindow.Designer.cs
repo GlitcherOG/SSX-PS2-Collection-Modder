@@ -36,8 +36,8 @@ namespace SSX_Modder
             this.BigLabel3 = new System.Windows.Forms.Label();
             this.BigOffsetLabel = new System.Windows.Forms.Label();
             this.BigLabel2 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.BigLoadFolder = new System.Windows.Forms.Button();
+            this.BuildBigButton = new System.Windows.Forms.Button();
             this.BigExtract = new System.Windows.Forms.Button();
             this.BigPathLabel = new System.Windows.Forms.Label();
             this.BigLabel1 = new System.Windows.Forms.Label();
@@ -183,8 +183,8 @@ namespace SSX_Modder
             this.tabBig.Controls.Add(this.BigLabel3);
             this.tabBig.Controls.Add(this.BigOffsetLabel);
             this.tabBig.Controls.Add(this.BigLabel2);
-            this.tabBig.Controls.Add(this.button3);
-            this.tabBig.Controls.Add(this.button2);
+            this.tabBig.Controls.Add(this.BigLoadFolder);
+            this.tabBig.Controls.Add(this.BuildBigButton);
             this.tabBig.Controls.Add(this.BigExtract);
             this.tabBig.Controls.Add(this.BigPathLabel);
             this.tabBig.Controls.Add(this.BigLabel1);
@@ -233,25 +233,26 @@ namespace SSX_Modder
             this.BigLabel2.TabIndex = 7;
             this.BigLabel2.Text = "Offset";
             // 
-            // button3
+            // BigLoadFolder
             // 
-            this.button3.Enabled = false;
-            this.button3.Location = new System.Drawing.Point(597, 297);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(87, 23);
-            this.button3.TabIndex = 6;
-            this.button3.Text = "Load Folder";
-            this.button3.UseVisualStyleBackColor = true;
+            this.BigLoadFolder.Location = new System.Drawing.Point(597, 297);
+            this.BigLoadFolder.Name = "BigLoadFolder";
+            this.BigLoadFolder.Size = new System.Drawing.Size(87, 23);
+            this.BigLoadFolder.TabIndex = 6;
+            this.BigLoadFolder.Text = "Load Folder";
+            this.BigLoadFolder.UseVisualStyleBackColor = true;
+            this.BigLoadFolder.Click += new System.EventHandler(this.BigLoadFolder_Click);
             // 
-            // button2
+            // BuildBigButton
             // 
-            this.button2.Enabled = false;
-            this.button2.Location = new System.Drawing.Point(690, 297);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(87, 23);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "Build BIG File";
-            this.button2.UseVisualStyleBackColor = true;
+            this.BuildBigButton.Enabled = false;
+            this.BuildBigButton.Location = new System.Drawing.Point(690, 297);
+            this.BuildBigButton.Name = "BuildBigButton";
+            this.BuildBigButton.Size = new System.Drawing.Size(87, 23);
+            this.BuildBigButton.TabIndex = 5;
+            this.BuildBigButton.Text = "Build BIG File";
+            this.BuildBigButton.UseVisualStyleBackColor = true;
+            this.BuildBigButton.Click += new System.EventHandler(this.BuildBigButton_Click);
             // 
             // BigExtract
             // 
@@ -1485,8 +1486,8 @@ namespace SSX_Modder
         private System.Windows.Forms.Label BigLabel3;
         private System.Windows.Forms.Label BigOffsetLabel;
         private System.Windows.Forms.Label BigLabel2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button BigLoadFolder;
+        private System.Windows.Forms.Button BuildBigButton;
         private System.Windows.Forms.Button BigExtract;
     }
 }

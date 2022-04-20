@@ -53,7 +53,7 @@ namespace SSX_Modder
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 SetStatus("Starting Extraction... (Program may freeze)");
-                ExtractISO(openFileDialog.FileName, workspacePath + "/disk/");
+                ExtractISO(openFileDialog.FileName, workspacePath);
                 MessageBox.Show("Extraction Done");
                 SetStatus("");
             }
@@ -461,7 +461,8 @@ namespace SSX_Modder
                 BigBox1.Items.Clear();
                    bigfHandler.LoadBig(openFileDialog.FileName);
                 BigExtract.Enabled = true;
-                if(bigfHandler.bigFiles.Count==0)
+                BuildBigButton.Enabled = false;
+                if (bigfHandler.bigFiles.Count==0)
                 {
                     MessageBox.Show("Error loading file");
                 }
@@ -498,7 +499,45 @@ namespace SSX_Modder
                 SetStatus("Extracting Please Wait....");
                 bigfHandler.ExtractBig(openFileDialog.FileName);
                 SetStatus("");
+                GC.Collect();
                 Process.Start(openFileDialog.FileName);
+            }
+        }
+
+        private void BigLoadFolder_Click(object sender, EventArgs e)
+        {
+            CommonOpenFileDialog openFileDialog = new CommonOpenFileDialog
+            {
+                InitialDirectory = workspacePath,
+                IsFolderPicker = true,
+            };
+            if (openFileDialog.ShowDialog() == CommonFileDialogResult.Ok)
+            {
+                BigBox1.Items.Clear();
+                BigExtract.Enabled = false;
+                BuildBigButton.Enabled = true;
+                bigfHandler.LoadFolder(openFileDialog.FileName);
+                for (int i = 0; i < bigfHandler.bigFiles.Count; i++)
+                {
+                    BigBox1.Items.Add(bigfHandler.bigFiles[i].path);
+                }
+            }
+        }
+
+        private void BuildBigButton_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog openFileDialog = new SaveFileDialog
+            {
+                InitialDirectory = workspacePath,
+                Filter = "BIG File (*.BIG)|*.BIG|All files (*.*)|*.*",
+                FilterIndex = 1,
+                RestoreDirectory = false
+            };
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                bigfHandler.BuildBig(openFileDialog.FileName);
+                MessageBox.Show("Building Done");
+                GC.Collect();
             }
         }
     }
