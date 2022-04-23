@@ -11,7 +11,7 @@ This is a modding tool i came up and started making when i caught covid as a way
 - Control Editor Menu
 - Fix Iso Extracting Freezing
 - MUS Extractor
-- SSH Converter
+- SSH Converter Saving and Making
 - Built in ISO Packer
 - Mod Pack Maker
 - GS Collection

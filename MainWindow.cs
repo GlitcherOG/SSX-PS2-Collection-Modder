@@ -550,7 +550,7 @@ namespace SSX_Modder
                 sshHandler.LoadSSH(openFileDialog.FileName);
                 for (int i = 0; i < sshHandler.sshImages.Count; i++)
                 {
-                    SSHlistBox1.Items.Add(sshHandler.sshImages[i].shortname);
+                    SSHlistBox1.Items.Add(sshHandler.sshImages[i].longname);
                 }
             }
         }

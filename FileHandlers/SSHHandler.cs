@@ -103,9 +103,21 @@ namespace SSX_Modder.FileHandlers
                         {
                             A = 255;
                         }
-
+                        if(R==112&&G==0&&B==0&&A==0)
+                        {
+                            stream.Position -= 4;
+                            break;
+                        }
                         tempImage.colorTable.Add(Color.FromArgb(A, R, G, B));
                     }
+
+                    tempByte = new byte[4];
+                    stream.Read(tempByte, 0, tempByte.Length);
+                    tempImage.unknownEnd = BitConverter.ToInt32(tempByte, 0);
+
+                    tempByte = new byte[28];
+                    stream.Read(tempByte, 0, tempByte.Length);
+                    tempImage.longname = Encoding.ASCII.GetString(tempByte);
 
                     tempImage.bitmap = new Bitmap(tempImageHeader.Width, tempImageHeader.Height, PixelFormat.Format32bppArgb);
                     int post = 0;
@@ -118,7 +130,7 @@ namespace SSX_Modder.FileHandlers
                             post++;
                         }
                     }
-
+                    tempImage.sshHeader = tempImageHeader;
                     sshImages[i] = tempImage;
                 }
             }
@@ -160,6 +172,8 @@ namespace SSX_Modder.FileHandlers
     struct SSHImage
     {
         public string shortname;
+        public string longname;
+        public int unknownEnd;
         public int offset;
         public SSHImageHeader sshHeader;
         public byte[] Matrix;

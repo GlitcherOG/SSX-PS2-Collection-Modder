@@ -414,7 +414,7 @@ namespace SSX_Modder
             // SSHLoad
             // 
             this.SSHLoad.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.SSHLoad.Location = new System.Drawing.Point(501, 296);
+            this.SSHLoad.Location = new System.Drawing.Point(201, 297);
             this.SSHLoad.Name = "SSHLoad";
             this.SSHLoad.Size = new System.Drawing.Size(75, 23);
             this.SSHLoad.TabIndex = 2;
@@ -437,10 +437,10 @@ namespace SSX_Modder
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.SSHpictureBox1.BackColor = System.Drawing.Color.Black;
-            this.SSHpictureBox1.Location = new System.Drawing.Point(376, 4);
+            this.SSHpictureBox1.Location = new System.Drawing.Point(491, 4);
             this.SSHpictureBox1.Name = "SSHpictureBox1";
             this.SSHpictureBox1.Size = new System.Drawing.Size(286, 286);
-            this.SSHpictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.SSHpictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.SSHpictureBox1.TabIndex = 0;
             this.SSHpictureBox1.TabStop = false;
             // 
