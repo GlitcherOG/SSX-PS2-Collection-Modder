@@ -436,7 +436,9 @@ namespace SSX_Modder
             this.SSHpictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.SSHpictureBox1.BackColor = System.Drawing.Color.Black;
+            this.SSHpictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.SSHpictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.SSHpictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.SSHpictureBox1.Location = new System.Drawing.Point(491, 4);
             this.SSHpictureBox1.Name = "SSHpictureBox1";
             this.SSHpictureBox1.Size = new System.Drawing.Size(286, 286);

@@ -49,14 +49,14 @@ namespace SSX_Modder.FileHandlers
                     stream.Read(tempByte, 0, tempByte.Length);
                     format = Encoding.ASCII.GetString(tempByte);
 
-                    //try
+                    try
                     {
                         StandardToBitmap(stream, (int)stream.Position);
                     }
-                    //catch
+                    catch
                     {
-                        //sshImages = new List<SSHImage>();
-                        //MessageBox.Show("Error reading File " + MagicWord + " "+ format);
+                        sshImages = new List<SSHImage>();
+                        MessageBox.Show("Error reading File " + MagicWord + " "+ format);
                     }
                 }
             }
@@ -98,7 +98,7 @@ namespace SSX_Modder.FileHandlers
 
                 tempByte = new byte[1];
                 stream.Read(tempByte, 0, tempByte.Length);
-                tempImageHeader.MatrixFormat = (sbyte)tempByte[0];
+                tempImageHeader.MatrixFormat = tempByte[0];
 
                 tempByte = new byte[4];
                 stream.Read(tempByte, 0, 3);
@@ -179,6 +179,7 @@ namespace SSX_Modder.FileHandlers
                         }
                     }
                 }
+                else
                 if (tempImageHeader.MatrixFormat == 5)
                 {
                     for (int y = 0; y < tempImageHeader.Height; y++)
@@ -206,6 +207,10 @@ namespace SSX_Modder.FileHandlers
                             post++;
                         }
                     }
+                }
+                else
+                {
+                    MessageBox.Show("Error reading File " + MagicWord + " " + format + "- Matrix " + tempImageHeader.MatrixFormat.ToString());
                 }
                 tempImage.sshHeader = tempImageHeader;
                 sshImages[i] = tempImage;
@@ -275,7 +280,7 @@ namespace SSX_Modder.FileHandlers
     }
     struct SSHImageHeader
     {
-        public sbyte MatrixFormat;
+        public byte MatrixFormat;
         public int Size;
         public int Width;
         public int Height;

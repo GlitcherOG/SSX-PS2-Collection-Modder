@@ -13,7 +13,7 @@
 48/64- Blank
 
 //Image Header
-1- Unkown
+1- Matrix Format  //2-32bit Indexed Colour 5-32bit Colour
 3- Image size (Start of colour table?)
 2- width
 2- height
