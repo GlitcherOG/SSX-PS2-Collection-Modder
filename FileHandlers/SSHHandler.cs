@@ -26,25 +26,32 @@ namespace SSX_Modder.FileHandlers
                 stream.Read(tempByte, 0, tempByte.Length);
                 MagicWord = Encoding.ASCII.GetString(tempByte);
 
-                tempByte = new byte[4];
-                stream.Read(tempByte, 0, tempByte.Length);
-                Size = BitConverter.ToInt32(tempByte, 0);
-
-                tempByte = new byte[4];
-                stream.Read(tempByte, 0, tempByte.Length);
-                Ammount = BitConverter.ToInt32(tempByte, 0);
-
-                tempByte = new byte[4];
-                stream.Read(tempByte, 0, tempByte.Length);
-                format = Encoding.ASCII.GetString(tempByte);
-
-                if(format=="G355")
+                if (MagicWord == "SHPS")
                 {
-                    GS55(stream,(int)stream.Position);
+                    tempByte = new byte[4];
+                    stream.Read(tempByte, 0, tempByte.Length);
+                    Size = BitConverter.ToInt32(tempByte, 0);
+
+                    tempByte = new byte[4];
+                    stream.Read(tempByte, 0, tempByte.Length);
+                    Ammount = BitConverter.ToInt32(tempByte, 0);
+
+                    tempByte = new byte[4];
+                    stream.Read(tempByte, 0, tempByte.Length);
+                    format = Encoding.ASCII.GetString(tempByte);
+
+                    if (format == "G355")
+                    {
+                        GS55(stream, (int)stream.Position);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Unknown Format " + format);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Unknown Format " + format); 
+                    MessageBox.Show("Unknown File " + MagicWord);
                 }
             }
         }
