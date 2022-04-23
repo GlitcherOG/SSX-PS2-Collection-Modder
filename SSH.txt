@@ -1,0 +1,33 @@
+// SSH
+
+4 - Magic Words
+4 - File Size
+4- Ammount
+4- File Format?
+4- File Name
+4- Header Start?
+
+//SSH Archive data?
+4- BUY (?)
+12- ERTS (?)
+48/64- Blank
+
+//Image Header
+1- Unkown
+3- Image size (Start of colour table?)
+2- width
+2- height
+4- Unused(?)
+4- encoding type
+
+//Table
+
+    private int nrOfTableEntries = 256;
+    private int singleTableEntrySize = 3;
+    private int sshTableDelimiterSize = 1;
+    private final byte sshTableDelimiter = (byte) 0x80;
+
+
+// Footer
+4-Unkown
+12/28 - Name

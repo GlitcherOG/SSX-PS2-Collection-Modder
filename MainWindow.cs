@@ -1,18 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using SSX_Modder.FileHandlers;
 using DiscUtils;
 using DiscUtils.Iso9660;
 using System.Diagnostics;
 using Microsoft.WindowsAPICodePack.Dialogs;
+using System.Drawing;
+using System.Drawing.Imaging;
 
 namespace SSX_Modder
 {
@@ -538,6 +533,33 @@ namespace SSX_Modder
                 bigfHandler.BuildBig(openFileDialog.FileName);
                 MessageBox.Show("Building Done");
                 GC.Collect();
+            }
+        }
+        SSHHandler sshHandler = new SSHHandler();
+        private void SSHLoad_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                InitialDirectory = workspacePath,
+                Filter = "SSH File (*.SSH)|*.SSH|All files (*.*)|*.*",
+                FilterIndex = 1,
+                RestoreDirectory = false
+            };
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                sshHandler.LoadSSH(openFileDialog.FileName);
+                for (int i = 0; i < sshHandler.sshImages.Count; i++)
+                {
+                    SSHlistBox1.Items.Add(sshHandler.sshImages[i].shortname);
+                }
+            }
+        }
+
+        private void SSHlistBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(SSHlistBox1.SelectedIndex!=-1)
+            {
+                SSHpictureBox1.Image = sshHandler.sshImages[SSHlistBox1.SelectedIndex].bitmap;
             }
         }
     }
