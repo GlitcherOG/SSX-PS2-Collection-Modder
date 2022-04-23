@@ -17,15 +17,24 @@ namespace SSX_Modder.FileHandlers
         public int Size;
         public int Ammount;
         public string format;
+        public string group;
+        public string endingstring;
         public List<SSHImage> sshImages = new List<SSHImage>();
         public void LoadSSH(string path)
         {
+            sshImages = new List<SSHImage>();
             using (Stream stream = File.Open(path, FileMode.Open))
             {
                 byte[] tempByte = new byte[4];
-                stream.Read(tempByte, 0, tempByte.Length);
-                MagicWord = Encoding.ASCII.GetString(tempByte);
-
+                long pos = FindPosition(stream, new byte[] { 0x53, 0x48, 0x50, 0x53 });
+                stream.Position = 0;
+                if (pos != -1)
+                {
+                    stream.Position = pos;
+                    tempByte = new byte[4];
+                    stream.Read(tempByte, 0, tempByte.Length);
+                    MagicWord = Encoding.ASCII.GetString(tempByte);
+                }
                 if (MagicWord == "SHPS")
                 {
                     tempByte = new byte[4];
@@ -40,23 +49,20 @@ namespace SSX_Modder.FileHandlers
                     stream.Read(tempByte, 0, tempByte.Length);
                     format = Encoding.ASCII.GetString(tempByte);
 
-                    if (format == "G355")
+                    //try
                     {
-                        GS55(stream, (int)stream.Position);
+                        StandardToBitmap(stream, (int)stream.Position);
                     }
-                    else
+                    //catch
                     {
-                        MessageBox.Show("Unknown Format " + format);
+                        //sshImages = new List<SSHImage>();
+                        //MessageBox.Show("Error reading File " + MagicWord + " "+ format);
                     }
-                }
-                else
-                {
-                    MessageBox.Show("Unknown File " + MagicWord);
                 }
             }
         }
 
-        public void GS55(Stream stream, int offset)
+        public void StandardToBitmap(Stream stream, int offset)
         {
             stream.Position = offset;
             byte[] tempByte;
@@ -75,6 +81,14 @@ namespace SSX_Modder.FileHandlers
                 sshImages.Add(tempImage);
             }
 
+            tempByte = new byte[4];
+            stream.Read(tempByte, 0, tempByte.Length);
+            group = Encoding.ASCII.GetString(tempByte);
+
+            tempByte = new byte[4];
+            stream.Read(tempByte, 0, tempByte.Length);
+            endingstring = Encoding.ASCII.GetString(tempByte);
+
             for (int i = 0; i < sshImages.Count; i++)
             {
                 SSHImage tempImage = sshImages[i];
@@ -84,11 +98,11 @@ namespace SSX_Modder.FileHandlers
 
                 tempByte = new byte[1];
                 stream.Read(tempByte, 0, tempByte.Length);
-                tempImageHeader.Unknown = (sbyte)tempByte[0];
+                tempImageHeader.MatrixFormat = (sbyte)tempByte[0];
 
                 tempByte = new byte[4];
                 stream.Read(tempByte, 0, 3);
-                tempImageHeader.Size = BitConverter.ToInt32(tempByte, 0);
+                tempImageHeader.Size = BitConverter.ToInt32(tempByte, 0)-16;
 
                 tempByte = new byte[2];
                 stream.Read(tempByte, 0, tempByte.Length);
@@ -106,32 +120,37 @@ namespace SSX_Modder.FileHandlers
                 stream.Read(tempByte, 0, tempByte.Length);
                 tempImageHeader.Format = BitConverter.ToInt32(tempByte, 0);
 
-                tempByte = new byte[tempImageHeader.Width * tempImageHeader.Height];
+                tempByte = new byte[tempImageHeader.Size];
                 stream.Read(tempByte, 0, tempByte.Length);
                 tempImage.Matrix = tempByte;
 
-                stream.Position += 16;
-                tempImage.colorTable = new List<Color>();
-                for (int a = 0; a < 256; a++)
+                //stream.Position += 10;
+                if (tempImageHeader.MatrixFormat == 2)
                 {
-                    int R = stream.ReadByte();
-                    int G = stream.ReadByte();
-                    int B = stream.ReadByte();
-                    int A = stream.ReadByte() * 2 - 1;
-                    if (A < 0)
+                    stream.Position += 16;
+                    tempImage.colorTable = new List<Color>();
+                    for (int a = 0; a < 256; a++)
                     {
-                        A = 0;
+                        int R = stream.ReadByte();
+                        int G = stream.ReadByte();
+                        int B = stream.ReadByte();
+                        int A = stream.ReadByte() * 2 - 1;
+                        if (A < 0)
+                        {
+                            A = 0;
+                        }
+                        else if (A > 255)
+                        {
+                            A = 255;
+                        }
+                        //Replace with proper check
+                        if (R == 112 && G == 0 && B == 0 && A == 0)
+                        {
+                            stream.Position -= 4;
+                            break;
+                        }
+                        tempImage.colorTable.Add(Color.FromArgb(A, R, G, B));
                     }
-                    else if (A > 255)
-                    {
-                        A = 255;
-                    }
-                    if (R == 112 && G == 0 && B == 0 && A == 0)
-                    {
-                        stream.Position -= 4;
-                        break;
-                    }
-                    tempImage.colorTable.Add(Color.FromArgb(A, R, G, B));
                 }
 
                 tempByte = new byte[4];
@@ -144,18 +163,70 @@ namespace SSX_Modder.FileHandlers
 
                 tempImage.bitmap = new Bitmap(tempImageHeader.Width, tempImageHeader.Height, PixelFormat.Format32bppArgb);
                 int post = 0;
-                for (int y = 0; y < tempImageHeader.Height; y++)
+                if (tempImageHeader.MatrixFormat == 2)
                 {
-                    for (int x = 0; x < tempImageHeader.Width; x++)
+                    for (int y = 0; y < tempImageHeader.Height; y++)
                     {
-                        int colorPos = tempImage.Matrix[post];
-                        tempImage.bitmap.SetPixel(x, y, tempImage.colorTable[simulateSwitching4th5thBit(colorPos)]);
-                        post++;
+                        for (int x = 0; x < tempImageHeader.Width; x++)
+                        {
+                            int colorPos = tempImage.Matrix[post];
+                            //if(colorTable==256)
+                            {
+                                colorPos = simulateSwitching4th5thBit(colorPos);
+                            }
+                            tempImage.bitmap.SetPixel(x, y, tempImage.colorTable[colorPos]);
+                            post++;
+                        }
+                    }
+                }
+                if (tempImageHeader.MatrixFormat == 5)
+                {
+                    for (int y = 0; y < tempImageHeader.Height; y++)
+                    {
+                        for (int x = 0; x < tempImageHeader.Width; x++)
+                        {
+                            int R = tempImage.Matrix[post];
+                            post++;
+                            int G = tempImage.Matrix[post];
+                            post++;
+                            int B = tempImage.Matrix[post];
+                            post++;
+                            int A = 255;//tempImage.Matrix[post] * 2 - 1;
+                            //post++;
+                            if (A < 0)
+                            {
+                                A = 0;
+                            }
+                            else if (A > 255)
+                            {
+                                A = 255;
+                            }
+                            //tempImage.colorTable.Add(Color.FromArgb(A, R, G, B));
+                            tempImage.bitmap.SetPixel(x, y, Color.FromArgb(A, R, G, B));
+                            post++;
+                        }
                     }
                 }
                 tempImage.sshHeader = tempImageHeader;
                 sshImages[i] = tempImage;
             }
+        }
+
+        public static long FindPosition(Stream stream, byte[] byteSequence)
+        {
+            int b;
+            long i = 0;
+            while ((b = stream.ReadByte()) != -1)
+            {
+                if (b == byteSequence[i++])
+                {
+                    if (i == byteSequence.Length)
+                        return stream.Position - byteSequence.Length;
+                }
+                else
+                    i = b == byteSequence[0] ? 1 : 0;
+            }
+            return -1;
         }
 
         public static int simulateSwitching4th5thBit(int nr)
@@ -204,7 +275,7 @@ namespace SSX_Modder.FileHandlers
     }
     struct SSHImageHeader
     {
-        public sbyte Unknown;
+        public sbyte MatrixFormat;
         public int Size;
         public int Width;
         public int Height;

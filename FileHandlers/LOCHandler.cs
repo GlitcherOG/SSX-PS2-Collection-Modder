@@ -165,6 +165,7 @@ namespace SSX_Modder.FileHandlers
             return -1;
         }
     }
+
     // LOCH
     // 0-3 Magic Words
     // 4-7 LOCT Offset (Or Size)

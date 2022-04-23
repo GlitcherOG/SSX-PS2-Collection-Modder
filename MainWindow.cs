@@ -538,6 +538,7 @@ namespace SSX_Modder
         SSHHandler sshHandler = new SSHHandler();
         private void SSHLoad_Click(object sender, EventArgs e)
         {
+            SSHlistBox1.Items.Clear();
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
                 InitialDirectory = workspacePath,
