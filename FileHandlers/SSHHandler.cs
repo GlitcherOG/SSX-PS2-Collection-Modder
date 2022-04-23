@@ -7,12 +7,13 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
 using System.IO;
+using System.Windows.Forms;
 
 namespace SSX_Modder.FileHandlers
 {
     class SSHHandler
     {
-        public byte[] MagicWord;
+        public string MagicWord;
         public int Size;
         public int Ammount;
         public string format;
@@ -23,11 +24,11 @@ namespace SSX_Modder.FileHandlers
             {
                 byte[] tempByte = new byte[4];
                 stream.Read(tempByte, 0, tempByte.Length);
-                MagicWord = tempByte;
+                MagicWord = Encoding.ASCII.GetString(tempByte);
 
                 tempByte = new byte[4];
                 stream.Read(tempByte, 0, tempByte.Length);
-                Size = BitConverter.ToInt32(tempByte,0);
+                Size = BitConverter.ToInt32(tempByte, 0);
 
                 tempByte = new byte[4];
                 stream.Read(tempByte, 0, tempByte.Length);
@@ -37,102 +38,116 @@ namespace SSX_Modder.FileHandlers
                 stream.Read(tempByte, 0, tempByte.Length);
                 format = Encoding.ASCII.GetString(tempByte);
 
-                for (int i = 0; i < Ammount; i++)
+                if(format=="G355")
                 {
-                    SSHImage tempImage = new SSHImage();
+                    GS55(stream,(int)stream.Position);
+                }
+                else
+                {
+                    MessageBox.Show("Unknown Format " + format); 
+                }
+            }
+        }
 
-                    tempByte = new byte[4];
-                    stream.Read(tempByte, 0, tempByte.Length);
-                    tempImage.shortname = Encoding.ASCII.GetString(tempByte);
+        public void GS55(Stream stream, int offset)
+        {
+            stream.Position = offset;
+            byte[] tempByte;
+            for (int i = 0; i < Ammount; i++)
+            {
+                SSHImage tempImage = new SSHImage();
 
-                    tempByte = new byte[4];
-                    stream.Read(tempByte, 0, tempByte.Length);
-                    tempImage.offset = BitConverter.ToInt32(tempByte, 0);
+                tempByte = new byte[4];
+                stream.Read(tempByte, 0, tempByte.Length);
+                tempImage.shortname = Encoding.ASCII.GetString(tempByte);
 
-                    sshImages.Add(tempImage);
+                tempByte = new byte[4];
+                stream.Read(tempByte, 0, tempByte.Length);
+                tempImage.offset = BitConverter.ToInt32(tempByte, 0);
+
+                sshImages.Add(tempImage);
+            }
+
+            for (int i = 0; i < sshImages.Count; i++)
+            {
+                SSHImage tempImage = sshImages[i];
+                SSHImageHeader tempImageHeader = new SSHImageHeader();
+
+                stream.Position = tempImage.offset;
+
+                tempByte = new byte[1];
+                stream.Read(tempByte, 0, tempByte.Length);
+                tempImageHeader.Unknown = (sbyte)tempByte[0];
+
+                tempByte = new byte[4];
+                stream.Read(tempByte, 0, 3);
+                tempImageHeader.Size = BitConverter.ToInt32(tempByte, 0);
+
+                tempByte = new byte[2];
+                stream.Read(tempByte, 0, tempByte.Length);
+                tempImageHeader.Width = BitConverter.ToInt16(tempByte, 0);
+
+                tempByte = new byte[2];
+                stream.Read(tempByte, 0, tempByte.Length);
+                tempImageHeader.Height = BitConverter.ToInt16(tempByte, 0);
+
+                tempByte = new byte[4];
+                stream.Read(tempByte, 0, tempByte.Length);
+                tempImageHeader.Unused = BitConverter.ToInt32(tempByte, 0);
+
+                tempByte = new byte[4];
+                stream.Read(tempByte, 0, tempByte.Length);
+                tempImageHeader.Format = BitConverter.ToInt32(tempByte, 0);
+
+                tempByte = new byte[tempImageHeader.Width * tempImageHeader.Height];
+                stream.Read(tempByte, 0, tempByte.Length);
+                tempImage.Matrix = tempByte;
+
+                stream.Position += 16;
+                tempImage.colorTable = new List<Color>();
+                for (int a = 0; a < 256; a++)
+                {
+                    int R = stream.ReadByte();
+                    int G = stream.ReadByte();
+                    int B = stream.ReadByte();
+                    int A = stream.ReadByte() * 2 - 1;
+                    if (A < 0)
+                    {
+                        A = 0;
+                    }
+                    else if (A > 255)
+                    {
+                        A = 255;
+                    }
+                    if (R == 112 && G == 0 && B == 0 && A == 0)
+                    {
+                        stream.Position -= 4;
+                        break;
+                    }
+                    tempImage.colorTable.Add(Color.FromArgb(A, R, G, B));
                 }
 
-                for (int i = 0; i < sshImages.Count; i++)
+                tempByte = new byte[4];
+                stream.Read(tempByte, 0, tempByte.Length);
+                tempImage.unknownEnd = BitConverter.ToInt32(tempByte, 0);
+
+                tempByte = new byte[28];
+                stream.Read(tempByte, 0, tempByte.Length);
+                tempImage.longname = Encoding.ASCII.GetString(tempByte);
+
+                tempImage.bitmap = new Bitmap(tempImageHeader.Width, tempImageHeader.Height, PixelFormat.Format32bppArgb);
+                int post = 0;
+                for (int y = 0; y < tempImageHeader.Height; y++)
                 {
-                    SSHImage tempImage = sshImages[i];
-                    SSHImageHeader tempImageHeader = new SSHImageHeader();
-
-                    stream.Position = tempImage.offset;
-
-                    tempByte = new byte[1];
-                    stream.Read(tempByte, 0, tempByte.Length);
-                    tempImageHeader.Unknown = (sbyte)tempByte[0];
-
-                    tempByte = new byte[4];
-                    stream.Read(tempByte, 0, 3);
-                    tempImageHeader.Size = BitConverter.ToInt32(tempByte,0);
-
-                    tempByte = new byte[2];
-                    stream.Read(tempByte, 0, tempByte.Length);
-                    tempImageHeader.Width = BitConverter.ToInt16(tempByte, 0);
-
-                    tempByte = new byte[2];
-                    stream.Read(tempByte, 0, tempByte.Length);
-                    tempImageHeader.Height = BitConverter.ToInt16(tempByte, 0);
-
-                    tempByte = new byte[4];
-                    stream.Read(tempByte, 0, tempByte.Length);
-                    tempImageHeader.Unused = BitConverter.ToInt32(tempByte, 0);
-
-                    tempByte = new byte[4];
-                    stream.Read(tempByte, 0, tempByte.Length);
-                    tempImageHeader.Format = BitConverter.ToInt32(tempByte, 0);
-
-                    tempByte = new byte[tempImageHeader.Width * tempImageHeader.Height];
-                    stream.Read(tempByte, 0, tempByte.Length);
-                    tempImage.Matrix = tempByte;
-
-                    stream.Position += 16;
-                    tempImage.colorTable = new List<Color>();
-                    for (int a = 0; a < 256; a++)
+                    for (int x = 0; x < tempImageHeader.Width; x++)
                     {
-                        int R = stream.ReadByte();
-                        int G = stream.ReadByte();
-                        int B = stream.ReadByte();
-                        int A = stream.ReadByte()*2-1;
-                        if (A < 0)
-                        {
-                            A = 0;
-                        }
-                        else if(A > 255)
-                        {
-                            A = 255;
-                        }
-                        if(R==112&&G==0&&B==0&&A==0)
-                        {
-                            stream.Position -= 4;
-                            break;
-                        }
-                        tempImage.colorTable.Add(Color.FromArgb(A, R, G, B));
+                        int colorPos = tempImage.Matrix[post];
+                        tempImage.bitmap.SetPixel(x, y, tempImage.colorTable[simulateSwitching4th5thBit(colorPos)]);
+                        post++;
                     }
-
-                    tempByte = new byte[4];
-                    stream.Read(tempByte, 0, tempByte.Length);
-                    tempImage.unknownEnd = BitConverter.ToInt32(tempByte, 0);
-
-                    tempByte = new byte[28];
-                    stream.Read(tempByte, 0, tempByte.Length);
-                    tempImage.longname = Encoding.ASCII.GetString(tempByte);
-
-                    tempImage.bitmap = new Bitmap(tempImageHeader.Width, tempImageHeader.Height, PixelFormat.Format32bppArgb);
-                    int post = 0;
-                    for (int y = 0; y < tempImageHeader.Height; y++)
-                    {
-                        for (int x = 0; x < tempImageHeader.Width; x++)
-                        {
-                            int colorPos = tempImage.Matrix[post];
-                            tempImage.bitmap.SetPixel(x, y, tempImage.colorTable[simulateSwitching4th5thBit(colorPos)]);
-                            post++;
-                        }
-                    }
-                    tempImage.sshHeader = tempImageHeader;
-                    sshImages[i] = tempImage;
                 }
+                tempImage.sshHeader = tempImageHeader;
+                sshImages[i] = tempImage;
             }
         }
 
