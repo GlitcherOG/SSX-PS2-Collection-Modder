@@ -552,6 +552,8 @@ namespace SSX_Modder
                 for (int i = 0; i < sshHandler.sshImages.Count; i++)
                 {
                     SSHlistBox1.Items.Add(sshHandler.sshImages[i].longname);
+                    SSHFileFormat.Text = sshHandler.format;
+                    SSHFileNameLabel.Text = openFileDialog.SafeFileName;
                 }
             }
         }
@@ -561,6 +563,9 @@ namespace SSX_Modder
             if(SSHlistBox1.SelectedIndex!=-1)
             {
                 SSHpictureBox1.Image = sshHandler.sshImages[SSHlistBox1.SelectedIndex].bitmap;
+                SSHImageName.Text = sshHandler.sshImages[SSHlistBox1.SelectedIndex].longname;
+                SSHImageShortName.Text = sshHandler.sshImages[SSHlistBox1.SelectedIndex].shortname;
+                SSHMatrixType.Text = sshHandler.sshImages[SSHlistBox1.SelectedIndex].sshHeader.MatrixFormat.ToString();
             }
         }
 
@@ -578,6 +583,18 @@ namespace SSX_Modder
                 SetStatus("");
                 GC.Collect();
                 Process.Start(openFileDialog.FileName);
+            }
+        }
+
+        private void SSHDisplayMode_CheckedChanged(object sender, EventArgs e)
+        {
+            if(SSHDisplayMode.Checked)
+            {
+                SSHpictureBox1.BackColor = Color.Black;
+            }
+            else
+            {
+                SSHpictureBox1.BackColor = Color.White;
             }
         }
     }

@@ -51,6 +51,17 @@ namespace SSX_Modder
             this.BigLoad = new System.Windows.Forms.Button();
             this.BigBox1 = new System.Windows.Forms.ListBox();
             this.tabSSH = new System.Windows.Forms.TabPage();
+            this.SSHMatrixType = new System.Windows.Forms.Label();
+            this.label37 = new System.Windows.Forms.Label();
+            this.SSHImageShortName = new System.Windows.Forms.Label();
+            this.SSHImageName = new System.Windows.Forms.Label();
+            this.label36 = new System.Windows.Forms.Label();
+            this.label35 = new System.Windows.Forms.Label();
+            this.SSHFileFormat = new System.Windows.Forms.Label();
+            this.label34 = new System.Windows.Forms.Label();
+            this.SSHFileNameLabel = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
+            this.SSHbmpExport = new System.Windows.Forms.Button();
             this.SSHLoad = new System.Windows.Forms.Button();
             this.SSHlistBox1 = new System.Windows.Forms.ListBox();
             this.SSHpictureBox1 = new System.Windows.Forms.PictureBox();
@@ -145,7 +156,7 @@ namespace SSX_Modder
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.SSHbmpExport = new System.Windows.Forms.Button();
+            this.SSHDisplayMode = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabBootFile.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -402,6 +413,17 @@ namespace SSX_Modder
             // 
             // tabSSH
             // 
+            this.tabSSH.Controls.Add(this.SSHDisplayMode);
+            this.tabSSH.Controls.Add(this.SSHMatrixType);
+            this.tabSSH.Controls.Add(this.label37);
+            this.tabSSH.Controls.Add(this.SSHImageShortName);
+            this.tabSSH.Controls.Add(this.SSHImageName);
+            this.tabSSH.Controls.Add(this.label36);
+            this.tabSSH.Controls.Add(this.label35);
+            this.tabSSH.Controls.Add(this.SSHFileFormat);
+            this.tabSSH.Controls.Add(this.label34);
+            this.tabSSH.Controls.Add(this.SSHFileNameLabel);
+            this.tabSSH.Controls.Add(this.label33);
             this.tabSSH.Controls.Add(this.SSHbmpExport);
             this.tabSSH.Controls.Add(this.SSHLoad);
             this.tabSSH.Controls.Add(this.SSHlistBox1);
@@ -412,6 +434,107 @@ namespace SSX_Modder
             this.tabSSH.TabIndex = 8;
             this.tabSSH.Text = "SSH";
             this.tabSSH.UseVisualStyleBackColor = true;
+            // 
+            // SSHMatrixType
+            // 
+            this.SSHMatrixType.AutoSize = true;
+            this.SSHMatrixType.Location = new System.Drawing.Point(202, 129);
+            this.SSHMatrixType.Name = "SSHMatrixType";
+            this.SSHMatrixType.Size = new System.Drawing.Size(33, 13);
+            this.SSHMatrixType.TabIndex = 13;
+            this.SSHMatrixType.Text = "None";
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Location = new System.Drawing.Point(202, 116);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(62, 13);
+            this.label37.TabIndex = 12;
+            this.label37.Text = "Matrix Type";
+            // 
+            // SSHImageShortName
+            // 
+            this.SSHImageShortName.AutoSize = true;
+            this.SSHImageShortName.Location = new System.Drawing.Point(331, 94);
+            this.SSHImageShortName.Name = "SSHImageShortName";
+            this.SSHImageShortName.Size = new System.Drawing.Size(33, 13);
+            this.SSHImageShortName.TabIndex = 11;
+            this.SSHImageShortName.Text = "None";
+            // 
+            // SSHImageName
+            // 
+            this.SSHImageName.AutoSize = true;
+            this.SSHImageName.Location = new System.Drawing.Point(202, 94);
+            this.SSHImageName.Name = "SSHImageName";
+            this.SSHImageName.Size = new System.Drawing.Size(33, 13);
+            this.SSHImageName.TabIndex = 10;
+            this.SSHImageName.Text = "None";
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Location = new System.Drawing.Point(331, 81);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(95, 13);
+            this.label36.TabIndex = 9;
+            this.label36.Text = "Image Short Name";
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(202, 81);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(67, 13);
+            this.label35.TabIndex = 8;
+            this.label35.Text = "Image Name";
+            // 
+            // SSHFileFormat
+            // 
+            this.SSHFileFormat.AutoSize = true;
+            this.SSHFileFormat.Location = new System.Drawing.Point(331, 21);
+            this.SSHFileFormat.Name = "SSHFileFormat";
+            this.SSHFileFormat.Size = new System.Drawing.Size(33, 13);
+            this.SSHFileFormat.TabIndex = 7;
+            this.SSHFileFormat.Text = "None";
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(331, 4);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(39, 13);
+            this.label34.TabIndex = 6;
+            this.label34.Text = "Format";
+            // 
+            // SSHFileNameLabel
+            // 
+            this.SSHFileNameLabel.AutoSize = true;
+            this.SSHFileNameLabel.Location = new System.Drawing.Point(202, 21);
+            this.SSHFileNameLabel.Name = "SSHFileNameLabel";
+            this.SSHFileNameLabel.Size = new System.Drawing.Size(33, 13);
+            this.SSHFileNameLabel.TabIndex = 5;
+            this.SSHFileNameLabel.Text = "None";
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(202, 4);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(54, 13);
+            this.label33.TabIndex = 4;
+            this.label33.Text = "File Name";
+            // 
+            // SSHbmpExport
+            // 
+            this.SSHbmpExport.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.SSHbmpExport.Location = new System.Drawing.Point(282, 297);
+            this.SSHbmpExport.Name = "SSHbmpExport";
+            this.SSHbmpExport.Size = new System.Drawing.Size(88, 23);
+            this.SSHbmpExport.TabIndex = 3;
+            this.SSHbmpExport.Text = "Export To BMP";
+            this.SSHbmpExport.UseVisualStyleBackColor = true;
+            this.SSHbmpExport.Click += new System.EventHandler(this.SSHbmpExport_Click);
             // 
             // SSHLoad
             // 
@@ -1479,16 +1602,16 @@ namespace SSX_Modder
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
             // 
-            // SSHbmpExport
+            // SSHDisplayMode
             // 
-            this.SSHbmpExport.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.SSHbmpExport.Location = new System.Drawing.Point(282, 297);
-            this.SSHbmpExport.Name = "SSHbmpExport";
-            this.SSHbmpExport.Size = new System.Drawing.Size(88, 23);
-            this.SSHbmpExport.TabIndex = 3;
-            this.SSHbmpExport.Text = "Export To BMP";
-            this.SSHbmpExport.UseVisualStyleBackColor = true;
-            this.SSHbmpExport.Click += new System.EventHandler(this.SSHbmpExport_Click);
+            this.SSHDisplayMode.AutoSize = true;
+            this.SSHDisplayMode.Location = new System.Drawing.Point(590, 296);
+            this.SSHDisplayMode.Name = "SSHDisplayMode";
+            this.SSHDisplayMode.Size = new System.Drawing.Size(90, 17);
+            this.SSHDisplayMode.TabIndex = 14;
+            this.SSHDisplayMode.Text = "Display Mode";
+            this.SSHDisplayMode.UseVisualStyleBackColor = true;
+            this.SSHDisplayMode.CheckedChanged += new System.EventHandler(this.SSHDisplayMode_CheckedChanged);
             // 
             // MainWindow
             // 
@@ -1508,6 +1631,7 @@ namespace SSX_Modder
             this.tabBig.ResumeLayout(false);
             this.tabBig.PerformLayout();
             this.tabSSH.ResumeLayout(false);
+            this.tabSSH.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SSHpictureBox1)).EndInit();
             this.tabCharacters.ResumeLayout(false);
             this.tabCharacters.PerformLayout();
@@ -1661,6 +1785,17 @@ namespace SSX_Modder
         private System.Windows.Forms.PictureBox SSHpictureBox1;
         private System.Windows.Forms.Button SSHLoad;
         private System.Windows.Forms.Button SSHbmpExport;
+        private System.Windows.Forms.Label SSHFileFormat;
+        private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.Label SSHFileNameLabel;
+        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.Label SSHMatrixType;
+        private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.Label SSHImageShortName;
+        private System.Windows.Forms.Label SSHImageName;
+        private System.Windows.Forms.Label label36;
+        private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.CheckBox SSHDisplayMode;
     }
 }
 
