@@ -125,6 +125,7 @@ namespace SSX_Modder.FileHandlers
                 tempImage.Matrix = tempByte;
 
                 //stream.Position += 10;
+                //INDEXED COLOUR
                 if (tempImageHeader.MatrixFormat == 2)
                 {
                     stream.Position += 16;
@@ -157,7 +158,22 @@ namespace SSX_Modder.FileHandlers
                 stream.Read(tempByte, 0, tempByte.Length);
                 tempImage.unknownEnd = BitConverter.ToInt32(tempByte, 0);
 
-                tempByte = new byte[28];
+                bool tillNull = false;
+                int t = 0;
+                while (!tillNull)
+                {
+                    int temp1 = stream.ReadByte();
+                    if (temp1 == 0x00)
+                    {
+                        tillNull = true;
+                    }
+                    else
+                    {
+                        t++;
+                    }
+                }
+                stream.Position -= t + 1;
+                tempByte = new byte[t];
                 stream.Read(tempByte, 0, tempByte.Length);
                 tempImage.longname = Encoding.ASCII.GetString(tempByte);
 
@@ -170,10 +186,7 @@ namespace SSX_Modder.FileHandlers
                         for (int x = 0; x < tempImageHeader.Width; x++)
                         {
                             int colorPos = tempImage.Matrix[post];
-                            //if(colorTable==256)
-                            {
-                                colorPos = simulateSwitching4th5thBit(colorPos);
-                            }
+                            colorPos = simulateSwitching4th5thBit(colorPos);
                             tempImage.bitmap.SetPixel(x, y, tempImage.colorTable[colorPos]);
                             post++;
                         }
@@ -214,6 +227,14 @@ namespace SSX_Modder.FileHandlers
                 }
                 tempImage.sshHeader = tempImageHeader;
                 sshImages[i] = tempImage;
+            }
+        }
+
+        public void BMPExtract(string path)
+        {
+            for (int i = 0; i < sshImages.Count; i++)
+            {
+                sshImages[i].bitmap.Save(path+"\\"+ sshImages[i].shortname+"."+ sshImages[i].longname +".bmp");
             }
         }
 

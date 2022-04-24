@@ -563,5 +563,22 @@ namespace SSX_Modder
                 SSHpictureBox1.Image = sshHandler.sshImages[SSHlistBox1.SelectedIndex].bitmap;
             }
         }
+
+        private void SSHbmpExport_Click(object sender, EventArgs e)
+        {
+            CommonOpenFileDialog openFileDialog = new CommonOpenFileDialog
+            {
+                InitialDirectory = workspacePath,
+                IsFolderPicker = true,
+            };
+            if (openFileDialog.ShowDialog() == CommonFileDialogResult.Ok)
+            {
+                SetStatus("Extracting Please Wait....");
+                sshHandler.BMPExtract(openFileDialog.FileName);
+                SetStatus("");
+                GC.Collect();
+                Process.Start(openFileDialog.FileName);
+            }
+        }
     }
 }

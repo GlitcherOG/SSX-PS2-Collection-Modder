@@ -145,6 +145,7 @@ namespace SSX_Modder
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.SSHbmpExport = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabBootFile.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -401,6 +402,7 @@ namespace SSX_Modder
             // 
             // tabSSH
             // 
+            this.tabSSH.Controls.Add(this.SSHbmpExport);
             this.tabSSH.Controls.Add(this.SSHLoad);
             this.tabSSH.Controls.Add(this.SSHlistBox1);
             this.tabSSH.Controls.Add(this.SSHpictureBox1);
@@ -1477,6 +1479,17 @@ namespace SSX_Modder
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
             // 
+            // SSHbmpExport
+            // 
+            this.SSHbmpExport.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.SSHbmpExport.Location = new System.Drawing.Point(282, 297);
+            this.SSHbmpExport.Name = "SSHbmpExport";
+            this.SSHbmpExport.Size = new System.Drawing.Size(88, 23);
+            this.SSHbmpExport.TabIndex = 3;
+            this.SSHbmpExport.Text = "Export To BMP";
+            this.SSHbmpExport.UseVisualStyleBackColor = true;
+            this.SSHbmpExport.Click += new System.EventHandler(this.SSHbmpExport_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1647,6 +1660,7 @@ namespace SSX_Modder
         private System.Windows.Forms.ListBox SSHlistBox1;
         private System.Windows.Forms.PictureBox SSHpictureBox1;
         private System.Windows.Forms.Button SSHLoad;
+        private System.Windows.Forms.Button SSHbmpExport;
     }
 }
 
