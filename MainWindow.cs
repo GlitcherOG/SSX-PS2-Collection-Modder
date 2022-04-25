@@ -60,9 +60,9 @@ namespace SSX_Modder
             using (FileStream ISOStream = File.Open(ISOName, FileMode.Open))
             {
                 CDReader Reader = new CDReader(ISOStream, true, true);
-                if(Directory.Exists(ExtractionPath))
+                if (Directory.Exists(ExtractionPath))
                 {
-                    Directory.Delete(ExtractionPath,true);
+                    Directory.Delete(ExtractionPath, true);
                 }
                 ExtractDirectory(Reader.Root, ExtractionPath + "\\", "");
                 Reader.Dispose();
@@ -177,7 +177,7 @@ namespace SSX_Modder
                 Filter = "Loc File (*.loc)|*.loc|All files (*.*)|*.*",
                 FilterIndex = 1,
                 RestoreDirectory = false,
-        };
+            };
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -235,6 +235,48 @@ namespace SSX_Modder
             locHandler.SaveLodFile();
             SetStatus("File Saved");
         }
+
+        private void LocSearchNext_Click(object sender, EventArgs e)
+        {
+            int a = LocBox1.SelectedIndex;
+            if (LocBox1.SelectedIndex == -1)
+            {
+                a = 0;
+            }
+            else if (a != LocBox1.Items.Count-1)
+            {
+                a++;
+            }
+            for (int i = a; i < locHandler.textList.Count; i++)
+            {
+                if (locHandler.textList[i].ToLower().Contains(LocSearchText.Text.ToLower()))
+                {
+                    LocBox1.SelectedIndex = i;
+                    break;
+                }
+            }
+        }
+
+        private void LocSearchBack_Click(object sender, EventArgs e)
+        {
+            int a = LocBox1.SelectedIndex;
+            if (a == -1)
+            {
+                a = LocBox1.Items.Count - 1;
+            }
+            else if (a != 0)
+            {
+                a--;
+            }
+            for (int i = a; i > -1; i--)
+            {
+                if (locHandler.textList[i].ToLower().Contains(LocSearchText.Text.ToLower()))
+                {
+                    LocBox1.SelectedIndex = i;
+                    break;
+                }
+            }
+        }
         #endregion
 
         #region CharDB File
@@ -247,7 +289,7 @@ namespace SSX_Modder
                 Filter = "Character DBL|CHARDB.DBL|DataBase List (*.DBL)|*.DBL|All files (*.*)|*.*",
                 FilterIndex = 1,
                 RestoreDirectory = false
-        };
+            };
             //openFileDialog.RestoreDirectory = true;
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -454,10 +496,10 @@ namespace SSX_Modder
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 BigBox1.Items.Clear();
-                   bigfHandler.LoadBig(openFileDialog.FileName);
+                bigfHandler.LoadBig(openFileDialog.FileName);
                 BigExtract.Enabled = true;
                 BuildBigButton.Enabled = false;
-                if (bigfHandler.bigFiles.Count==0)
+                if (bigfHandler.bigFiles.Count == 0)
                 {
                     MessageBox.Show("Error loading file");
                 }
@@ -470,14 +512,14 @@ namespace SSX_Modder
 
         private void BigBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(BigBox1.SelectedIndex!=-1)
+            if (BigBox1.SelectedIndex != -1)
             {
                 int i = BigBox1.SelectedIndex;
                 BigPathLabel.Text = bigfHandler.bigFiles[i].path;
                 byte[] temp = BitConverter.GetBytes(bigfHandler.bigFiles[i].offset);
                 if (BitConverter.IsLittleEndian)
                     Array.Reverse(temp);
-                BigOffsetLabel.Text = "0x"+BitConverter.ToString(temp).Replace("-","");
+                BigOffsetLabel.Text = "0x" + BitConverter.ToString(temp).Replace("-", "");
                 BigSizeLabel.Text = bigfHandler.bigFiles[i].size.ToString();
             }
         }
@@ -560,7 +602,7 @@ namespace SSX_Modder
 
         private void SSHlistBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(SSHlistBox1.SelectedIndex!=-1)
+            if (SSHlistBox1.SelectedIndex != -1)
             {
                 SSHpictureBox1.Image = sshHandler.sshImages[SSHlistBox1.SelectedIndex].bitmap;
                 SSHImageName.Text = sshHandler.sshImages[SSHlistBox1.SelectedIndex].longname;
@@ -588,7 +630,7 @@ namespace SSX_Modder
 
         private void SSHDisplayMode_CheckedChanged(object sender, EventArgs e)
         {
-            if(SSHDisplayMode.Checked)
+            if (SSHDisplayMode.Checked)
             {
                 SSHpictureBox1.BackColor = Color.Black;
             }

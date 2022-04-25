@@ -51,6 +51,7 @@ namespace SSX_Modder
             this.BigLoad = new System.Windows.Forms.Button();
             this.BigBox1 = new System.Windows.Forms.ListBox();
             this.tabSSH = new System.Windows.Forms.TabPage();
+            this.SSHDisplayMode = new System.Windows.Forms.CheckBox();
             this.SSHMatrixType = new System.Windows.Forms.Label();
             this.label37 = new System.Windows.Forms.Label();
             this.SSHImageShortName = new System.Windows.Forms.Label();
@@ -144,6 +145,9 @@ namespace SSX_Modder
             this.label9 = new System.Windows.Forms.Label();
             this.musiclistBox1 = new System.Windows.Forms.ListBox();
             this.tabLoc = new System.Windows.Forms.TabPage();
+            this.LocSearchText = new System.Windows.Forms.TextBox();
+            this.LocSearchBack = new System.Windows.Forms.Button();
+            this.LocSearchNext = new System.Windows.Forms.Button();
             this.Save = new System.Windows.Forms.Button();
             this.LocrichTextBox2 = new System.Windows.Forms.RichTextBox();
             this.LocrichTextBox1 = new System.Windows.Forms.RichTextBox();
@@ -156,7 +160,6 @@ namespace SSX_Modder
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.SSHDisplayMode = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabBootFile.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -434,6 +437,17 @@ namespace SSX_Modder
             this.tabSSH.TabIndex = 8;
             this.tabSSH.Text = "SSH";
             this.tabSSH.UseVisualStyleBackColor = true;
+            // 
+            // SSHDisplayMode
+            // 
+            this.SSHDisplayMode.AutoSize = true;
+            this.SSHDisplayMode.Location = new System.Drawing.Point(590, 296);
+            this.SSHDisplayMode.Name = "SSHDisplayMode";
+            this.SSHDisplayMode.Size = new System.Drawing.Size(90, 17);
+            this.SSHDisplayMode.TabIndex = 14;
+            this.SSHDisplayMode.Text = "Display Mode";
+            this.SSHDisplayMode.UseVisualStyleBackColor = true;
+            this.SSHDisplayMode.CheckedChanged += new System.EventHandler(this.SSHDisplayMode_CheckedChanged);
             // 
             // SSHMatrixType
             // 
@@ -1464,6 +1478,9 @@ namespace SSX_Modder
             // 
             // tabLoc
             // 
+            this.tabLoc.Controls.Add(this.LocSearchText);
+            this.tabLoc.Controls.Add(this.LocSearchBack);
+            this.tabLoc.Controls.Add(this.LocSearchNext);
             this.tabLoc.Controls.Add(this.Save);
             this.tabLoc.Controls.Add(this.LocrichTextBox2);
             this.tabLoc.Controls.Add(this.LocrichTextBox1);
@@ -1476,6 +1493,33 @@ namespace SSX_Modder
             this.tabLoc.TabIndex = 4;
             this.tabLoc.Text = "Language Files";
             this.tabLoc.UseVisualStyleBackColor = true;
+            // 
+            // LocSearchText
+            // 
+            this.LocSearchText.Location = new System.Drawing.Point(85, 302);
+            this.LocSearchText.Name = "LocSearchText";
+            this.LocSearchText.Size = new System.Drawing.Size(157, 20);
+            this.LocSearchText.TabIndex = 9;
+            // 
+            // LocSearchBack
+            // 
+            this.LocSearchBack.Location = new System.Drawing.Point(4, 300);
+            this.LocSearchBack.Name = "LocSearchBack";
+            this.LocSearchBack.Size = new System.Drawing.Size(75, 23);
+            this.LocSearchBack.TabIndex = 8;
+            this.LocSearchBack.Text = "Find Back";
+            this.LocSearchBack.UseVisualStyleBackColor = true;
+            this.LocSearchBack.Click += new System.EventHandler(this.LocSearchBack_Click);
+            // 
+            // LocSearchNext
+            // 
+            this.LocSearchNext.Location = new System.Drawing.Point(248, 300);
+            this.LocSearchNext.Name = "LocSearchNext";
+            this.LocSearchNext.Size = new System.Drawing.Size(75, 23);
+            this.LocSearchNext.TabIndex = 7;
+            this.LocSearchNext.Text = "Find Next";
+            this.LocSearchNext.UseVisualStyleBackColor = true;
+            this.LocSearchNext.Click += new System.EventHandler(this.LocSearchNext_Click);
             // 
             // Save
             // 
@@ -1543,9 +1587,9 @@ namespace SSX_Modder
             this.LocBox1.FormattingEnabled = true;
             this.LocBox1.Location = new System.Drawing.Point(4, 4);
             this.LocBox1.Name = "LocBox1";
-            this.LocBox1.Size = new System.Drawing.Size(319, 316);
+            this.LocBox1.Size = new System.Drawing.Size(319, 290);
             this.LocBox1.TabIndex = 1;
-            this.LocBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.LocBox1_SelectedIndexChanged);
+            this.LocBox1.SelectedIndexChanged += new System.EventHandler(this.LocBox1_SelectedIndexChanged);
             // 
             // toolStrip1
             // 
@@ -1602,17 +1646,6 @@ namespace SSX_Modder
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
             // 
-            // SSHDisplayMode
-            // 
-            this.SSHDisplayMode.AutoSize = true;
-            this.SSHDisplayMode.Location = new System.Drawing.Point(590, 296);
-            this.SSHDisplayMode.Name = "SSHDisplayMode";
-            this.SSHDisplayMode.Size = new System.Drawing.Size(90, 17);
-            this.SSHDisplayMode.TabIndex = 14;
-            this.SSHDisplayMode.Text = "Display Mode";
-            this.SSHDisplayMode.UseVisualStyleBackColor = true;
-            this.SSHDisplayMode.CheckedChanged += new System.EventHandler(this.SSHDisplayMode_CheckedChanged);
-            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1657,6 +1690,7 @@ namespace SSX_Modder
             ((System.ComponentModel.ISupportInitialize)(this.MusINFnumericUpDown2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.MusINFnumericUpDown1)).EndInit();
             this.tabLoc.ResumeLayout(false);
+            this.tabLoc.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
@@ -1796,6 +1830,9 @@ namespace SSX_Modder
         private System.Windows.Forms.Label label36;
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.CheckBox SSHDisplayMode;
+        private System.Windows.Forms.TextBox LocSearchText;
+        private System.Windows.Forms.Button LocSearchBack;
+        private System.Windows.Forms.Button LocSearchNext;
     }
 }
 
