@@ -160,14 +160,21 @@ namespace SSX_Modder
                 return ex.Message;
             }
         }
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            Process.Start(workspacePath);
+        }
 
         #region Loc File
         LOCHandler locHandler = new LOCHandler();
         private void LocBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            toolStripStatusLabel1.Text = "";
-            LocrichTextBox1.Text = locHandler.textList[LocBox1.SelectedIndex];
-            LocrichTextBox2.Text = locHandler.byteListString[LocBox1.SelectedIndex];
+            if (LocBox1.SelectedIndex != -1)
+            {
+                toolStripStatusLabel1.Text = "";
+                LocrichTextBox1.Text = locHandler.textList[LocBox1.SelectedIndex];
+                LocrichTextBox2.Text = locHandler.byteListString[LocBox1.SelectedIndex];
+            }
         }
         private void LocLoad_Click(object sender, EventArgs e)
         {
@@ -203,11 +210,13 @@ namespace SSX_Modder
         {
             if (LocBox1.SelectedIndex != -1)
             {
+                int pos = LocrichTextBox1.SelectionStart;
                 toolStripStatusLabel1.Text = "";
                 locHandler.textList[LocBox1.SelectedIndex] = LocrichTextBox1.Text;
                 LocBox1.Items[LocBox1.SelectedIndex] = LocrichTextBox1.Text;
                 locHandler.UpdatedByteList(LocBox1.SelectedIndex);
                 LocrichTextBox2.Text = locHandler.byteListString[LocBox1.SelectedIndex];
+                LocrichTextBox1.SelectionStart = pos;
             }
         }
 
@@ -478,11 +487,7 @@ namespace SSX_Modder
         }
         #endregion
 
-        private void toolStripButton3_Click(object sender, EventArgs e)
-        {
-            Process.Start(workspacePath);
-        }
-
+        #region BIGF
         BigFHandler bigfHandler = new BigFHandler();
         private void BigLoad_Click(object sender, EventArgs e)
         {
@@ -577,6 +582,9 @@ namespace SSX_Modder
                 GC.Collect();
             }
         }
+        #endregion
+
+        #region SSH
         SSHHandler sshHandler = new SSHHandler();
         private void SSHLoad_Click(object sender, EventArgs e)
         {
@@ -639,5 +647,6 @@ namespace SSX_Modder
                 SSHpictureBox1.BackColor = Color.White;
             }
         }
+        #endregion
     }
 }
