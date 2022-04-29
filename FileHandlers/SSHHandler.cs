@@ -124,10 +124,10 @@ namespace SSX_Modder.FileHandlers
                 stream.Read(tempByte, 0, tempByte.Length);
                 tempImage.Matrix = tempByte;
 
-                //stream.Position += 10;
                 //INDEXED COLOUR
                 if (tempImageHeader.MatrixFormat == 2)
                 {
+                    //Find out numbers
                     stream.Position += 16;
                     tempImage.colorTable = new List<Color>();
                     for (int a = 0; a < 256; a++)

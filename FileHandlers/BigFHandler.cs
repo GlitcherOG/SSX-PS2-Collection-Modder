@@ -12,10 +12,10 @@ namespace SSX_Modder.FileHandlers
         public BIGFHeader bigHeader;
         public List<BIGFFiles> bigFiles;
         string bigPath;
-        bool BuildMode;
+        //bool BuildMode;
         public void LoadBig(string path)
         {
-            BuildMode = false;
+            //BuildMode = false;
             bigPath = path;
             bigHeader = new BIGFHeader();
             bigFiles = new List<BIGFFiles>();
@@ -121,7 +121,7 @@ namespace SSX_Modder.FileHandlers
 
         public void LoadFolder(string path)
         {
-            BuildMode = true;
+            //BuildMode = true;
             bigPath = path;
             bigHeader = new BIGFHeader();
             bigFiles = new List<BIGFFiles>();

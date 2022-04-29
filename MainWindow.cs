@@ -100,11 +100,15 @@ namespace SSX_Modder
                     Directory.CreateDirectory(path);
                 }
             }
+#pragma warning disable CS0168 // Variable is declared but never used
             catch (DirectoryNotFoundException Ex)
+#pragma warning restore CS0168 // Variable is declared but never used
             {
                 AppendDirectory(Path.GetDirectoryName(path));
             }
+#pragma warning disable CS0168 // Variable is declared but never used
             catch (PathTooLongException Exx)
+#pragma warning restore CS0168 // Variable is declared but never used
             {
                 AppendDirectory(Path.GetDirectoryName(path));
             }
@@ -601,7 +605,7 @@ namespace SSX_Modder
                 sshHandler.LoadSSH(openFileDialog.FileName);
                 for (int i = 0; i < sshHandler.sshImages.Count; i++)
                 {
-                    SSHlistBox1.Items.Add(sshHandler.sshImages[i].longname);
+                    SSHlistBox1.Items.Add(sshHandler.sshImages[i].shortname+ "."+sshHandler.sshImages[i].longname);
                     SSHFileFormat.Text = sshHandler.format;
                     SSHFileNameLabel.Text = openFileDialog.SafeFileName;
                 }

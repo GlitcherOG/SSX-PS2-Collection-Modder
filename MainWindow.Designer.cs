@@ -1806,7 +1806,6 @@ namespace SSX_Modder
         private System.Windows.Forms.Button BigLoadFolder;
         private System.Windows.Forms.Button BuildBigButton;
         private System.Windows.Forms.Button BigExtract;
-        private System.Windows.Forms.TabPage tabBootFile;
         private System.Windows.Forms.TabControl tabControl2;
         private System.Windows.Forms.TabPage tab1CheatCharacter;
         private System.Windows.Forms.TabPage tab1TrickPage;
@@ -1833,6 +1832,7 @@ namespace SSX_Modder
         private System.Windows.Forms.TextBox LocSearchText;
         private System.Windows.Forms.Button LocSearchBack;
         private System.Windows.Forms.Button LocSearchNext;
+        private System.Windows.Forms.TabPage tabBootFile;
     }
 }
 

@@ -1,0 +1,15 @@
+Working with Standard Decoding
+G355 : 2 (Indexed Colour)
+G357 : 2 (Indexed Colour)
+G357 : 5 (Full Colour)
+G341 : 2 (Indexed Colour)
+G341 : 5 (Full Colour)
+G278 : 5 (Full Colour) (Maybe working?)
+
+Not Working Currently
+G264
+G268
+G357 : 1
+G357 : 130
+G357 (Char SSH, Contains Header Data Currently Unknown)
+G357 (Other SSH, Reads but Byte Offset Wrong?)
