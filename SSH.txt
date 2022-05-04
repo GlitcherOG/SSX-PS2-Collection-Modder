@@ -3,29 +3,41 @@
 4 - Magic Words
 4 - File Size
 4- Ammount
-4- File Format?
+4- File Format (Directory ID?)
 4- File Name
-4- Header Start?
+4- Offset
 
 //SSH Archive data?
-4- BUY (?)
-12- ERTS (?)
-48/64- Blank
+8- BUY ERTS
 
 //Image Header
 1- Matrix Format  //2-32bit Indexed Colour 5-32bit Colour
 3- Image size (Start of colour table?)
 2- width
 2- height
-4- Unused(?)
-4- encoding type
+
+   2 bytes (uint16) - X axis coordinate (Center X)
+   2 bytes (uint16) - Y axis coordinate (Center Y)
+   2 bytes - X axis position (Left X pos.)[uint12] + internal flag [uint1] + unknown [uint3]
+   2 bytes - Y axis position (Top Y pos.)[uint12] + levels count (mipmaps) [uint4]
+
+//Colour Index Table Header
+
+1- Unkown (entry ID)
+3- Size
+2- Ammount (palette width)
+2- Palette height (Always 1)
+2- Number of palette entries (Total Entries Size?)
+2- Unknown
+2- Unknown 
+2- Unknown 
 
 //Table
 
-    private int nrOfTableEntries = 256;
-    private int singleTableEntrySize = 3;
-    private int sshTableDelimiterSize = 1;
-    private final byte sshTableDelimiter = (byte) 0x80;
+1 - B
+1 - G
+1 - R
+1 - A/2
 
 
 // Footer
@@ -33,3 +45,6 @@
 12/28 - Name
 
 //Matrix 130 contains Alpha data
+
+
+https://wiki.xentax.com/index.php/EA_SSH_FSH_Image

@@ -652,5 +652,18 @@ namespace SSX_Modder
             }
         }
         #endregion
+
+        private void SSHLoadFolder_Click(object sender, EventArgs e)
+        {
+            CommonOpenFileDialog openFileDialog = new CommonOpenFileDialog
+            {
+                InitialDirectory = workspacePath,
+                IsFolderPicker = true,
+            };
+            if (openFileDialog.ShowDialog() == CommonFileDialogResult.Ok)
+            {
+                
+            }
+        }
     }
 }
