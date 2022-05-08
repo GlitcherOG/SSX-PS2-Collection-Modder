@@ -105,6 +105,7 @@
     <Compile Include="FileHandlers\BigFHandler.cs" />
     <Compile Include="FileHandlers\CHARDBLHandler.cs" />
     <Compile Include="FileHandlers\CHARDBLHandler.cs" />
+    <Compile Include="FileHandlers\CHARDBLHandler.cs" />
     <Compile Include="FileHandlers\LOCHandler.cs" />
     <Compile Include="FileHandlers\MusicINFHandler.cs" />
     <Compile Include="FileHandlers\MusicINFHandler.cs" />

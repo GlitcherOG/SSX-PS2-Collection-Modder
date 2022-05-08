@@ -55,7 +55,7 @@ namespace SSX_Modder.FileHandlers
                     }
                     catch
                     {
-                        //sshImages = new List<SSHImage>();
+                        sshImages = new List<SSHImage>();
                         MessageBox.Show("Error reading File " + MagicWord + " "+ format + " " + sshImages[0].Matrix);
                     }
                 }
@@ -112,19 +112,32 @@ namespace SSX_Modder.FileHandlers
                 stream.Read(tempByte, 0, tempByte.Length);
                 tempImageHeader.Height = BitConverter.ToInt16(tempByte, 0);
 
-                tempByte = new byte[4];
+                tempByte = new byte[2];
                 stream.Read(tempByte, 0, tempByte.Length);
-                tempImageHeader.Unused = BitConverter.ToInt32(tempByte, 0);
+                tempImageHeader.Xaxis = BitConverter.ToInt16(tempByte, 0);
+
+                tempByte = new byte[2];
+                stream.Read(tempByte, 0, tempByte.Length);
+                tempImageHeader.Yaxis = BitConverter.ToInt16(tempByte, 0);
 
                 tempByte = new byte[4];
                 stream.Read(tempByte, 0, tempByte.Length);
                 tempImageHeader.Format = BitConverter.ToInt32(tempByte, 0);
 
 
-                int RealSize = tempImageHeader.Width * tempImageHeader.Height;
-                if(tempImageHeader.MatrixFormat == 5)
+                int RealSize;
+                
+                if(tempImageHeader.Size !=0)
                 {
-                    RealSize = RealSize * 4;
+                    RealSize = tempImageHeader.Size-16;
+                }
+                else
+                {
+                    RealSize = tempImageHeader.Width * tempImageHeader.Height;
+                    if (tempImageHeader.MatrixFormat == 5)
+                    {
+                        RealSize = RealSize * 4;
+                    }
                 }
 
                 tempByte = new byte[RealSize];
@@ -137,9 +150,9 @@ namespace SSX_Modder.FileHandlers
                 {
                     int Spos = (int)stream.Position;
                     bool find = false;
-                    while(!find)
+                    while (!find)
                     {
-                        if(stream.ReadByte()==0x21)
+                        if (stream.ReadByte() == 0x21)
                         {
                             find = true;
                         }
@@ -279,19 +292,252 @@ namespace SSX_Modder.FileHandlers
                 else
                 {
                     MessageBox.Show("Error reading File " + MagicWord + " " + format + "- Matrix " + tempImageHeader.MatrixFormat.ToString());
-                    //break;
+                    break;
                 }
                 tempImage.sshHeader = tempImageHeader;
                 sshImages[i] = tempImage;
             }
+            stream.Dispose();
         }
 
         public void BMPExtract(string path)
         {
+            string index = "";
             for (int i = 0; i < sshImages.Count; i++)
             {
-                sshImages[i].bitmap.Save(path+"\\"+ sshImages[i].shortname+"."+ sshImages[i].longname +".bmp");
+                index += sshImages[i].shortname + "." + sshImages[i].longname + ".png" +Environment.NewLine;
+                sshImages[i].bitmap.Save(path+"\\"+ sshImages[i].shortname+"."+ sshImages[i].longname +".png",ImageFormat.Png);
             }
+
+            //File.Create(path + "\\Index.txt");
+            File.WriteAllText(path + "\\Index.txt", index);
+        }
+
+        public void LoadFolder(string path)
+        {
+            MagicWord = "";
+            Size = 0;
+            format = "G???";
+            group = "";
+            endingstring = "";
+            sshImages = new List<SSHImage>();
+            string[] paths = File.ReadAllLines(path + "\\Index.txt");
+            Ammount = paths.Length;
+            for (int i = 0; i < paths.Length; i++)
+            {
+                paths[i] = path + "\\" + paths[i];
+            }
+
+            for (int i = 0; i < paths.Length; i++)
+            {
+                SSHImage tempImage = new SSHImage();
+                SSHImageHeader imageHeader = new SSHImageHeader();
+                var tempImage1 = //Image.FromFile(paths[i]);
+                //tempImage1.Save(path + "/Temp.bmp");
+                tempImage.bitmap = (Bitmap)Image.FromFile(paths[i]);
+
+                imageHeader.MatrixFormat = 2;
+
+                string name = Path.GetFileName(paths[i].Replace(".png", ""));
+                string[] NameList = name.Split('.');
+
+                tempImage.longname = NameList[1];
+                tempImage.shortname = NameList[0];
+                imageHeader.Width = tempImage.bitmap.Width;
+                imageHeader.Height = tempImage.bitmap.Height;
+
+                tempImage.sshHeader = imageHeader;
+                sshImages.Add(tempImage);
+            }
+            File.Delete(path + "/Temp.bmp");
+        }
+
+        public void SaveSSH(string path)
+        {
+            Stream stream = new MemoryStream();
+            MagicWord = "SHPS";
+            byte[] tempByte = new byte[4];
+            Encoding.ASCII.GetBytes(MagicWord).CopyTo(tempByte, 0);
+            stream.Write(tempByte, 0, tempByte.Length);
+
+            tempByte = new byte[4];
+            stream.Write(tempByte, 0, tempByte.Length);
+
+            tempByte = new byte[4];
+            BitConverter.GetBytes(sshImages.Count).CopyTo(tempByte,0);
+            stream.Write(tempByte, 0, tempByte.Length);
+
+            tempByte = new byte[4];
+            Encoding.ASCII.GetBytes(format).CopyTo(tempByte, 0);
+            stream.Write(tempByte, 0, tempByte.Length);
+
+            List<int> intPos = new List<int>();
+
+            for (int i = 0; i < sshImages.Count; i++)
+            {
+                tempByte = new byte[4];
+                Encoding.ASCII.GetBytes(sshImages[i].shortname).CopyTo(tempByte, 0);
+                stream.Write(tempByte, 0, tempByte.Length);
+                intPos.Add((int)stream.Position);
+                tempByte = new byte[4];
+                stream.Write(tempByte, 0, tempByte.Length);
+            }
+
+            tempByte = new byte[16];
+            Encoding.ASCII.GetBytes("Buy ERTS").CopyTo(tempByte, 0);
+            stream.Write(tempByte, 0, tempByte.Length);
+
+            for (int i = 0; i < sshImages.Count; i++)
+            {
+                int temp = (int)stream.Position;
+                stream.Position = intPos[i];
+
+                //Set Start Offset
+
+                tempByte = new byte[4];
+                BitConverter.GetBytes(temp).CopyTo(tempByte, 0);
+                stream.Write(tempByte, 0, tempByte.Length);
+
+                stream.Position = temp;
+
+                tempByte = new byte[4];
+                BitConverter.GetBytes(sshImages[i].sshHeader.MatrixFormat).CopyTo(tempByte, 0);
+                stream.Write(tempByte, 0, 1);
+
+
+                //Set SSH Header Info
+                if (sshImages[i].sshHeader.MatrixFormat == 2)
+                {
+                    tempByte = new byte[4];
+                    BitConverter.GetBytes(sshImages[i].sshHeader.Width* sshImages[i].sshHeader.Height+16).CopyTo(tempByte, 0);
+                    stream.Write(tempByte, 0, 3);
+                }
+                else if (sshImages[i].sshHeader.MatrixFormat == 5)
+                {
+                    tempByte = new byte[4];
+                    BitConverter.GetBytes((sshImages[i].sshHeader.Width * sshImages[i].sshHeader.Height*4) + 16).CopyTo(tempByte, 0);
+                    stream.Write(tempByte, 0, 3);
+                }
+
+                tempByte = new byte[4];
+                BitConverter.GetBytes(sshImages[i].sshHeader.Width).CopyTo(tempByte, 0);
+                stream.Write(tempByte, 0, 2);
+
+                tempByte = new byte[4];
+                BitConverter.GetBytes(sshImages[i].sshHeader.Height).CopyTo(tempByte, 0);
+                stream.Write(tempByte, 0, 2);
+
+                tempByte = new byte[4];
+                BitConverter.GetBytes(sshImages[i].sshHeader.Xaxis).CopyTo(tempByte, 0);
+                stream.Write(tempByte, 0, 2);
+
+                tempByte = new byte[4];
+                BitConverter.GetBytes(sshImages[i].sshHeader.Yaxis).CopyTo(tempByte, 0);
+                stream.Write(tempByte, 0, 2);
+
+                tempByte = new byte[4];
+                BitConverter.GetBytes(sshImages[i].sshHeader.Format).CopyTo(tempByte, 0);
+                stream.Write(tempByte, 0, tempByte.Length);
+
+                if (sshImages[i].sshHeader.MatrixFormat == 2)
+                {
+                    SSHColourTable colourTable = new SSHColourTable();
+                    colourTable.colorTable = new List<Color>();
+                    //colourTable.colorTable.Add(Color.FromArgb(0, 0, 0, 0));
+                    for (int y = 0; y < sshImages[i].bitmap.Height; y++)
+                    {
+                        for (int x = 0; x < sshImages[i].bitmap.Width; x++)
+                        {
+                            Color color = sshImages[i].bitmap.GetPixel(x, y);
+                            //color.A = (color.A - 1) / 2;
+                            if(colourTable.colorTable.Contains(color))
+                            {
+                                int index = colourTable.colorTable.IndexOf(color);
+                                index = simulateSwitching4th5thBit(index);
+                                tempByte = new byte[4];
+                                BitConverter.GetBytes(index).CopyTo(tempByte, 0);
+                                stream.Write(tempByte, 0, 1);
+                            }
+                            else
+                            {
+                                colourTable.colorTable.Add(color);
+                                int index = colourTable.colorTable.Count - 1;
+                                index = simulateSwitching4th5thBit(index);
+                                tempByte = new byte[4];
+                                BitConverter.GetBytes(index).CopyTo(tempByte, 0);
+                                stream.Write(tempByte, 0, 1);
+                            }
+                        }
+                    }
+
+                    //Colour Table
+                    tempByte = new byte[4];
+                    BitConverter.GetBytes(0x21).CopyTo(tempByte, 0);
+                    stream.Write(tempByte, 0, 1);
+
+                    tempByte = new byte[4];
+                    BitConverter.GetBytes((colourTable.colorTable.Count*4)+16).CopyTo(tempByte, 0);
+                    stream.Write(tempByte, 0, 3);
+
+                    tempByte = new byte[4];
+                    BitConverter.GetBytes(colourTable.colorTable.Count).CopyTo(tempByte, 0);
+                    stream.Write(tempByte, 0, 2);
+
+                    tempByte = new byte[4];
+                    BitConverter.GetBytes(1).CopyTo(tempByte, 0);
+                    stream.Write(tempByte, 0, 2);
+
+                    tempByte = new byte[4];
+                    BitConverter.GetBytes(colourTable.colorTable.Count).CopyTo(tempByte, 0);
+                    stream.Write(tempByte, 0, 2);
+
+                    tempByte = new byte[6] { 0x00, 0x00, 0x00, 0x20, 0x00, 0x00 };
+                    //BitConverter.GetBytes(colourTable.colorTable.Count).CopyTo(tempByte, 0);
+                    stream.Write(tempByte, 0, tempByte.Length);
+
+                    for (int a = 0; a < colourTable.colorTable.Count; a++)
+                    {
+                        tempByte = new byte[4];
+                        int R = colourTable.colorTable[a].R;
+                        int G = colourTable.colorTable[a].G;
+                        int B = colourTable.colorTable[a].B;
+                        int A = (colourTable.colorTable[a].A+1)/2;
+                        BitConverter.GetBytes(R).CopyTo(tempByte, 0);
+                        stream.Write(tempByte, 0, 1);
+                        tempByte = new byte[4];
+                        BitConverter.GetBytes(G).CopyTo(tempByte, 0);
+                        stream.Write(tempByte, 0, 1);
+                        tempByte = new byte[4];
+                        BitConverter.GetBytes(B).CopyTo(tempByte, 0);
+                        stream.Write(tempByte, 0, 1);
+                        tempByte = new byte[4];
+                        BitConverter.GetBytes(A).CopyTo(tempByte, 0);
+                        stream.Write(tempByte, 0, 1);
+                    }
+                }
+
+                //ending
+                tempByte = new byte[4] { 0x70, 0x00,0x00,0x00};
+                stream.Write(tempByte, 0, tempByte.Length);
+
+                tempByte = new byte[sshImages[i].longname.Length+1];
+                Encoding.ASCII.GetBytes(sshImages[i].longname).CopyTo(tempByte, 0);
+                stream.Write(tempByte, 0, tempByte.Length);
+
+                tempByte = new byte[9];
+                Encoding.ASCII.GetBytes("Buy ERTS").CopyTo(tempByte, 0);
+                stream.Write(tempByte, 0, tempByte.Length);
+            }
+
+            if (File.Exists(path))
+            {
+                File.Delete(path);
+            }
+            var file = File.Create(path);
+            stream.Position = 0;
+            stream.CopyTo(file);
+            stream.Dispose();
+            file.Close();
         }
 
         public static long FindPosition(Stream stream, byte[] byteSequence)
@@ -348,7 +594,8 @@ namespace SSX_Modder.FileHandlers
         public int Size;
         public int Width;
         public int Height;
-        public int Unused;
+        public int Xaxis;
+        public int Yaxis;
         public int Format;
     }
 

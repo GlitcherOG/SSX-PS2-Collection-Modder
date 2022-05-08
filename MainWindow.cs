@@ -620,6 +620,8 @@ namespace SSX_Modder
                 SSHImageName.Text = sshHandler.sshImages[SSHlistBox1.SelectedIndex].longname;
                 SSHImageShortName.Text = sshHandler.sshImages[SSHlistBox1.SelectedIndex].shortname;
                 SSHMatrixType.Text = sshHandler.sshImages[SSHlistBox1.SelectedIndex].sshHeader.MatrixFormat.ToString();
+                SSHXAxis.Value = sshHandler.sshImages[SSHlistBox1.SelectedIndex].sshHeader.Xaxis;
+                SSHYAxis.Value = sshHandler.sshImages[SSHlistBox1.SelectedIndex].sshHeader.Yaxis;
             }
         }
 
@@ -662,7 +664,28 @@ namespace SSX_Modder
             };
             if (openFileDialog.ShowDialog() == CommonFileDialogResult.Ok)
             {
-                
+                sshHandler.LoadFolder(openFileDialog.FileName);
+                for (int i = 0; i < sshHandler.sshImages.Count; i++)
+                {
+                    SSHlistBox1.Items.Add(sshHandler.sshImages[i].shortname + "." + sshHandler.sshImages[i].longname);
+                    SSHFileFormat.Text = sshHandler.format;
+                    //SSHFileNameLabel.Text = openFileDialog.SafeFileName;
+                }
+            }
+        }
+
+        private void SSHSave_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog openFileDialog = new SaveFileDialog
+            {
+                InitialDirectory = workspacePath + "DATA",
+                Filter = "Config File (*.ssh)|*.ssh|All files (*.*)|*.*",
+                FilterIndex = 1,
+                RestoreDirectory = false
+            };
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                sshHandler.SaveSSH(openFileDialog.FileName);
             }
         }
     }
