@@ -185,7 +185,7 @@ namespace SSX_Modder
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
                 InitialDirectory = workspacePath,
-                Filter = "Loc File (*.loc)|*.loc|All files (*.*)|*.*",
+                Filter = "English Loc File (*AMER.loc)|*AMER.loc|Loc File (*.loc)|*.loc|All files (*.*)|*.*",
                 FilterIndex = 1,
                 RestoreDirectory = false,
             };
@@ -619,9 +619,21 @@ namespace SSX_Modder
                 SSHpictureBox1.Image = sshHandler.sshImages[SSHlistBox1.SelectedIndex].bitmap;
                 SSHImageName.Text = sshHandler.sshImages[SSHlistBox1.SelectedIndex].longname;
                 SSHImageShortName.Text = sshHandler.sshImages[SSHlistBox1.SelectedIndex].shortname;
-                SSHMatrixType.Text = sshHandler.sshImages[SSHlistBox1.SelectedIndex].sshHeader.MatrixFormat.ToString();
                 SSHXAxis.Value = sshHandler.sshImages[SSHlistBox1.SelectedIndex].sshHeader.Xaxis;
                 SSHYAxis.Value = sshHandler.sshImages[SSHlistBox1.SelectedIndex].sshHeader.Yaxis;
+                //SSHMatrixType.Text = sshHandler.sshImages[SSHlistBox1.SelectedIndex].sshHeader.MatrixFormat.ToString();
+                for (int i = 0; i < SSHMatrixType.Items.Count; i++)
+                {
+                    if (SSHMatrixType.Items[i].ToString().Contains(sshHandler.sshImages[SSHlistBox1.SelectedIndex].sshHeader.MatrixFormat.ToString()+" "))
+                    {
+                        SSHMatrixType.SelectedIndex = i;
+                        break;
+                    }
+                    else
+                    {
+                        SSHMatrixType.SelectedIndex = SSHMatrixType.Items.Count-1;
+                    }
+                }
             }
         }
 
@@ -653,7 +665,6 @@ namespace SSX_Modder
                 SSHpictureBox1.BackColor = Color.White;
             }
         }
-        #endregion
 
         private void SSHLoadFolder_Click(object sender, EventArgs e)
         {
@@ -664,6 +675,7 @@ namespace SSX_Modder
             };
             if (openFileDialog.ShowDialog() == CommonFileDialogResult.Ok)
             {
+                SSHlistBox1.Items.Clear();
                 sshHandler.LoadFolder(openFileDialog.FileName);
                 for (int i = 0; i < sshHandler.sshImages.Count; i++)
                 {
@@ -688,5 +700,6 @@ namespace SSX_Modder
                 sshHandler.SaveSSH(openFileDialog.FileName);
             }
         }
+        #endregion
     }
 }

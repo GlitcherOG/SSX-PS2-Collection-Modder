@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SSX_Modder.Utilities;
 
 namespace SSX_Modder.FileHandlers
 {
@@ -23,7 +24,7 @@ namespace SSX_Modder.FileHandlers
             using (Stream stream = File.Open(path, FileMode.Open))
             {
                 //Find start of file
-                long pos = FindPosition(stream, new byte[] { 0x4C, 0x4F, 0x43, 0x4C });
+                long pos = ByteUtil.FindPosition(stream, new byte[] { 0x4C, 0x4F, 0x43, 0x4C });
 
                 //Save Header of file
                 stream.Position = 0;
@@ -148,22 +149,6 @@ namespace SSX_Modder.FileHandlers
             byteListString[pos] = BitConverter.ToString(array, 0, (int)stream.Length);
         }
 
-        public static long FindPosition(Stream stream, byte[] byteSequence)
-        {
-            int b;
-            long i = 0;
-            while ((b = stream.ReadByte()) != -1)
-            {
-                if (b == byteSequence[i++])
-                {
-                    if (i == byteSequence.Length)
-                        return stream.Position - byteSequence.Length;
-                }
-                else
-                    i = b == byteSequence[0] ? 1 : 0;
-            }
-            return -1;
-        }
     }
 
     // LOCH

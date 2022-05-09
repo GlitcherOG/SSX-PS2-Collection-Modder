@@ -102,16 +102,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ByteUtil.cs" />
     <Compile Include="FileHandlers\BigFHandler.cs" />
     <Compile Include="FileHandlers\CHARDBLHandler.cs" />
-    <Compile Include="FileHandlers\CHARDBLHandler.cs" />
-    <Compile Include="FileHandlers\CHARDBLHandler.cs" />
     <Compile Include="FileHandlers\LOCHandler.cs" />
-    <Compile Include="FileHandlers\MusicINFHandler.cs" />
     <Compile Include="FileHandlers\MusicINFHandler.cs" />
     <Compile Include="FileHandlers\SSHHandler.cs" />
     <Compile Include="MainWindow.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainWindow.Designer.cs">
+      <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>

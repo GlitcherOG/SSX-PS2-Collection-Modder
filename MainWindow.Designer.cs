@@ -498,12 +498,13 @@ namespace SSX_Modder
             // 
             this.SSHMatrixType.FormattingEnabled = true;
             this.SSHMatrixType.Items.AddRange(new object[] {
-            "2",
-            "5",
+            "1 (4 Bit, 16 Colour Index)",
+            "2 (8 Bit, 256 Colour Index)",
+            "5 (Full Colour)",
             "Other"});
             this.SSHMatrixType.Location = new System.Drawing.Point(201, 127);
             this.SSHMatrixType.Name = "SSHMatrixType";
-            this.SSHMatrixType.Size = new System.Drawing.Size(121, 21);
+            this.SSHMatrixType.Size = new System.Drawing.Size(254, 21);
             this.SSHMatrixType.TabIndex = 20;
             // 
             // SSHImageName
@@ -555,6 +556,8 @@ namespace SSX_Modder
             // 
             this.SSHDisplayMode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.SSHDisplayMode.AutoSize = true;
+            this.SSHDisplayMode.Checked = true;
+            this.SSHDisplayMode.CheckState = System.Windows.Forms.CheckState.Checked;
             this.SSHDisplayMode.Location = new System.Drawing.Point(538, 230);
             this.SSHDisplayMode.Name = "SSHDisplayMode";
             this.SSHDisplayMode.Size = new System.Drawing.Size(90, 17);
@@ -653,7 +656,7 @@ namespace SSX_Modder
             this.SSHpictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.SSHpictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.SSHpictureBox1.BackColor = System.Drawing.Color.Black;
             this.SSHpictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.SSHpictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.SSHpictureBox1.Location = new System.Drawing.Point(538, 4);
