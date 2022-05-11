@@ -52,22 +52,56 @@ namespace SSX_Modder.Utilities
             return -1;
         }
 
-        public static int simulateSwitching4th5thBit(int nr)
+        //public static int simulateSwitching4th5thBit(int nr)
+        //{
+        //    bool bit4 = (nr % 16) / 8 >= 1;
+        //    bool bit5 = (nr % 32) / 16 >= 1;
+        //    if (bit4 && !bit5)
+        //    {
+        //        return nr + 8;
+        //    }
+        //    if (!bit4 && bit5)
+        //    {
+        //        return nr - 8;
+        //    }
+        //    else
+        //    {
+        //        return nr;
+        //    }
+        //}
+
+        public static int ByteBitSwitch(int Byte, int Bit1 = 3, int Bit2 = 4)
         {
-            bool bit4 = (nr % 16) / 8 >= 1;
-            bool bit5 = (nr % 32) / 16 >= 1;
-            if (bit4 && !bit5)
+            byte[] array = new byte[1] { (byte)Byte };
+            var bits = new BitArray(array);
+            bool temp1 = bits[Bit2];
+            bits[Bit2] = bits[Bit1];
+            bits[Bit1] = temp1;
+            int Number = 0;
+            int Point = 1;
+            for (int i = 0; i < 8; i++)
             {
-                return nr + 8;
+                Number += (bits[i] ? 1 : 0) * Point;
+                Point = Point * 2;
             }
-            if (!bit4 && bit5)
+            return Number;
+        }
+
+        public static int BytesBitSwitch(byte[] Bytes, int Bit1 = 3, int Bit2 = 4)
+        {
+            byte[] array = Bytes;
+            var bits = new BitArray(array);
+            bool temp1 = bits[Bit2];
+            bits[Bit2] = bits[Bit1];
+            bits[Bit1] = temp1;
+            int Number = 0;
+            int Point = 1;
+            for (int i = 0; i < bits.Length; i++)
             {
-                return nr - 8;
+                Number += (bits[i] ? 1 : 0) * Point;
+                Point = Point * 2;
             }
-            else
-            {
-                return nr;
-            }
+            return Number;
         }
     }
 }
