@@ -52,23 +52,23 @@ namespace SSX_Modder.Utilities
             return -1;
         }
 
-        //public static int simulateSwitching4th5thBit(int nr)
-        //{
-        //    bool bit4 = (nr % 16) / 8 >= 1;
-        //    bool bit5 = (nr % 32) / 16 >= 1;
-        //    if (bit4 && !bit5)
-        //    {
-        //        return nr + 8;
-        //    }
-        //    if (!bit4 && bit5)
-        //    {
-        //        return nr - 8;
-        //    }
-        //    else
-        //    {
-        //        return nr;
-        //    }
-        //}
+        public static int simulateSwitching4th5thBit(int nr)
+        {
+            bool bit4 = (nr % 16) / 8 >= 1;
+            bool bit5 = (nr % 32) / 16 >= 1;
+            if (bit4 && !bit5)
+            {
+                return nr + 8;
+            }
+            if (!bit4 && bit5)
+            {
+                return nr - 8;
+            }
+            else
+            {
+                return nr;
+            }
+        }
 
         public static int ByteBitSwitch(int Byte, int Bit1 = 3, int Bit2 = 4)
         {

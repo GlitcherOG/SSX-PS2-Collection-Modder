@@ -39,6 +39,7 @@ namespace SSX_Modder
             this.tab1TrickPage = new System.Windows.Forms.TabPage();
             this.tab1TrackData = new System.Windows.Forms.TabPage();
             this.tabBig = new System.Windows.Forms.TabPage();
+            this.label40 = new System.Windows.Forms.Label();
             this.BigSizeLabel = new System.Windows.Forms.Label();
             this.BigLabel3 = new System.Windows.Forms.Label();
             this.BigOffsetLabel = new System.Windows.Forms.Label();
@@ -166,6 +167,7 @@ namespace SSX_Modder
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.label41 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabBootFile.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -219,6 +221,7 @@ namespace SSX_Modder
             // 
             // tabBootFile
             // 
+            this.tabBootFile.Controls.Add(this.label41);
             this.tabBootFile.Controls.Add(this.bootLoad);
             this.tabBootFile.Controls.Add(this.bootSaveAs);
             this.tabBootFile.Controls.Add(this.bootSave);
@@ -299,6 +302,7 @@ namespace SSX_Modder
             // 
             // tabBig
             // 
+            this.tabBig.Controls.Add(this.label40);
             this.tabBig.Controls.Add(this.BigSizeLabel);
             this.tabBig.Controls.Add(this.BigLabel3);
             this.tabBig.Controls.Add(this.BigOffsetLabel);
@@ -316,6 +320,15 @@ namespace SSX_Modder
             this.tabBig.TabIndex = 6;
             this.tabBig.Text = "Big Files";
             this.tabBig.UseVisualStyleBackColor = true;
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Location = new System.Drawing.Point(253, 289);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(250, 13);
+            this.label40.TabIndex = 11;
+            this.label40.Text = "Warning doesnt uncompress files or Compress them";
             // 
             // BigSizeLabel
             // 
@@ -463,6 +476,7 @@ namespace SSX_Modder
             this.SSHYAxis.Name = "SSHYAxis";
             this.SSHYAxis.Size = new System.Drawing.Size(121, 20);
             this.SSHYAxis.TabIndex = 24;
+            this.SSHYAxis.TabIndexChanged += new System.EventHandler(this.SSH_TextChanged);
             // 
             // SSHXAxis
             // 
@@ -475,6 +489,7 @@ namespace SSX_Modder
             this.SSHXAxis.Name = "SSHXAxis";
             this.SSHXAxis.Size = new System.Drawing.Size(121, 20);
             this.SSHXAxis.TabIndex = 23;
+            this.SSHXAxis.TabIndexChanged += new System.EventHandler(this.SSH_TextChanged);
             // 
             // label39
             // 
@@ -500,12 +515,12 @@ namespace SSX_Modder
             this.SSHMatrixType.Items.AddRange(new object[] {
             "1 (4 Bit, 16 Colour Index)",
             "2 (8 Bit, 256 Colour Index)",
-            "5 (Full Colour)",
-            "Other"});
+            "5 (Full Colour)"});
             this.SSHMatrixType.Location = new System.Drawing.Point(201, 127);
             this.SSHMatrixType.Name = "SSHMatrixType";
             this.SSHMatrixType.Size = new System.Drawing.Size(254, 21);
             this.SSHMatrixType.TabIndex = 20;
+            this.SSHMatrixType.TextChanged += new System.EventHandler(this.SSH_TextChanged);
             // 
             // SSHImageName
             // 
@@ -513,6 +528,7 @@ namespace SSX_Modder
             this.SSHImageName.Name = "SSHImageName";
             this.SSHImageName.Size = new System.Drawing.Size(121, 20);
             this.SSHImageName.TabIndex = 19;
+            this.SSHImageName.TextChanged += new System.EventHandler(this.SSH_TextChanged);
             // 
             // SSHImageShortName
             // 
@@ -521,6 +537,7 @@ namespace SSX_Modder
             this.SSHImageShortName.Name = "SSHImageShortName";
             this.SSHImageShortName.Size = new System.Drawing.Size(121, 20);
             this.SSHImageShortName.TabIndex = 18;
+            this.SSHImageShortName.TextChanged += new System.EventHandler(this.SSH_TextChanged);
             // 
             // SSHFileFormat
             // 
@@ -529,6 +546,7 @@ namespace SSX_Modder
             this.SSHFileFormat.Name = "SSHFileFormat";
             this.SSHFileFormat.Size = new System.Drawing.Size(121, 20);
             this.SSHFileFormat.TabIndex = 17;
+            this.SSHFileFormat.TextChanged += new System.EventHandler(this.SSH_TextChanged);
             // 
             // SSHLoadFolder
             // 
@@ -715,7 +733,7 @@ namespace SSX_Modder
             // label31
             // 
             this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(449, 123);
+            this.label31.Location = new System.Drawing.Point(449, 122);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(42, 13);
             this.label31.TabIndex = 27;
@@ -925,9 +943,9 @@ namespace SSX_Modder
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(269, 162);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(58, 13);
+            this.label5.Size = new System.Drawing.Size(61, 13);
             this.label5.TabIndex = 8;
-            this.label5.Text = "Bloot Type";
+            this.label5.Text = "Blood Type";
             // 
             // label4
             // 
@@ -1689,8 +1707,8 @@ namespace SSX_Modder
             this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(65, 22);
-            this.toolStripButton1.Text = "Extract Iso";
+            this.toolStripButton1.Size = new System.Drawing.Size(184, 22);
+            this.toolStripButton1.Text = "Extract Iso (May Freeze Program)";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // toolStripButton2
@@ -1727,6 +1745,15 @@ namespace SSX_Modder
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
             // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Location = new System.Drawing.Point(468, 310);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(66, 13);
+            this.label41.TabIndex = 0;
+            this.label41.Text = "Need to add";
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1741,6 +1768,7 @@ namespace SSX_Modder
             this.Load += new System.EventHandler(this.MainWindow_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabBootFile.ResumeLayout(false);
+            this.tabBootFile.PerformLayout();
             this.tabControl2.ResumeLayout(false);
             this.tabBig.ResumeLayout(false);
             this.tabBig.PerformLayout();
@@ -1922,6 +1950,8 @@ namespace SSX_Modder
         private System.Windows.Forms.NumericUpDown SSHXAxis;
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.Label label41;
     }
 }
 

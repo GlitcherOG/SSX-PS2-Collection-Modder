@@ -614,8 +614,9 @@ namespace SSX_Modder
 
         private void SSHlistBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (SSHlistBox1.SelectedIndex != -1)
+            if (SSHlistBox1.SelectedIndex != -1 && !sshHold)
             {
+                sshHold = true;
                 SSHpictureBox1.Image = sshHandler.sshImages[SSHlistBox1.SelectedIndex].bitmap;
                 SSHImageName.Text = sshHandler.sshImages[SSHlistBox1.SelectedIndex].longname;
                 SSHImageShortName.Text = sshHandler.sshImages[SSHlistBox1.SelectedIndex].shortname;
@@ -634,6 +635,32 @@ namespace SSX_Modder
                         SSHMatrixType.SelectedIndex = SSHMatrixType.Items.Count-1;
                     }
                 }
+                sshHold = false;
+            }
+        }
+        bool sshHold;
+        private void SSH_TextChanged(object sender, EventArgs e)
+        {
+            sshHandler.format = SSHFileFormat.Text;
+            if (SSHlistBox1.SelectedIndex != -1 && !sshHold)
+            {
+                sshHold = true;
+                //Fix
+                var temp = sshHandler.sshImages[SSHlistBox1.SelectedIndex];
+                var tempHeader = temp.sshHeader;
+                temp.longname = SSHImageName.Text;
+                temp.shortname = SSHImageShortName.Text;
+                SSHFileFormat.Text = sshHandler.format;
+                tempHeader.Xaxis = (int)SSHXAxis.Value;
+                tempHeader.Yaxis = (int)SSHYAxis.Value;
+                string tempString = SSHMatrixType.Text;
+                tempString = tempString.Substring(0, 1);
+                int indexInt = Int32.Parse(tempString);
+                tempHeader.MatrixFormat = (byte)indexInt;
+                SSHlistBox1.Items[SSHlistBox1.SelectedIndex] = temp.shortname + "." + temp.longname;
+                temp.sshHeader = tempHeader;
+                sshHandler.sshImages[SSHlistBox1.SelectedIndex] = temp;
+                sshHold = false;
             }
         }
 
