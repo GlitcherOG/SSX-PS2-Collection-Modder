@@ -15,8 +15,8 @@ This is a modding tool i came up and started making when i caught covid as a way
 - MUS Extractor
 - Mod Pack Maker
 - GS Collection After All Functions
-- ImagMaik To Convert Images to correct Formats
+- ImagMaik Tools To Convert Images to correct Formats
 - All in One EXE
 - Redo Windows Form
-- SSH Export 1 Image and Import 1 Image
+- Make Stream Reading Class to Standardise Functions
 

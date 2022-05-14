@@ -40,6 +40,8 @@ namespace SSX_Modder
             this.tab1TrickPage = new System.Windows.Forms.TabPage();
             this.tab1TrackData = new System.Windows.Forms.TabPage();
             this.tabBig = new System.Windows.Forms.TabPage();
+            this.BigCompressed = new System.Windows.Forms.Label();
+            this.label43 = new System.Windows.Forms.Label();
             this.label40 = new System.Windows.Forms.Label();
             this.BigSizeLabel = new System.Windows.Forms.Label();
             this.BigLabel3 = new System.Windows.Forms.Label();
@@ -175,6 +177,8 @@ namespace SSX_Modder
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.label44 = new System.Windows.Forms.Label();
+            this.bigUncompressed = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabBootFile.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -324,6 +328,10 @@ namespace SSX_Modder
             // 
             // tabBig
             // 
+            this.tabBig.Controls.Add(this.bigUncompressed);
+            this.tabBig.Controls.Add(this.label44);
+            this.tabBig.Controls.Add(this.BigCompressed);
+            this.tabBig.Controls.Add(this.label43);
             this.tabBig.Controls.Add(this.label40);
             this.tabBig.Controls.Add(this.BigSizeLabel);
             this.tabBig.Controls.Add(this.BigLabel3);
@@ -343,11 +351,29 @@ namespace SSX_Modder
             this.tabBig.Text = "Big Files";
             this.tabBig.UseVisualStyleBackColor = true;
             // 
+            // BigCompressed
+            // 
+            this.BigCompressed.AutoSize = true;
+            this.BigCompressed.Location = new System.Drawing.Point(253, 129);
+            this.BigCompressed.Name = "BigCompressed";
+            this.BigCompressed.Size = new System.Drawing.Size(25, 13);
+            this.BigCompressed.TabIndex = 13;
+            this.BigCompressed.Text = "Null";
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.Location = new System.Drawing.Point(253, 116);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(65, 13);
+            this.label43.TabIndex = 12;
+            this.label43.Text = "Compressed";
+            // 
             // label40
             // 
             this.label40.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label40.AutoSize = true;
-            this.label40.Location = new System.Drawing.Point(657, 485);
+            this.label40.Location = new System.Drawing.Point(255, 476);
             this.label40.Name = "label40";
             this.label40.Size = new System.Drawing.Size(250, 13);
             this.label40.TabIndex = 11;
@@ -367,9 +393,9 @@ namespace SSX_Modder
             this.BigLabel3.AutoSize = true;
             this.BigLabel3.Location = new System.Drawing.Point(253, 78);
             this.BigLabel3.Name = "BigLabel3";
-            this.BigLabel3.Size = new System.Drawing.Size(62, 13);
+            this.BigLabel3.Size = new System.Drawing.Size(99, 13);
             this.BigLabel3.TabIndex = 9;
-            this.BigLabel3.Text = "Size (Bytes)";
+            this.BigLabel3.Text = "Current Size (Bytes)";
             // 
             // BigOffsetLabel
             // 
@@ -416,7 +442,7 @@ namespace SSX_Modder
             // 
             this.BigExtract.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BigExtract.Enabled = false;
-            this.BigExtract.Location = new System.Drawing.Point(753, 501);
+            this.BigExtract.Location = new System.Drawing.Point(351, 492);
             this.BigExtract.Name = "BigExtract";
             this.BigExtract.Size = new System.Drawing.Size(87, 23);
             this.BigExtract.TabIndex = 4;
@@ -445,7 +471,7 @@ namespace SSX_Modder
             // BigLoad
             // 
             this.BigLoad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BigLoad.Location = new System.Drawing.Point(660, 501);
+            this.BigLoad.Location = new System.Drawing.Point(258, 492);
             this.BigLoad.Name = "BigLoad";
             this.BigLoad.Size = new System.Drawing.Size(87, 23);
             this.BigLoad.TabIndex = 1;
@@ -685,7 +711,7 @@ namespace SSX_Modder
             // 
             // SSHExportOne
             // 
-            this.SSHExportOne.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.SSHExportOne.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.SSHExportOne.Location = new System.Drawing.Point(904, 492);
             this.SSHExportOne.Name = "SSHExportOne";
             this.SSHExportOne.Size = new System.Drawing.Size(95, 23);
@@ -696,7 +722,7 @@ namespace SSX_Modder
             // 
             // SSHReplace
             // 
-            this.SSHReplace.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.SSHReplace.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.SSHReplace.Location = new System.Drawing.Point(362, 492);
             this.SSHReplace.Name = "SSHReplace";
             this.SSHReplace.Size = new System.Drawing.Size(93, 23);
@@ -707,7 +733,7 @@ namespace SSX_Modder
             // 
             // SSHLoadFolder
             // 
-            this.SSHLoadFolder.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.SSHLoadFolder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.SSHLoadFolder.Location = new System.Drawing.Point(280, 492);
             this.SSHLoadFolder.Name = "SSHLoadFolder";
             this.SSHLoadFolder.Size = new System.Drawing.Size(75, 23);
@@ -718,7 +744,7 @@ namespace SSX_Modder
             // 
             // SSHSave
             // 
-            this.SSHSave.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.SSHSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.SSHSave.Location = new System.Drawing.Point(1113, 492);
             this.SSHSave.Name = "SSHSave";
             this.SSHSave.Size = new System.Drawing.Size(75, 23);
@@ -743,7 +769,7 @@ namespace SSX_Modder
             // 
             // SSHbmpExport
             // 
-            this.SSHbmpExport.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.SSHbmpExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.SSHbmpExport.Location = new System.Drawing.Point(1005, 492);
             this.SSHbmpExport.Name = "SSHbmpExport";
             this.SSHbmpExport.Size = new System.Drawing.Size(102, 23);
@@ -754,7 +780,7 @@ namespace SSX_Modder
             // 
             // SSHLoad
             // 
-            this.SSHLoad.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.SSHLoad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.SSHLoad.Location = new System.Drawing.Point(199, 492);
             this.SSHLoad.Name = "SSHLoad";
             this.SSHLoad.Size = new System.Drawing.Size(75, 23);
@@ -1853,6 +1879,24 @@ namespace SSX_Modder
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
             // 
+            // label44
+            // 
+            this.label44.AutoSize = true;
+            this.label44.Location = new System.Drawing.Point(406, 78);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(136, 13);
+            this.label44.TabIndex = 14;
+            this.label44.Text = "Uncompressed Size (Bytes)";
+            // 
+            // bigUncompressed
+            // 
+            this.bigUncompressed.AutoSize = true;
+            this.bigUncompressed.Location = new System.Drawing.Point(406, 91);
+            this.bigUncompressed.Name = "bigUncompressed";
+            this.bigUncompressed.Size = new System.Drawing.Size(13, 13);
+            this.bigUncompressed.TabIndex = 15;
+            this.bigUncompressed.Text = "0";
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2064,6 +2108,10 @@ namespace SSX_Modder
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label SSHColourAmmount;
         private System.Windows.Forms.Label label42;
+        private System.Windows.Forms.Label label43;
+        private System.Windows.Forms.Label BigCompressed;
+        private System.Windows.Forms.Label bigUncompressed;
+        private System.Windows.Forms.Label label44;
     }
 }
 

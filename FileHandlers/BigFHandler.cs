@@ -83,8 +83,34 @@ namespace SSX_Modder.FileHandlers
                     bigFiles.Add(temp);
                     stream.Position += 1;
                 }
-                bigHeader.footer = new byte[8];
+                tempByte = new byte[4];
+                stream.Read(tempByte, 0, tempByte.Length);
+                bigHeader.compression = Encoding.ASCII.GetString(tempByte);
+
+                bigHeader.footer = new byte[4];
                 stream.Read(bigHeader.footer, 0, bigHeader.footer.Length);
+
+                //Find UnCompressed Size
+                if(bigHeader.compression== "L231")
+                {
+                    for (int i = 0; i < bigHeader.ammount; i++)
+                    {
+                        stream.Position = bigFiles[i].offset + 2;
+                        BIGFFiles tempFile = bigFiles[i];
+                        tempByte = new byte[4];
+                        stream.Read(tempByte, 0, 3);
+                        if (BitConverter.IsLittleEndian)
+                            Array.Reverse(tempByte);
+                        for (int bi = 1; bi < tempByte.Length; bi++)
+                        {
+                            tempByte[bi - 1] = tempByte[bi];
+                        }
+                        tempByte[3] = 0x00;
+                        tempFile.UncompressedSize = BitConverter.ToInt32(tempByte, 0);
+                        bigFiles[i] = tempFile;
+                    }
+                }
+
                 stream.Dispose();
             }
         }
@@ -253,6 +279,7 @@ namespace SSX_Modder.FileHandlers
         public int fileSize;
         public int ammount;
         public int startOffset;
+        public string compression;
         public byte[] footer;
     }
 
@@ -261,5 +288,6 @@ namespace SSX_Modder.FileHandlers
         public string path;
         public int size;
         public int offset;
+        public int UncompressedSize;
     }
 }

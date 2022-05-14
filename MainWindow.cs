@@ -91,28 +91,28 @@ namespace SSX_Modder
         //        }
         //    }
         //}
-        static void AppendDirectory(string path)
-        {
-            try
-            {
-                if (!Directory.Exists(path))
-                {
-                    Directory.CreateDirectory(path);
-                }
-            }
-#pragma warning disable CS0168 // Variable is declared but never used
-            catch (DirectoryNotFoundException Ex)
-#pragma warning restore CS0168 // Variable is declared but never used
-            {
-                AppendDirectory(Path.GetDirectoryName(path));
-            }
-#pragma warning disable CS0168 // Variable is declared but never used
-            catch (PathTooLongException Exx)
-#pragma warning restore CS0168 // Variable is declared but never used
-            {
-                AppendDirectory(Path.GetDirectoryName(path));
-            }
-        }
+//        static void AppendDirectory(string path)
+//        {
+//            try
+//            {
+//                if (!Directory.Exists(path))
+//                {
+//                    Directory.CreateDirectory(path);
+//                }
+//            }
+//#pragma warning disable CS0168 // Variable is declared but never used
+//            catch (DirectoryNotFoundException Ex)
+//#pragma warning restore CS0168 // Variable is declared but never used
+//            {
+//                AppendDirectory(Path.GetDirectoryName(path));
+//            }
+//#pragma warning disable CS0168 // Variable is declared but never used
+//            catch (PathTooLongException Exx)
+//#pragma warning restore CS0168 // Variable is declared but never used
+//            {
+//                AppendDirectory(Path.GetDirectoryName(path));
+//            }
+//        }
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
             SaveFileDialog openFileDialog = new SaveFileDialog
@@ -508,6 +508,14 @@ namespace SSX_Modder
                 bigfHandler.LoadBig(openFileDialog.FileName);
                 BigExtract.Enabled = true;
                 BuildBigButton.Enabled = false;
+                if(bigfHandler.bigHeader.compression== "L231")
+                {
+                    BigCompressed.Text = "Yes";
+                }
+                else
+                {
+                    BigCompressed.Text = "No";
+                }
                 if (bigfHandler.bigFiles.Count == 0)
                 {
                     MessageBox.Show("Error loading file");
@@ -530,6 +538,7 @@ namespace SSX_Modder
                     Array.Reverse(temp);
                 BigOffsetLabel.Text = "0x" + BitConverter.ToString(temp).Replace("-", "");
                 BigSizeLabel.Text = bigfHandler.bigFiles[i].size.ToString();
+                bigUncompressed.Text = bigfHandler.bigFiles[i].UncompressedSize.ToString();
             }
         }
 
@@ -562,6 +571,7 @@ namespace SSX_Modder
                 BigBox1.Items.Clear();
                 BigExtract.Enabled = false;
                 BuildBigButton.Enabled = true;
+                BigCompressed.Text = "Null";
                 bigfHandler.LoadFolder(openFileDialog.FileName);
                 for (int i = 0; i < bigfHandler.bigFiles.Count; i++)
                 {
