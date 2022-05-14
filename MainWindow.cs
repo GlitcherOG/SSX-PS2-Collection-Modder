@@ -2,8 +2,8 @@
 using System.IO;
 using System.Windows.Forms;
 using SSX_Modder.FileHandlers;
-using DiscUtils;
-using DiscUtils.Iso9660;
+//using DiscUtils;
+//using DiscUtils.Iso9660;
 using System.Diagnostics;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using System.Drawing;
@@ -37,60 +37,60 @@ namespace SSX_Modder
         }
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog
-            {
-                InitialDirectory = "c:\\",
-                Filter = "Iso Image (*.iso)|*.iso|All files (*.*)|*.*",
-                FilterIndex = 1,
-                //RestoreDirectory = true
-            };
+            //OpenFileDialog openFileDialog = new OpenFileDialog
+            //{
+            //    InitialDirectory = "c:\\",
+            //    Filter = "Iso Image (*.iso)|*.iso|All files (*.*)|*.*",
+            //    FilterIndex = 1,
+            //    //RestoreDirectory = true
+            //};
 
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                SetStatus("Starting Extraction... (Program may freeze)");
-                ExtractISO(openFileDialog.FileName, workspacePath);
-                MessageBox.Show("Extraction Done");
-                SetStatus("");
-            }
+            //if (openFileDialog.ShowDialog() == DialogResult.OK)
+            //{
+            //    SetStatus("Starting Extraction... (Program may freeze)");
+            //    //ExtractISO(openFileDialog.FileName, workspacePath);
+            //    MessageBox.Show("Extraction Done");
+            //    SetStatus("");
+            //}
 
         }
 
-        void ExtractISO(string ISOName, string ExtractionPath)
-        {
-            using (FileStream ISOStream = File.Open(ISOName, FileMode.Open))
-            {
-                CDReader Reader = new CDReader(ISOStream, true, true);
-                if (Directory.Exists(ExtractionPath))
-                {
-                    Directory.Delete(ExtractionPath, true);
-                }
-                ExtractDirectory(Reader.Root, ExtractionPath + "\\", "");
-                Reader.Dispose();
-            }
-        }
-        void ExtractDirectory(DiscDirectoryInfo Dinfo, string RootPath, string PathinISO)
-        {
-            if (!string.IsNullOrWhiteSpace(PathinISO))
-            {
-                PathinISO += "\\" + Dinfo.Name;
-            }
-            RootPath += "\\" + Dinfo.Name;
-            AppendDirectory(RootPath);
-            foreach (DiscDirectoryInfo dinfo in Dinfo.GetDirectories())
-            {
-                ExtractDirectory(dinfo, RootPath, PathinISO);
-            }
-            foreach (DiscFileInfo finfo in Dinfo.GetFiles())
-            {
-                using (Stream FileStr = finfo.OpenRead())
-                {
-                    using (FileStream Fs = File.Create(RootPath + "\\" + finfo.Name)) // Here you can Set the BufferSize Also e.g. File.Create(RootPath + "\\" + finfo.Name, 4 * 1024)
-                    {
-                        FileStr.CopyTo(Fs, 4 * 1024); // Buffer Size is 4 * 1024 but you can modify it in your code as per your need
-                    }
-                }
-            }
-        }
+        //void ExtractISO(string ISOName, string ExtractionPath)
+        //{
+        //    using (FileStream ISOStream = File.Open(ISOName, FileMode.Open))
+        //    {
+        //        CDReader Reader = new CDReader(ISOStream, true, true);
+        //        if (Directory.Exists(ExtractionPath))
+        //        {
+        //            Directory.Delete(ExtractionPath, true);
+        //        }
+        //        ExtractDirectory(Reader.Root, ExtractionPath + "\\", "");
+        //        Reader.Dispose();
+        //    }
+        //}
+        //void ExtractDirectory(DiscDirectoryInfo Dinfo, string RootPath, string PathinISO)
+        //{
+        //    if (!string.IsNullOrWhiteSpace(PathinISO))
+        //    {
+        //        PathinISO += "\\" + Dinfo.Name;
+        //    }
+        //    RootPath += "\\" + Dinfo.Name;
+        //    AppendDirectory(RootPath);
+        //    foreach (DiscDirectoryInfo dinfo in Dinfo.GetDirectories())
+        //    {
+        //        ExtractDirectory(dinfo, RootPath, PathinISO);
+        //    }
+        //    foreach (DiscFileInfo finfo in Dinfo.GetFiles())
+        //    {
+        //        using (Stream FileStr = finfo.OpenRead())
+        //        {
+        //            using (FileStream Fs = File.Create(RootPath + "\\" + finfo.Name)) // Here you can Set the BufferSize Also e.g. File.Create(RootPath + "\\" + finfo.Name, 4 * 1024)
+        //            {
+        //                FileStr.CopyTo(Fs, 4 * 1024); // Buffer Size is 4 * 1024 but you can modify it in your code as per your need
+        //            }
+        //        }
+        //    }
+        //}
         static void AppendDirectory(string path)
         {
             try
@@ -134,36 +134,36 @@ namespace SSX_Modder
                 Process.Start(startInfo);
             }
         }
-        public string CreateIsoImage(string sourceDrive, string targetIso, string volumeName)
-        {
-            try
-            {
-                var srcFiles = Directory.GetFiles(sourceDrive, "*", SearchOption.AllDirectories);
-                var iso = new CDBuilder
-                {
-                    UseJoliet = false,
-                    VolumeIdentifier = volumeName
-                };
-                foreach (var file in srcFiles)
-                {
-                    var fi = new FileInfo(file);
-                    if (fi.Directory.FullName == sourceDrive)
-                    {
-                        iso.AddFile($"{fi.Name}", fi.FullName);
-                        continue;
-                    }
-                    var srcDir = fi.Directory.FullName.Replace(sourceDrive, "").TrimEnd('\\');
-                    iso.AddDirectory(srcDir);
-                    iso.AddFile($"{srcDir}\\{fi.Name}", fi.FullName);
-                }
-                iso.Build(targetIso);
-                return "Success";
-            }
-            catch (Exception ex)
-            {
-                return ex.Message;
-            }
-        }
+        //public string CreateIsoImage(string sourceDrive, string targetIso, string volumeName)
+        //{
+        //    try
+        //    {
+        //        var srcFiles = Directory.GetFiles(sourceDrive, "*", SearchOption.AllDirectories);
+        //        var iso = new CDBuilder
+        //        {
+        //            UseJoliet = false,
+        //            VolumeIdentifier = volumeName
+        //        };
+        //        foreach (var file in srcFiles)
+        //        {
+        //            var fi = new FileInfo(file);
+        //            if (fi.Directory.FullName == sourceDrive)
+        //            {
+        //                iso.AddFile($"{fi.Name}", fi.FullName);
+        //                continue;
+        //            }
+        //            var srcDir = fi.Directory.FullName.Replace(sourceDrive, "").TrimEnd('\\');
+        //            iso.AddDirectory(srcDir);
+        //            iso.AddFile($"{srcDir}\\{fi.Name}", fi.FullName);
+        //        }
+        //        iso.Build(targetIso);
+        //        return "Success";
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return ex.Message;
+        //    }
+        //}
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
             Process.Start(workspacePath);
@@ -592,7 +592,6 @@ namespace SSX_Modder
         SSHHandler sshHandler = new SSHHandler();
         private void SSHLoad_Click(object sender, EventArgs e)
         {
-            SSHlistBox1.Items.Clear();
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
                 InitialDirectory = workspacePath,
@@ -602,6 +601,7 @@ namespace SSX_Modder
             };
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
+                SSHlistBox1.Items.Clear();
                 sshHandler.LoadSSH(openFileDialog.FileName);
                 for (int i = 0; i < sshHandler.sshImages.Count; i++)
                 {
@@ -617,6 +617,7 @@ namespace SSX_Modder
             if (SSHlistBox1.SelectedIndex != -1 && !sshHold)
             {
                 sshHold = true;
+                SSHColourAmmount.Text = sshHandler.sshImages[SSHlistBox1.SelectedIndex].sshTable.colorTable.Count.ToString();
                 SSHpictureBox1.Image = sshHandler.sshImages[SSHlistBox1.SelectedIndex].bitmap;
                 SSHImageName.Text = sshHandler.sshImages[SSHlistBox1.SelectedIndex].longname;
                 SSHImageShortName.Text = sshHandler.sshImages[SSHlistBox1.SelectedIndex].shortname;
@@ -708,7 +709,6 @@ namespace SSX_Modder
                 {
                     SSHlistBox1.Items.Add(sshHandler.sshImages[i].shortname + "." + sshHandler.sshImages[i].longname);
                     SSHFileFormat.Text = sshHandler.format;
-                    //SSHFileNameLabel.Text = openFileDialog.SafeFileName;
                 }
             }
         }
@@ -727,6 +727,47 @@ namespace SSX_Modder
                 sshHandler.SaveSSH(openFileDialog.FileName);
             }
         }
+
+        private void SSHReplace_Click(object sender, EventArgs e)
+        {
+            if (SSHlistBox1.SelectedIndex != -1)
+            {
+                OpenFileDialog openFileDialog = new OpenFileDialog
+                {
+                    InitialDirectory = workspacePath + "DATA",
+                    Filter = "Png File (*.png)|*.png|All files (*.*)|*.*",
+                    FilterIndex = 1,
+                    RestoreDirectory = false
+                };
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    sshHandler.LoadSingle(openFileDialog.FileName, SSHlistBox1.SelectedIndex);
+                    SSHlistBox1.SelectedIndex = SSHlistBox1.SelectedIndex - 1;
+                    SSHlistBox1.SelectedIndex = SSHlistBox1.SelectedIndex + 1;
+                }
+            }
+        }
+
+        private void SSHExportOne_Click(object sender, EventArgs e)
+        {
+            if (SSHlistBox1.SelectedIndex != -1)
+            {
+                SaveFileDialog openFileDialog = new SaveFileDialog
+                {
+                    InitialDirectory = workspacePath,
+                    Filter = "Png File (*.png)|*.png|All files (*.*)|*.*",
+                    FilterIndex = 1,
+                    RestoreDirectory = false
+                };
+                openFileDialog.FileName = sshHandler.sshImages[SSHlistBox1.SelectedIndex].shortname + "." + sshHandler.sshImages[SSHlistBox1.SelectedIndex].longname + ".png";
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    sshHandler.BMPOneExtract(openFileDialog.FileName, SSHlistBox1.SelectedIndex);
+                    GC.Collect();
+                }
+            }
+        }
         #endregion
+
     }
 }

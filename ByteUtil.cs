@@ -24,6 +24,31 @@ namespace SSX_Modder.Utilities
             return Number;
         }
 
+        public static int BitConbineConvert(byte OneByte, byte TwoByte, int StartPoint = 0, int Length = 4, int Inset=4)
+        {
+            byte[] arrayOne = new byte[1] { OneByte };
+            var bitsOne = new BitArray(arrayOne);
+            arrayOne = new byte[1] { TwoByte };
+            var bitsTwo = new BitArray(arrayOne);
+
+            for (int i = StartPoint; i < Length; i++)
+            {
+                bitsOne[Inset + i] = bitsTwo[i];
+            }
+
+
+            int Point = 1;
+            int Number = 0;
+
+            for (int i = 0; i < 8; i++)
+            {
+                Number += (bitsOne[i] ? 1 : 0) * Point;
+                Point = Point * 2;
+            }
+
+            return Number;
+        }
+
         public static long FindPosition(Stream stream, byte[] byteSequence, long Start = -1, long End = -1)
         {
             int b;

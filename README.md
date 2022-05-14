@@ -6,14 +6,17 @@ This is a modding tool i came up and started making when i caught covid as a way
 
 ## Todo
 
-- Refpack Decompressor/ Compressor
+- Refpack Decompressor/Compressor
 - Big Refpack Decompress/Compress
 - SSH Refpack Decompress/Compress
-- Music Config Adding and Removing
+- Music Config Adding and Removing (Dont know why i keep putting this off)
 - Control Editor Menu
 - Redo Iso Extract And Making
 - MUS Extractor
 - Mod Pack Maker
 - GS Collection After All Functions
 - ImagMaik To Convert Images to correct Formats
+- All in One EXE
+- Redo Windows Form
+- SSH Export 1 Image and Import 1 Image
 

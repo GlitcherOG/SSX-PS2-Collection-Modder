@@ -31,6 +31,7 @@ namespace SSX_Modder
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabBootFile = new System.Windows.Forms.TabPage();
+            this.label41 = new System.Windows.Forms.Label();
             this.bootLoad = new System.Windows.Forms.Button();
             this.bootSaveAs = new System.Windows.Forms.Button();
             this.bootSave = new System.Windows.Forms.Button();
@@ -52,23 +53,30 @@ namespace SSX_Modder
             this.BigLoad = new System.Windows.Forms.Button();
             this.BigBox1 = new System.Windows.Forms.ListBox();
             this.tabSSH = new System.Windows.Forms.TabPage();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.SSHColourAmmount = new System.Windows.Forms.Label();
+            this.label42 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label35 = new System.Windows.Forms.Label();
+            this.label36 = new System.Windows.Forms.Label();
+            this.label37 = new System.Windows.Forms.Label();
+            this.SSHImageShortName = new System.Windows.Forms.TextBox();
             this.SSHYAxis = new System.Windows.Forms.NumericUpDown();
+            this.SSHImageName = new System.Windows.Forms.TextBox();
             this.SSHXAxis = new System.Windows.Forms.NumericUpDown();
+            this.SSHMatrixType = new System.Windows.Forms.ComboBox();
             this.label39 = new System.Windows.Forms.Label();
             this.label38 = new System.Windows.Forms.Label();
-            this.SSHMatrixType = new System.Windows.Forms.ComboBox();
-            this.SSHImageName = new System.Windows.Forms.TextBox();
-            this.SSHImageShortName = new System.Windows.Forms.TextBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label33 = new System.Windows.Forms.Label();
+            this.SSHFileNameLabel = new System.Windows.Forms.Label();
+            this.label34 = new System.Windows.Forms.Label();
             this.SSHFileFormat = new System.Windows.Forms.TextBox();
+            this.SSHExportOne = new System.Windows.Forms.Button();
+            this.SSHReplace = new System.Windows.Forms.Button();
             this.SSHLoadFolder = new System.Windows.Forms.Button();
             this.SSHSave = new System.Windows.Forms.Button();
             this.SSHDisplayMode = new System.Windows.Forms.CheckBox();
-            this.label37 = new System.Windows.Forms.Label();
-            this.label36 = new System.Windows.Forms.Label();
-            this.label35 = new System.Windows.Forms.Label();
-            this.label34 = new System.Windows.Forms.Label();
-            this.SSHFileNameLabel = new System.Windows.Forms.Label();
-            this.label33 = new System.Windows.Forms.Label();
             this.SSHbmpExport = new System.Windows.Forms.Button();
             this.SSHLoad = new System.Windows.Forms.Button();
             this.SSHlistBox1 = new System.Windows.Forms.ListBox();
@@ -167,14 +175,16 @@ namespace SSX_Modder
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.label41 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabBootFile.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabBig.SuspendLayout();
             this.tabSSH.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SSHYAxis)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SSHXAxis)).BeginInit();
+            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SSHpictureBox1)).BeginInit();
             this.tabCharacters.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.charnumericUpDown6)).BeginInit();
@@ -216,7 +226,7 @@ namespace SSX_Modder
             this.tabControl1.Location = new System.Drawing.Point(14, 29);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(788, 357);
+            this.tabControl1.Size = new System.Drawing.Size(1199, 553);
             this.tabControl1.TabIndex = 0;
             // 
             // tabBootFile
@@ -228,14 +238,23 @@ namespace SSX_Modder
             this.tabBootFile.Controls.Add(this.tabControl2);
             this.tabBootFile.Location = new System.Drawing.Point(4, 22);
             this.tabBootFile.Name = "tabBootFile";
-            this.tabBootFile.Size = new System.Drawing.Size(780, 331);
+            this.tabBootFile.Size = new System.Drawing.Size(1191, 527);
             this.tabBootFile.TabIndex = 7;
             this.tabBootFile.Text = "Boot File (WIP)";
             this.tabBootFile.UseVisualStyleBackColor = true;
             // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Location = new System.Drawing.Point(876, 503);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(66, 13);
+            this.label41.TabIndex = 0;
+            this.label41.Text = "Need to add";
+            // 
             // bootLoad
             // 
-            this.bootLoad.Location = new System.Drawing.Point(540, 305);
+            this.bootLoad.Location = new System.Drawing.Point(948, 498);
             this.bootLoad.Name = "bootLoad";
             this.bootLoad.Size = new System.Drawing.Size(75, 23);
             this.bootLoad.TabIndex = 3;
@@ -244,7 +263,7 @@ namespace SSX_Modder
             // 
             // bootSaveAs
             // 
-            this.bootSaveAs.Location = new System.Drawing.Point(621, 305);
+            this.bootSaveAs.Location = new System.Drawing.Point(1029, 498);
             this.bootSaveAs.Name = "bootSaveAs";
             this.bootSaveAs.Size = new System.Drawing.Size(75, 23);
             this.bootSaveAs.TabIndex = 2;
@@ -253,7 +272,7 @@ namespace SSX_Modder
             // 
             // bootSave
             // 
-            this.bootSave.Location = new System.Drawing.Point(702, 305);
+            this.bootSave.Location = new System.Drawing.Point(1110, 498);
             this.bootSave.Name = "bootSave";
             this.bootSave.Size = new System.Drawing.Size(75, 23);
             this.bootSave.TabIndex = 1;
@@ -262,13 +281,16 @@ namespace SSX_Modder
             // 
             // tabControl2
             // 
+            this.tabControl2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl2.Controls.Add(this.tab1CheatCharacter);
             this.tabControl2.Controls.Add(this.tab1TrickPage);
             this.tabControl2.Controls.Add(this.tab1TrackData);
             this.tabControl2.Location = new System.Drawing.Point(4, 4);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(780, 295);
+            this.tabControl2.Size = new System.Drawing.Size(1181, 488);
             this.tabControl2.TabIndex = 0;
             // 
             // tab1CheatCharacter
@@ -276,7 +298,7 @@ namespace SSX_Modder
             this.tab1CheatCharacter.Location = new System.Drawing.Point(4, 22);
             this.tab1CheatCharacter.Name = "tab1CheatCharacter";
             this.tab1CheatCharacter.Padding = new System.Windows.Forms.Padding(3);
-            this.tab1CheatCharacter.Size = new System.Drawing.Size(772, 269);
+            this.tab1CheatCharacter.Size = new System.Drawing.Size(1173, 462);
             this.tab1CheatCharacter.TabIndex = 0;
             this.tab1CheatCharacter.Text = "Cheat Characters";
             this.tab1CheatCharacter.UseVisualStyleBackColor = true;
@@ -286,7 +308,7 @@ namespace SSX_Modder
             this.tab1TrickPage.Location = new System.Drawing.Point(4, 22);
             this.tab1TrickPage.Name = "tab1TrickPage";
             this.tab1TrickPage.Padding = new System.Windows.Forms.Padding(3);
-            this.tab1TrickPage.Size = new System.Drawing.Size(772, 269);
+            this.tab1TrickPage.Size = new System.Drawing.Size(1173, 462);
             this.tab1TrickPage.TabIndex = 1;
             this.tab1TrickPage.Text = "Trick Page";
             this.tab1TrickPage.UseVisualStyleBackColor = true;
@@ -295,7 +317,7 @@ namespace SSX_Modder
             // 
             this.tab1TrackData.Location = new System.Drawing.Point(4, 22);
             this.tab1TrackData.Name = "tab1TrackData";
-            this.tab1TrackData.Size = new System.Drawing.Size(772, 269);
+            this.tab1TrackData.Size = new System.Drawing.Size(1173, 462);
             this.tab1TrackData.TabIndex = 2;
             this.tab1TrackData.Text = "Track Data";
             this.tab1TrackData.UseVisualStyleBackColor = true;
@@ -316,15 +338,16 @@ namespace SSX_Modder
             this.tabBig.Controls.Add(this.BigBox1);
             this.tabBig.Location = new System.Drawing.Point(4, 22);
             this.tabBig.Name = "tabBig";
-            this.tabBig.Size = new System.Drawing.Size(780, 331);
+            this.tabBig.Size = new System.Drawing.Size(1191, 527);
             this.tabBig.TabIndex = 6;
             this.tabBig.Text = "Big Files";
             this.tabBig.UseVisualStyleBackColor = true;
             // 
             // label40
             // 
+            this.label40.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label40.AutoSize = true;
-            this.label40.Location = new System.Drawing.Point(253, 289);
+            this.label40.Location = new System.Drawing.Point(657, 485);
             this.label40.Name = "label40";
             this.label40.Size = new System.Drawing.Size(250, 13);
             this.label40.TabIndex = 11;
@@ -368,7 +391,8 @@ namespace SSX_Modder
             // 
             // BigLoadFolder
             // 
-            this.BigLoadFolder.Location = new System.Drawing.Point(597, 305);
+            this.BigLoadFolder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.BigLoadFolder.Location = new System.Drawing.Point(1001, 501);
             this.BigLoadFolder.Name = "BigLoadFolder";
             this.BigLoadFolder.Size = new System.Drawing.Size(87, 23);
             this.BigLoadFolder.TabIndex = 6;
@@ -378,8 +402,9 @@ namespace SSX_Modder
             // 
             // BuildBigButton
             // 
+            this.BuildBigButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BuildBigButton.Enabled = false;
-            this.BuildBigButton.Location = new System.Drawing.Point(690, 305);
+            this.BuildBigButton.Location = new System.Drawing.Point(1094, 501);
             this.BuildBigButton.Name = "BuildBigButton";
             this.BuildBigButton.Size = new System.Drawing.Size(87, 23);
             this.BuildBigButton.TabIndex = 5;
@@ -389,8 +414,9 @@ namespace SSX_Modder
             // 
             // BigExtract
             // 
+            this.BigExtract.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BigExtract.Enabled = false;
-            this.BigExtract.Location = new System.Drawing.Point(349, 305);
+            this.BigExtract.Location = new System.Drawing.Point(753, 501);
             this.BigExtract.Name = "BigExtract";
             this.BigExtract.Size = new System.Drawing.Size(87, 23);
             this.BigExtract.TabIndex = 4;
@@ -418,7 +444,8 @@ namespace SSX_Modder
             // 
             // BigLoad
             // 
-            this.BigLoad.Location = new System.Drawing.Point(256, 305);
+            this.BigLoad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.BigLoad.Location = new System.Drawing.Point(660, 501);
             this.BigLoad.Name = "BigLoad";
             this.BigLoad.Size = new System.Drawing.Size(87, 23);
             this.BigLoad.TabIndex = 1;
@@ -428,46 +455,123 @@ namespace SSX_Modder
             // 
             // BigBox1
             // 
+            this.BigBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.BigBox1.FormattingEnabled = true;
             this.BigBox1.Location = new System.Drawing.Point(4, 4);
             this.BigBox1.Name = "BigBox1";
-            this.BigBox1.Size = new System.Drawing.Size(243, 316);
+            this.BigBox1.Size = new System.Drawing.Size(243, 511);
             this.BigBox1.TabIndex = 0;
             this.BigBox1.SelectedIndexChanged += new System.EventHandler(this.BigBox1_SelectedIndexChanged);
             // 
             // tabSSH
             // 
-            this.tabSSH.Controls.Add(this.SSHYAxis);
-            this.tabSSH.Controls.Add(this.SSHXAxis);
-            this.tabSSH.Controls.Add(this.label39);
-            this.tabSSH.Controls.Add(this.label38);
-            this.tabSSH.Controls.Add(this.SSHMatrixType);
-            this.tabSSH.Controls.Add(this.SSHImageName);
-            this.tabSSH.Controls.Add(this.SSHImageShortName);
-            this.tabSSH.Controls.Add(this.SSHFileFormat);
+            this.tabSSH.Controls.Add(this.groupBox3);
+            this.tabSSH.Controls.Add(this.groupBox2);
+            this.tabSSH.Controls.Add(this.groupBox1);
+            this.tabSSH.Controls.Add(this.SSHExportOne);
+            this.tabSSH.Controls.Add(this.SSHReplace);
             this.tabSSH.Controls.Add(this.SSHLoadFolder);
             this.tabSSH.Controls.Add(this.SSHSave);
             this.tabSSH.Controls.Add(this.SSHDisplayMode);
-            this.tabSSH.Controls.Add(this.label37);
-            this.tabSSH.Controls.Add(this.label36);
-            this.tabSSH.Controls.Add(this.label35);
-            this.tabSSH.Controls.Add(this.label34);
-            this.tabSSH.Controls.Add(this.SSHFileNameLabel);
-            this.tabSSH.Controls.Add(this.label33);
             this.tabSSH.Controls.Add(this.SSHbmpExport);
             this.tabSSH.Controls.Add(this.SSHLoad);
             this.tabSSH.Controls.Add(this.SSHlistBox1);
             this.tabSSH.Controls.Add(this.SSHpictureBox1);
             this.tabSSH.Location = new System.Drawing.Point(4, 22);
             this.tabSSH.Name = "tabSSH";
-            this.tabSSH.Size = new System.Drawing.Size(780, 331);
+            this.tabSSH.Size = new System.Drawing.Size(1191, 527);
             this.tabSSH.TabIndex = 8;
             this.tabSSH.Text = "SSH";
             this.tabSSH.UseVisualStyleBackColor = true;
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.SSHColourAmmount);
+            this.groupBox3.Controls.Add(this.label42);
+            this.groupBox3.Location = new System.Drawing.Point(202, 256);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(564, 135);
+            this.groupBox3.TabIndex = 29;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Colour Table Info";
+            // 
+            // SSHColourAmmount
+            // 
+            this.SSHColourAmmount.AutoSize = true;
+            this.SSHColourAmmount.Location = new System.Drawing.Point(8, 33);
+            this.SSHColourAmmount.Name = "SSHColourAmmount";
+            this.SSHColourAmmount.Size = new System.Drawing.Size(13, 13);
+            this.SSHColourAmmount.TabIndex = 1;
+            this.SSHColourAmmount.Text = "0";
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.Location = new System.Drawing.Point(7, 20);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(103, 13);
+            this.label42.TabIndex = 0;
+            this.label42.Text = "Ammount Of Colours";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label35);
+            this.groupBox2.Controls.Add(this.label36);
+            this.groupBox2.Controls.Add(this.label37);
+            this.groupBox2.Controls.Add(this.SSHImageShortName);
+            this.groupBox2.Controls.Add(this.SSHYAxis);
+            this.groupBox2.Controls.Add(this.SSHImageName);
+            this.groupBox2.Controls.Add(this.SSHXAxis);
+            this.groupBox2.Controls.Add(this.SSHMatrixType);
+            this.groupBox2.Controls.Add(this.label39);
+            this.groupBox2.Controls.Add(this.label38);
+            this.groupBox2.Location = new System.Drawing.Point(202, 73);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(564, 177);
+            this.groupBox2.TabIndex = 28;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Image Details";
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(137, 16);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(67, 13);
+            this.label35.TabIndex = 8;
+            this.label35.Text = "Image Name";
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Location = new System.Drawing.Point(8, 16);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(95, 13);
+            this.label36.TabIndex = 9;
+            this.label36.Text = "Image Short Name";
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Location = new System.Drawing.Point(328, 16);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(62, 13);
+            this.label37.TabIndex = 12;
+            this.label37.Text = "Matrix Type";
+            // 
+            // SSHImageShortName
+            // 
+            this.SSHImageShortName.Location = new System.Drawing.Point(11, 32);
+            this.SSHImageShortName.MaxLength = 4;
+            this.SSHImageShortName.Name = "SSHImageShortName";
+            this.SSHImageShortName.Size = new System.Drawing.Size(121, 20);
+            this.SSHImageShortName.TabIndex = 18;
+            this.SSHImageShortName.TextChanged += new System.EventHandler(this.SSH_TextChanged);
+            // 
             // SSHYAxis
             // 
-            this.SSHYAxis.Location = new System.Drawing.Point(334, 176);
+            this.SSHYAxis.Location = new System.Drawing.Point(136, 72);
             this.SSHYAxis.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -478,9 +582,17 @@ namespace SSX_Modder
             this.SSHYAxis.TabIndex = 24;
             this.SSHYAxis.TabIndexChanged += new System.EventHandler(this.SSH_TextChanged);
             // 
+            // SSHImageName
+            // 
+            this.SSHImageName.Location = new System.Drawing.Point(136, 32);
+            this.SSHImageName.Name = "SSHImageName";
+            this.SSHImageName.Size = new System.Drawing.Size(169, 20);
+            this.SSHImageName.TabIndex = 19;
+            this.SSHImageName.TextChanged += new System.EventHandler(this.SSH_TextChanged);
+            // 
             // SSHXAxis
             // 
-            this.SSHXAxis.Location = new System.Drawing.Point(201, 176);
+            this.SSHXAxis.Location = new System.Drawing.Point(11, 72);
             this.SSHXAxis.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -491,24 +603,6 @@ namespace SSX_Modder
             this.SSHXAxis.TabIndex = 23;
             this.SSHXAxis.TabIndexChanged += new System.EventHandler(this.SSH_TextChanged);
             // 
-            // label39
-            // 
-            this.label39.AutoSize = true;
-            this.label39.Location = new System.Drawing.Point(331, 159);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(36, 13);
-            this.label39.TabIndex = 22;
-            this.label39.Text = "Y-Axis";
-            // 
-            // label38
-            // 
-            this.label38.AutoSize = true;
-            this.label38.Location = new System.Drawing.Point(198, 159);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(36, 13);
-            this.label38.TabIndex = 21;
-            this.label38.Text = "X-Axis";
-            // 
             // SSHMatrixType
             // 
             this.SSHMatrixType.FormattingEnabled = true;
@@ -516,42 +610,105 @@ namespace SSX_Modder
             "1 (4 Bit, 16 Colour Index)",
             "2 (8 Bit, 256 Colour Index)",
             "5 (Full Colour)"});
-            this.SSHMatrixType.Location = new System.Drawing.Point(201, 127);
+            this.SSHMatrixType.Location = new System.Drawing.Point(331, 31);
             this.SSHMatrixType.Name = "SSHMatrixType";
-            this.SSHMatrixType.Size = new System.Drawing.Size(254, 21);
+            this.SSHMatrixType.Size = new System.Drawing.Size(193, 21);
             this.SSHMatrixType.TabIndex = 20;
             this.SSHMatrixType.TextChanged += new System.EventHandler(this.SSH_TextChanged);
             // 
-            // SSHImageName
+            // label39
             // 
-            this.SSHImageName.Location = new System.Drawing.Point(201, 84);
-            this.SSHImageName.Name = "SSHImageName";
-            this.SSHImageName.Size = new System.Drawing.Size(121, 20);
-            this.SSHImageName.TabIndex = 19;
-            this.SSHImageName.TextChanged += new System.EventHandler(this.SSH_TextChanged);
+            this.label39.AutoSize = true;
+            this.label39.Location = new System.Drawing.Point(133, 55);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(70, 13);
+            this.label39.TabIndex = 22;
+            this.label39.Text = "Y-Axis Centre";
             // 
-            // SSHImageShortName
+            // label38
             // 
-            this.SSHImageShortName.Location = new System.Drawing.Point(334, 84);
-            this.SSHImageShortName.MaxLength = 4;
-            this.SSHImageShortName.Name = "SSHImageShortName";
-            this.SSHImageShortName.Size = new System.Drawing.Size(121, 20);
-            this.SSHImageShortName.TabIndex = 18;
-            this.SSHImageShortName.TextChanged += new System.EventHandler(this.SSH_TextChanged);
+            this.label38.AutoSize = true;
+            this.label38.Location = new System.Drawing.Point(8, 55);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(70, 13);
+            this.label38.TabIndex = 21;
+            this.label38.Text = "X-Axis Centre";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label33);
+            this.groupBox1.Controls.Add(this.SSHFileNameLabel);
+            this.groupBox1.Controls.Add(this.label34);
+            this.groupBox1.Controls.Add(this.SSHFileFormat);
+            this.groupBox1.Location = new System.Drawing.Point(202, 4);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(564, 63);
+            this.groupBox1.TabIndex = 27;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "File Details";
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(8, 16);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(54, 13);
+            this.label33.TabIndex = 4;
+            this.label33.Text = "File Name";
+            // 
+            // SSHFileNameLabel
+            // 
+            this.SSHFileNameLabel.AutoSize = true;
+            this.SSHFileNameLabel.Location = new System.Drawing.Point(8, 33);
+            this.SSHFileNameLabel.Name = "SSHFileNameLabel";
+            this.SSHFileNameLabel.Size = new System.Drawing.Size(33, 13);
+            this.SSHFileNameLabel.TabIndex = 5;
+            this.SSHFileNameLabel.Text = "None";
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(137, 16);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(49, 13);
+            this.label34.TabIndex = 6;
+            this.label34.Text = "Directory";
             // 
             // SSHFileFormat
             // 
-            this.SSHFileFormat.Location = new System.Drawing.Point(334, 21);
+            this.SSHFileFormat.Location = new System.Drawing.Point(140, 33);
             this.SSHFileFormat.MaxLength = 4;
             this.SSHFileFormat.Name = "SSHFileFormat";
             this.SSHFileFormat.Size = new System.Drawing.Size(121, 20);
             this.SSHFileFormat.TabIndex = 17;
             this.SSHFileFormat.TextChanged += new System.EventHandler(this.SSH_TextChanged);
             // 
+            // SSHExportOne
+            // 
+            this.SSHExportOne.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.SSHExportOne.Location = new System.Drawing.Point(904, 492);
+            this.SSHExportOne.Name = "SSHExportOne";
+            this.SSHExportOne.Size = new System.Drawing.Size(95, 23);
+            this.SSHExportOne.TabIndex = 26;
+            this.SSHExportOne.Text = "Export Selected";
+            this.SSHExportOne.UseVisualStyleBackColor = true;
+            this.SSHExportOne.Click += new System.EventHandler(this.SSHExportOne_Click);
+            // 
+            // SSHReplace
+            // 
+            this.SSHReplace.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.SSHReplace.Location = new System.Drawing.Point(362, 492);
+            this.SSHReplace.Name = "SSHReplace";
+            this.SSHReplace.Size = new System.Drawing.Size(93, 23);
+            this.SSHReplace.TabIndex = 25;
+            this.SSHReplace.Text = "Replace Image";
+            this.SSHReplace.UseVisualStyleBackColor = true;
+            this.SSHReplace.Click += new System.EventHandler(this.SSHReplace_Click);
+            // 
             // SSHLoadFolder
             // 
             this.SSHLoadFolder.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.SSHLoadFolder.Location = new System.Drawing.Point(621, 297);
+            this.SSHLoadFolder.Location = new System.Drawing.Point(280, 492);
             this.SSHLoadFolder.Name = "SSHLoadFolder";
             this.SSHLoadFolder.Size = new System.Drawing.Size(75, 23);
             this.SSHLoadFolder.TabIndex = 16;
@@ -562,7 +719,7 @@ namespace SSX_Modder
             // SSHSave
             // 
             this.SSHSave.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.SSHSave.Location = new System.Drawing.Point(702, 297);
+            this.SSHSave.Location = new System.Drawing.Point(1113, 492);
             this.SSHSave.Name = "SSHSave";
             this.SSHSave.Size = new System.Drawing.Size(75, 23);
             this.SSHSave.TabIndex = 15;
@@ -576,83 +733,29 @@ namespace SSX_Modder
             this.SSHDisplayMode.AutoSize = true;
             this.SSHDisplayMode.Checked = true;
             this.SSHDisplayMode.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.SSHDisplayMode.Location = new System.Drawing.Point(538, 230);
+            this.SSHDisplayMode.Location = new System.Drawing.Point(772, 426);
             this.SSHDisplayMode.Name = "SSHDisplayMode";
-            this.SSHDisplayMode.Size = new System.Drawing.Size(90, 17);
+            this.SSHDisplayMode.Size = new System.Drawing.Size(114, 17);
             this.SSHDisplayMode.TabIndex = 14;
-            this.SSHDisplayMode.Text = "Display Mode";
+            this.SSHDisplayMode.Text = "Black Background";
             this.SSHDisplayMode.UseVisualStyleBackColor = true;
             this.SSHDisplayMode.CheckedChanged += new System.EventHandler(this.SSHDisplayMode_CheckedChanged);
-            // 
-            // label37
-            // 
-            this.label37.AutoSize = true;
-            this.label37.Location = new System.Drawing.Point(202, 111);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(62, 13);
-            this.label37.TabIndex = 12;
-            this.label37.Text = "Matrix Type";
-            // 
-            // label36
-            // 
-            this.label36.AutoSize = true;
-            this.label36.Location = new System.Drawing.Point(331, 68);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(95, 13);
-            this.label36.TabIndex = 9;
-            this.label36.Text = "Image Short Name";
-            // 
-            // label35
-            // 
-            this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(202, 68);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(67, 13);
-            this.label35.TabIndex = 8;
-            this.label35.Text = "Image Name";
-            // 
-            // label34
-            // 
-            this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(331, 4);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(39, 13);
-            this.label34.TabIndex = 6;
-            this.label34.Text = "Format";
-            // 
-            // SSHFileNameLabel
-            // 
-            this.SSHFileNameLabel.AutoSize = true;
-            this.SSHFileNameLabel.Location = new System.Drawing.Point(202, 21);
-            this.SSHFileNameLabel.Name = "SSHFileNameLabel";
-            this.SSHFileNameLabel.Size = new System.Drawing.Size(33, 13);
-            this.SSHFileNameLabel.TabIndex = 5;
-            this.SSHFileNameLabel.Text = "None";
-            // 
-            // label33
-            // 
-            this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(202, 4);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(54, 13);
-            this.label33.TabIndex = 4;
-            this.label33.Text = "File Name";
             // 
             // SSHbmpExport
             // 
             this.SSHbmpExport.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.SSHbmpExport.Location = new System.Drawing.Point(282, 297);
+            this.SSHbmpExport.Location = new System.Drawing.Point(1005, 492);
             this.SSHbmpExport.Name = "SSHbmpExport";
-            this.SSHbmpExport.Size = new System.Drawing.Size(88, 23);
+            this.SSHbmpExport.Size = new System.Drawing.Size(102, 23);
             this.SSHbmpExport.TabIndex = 3;
-            this.SSHbmpExport.Text = "Export To PNG";
+            this.SSHbmpExport.Text = "Export All To PNG";
             this.SSHbmpExport.UseVisualStyleBackColor = true;
             this.SSHbmpExport.Click += new System.EventHandler(this.SSHbmpExport_Click);
             // 
             // SSHLoad
             // 
             this.SSHLoad.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.SSHLoad.Location = new System.Drawing.Point(201, 297);
+            this.SSHLoad.Location = new System.Drawing.Point(199, 492);
             this.SSHLoad.Name = "SSHLoad";
             this.SSHLoad.Size = new System.Drawing.Size(75, 23);
             this.SSHLoad.TabIndex = 2;
@@ -662,10 +765,12 @@ namespace SSX_Modder
             // 
             // SSHlistBox1
             // 
+            this.SSHlistBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.SSHlistBox1.FormattingEnabled = true;
             this.SSHlistBox1.Location = new System.Drawing.Point(4, 4);
             this.SSHlistBox1.Name = "SSHlistBox1";
-            this.SSHlistBox1.Size = new System.Drawing.Size(191, 316);
+            this.SSHlistBox1.Size = new System.Drawing.Size(191, 511);
             this.SSHlistBox1.TabIndex = 1;
             this.SSHlistBox1.SelectedIndexChanged += new System.EventHandler(this.SSHlistBox1_SelectedIndexChanged);
             // 
@@ -677,9 +782,9 @@ namespace SSX_Modder
             this.SSHpictureBox1.BackColor = System.Drawing.Color.Black;
             this.SSHpictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.SSHpictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SSHpictureBox1.Location = new System.Drawing.Point(538, 4);
+            this.SSHpictureBox1.Location = new System.Drawing.Point(772, 4);
             this.SSHpictureBox1.Name = "SSHpictureBox1";
-            this.SSHpictureBox1.Size = new System.Drawing.Size(220, 220);
+            this.SSHpictureBox1.Size = new System.Drawing.Size(416, 416);
             this.SSHpictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.SSHpictureBox1.TabIndex = 0;
             this.SSHpictureBox1.TabStop = false;
@@ -716,7 +821,7 @@ namespace SSX_Modder
             this.tabCharacters.Controls.Add(this.charLoad);
             this.tabCharacters.Location = new System.Drawing.Point(4, 22);
             this.tabCharacters.Name = "tabCharacters";
-            this.tabCharacters.Size = new System.Drawing.Size(780, 331);
+            this.tabCharacters.Size = new System.Drawing.Size(1191, 527);
             this.tabCharacters.TabIndex = 5;
             this.tabCharacters.Text = "Character Database";
             this.tabCharacters.UseVisualStyleBackColor = true;
@@ -807,7 +912,7 @@ namespace SSX_Modder
             this.chartextBox6.Location = new System.Drawing.Point(271, 259);
             this.chartextBox6.MaxLength = 15;
             this.chartextBox6.Name = "chartextBox6";
-            this.chartextBox6.Size = new System.Drawing.Size(488, 20);
+            this.chartextBox6.Size = new System.Drawing.Size(899, 20);
             this.chartextBox6.TabIndex = 19;
             this.chartextBox6.TextChanged += new System.EventHandler(this.CharApply);
             // 
@@ -818,7 +923,7 @@ namespace SSX_Modder
             this.chartextBox5.Location = new System.Drawing.Point(271, 219);
             this.chartextBox5.MaxLength = 15;
             this.chartextBox5.Name = "chartextBox5";
-            this.chartextBox5.Size = new System.Drawing.Size(488, 20);
+            this.chartextBox5.Size = new System.Drawing.Size(899, 20);
             this.chartextBox5.TabIndex = 18;
             this.chartextBox5.TextChanged += new System.EventHandler(this.CharApply);
             // 
@@ -829,7 +934,7 @@ namespace SSX_Modder
             this.chartextBox4.Location = new System.Drawing.Point(272, 179);
             this.chartextBox4.MaxLength = 15;
             this.chartextBox4.Name = "chartextBox4";
-            this.chartextBox4.Size = new System.Drawing.Size(488, 20);
+            this.chartextBox4.Size = new System.Drawing.Size(899, 20);
             this.chartextBox4.TabIndex = 17;
             this.chartextBox4.TextChanged += new System.EventHandler(this.CharApply);
             // 
@@ -840,7 +945,7 @@ namespace SSX_Modder
             this.chartextBox3.Location = new System.Drawing.Point(272, 99);
             this.chartextBox3.MaxLength = 15;
             this.chartextBox3.Name = "chartextBox3";
-            this.chartextBox3.Size = new System.Drawing.Size(488, 20);
+            this.chartextBox3.Size = new System.Drawing.Size(899, 20);
             this.chartextBox3.TabIndex = 16;
             this.chartextBox3.TextChanged += new System.EventHandler(this.CharApply);
             // 
@@ -851,7 +956,7 @@ namespace SSX_Modder
             this.chartextBox2.Location = new System.Drawing.Point(271, 60);
             this.chartextBox2.MaxLength = 15;
             this.chartextBox2.Name = "chartextBox2";
-            this.chartextBox2.Size = new System.Drawing.Size(488, 20);
+            this.chartextBox2.Size = new System.Drawing.Size(899, 20);
             this.chartextBox2.TabIndex = 15;
             this.chartextBox2.TextChanged += new System.EventHandler(this.CharApply);
             // 
@@ -862,7 +967,7 @@ namespace SSX_Modder
             this.chartextBox1.Location = new System.Drawing.Point(271, 21);
             this.chartextBox1.MaxLength = 31;
             this.chartextBox1.Name = "chartextBox1";
-            this.chartextBox1.Size = new System.Drawing.Size(488, 20);
+            this.chartextBox1.Size = new System.Drawing.Size(899, 20);
             this.chartextBox1.TabIndex = 14;
             this.chartextBox1.TextChanged += new System.EventHandler(this.CharApply);
             // 
@@ -952,9 +1057,9 @@ namespace SSX_Modder
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(269, 122);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(67, 13);
+            this.label4.Size = new System.Drawing.Size(62, 13);
             this.label4.TabIndex = 7;
-            this.label4.Text = "Unkown Ints";
+            this.label4.Text = "Unkown Int";
             // 
             // label3
             // 
@@ -991,14 +1096,14 @@ namespace SSX_Modder
             this.charBox1.Location = new System.Drawing.Point(4, 4);
             this.charBox1.MinimumSize = new System.Drawing.Size(258, 316);
             this.charBox1.Name = "charBox1";
-            this.charBox1.Size = new System.Drawing.Size(258, 316);
+            this.charBox1.Size = new System.Drawing.Size(258, 511);
             this.charBox1.TabIndex = 3;
             this.charBox1.SelectedIndexChanged += new System.EventHandler(this.charBox1_SelectedIndexChanged);
             // 
             // charSave
             // 
             this.charSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.charSave.Location = new System.Drawing.Point(694, 305);
+            this.charSave.Location = new System.Drawing.Point(1105, 501);
             this.charSave.Name = "charSave";
             this.charSave.Size = new System.Drawing.Size(75, 23);
             this.charSave.TabIndex = 2;
@@ -1010,7 +1115,7 @@ namespace SSX_Modder
             // charSaveAs
             // 
             this.charSaveAs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.charSaveAs.Location = new System.Drawing.Point(613, 305);
+            this.charSaveAs.Location = new System.Drawing.Point(1024, 501);
             this.charSaveAs.Name = "charSaveAs";
             this.charSaveAs.Size = new System.Drawing.Size(75, 23);
             this.charSaveAs.TabIndex = 1;
@@ -1022,7 +1127,7 @@ namespace SSX_Modder
             // charLoad
             // 
             this.charLoad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.charLoad.Location = new System.Drawing.Point(532, 305);
+            this.charLoad.Location = new System.Drawing.Point(943, 501);
             this.charLoad.Name = "charLoad";
             this.charLoad.Size = new System.Drawing.Size(75, 23);
             this.charLoad.TabIndex = 0;
@@ -1084,14 +1189,14 @@ namespace SSX_Modder
             this.tabMusic.Location = new System.Drawing.Point(4, 22);
             this.tabMusic.Name = "tabMusic";
             this.tabMusic.Padding = new System.Windows.Forms.Padding(3);
-            this.tabMusic.Size = new System.Drawing.Size(780, 331);
+            this.tabMusic.Size = new System.Drawing.Size(1191, 527);
             this.tabMusic.TabIndex = 1;
             this.tabMusic.Text = "Music Config";
             this.tabMusic.UseVisualStyleBackColor = true;
             // 
             // MusSaveAs
             // 
-            this.MusSaveAs.Location = new System.Drawing.Point(638, 308);
+            this.MusSaveAs.Location = new System.Drawing.Point(1110, 498);
             this.MusSaveAs.Name = "MusSaveAs";
             this.MusSaveAs.Size = new System.Drawing.Size(75, 23);
             this.MusSaveAs.TabIndex = 49;
@@ -1101,7 +1206,7 @@ namespace SSX_Modder
             // 
             // MusINFnumericUpDown12
             // 
-            this.MusINFnumericUpDown12.Location = new System.Drawing.Point(467, 221);
+            this.MusINFnumericUpDown12.Location = new System.Drawing.Point(563, 248);
             this.MusINFnumericUpDown12.Minimum = new decimal(new int[] {
             1,
             0,
@@ -1114,7 +1219,7 @@ namespace SSX_Modder
             // label30
             // 
             this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(464, 205);
+            this.label30.Location = new System.Drawing.Point(560, 232);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(76, 13);
             this.label30.TabIndex = 47;
@@ -1123,7 +1228,7 @@ namespace SSX_Modder
             // MuscheckBox5
             // 
             this.MuscheckBox5.AutoSize = true;
-            this.MuscheckBox5.Location = new System.Drawing.Point(626, 103);
+            this.MuscheckBox5.Location = new System.Drawing.Point(722, 130);
             this.MuscheckBox5.Name = "MuscheckBox5";
             this.MuscheckBox5.Size = new System.Drawing.Size(124, 17);
             this.MuscheckBox5.TabIndex = 46;
@@ -1133,7 +1238,7 @@ namespace SSX_Modder
             // MuscheckBox4
             // 
             this.MuscheckBox4.AutoSize = true;
-            this.MuscheckBox4.Location = new System.Drawing.Point(626, 82);
+            this.MuscheckBox4.Location = new System.Drawing.Point(722, 109);
             this.MuscheckBox4.Name = "MuscheckBox4";
             this.MuscheckBox4.Size = new System.Drawing.Size(126, 17);
             this.MuscheckBox4.TabIndex = 45;
@@ -1143,7 +1248,7 @@ namespace SSX_Modder
             // MuscheckBox3
             // 
             this.MuscheckBox3.AutoSize = true;
-            this.MuscheckBox3.Location = new System.Drawing.Point(626, 63);
+            this.MuscheckBox3.Location = new System.Drawing.Point(722, 90);
             this.MuscheckBox3.Name = "MuscheckBox3";
             this.MuscheckBox3.Size = new System.Drawing.Size(113, 17);
             this.MuscheckBox3.TabIndex = 44;
@@ -1153,7 +1258,7 @@ namespace SSX_Modder
             // MuscheckBox2
             // 
             this.MuscheckBox2.AutoSize = true;
-            this.MuscheckBox2.Location = new System.Drawing.Point(626, 43);
+            this.MuscheckBox2.Location = new System.Drawing.Point(722, 70);
             this.MuscheckBox2.Name = "MuscheckBox2";
             this.MuscheckBox2.Size = new System.Drawing.Size(133, 17);
             this.MuscheckBox2.TabIndex = 43;
@@ -1163,7 +1268,7 @@ namespace SSX_Modder
             // MuscheckBox1
             // 
             this.MuscheckBox1.AutoSize = true;
-            this.MuscheckBox1.Location = new System.Drawing.Point(626, 23);
+            this.MuscheckBox1.Location = new System.Drawing.Point(722, 50);
             this.MuscheckBox1.Name = "MuscheckBox1";
             this.MuscheckBox1.Size = new System.Drawing.Size(109, 17);
             this.MuscheckBox1.TabIndex = 42;
@@ -1172,7 +1277,7 @@ namespace SSX_Modder
             // 
             // MusicID
             // 
-            this.MusicID.Location = new System.Drawing.Point(136, 24);
+            this.MusicID.Location = new System.Drawing.Point(232, 51);
             this.MusicID.Name = "MusicID";
             this.MusicID.Size = new System.Drawing.Size(76, 20);
             this.MusicID.TabIndex = 41;
@@ -1181,7 +1286,7 @@ namespace SSX_Modder
             // label29
             // 
             this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(133, 7);
+            this.label29.Location = new System.Drawing.Point(229, 34);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(18, 13);
             this.label29.TabIndex = 40;
@@ -1189,7 +1294,7 @@ namespace SSX_Modder
             // 
             // MusnumericUpDown0
             // 
-            this.MusnumericUpDown0.Location = new System.Drawing.Point(319, 23);
+            this.MusnumericUpDown0.Location = new System.Drawing.Point(415, 50);
             this.MusnumericUpDown0.Minimum = new decimal(new int[] {
             1,
             0,
@@ -1202,7 +1307,7 @@ namespace SSX_Modder
             // label28
             // 
             this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(319, 7);
+            this.label28.Location = new System.Drawing.Point(415, 34);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(57, 13);
             this.label28.TabIndex = 38;
@@ -1210,7 +1315,7 @@ namespace SSX_Modder
             // 
             // MusicLoad
             // 
-            this.MusicLoad.Location = new System.Drawing.Point(557, 305);
+            this.MusicLoad.Location = new System.Drawing.Point(1029, 498);
             this.MusicLoad.Name = "MusicLoad";
             this.MusicLoad.Size = new System.Drawing.Size(75, 23);
             this.MusicLoad.TabIndex = 37;
@@ -1220,7 +1325,7 @@ namespace SSX_Modder
             // 
             // MusINFnumericUpDown11
             // 
-            this.MusINFnumericUpDown11.Location = new System.Drawing.Point(467, 182);
+            this.MusINFnumericUpDown11.Location = new System.Drawing.Point(563, 209);
             this.MusINFnumericUpDown11.Minimum = new decimal(new int[] {
             1,
             0,
@@ -1232,7 +1337,7 @@ namespace SSX_Modder
             // 
             // MusINFnumericUpDown10
             // 
-            this.MusINFnumericUpDown10.Location = new System.Drawing.Point(319, 262);
+            this.MusINFnumericUpDown10.Location = new System.Drawing.Point(415, 289);
             this.MusINFnumericUpDown10.Minimum = new decimal(new int[] {
             1,
             0,
@@ -1244,7 +1349,7 @@ namespace SSX_Modder
             // 
             // MusINFnumericUpDown9
             // 
-            this.MusINFnumericUpDown9.Location = new System.Drawing.Point(321, 221);
+            this.MusINFnumericUpDown9.Location = new System.Drawing.Point(417, 248);
             this.MusINFnumericUpDown9.Minimum = new decimal(new int[] {
             1,
             0,
@@ -1256,7 +1361,7 @@ namespace SSX_Modder
             // 
             // MusINFnumericUpDown8
             // 
-            this.MusINFnumericUpDown8.Location = new System.Drawing.Point(321, 182);
+            this.MusINFnumericUpDown8.Location = new System.Drawing.Point(417, 209);
             this.MusINFnumericUpDown8.Minimum = new decimal(new int[] {
             1,
             0,
@@ -1268,7 +1373,7 @@ namespace SSX_Modder
             // 
             // MusINFnumericUpDown7
             // 
-            this.MusINFnumericUpDown7.Location = new System.Drawing.Point(321, 142);
+            this.MusINFnumericUpDown7.Location = new System.Drawing.Point(417, 169);
             this.MusINFnumericUpDown7.Minimum = new decimal(new int[] {
             1,
             0,
@@ -1280,7 +1385,7 @@ namespace SSX_Modder
             // 
             // MusINFnumericUpDown6
             // 
-            this.MusINFnumericUpDown6.Location = new System.Drawing.Point(321, 102);
+            this.MusINFnumericUpDown6.Location = new System.Drawing.Point(417, 129);
             this.MusINFnumericUpDown6.Minimum = new decimal(new int[] {
             1,
             0,
@@ -1293,7 +1398,7 @@ namespace SSX_Modder
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(318, 86);
+            this.label26.Location = new System.Drawing.Point(414, 113);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(88, 13);
             this.label26.TabIndex = 30;
@@ -1301,7 +1406,7 @@ namespace SSX_Modder
             // 
             // MusINFnumericUpDown5
             // 
-            this.MusINFnumericUpDown5.Location = new System.Drawing.Point(467, 142);
+            this.MusINFnumericUpDown5.Location = new System.Drawing.Point(563, 169);
             this.MusINFnumericUpDown5.Minimum = new decimal(new int[] {
             1,
             0,
@@ -1313,7 +1418,7 @@ namespace SSX_Modder
             // 
             // MusINFnumericUpDown4
             // 
-            this.MusINFnumericUpDown4.Location = new System.Drawing.Point(467, 102);
+            this.MusINFnumericUpDown4.Location = new System.Drawing.Point(563, 129);
             this.MusINFnumericUpDown4.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -1330,7 +1435,7 @@ namespace SSX_Modder
             // 
             // MusINFnumericUpDown3
             // 
-            this.MusINFnumericUpDown3.Location = new System.Drawing.Point(467, 63);
+            this.MusINFnumericUpDown3.Location = new System.Drawing.Point(563, 90);
             this.MusINFnumericUpDown3.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -1347,7 +1452,7 @@ namespace SSX_Modder
             // 
             // MusINFnumericUpDown2
             // 
-            this.MusINFnumericUpDown2.Location = new System.Drawing.Point(467, 23);
+            this.MusINFnumericUpDown2.Location = new System.Drawing.Point(563, 50);
             this.MusINFnumericUpDown2.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -1364,7 +1469,7 @@ namespace SSX_Modder
             // 
             // MusicLoopData
             // 
-            this.MusicLoopData.Location = new System.Drawing.Point(136, 261);
+            this.MusicLoopData.Location = new System.Drawing.Point(232, 288);
             this.MusicLoopData.Name = "MusicLoopData";
             this.MusicLoopData.Size = new System.Drawing.Size(101, 20);
             this.MusicLoopData.TabIndex = 25;
@@ -1372,7 +1477,7 @@ namespace SSX_Modder
             // 
             // MusicDataBox
             // 
-            this.MusicDataBox.Location = new System.Drawing.Point(136, 221);
+            this.MusicDataBox.Location = new System.Drawing.Point(232, 248);
             this.MusicDataBox.Name = "MusicDataBox";
             this.MusicDataBox.Size = new System.Drawing.Size(101, 20);
             this.MusicDataBox.TabIndex = 24;
@@ -1380,7 +1485,7 @@ namespace SSX_Modder
             // 
             // MusicAlbumBox
             // 
-            this.MusicAlbumBox.Location = new System.Drawing.Point(136, 142);
+            this.MusicAlbumBox.Location = new System.Drawing.Point(232, 169);
             this.MusicAlbumBox.Name = "MusicAlbumBox";
             this.MusicAlbumBox.Size = new System.Drawing.Size(168, 20);
             this.MusicAlbumBox.TabIndex = 23;
@@ -1388,7 +1493,7 @@ namespace SSX_Modder
             // 
             // MusicPathDataBox
             // 
-            this.MusicPathDataBox.Location = new System.Drawing.Point(136, 181);
+            this.MusicPathDataBox.Location = new System.Drawing.Point(232, 208);
             this.MusicPathDataBox.Name = "MusicPathDataBox";
             this.MusicPathDataBox.Size = new System.Drawing.Size(101, 20);
             this.MusicPathDataBox.TabIndex = 22;
@@ -1396,7 +1501,7 @@ namespace SSX_Modder
             // 
             // MusicArtistBox
             // 
-            this.MusicArtistBox.Location = new System.Drawing.Point(136, 103);
+            this.MusicArtistBox.Location = new System.Drawing.Point(232, 130);
             this.MusicArtistBox.Name = "MusicArtistBox";
             this.MusicArtistBox.Size = new System.Drawing.Size(168, 20);
             this.MusicArtistBox.TabIndex = 21;
@@ -1404,7 +1509,7 @@ namespace SSX_Modder
             // 
             // MusicTitleBox
             // 
-            this.MusicTitleBox.Location = new System.Drawing.Point(136, 64);
+            this.MusicTitleBox.Location = new System.Drawing.Point(232, 91);
             this.MusicTitleBox.Name = "MusicTitleBox";
             this.MusicTitleBox.Size = new System.Drawing.Size(168, 20);
             this.MusicTitleBox.TabIndex = 20;
@@ -1412,7 +1517,7 @@ namespace SSX_Modder
             // 
             // MusINFnumericUpDown1
             // 
-            this.MusINFnumericUpDown1.Location = new System.Drawing.Point(321, 63);
+            this.MusINFnumericUpDown1.Location = new System.Drawing.Point(417, 90);
             this.MusINFnumericUpDown1.Minimum = new decimal(new int[] {
             1,
             0,
@@ -1425,7 +1530,7 @@ namespace SSX_Modder
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(133, 126);
+            this.label25.Location = new System.Drawing.Point(229, 153);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(36, 13);
             this.label25.TabIndex = 18;
@@ -1434,7 +1539,7 @@ namespace SSX_Modder
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(318, 125);
+            this.label24.Location = new System.Drawing.Point(414, 152);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(92, 13);
             this.label24.TabIndex = 17;
@@ -1443,7 +1548,7 @@ namespace SSX_Modder
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(318, 165);
+            this.label23.Location = new System.Drawing.Point(414, 192);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(92, 13);
             this.label23.TabIndex = 16;
@@ -1452,7 +1557,7 @@ namespace SSX_Modder
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(464, 165);
+            this.label21.Location = new System.Drawing.Point(560, 192);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(46, 13);
             this.label21.TabIndex = 14;
@@ -1461,7 +1566,7 @@ namespace SSX_Modder
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(464, 126);
+            this.label20.Location = new System.Drawing.Point(560, 153);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(45, 13);
             this.label20.TabIndex = 13;
@@ -1470,7 +1575,7 @@ namespace SSX_Modder
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(464, 86);
+            this.label19.Location = new System.Drawing.Point(560, 113);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(49, 13);
             this.label19.TabIndex = 12;
@@ -1479,7 +1584,7 @@ namespace SSX_Modder
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(464, 47);
+            this.label18.Location = new System.Drawing.Point(560, 74);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(44, 13);
             this.label18.TabIndex = 11;
@@ -1488,7 +1593,7 @@ namespace SSX_Modder
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(464, 7);
+            this.label17.Location = new System.Drawing.Point(560, 34);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(30, 13);
             this.label17.TabIndex = 10;
@@ -1497,7 +1602,7 @@ namespace SSX_Modder
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(316, 244);
+            this.label16.Location = new System.Drawing.Point(412, 271);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(75, 13);
             this.label16.TabIndex = 9;
@@ -1506,7 +1611,7 @@ namespace SSX_Modder
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(318, 205);
+            this.label15.Location = new System.Drawing.Point(414, 232);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(42, 13);
             this.label15.TabIndex = 8;
@@ -1515,7 +1620,7 @@ namespace SSX_Modder
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(318, 47);
+            this.label14.Location = new System.Drawing.Point(414, 74);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(97, 13);
             this.label14.TabIndex = 7;
@@ -1524,7 +1629,7 @@ namespace SSX_Modder
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(133, 244);
+            this.label13.Location = new System.Drawing.Point(229, 271);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(57, 13);
             this.label13.TabIndex = 6;
@@ -1533,7 +1638,7 @@ namespace SSX_Modder
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(133, 204);
+            this.label12.Location = new System.Drawing.Point(229, 231);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(61, 13);
             this.label12.TabIndex = 5;
@@ -1542,7 +1647,7 @@ namespace SSX_Modder
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(133, 165);
+            this.label11.Location = new System.Drawing.Point(229, 192);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(55, 13);
             this.label11.TabIndex = 4;
@@ -1551,7 +1656,7 @@ namespace SSX_Modder
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(133, 87);
+            this.label10.Location = new System.Drawing.Point(229, 114);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(30, 13);
             this.label10.TabIndex = 3;
@@ -1560,7 +1665,7 @@ namespace SSX_Modder
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(133, 47);
+            this.label9.Location = new System.Drawing.Point(229, 74);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(27, 13);
             this.label9.TabIndex = 2;
@@ -1571,7 +1676,7 @@ namespace SSX_Modder
             this.musiclistBox1.FormattingEnabled = true;
             this.musiclistBox1.Location = new System.Drawing.Point(7, 7);
             this.musiclistBox1.Name = "musiclistBox1";
-            this.musiclistBox1.Size = new System.Drawing.Size(112, 316);
+            this.musiclistBox1.Size = new System.Drawing.Size(168, 511);
             this.musiclistBox1.TabIndex = 0;
             this.musiclistBox1.SelectedIndexChanged += new System.EventHandler(this.musiclistBox1_SelectedIndexChanged);
             // 
@@ -1588,21 +1693,23 @@ namespace SSX_Modder
             this.tabLoc.Controls.Add(this.LocBox1);
             this.tabLoc.Location = new System.Drawing.Point(4, 22);
             this.tabLoc.Name = "tabLoc";
-            this.tabLoc.Size = new System.Drawing.Size(780, 331);
+            this.tabLoc.Size = new System.Drawing.Size(1191, 527);
             this.tabLoc.TabIndex = 4;
             this.tabLoc.Text = "Language Files";
             this.tabLoc.UseVisualStyleBackColor = true;
             // 
             // LocSearchText
             // 
-            this.LocSearchText.Location = new System.Drawing.Point(85, 302);
+            this.LocSearchText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.LocSearchText.Location = new System.Drawing.Point(85, 497);
             this.LocSearchText.Name = "LocSearchText";
             this.LocSearchText.Size = new System.Drawing.Size(157, 20);
             this.LocSearchText.TabIndex = 9;
             // 
             // LocSearchBack
             // 
-            this.LocSearchBack.Location = new System.Drawing.Point(4, 300);
+            this.LocSearchBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.LocSearchBack.Location = new System.Drawing.Point(4, 495);
             this.LocSearchBack.Name = "LocSearchBack";
             this.LocSearchBack.Size = new System.Drawing.Size(75, 23);
             this.LocSearchBack.TabIndex = 8;
@@ -1612,7 +1719,8 @@ namespace SSX_Modder
             // 
             // LocSearchNext
             // 
-            this.LocSearchNext.Location = new System.Drawing.Point(248, 300);
+            this.LocSearchNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.LocSearchNext.Location = new System.Drawing.Point(248, 495);
             this.LocSearchNext.Name = "LocSearchNext";
             this.LocSearchNext.Size = new System.Drawing.Size(75, 23);
             this.LocSearchNext.TabIndex = 7;
@@ -1623,7 +1731,7 @@ namespace SSX_Modder
             // Save
             // 
             this.Save.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Save.Location = new System.Drawing.Point(696, 305);
+            this.Save.Location = new System.Drawing.Point(1107, 501);
             this.Save.Name = "Save";
             this.Save.Size = new System.Drawing.Size(75, 23);
             this.Save.TabIndex = 6;
@@ -1637,10 +1745,10 @@ namespace SSX_Modder
             this.LocrichTextBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.LocrichTextBox2.Location = new System.Drawing.Point(339, 178);
+            this.LocrichTextBox2.Location = new System.Drawing.Point(339, 277);
             this.LocrichTextBox2.Name = "LocrichTextBox2";
             this.LocrichTextBox2.ReadOnly = true;
-            this.LocrichTextBox2.Size = new System.Drawing.Size(438, 121);
+            this.LocrichTextBox2.Size = new System.Drawing.Size(849, 218);
             this.LocrichTextBox2.TabIndex = 5;
             this.LocrichTextBox2.Text = "";
             // 
@@ -1650,7 +1758,7 @@ namespace SSX_Modder
             | System.Windows.Forms.AnchorStyles.Right)));
             this.LocrichTextBox1.Location = new System.Drawing.Point(339, 3);
             this.LocrichTextBox1.Name = "LocrichTextBox1";
-            this.LocrichTextBox1.Size = new System.Drawing.Size(438, 169);
+            this.LocrichTextBox1.Size = new System.Drawing.Size(849, 268);
             this.LocrichTextBox1.TabIndex = 4;
             this.LocrichTextBox1.Text = "";
             this.LocrichTextBox1.TextChanged += new System.EventHandler(this.LocrichTextBox1_TextChanged);
@@ -1658,7 +1766,7 @@ namespace SSX_Modder
             // LocSaveAs
             // 
             this.LocSaveAs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.LocSaveAs.Location = new System.Drawing.Point(615, 305);
+            this.LocSaveAs.Location = new System.Drawing.Point(1026, 501);
             this.LocSaveAs.Name = "LocSaveAs";
             this.LocSaveAs.Size = new System.Drawing.Size(75, 23);
             this.LocSaveAs.TabIndex = 3;
@@ -1670,7 +1778,7 @@ namespace SSX_Modder
             // LocLoad
             // 
             this.LocLoad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.LocLoad.Location = new System.Drawing.Point(534, 305);
+            this.LocLoad.Location = new System.Drawing.Point(945, 501);
             this.LocLoad.Name = "LocLoad";
             this.LocLoad.Size = new System.Drawing.Size(75, 23);
             this.LocLoad.TabIndex = 2;
@@ -1686,7 +1794,7 @@ namespace SSX_Modder
             this.LocBox1.FormattingEnabled = true;
             this.LocBox1.Location = new System.Drawing.Point(4, 4);
             this.LocBox1.Name = "LocBox1";
-            this.LocBox1.Size = new System.Drawing.Size(319, 290);
+            this.LocBox1.Size = new System.Drawing.Size(319, 485);
             this.LocBox1.TabIndex = 1;
             this.LocBox1.SelectedIndexChanged += new System.EventHandler(this.LocBox1_SelectedIndexChanged);
             // 
@@ -1698,7 +1806,7 @@ namespace SSX_Modder
             this.toolStripButton3});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(813, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(1224, 25);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -1707,8 +1815,8 @@ namespace SSX_Modder
             this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(184, 22);
-            this.toolStripButton1.Text = "Extract Iso (May Freeze Program)";
+            this.toolStripButton1.Size = new System.Drawing.Size(96, 22);
+            this.toolStripButton1.Text = "Extract SSX 3 Iso";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // toolStripButton2
@@ -1734,9 +1842,9 @@ namespace SSX_Modder
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 388);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 584);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(813, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1224, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -1745,20 +1853,11 @@ namespace SSX_Modder
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
             // 
-            // label41
-            // 
-            this.label41.AutoSize = true;
-            this.label41.Location = new System.Drawing.Point(468, 310);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(66, 13);
-            this.label41.TabIndex = 0;
-            this.label41.Text = "Need to add";
-            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(813, 410);
+            this.ClientSize = new System.Drawing.Size(1224, 606);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.tabControl1);
@@ -1774,8 +1873,14 @@ namespace SSX_Modder
             this.tabBig.PerformLayout();
             this.tabSSH.ResumeLayout(false);
             this.tabSSH.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SSHYAxis)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SSHXAxis)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SSHpictureBox1)).EndInit();
             this.tabCharacters.ResumeLayout(false);
             this.tabCharacters.PerformLayout();
@@ -1952,6 +2057,13 @@ namespace SSX_Modder
         private System.Windows.Forms.Label label38;
         private System.Windows.Forms.Label label40;
         private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.Button SSHExportOne;
+        private System.Windows.Forms.Button SSHReplace;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label SSHColourAmmount;
+        private System.Windows.Forms.Label label42;
     }
 }
 
