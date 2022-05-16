@@ -114,7 +114,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ByteUtil.cs" />
+    <Compile Include="Utilities\ByteUtil.cs" />
     <Compile Include="FileHandlers\BigFHandler.cs" />
     <Compile Include="FileHandlers\CHARDBLHandler.cs" />
     <Compile Include="FileHandlers\LOCHandler.cs" />
@@ -137,6 +137,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Properties\Settings.Designer.cs" />
+    <Compile Include="Utilities\StreamUtil.cs" />
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>

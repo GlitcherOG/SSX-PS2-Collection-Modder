@@ -10,6 +10,7 @@ namespace SSX_Modder.FileHandlers
 {
     class LOCHandler
     {
+        //Whole thing be kinda shit replace later
         public string filePath;
         public byte[] headerBytes;
         public byte[] LOCLHeader;
@@ -44,9 +45,7 @@ namespace SSX_Modder.FileHandlers
                 //Grab List of Offsets
                 for (int i = 0; i < ammount; i++)
                 {
-                    byte[] posByte = new byte[4];
-                    stream.Read(posByte, 0, 4);
-                    int posLoc = BitConverter.ToInt32(posByte, 0);
+                    int posLoc = StreamUtil.ReadInt32(stream);
                     SEpos.Add(posLoc);
                 }
 

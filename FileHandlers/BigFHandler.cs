@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SSX_Modder.Utilities;
 
 namespace SSX_Modder.FileHandlers
 {
@@ -21,71 +22,33 @@ namespace SSX_Modder.FileHandlers
             bigFiles = new List<BIGFFiles>();
             using (Stream stream = File.Open(path, FileMode.Open))
             {
-                byte[] tempByte = new byte[4];
-                stream.Read(tempByte, 0, tempByte.Length);
-                bigHeader.MagicWords = Encoding.ASCII.GetString(tempByte);
+                bigHeader.MagicWords = StreamUtil.ReadString(stream, 4);
                 //Figure out what any of these mean
                 if(bigHeader.MagicWords!="BIGF")
                 {
                     return;
                 }
 
-                tempByte = new byte[4];
-                stream.Read(tempByte, 0, tempByte.Length);
-                bigHeader.fileSize = BitConverter.ToInt32(tempByte, 0);
+                bigHeader.fileSize = StreamUtil.ReadInt32(stream);
 
-                tempByte = new byte[4];
-                stream.Read(tempByte, 0, tempByte.Length);
-                if (BitConverter.IsLittleEndian)
-                    Array.Reverse(tempByte);
-                bigHeader.ammount = BitConverter.ToInt32(tempByte, 0);
+                bigHeader.ammount = StreamUtil.ReadInt32Big(stream);
 
-                tempByte = new byte[4];
-                stream.Read(tempByte, 0, tempByte.Length);
-                if (BitConverter.IsLittleEndian)
-                    Array.Reverse(tempByte);
-                bigHeader.startOffset = BitConverter.ToInt32(tempByte, 0);
+                bigHeader.startOffset = StreamUtil.ReadInt32Big(stream);
 
-                //
                 for (int i = 0; i < bigHeader.ammount; i++)
                 {
                     BIGFFiles temp = new BIGFFiles();
-                    tempByte = new byte[4];
-                    stream.Read(tempByte, 0, tempByte.Length);
-                    if (BitConverter.IsLittleEndian)
-                        Array.Reverse(tempByte);
-                    temp.offset = BitConverter.ToInt32(tempByte, 0);
 
-                    tempByte = new byte[4];
-                    stream.Read(tempByte, 0, tempByte.Length);
-                    if (BitConverter.IsLittleEndian)
-                        Array.Reverse(tempByte);
-                    temp.size = BitConverter.ToInt32(tempByte, 0);
+                    temp.offset = StreamUtil.ReadInt32Big(stream);
 
-                    bool tillNull = false;
-                    int a = 0;
-                    while (!tillNull)
-                    {
-                        int temp1 = stream.ReadByte();
-                        if (temp1==0x00)
-                        {
-                            tillNull = true;
-                        }
-                        else
-                        {
-                            a++;
-                        }
-                    }
-                    stream.Position -= a+1;
-                    byte[] FilePath = new byte[a];
-                    stream.Read(FilePath, 0, a);
-                    temp.path = Encoding.ASCII.GetString(FilePath);
+                    temp.size = StreamUtil.ReadInt32Big(stream);
+
+                    temp.path = StreamUtil.ReadNullEndString(stream);
                     bigFiles.Add(temp);
                     stream.Position += 1;
                 }
-                tempByte = new byte[4];
-                stream.Read(tempByte, 0, tempByte.Length);
-                bigHeader.compression = Encoding.ASCII.GetString(tempByte);
+
+                bigHeader.compression = StreamUtil.ReadString(stream, 4);
 
                 bigHeader.footer = new byte[4];
                 stream.Read(bigHeader.footer, 0, bigHeader.footer.Length);
@@ -97,7 +60,7 @@ namespace SSX_Modder.FileHandlers
                     {
                         stream.Position = bigFiles[i].offset + 2;
                         BIGFFiles tempFile = bigFiles[i];
-                        tempByte = new byte[4];
+                        byte[] tempByte = new byte[4];
                         stream.Read(tempByte, 0, 3);
                         if (BitConverter.IsLittleEndian)
                             Array.Reverse(tempByte);

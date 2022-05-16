@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SSX_Modder.Utilities;
 
 namespace SSX_Modder.FileHandlers
 {
@@ -21,42 +22,30 @@ namespace SSX_Modder.FileHandlers
                 while (stream.Position != stream.Length)
                 {
                     CharDB temp = new CharDB();
-                    byte[] tempByte = new byte[32];
-                    stream.Read(tempByte, 0, tempByte.Length);
-                    temp.LongName = Encoding.ASCII.GetString(tempByte);
-                    tempByte = new byte[16];
-                    stream.Read(tempByte, 0, tempByte.Length);
-                    temp.FirstName = Encoding.ASCII.GetString(tempByte);
-                    tempByte = new byte[16];
-                    stream.Read(tempByte, 0, tempByte.Length);
-                    temp.NickName = Encoding.ASCII.GetString(tempByte);
-                    tempByte = new byte[4];
-                    stream.Read(tempByte, 0, tempByte.Length);
-                    temp.Unkown1 = BitConverter.ToInt32(tempByte, 0);
-                    tempByte = new byte[4];
-                    stream.Read(tempByte, 0, tempByte.Length);
-                    temp.Stance = BitConverter.ToInt32(tempByte, 0);
-                    tempByte = new byte[4];
-                    stream.Read(tempByte, 0, tempByte.Length);
-                    temp.ModelSize = BitConverter.ToInt32(tempByte, 0);
-                    tempByte = new byte[16];
-                    stream.Read(tempByte, 0, tempByte.Length);
-                    temp.BloodType = Encoding.ASCII.GetString(tempByte);
-                    tempByte = new byte[4];
-                    stream.Read(tempByte, 0, tempByte.Length);
-                    temp.Gender = BitConverter.ToInt32(tempByte, 0);
-                    tempByte = new byte[4];
-                    stream.Read(tempByte, 0, tempByte.Length);
-                    temp.Age = BitConverter.ToInt32(tempByte, 0);
-                    tempByte = new byte[16];
-                    stream.Read(tempByte, 0, tempByte.Length);
-                    temp.Height = Encoding.ASCII.GetString(tempByte);
-                    tempByte = new byte[16];
-                    stream.Read(tempByte, 0, tempByte.Length);
-                    temp.Nationality = Encoding.ASCII.GetString(tempByte);
-                    tempByte = new byte[4];
-                    stream.Read(tempByte, 0, tempByte.Length);
-                    temp.Position = BitConverter.ToInt32(tempByte, 0);
+
+                    temp.LongName = StreamUtil.ReadString(stream, 32);
+
+                    temp.FirstName = StreamUtil.ReadString(stream, 16);
+
+                    temp.NickName = StreamUtil.ReadString(stream, 16);
+
+                    temp.Unkown1 = StreamUtil.ReadInt32(stream);
+
+                    temp.Stance = StreamUtil.ReadInt32(stream);
+
+                    temp.ModelSize = StreamUtil.ReadInt32(stream);
+
+                    temp.BloodType = StreamUtil.ReadString(stream, 16);
+
+                    temp.Gender = StreamUtil.ReadInt32(stream);
+
+                    temp.Age = StreamUtil.ReadInt32(stream);
+
+                    temp.Height = StreamUtil.ReadString(stream, 16);
+
+                    temp.Nationality = StreamUtil.ReadString(stream, 16);
+
+                    temp.Position = StreamUtil.ReadInt32(stream);
                     charDBs.Add(temp);
                 }
             }
