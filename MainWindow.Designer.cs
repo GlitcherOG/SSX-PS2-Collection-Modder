@@ -391,11 +391,11 @@ namespace SSX_Modder
             // 
             this.label40.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label40.AutoSize = true;
-            this.label40.Location = new System.Drawing.Point(255, 476);
+            this.label40.Location = new System.Drawing.Point(1034, 485);
             this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(250, 13);
+            this.label40.Size = new System.Drawing.Size(147, 13);
             this.label40.TabIndex = 11;
-            this.label40.Text = "Warning doesnt uncompress files or Compress them";
+            this.label40.Text = "Warning Can\'t Compress Files";
             // 
             // BigSizeLabel
             // 
@@ -436,7 +436,7 @@ namespace SSX_Modder
             // BigLoadFolder
             // 
             this.BigLoadFolder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BigLoadFolder.Location = new System.Drawing.Point(1001, 501);
+            this.BigLoadFolder.Location = new System.Drawing.Point(351, 492);
             this.BigLoadFolder.Name = "BigLoadFolder";
             this.BigLoadFolder.Size = new System.Drawing.Size(87, 23);
             this.BigLoadFolder.TabIndex = 6;
@@ -460,7 +460,7 @@ namespace SSX_Modder
             // 
             this.BigExtract.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BigExtract.Enabled = false;
-            this.BigExtract.Location = new System.Drawing.Point(351, 492);
+            this.BigExtract.Location = new System.Drawing.Point(1001, 501);
             this.BigExtract.Name = "BigExtract";
             this.BigExtract.Size = new System.Drawing.Size(87, 23);
             this.BigExtract.TabIndex = 4;

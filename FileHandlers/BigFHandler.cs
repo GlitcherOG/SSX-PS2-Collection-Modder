@@ -80,6 +80,11 @@ namespace SSX_Modder.FileHandlers
                     byte[] temp = new byte[bigFiles[i].size];
                     stream.Position = bigFiles[i].offset;
                     stream.Read(temp, 0, temp.Length);
+                    if(bigHeader.compression == "L231")
+                    {
+                        RefpackHandler refpackHandler = new RefpackHandler();
+                        temp = refpackHandler.Decompress(temp);
+                    }
                     stream1.Write(temp, 0, temp.Length);
 
                     Directory.CreateDirectory(Path.GetDirectoryName(path + "//" + bigFiles[i].path));
