@@ -2,8 +2,6 @@
 using System.IO;
 using System.Windows.Forms;
 using SSX_Modder.FileHandlers;
-//using DiscUtils;
-//using DiscUtils.Iso9660;
 using System.Diagnostics;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using System.Drawing;

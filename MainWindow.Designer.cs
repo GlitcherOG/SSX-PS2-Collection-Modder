@@ -40,6 +40,8 @@ namespace SSX_Modder
             this.tab1TrickPage = new System.Windows.Forms.TabPage();
             this.tab1TrackData = new System.Windows.Forms.TabPage();
             this.tabBig = new System.Windows.Forms.TabPage();
+            this.bigUncompressed = new System.Windows.Forms.Label();
+            this.label44 = new System.Windows.Forms.Label();
             this.BigCompressed = new System.Windows.Forms.Label();
             this.label43 = new System.Windows.Forms.Label();
             this.label40 = new System.Windows.Forms.Label();
@@ -177,8 +179,6 @@ namespace SSX_Modder
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.label44 = new System.Windows.Forms.Label();
-            this.bigUncompressed = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabBootFile.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -350,6 +350,24 @@ namespace SSX_Modder
             this.tabBig.TabIndex = 6;
             this.tabBig.Text = "Big Files";
             this.tabBig.UseVisualStyleBackColor = true;
+            // 
+            // bigUncompressed
+            // 
+            this.bigUncompressed.AutoSize = true;
+            this.bigUncompressed.Location = new System.Drawing.Point(406, 91);
+            this.bigUncompressed.Name = "bigUncompressed";
+            this.bigUncompressed.Size = new System.Drawing.Size(13, 13);
+            this.bigUncompressed.TabIndex = 15;
+            this.bigUncompressed.Text = "0";
+            // 
+            // label44
+            // 
+            this.label44.AutoSize = true;
+            this.label44.Location = new System.Drawing.Point(406, 78);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(136, 13);
+            this.label44.TabIndex = 14;
+            this.label44.Text = "Uncompressed Size (Bytes)";
             // 
             // BigCompressed
             // 
@@ -580,7 +598,7 @@ namespace SSX_Modder
             // label37
             // 
             this.label37.AutoSize = true;
-            this.label37.Location = new System.Drawing.Point(328, 16);
+            this.label37.Location = new System.Drawing.Point(308, 17);
             this.label37.Name = "label37";
             this.label37.Size = new System.Drawing.Size(62, 13);
             this.label37.TabIndex = 12;
@@ -635,10 +653,11 @@ namespace SSX_Modder
             this.SSHMatrixType.Items.AddRange(new object[] {
             "1 (4 Bit, 16 Colour Index)",
             "2 (8 Bit, 256 Colour Index)",
-            "5 (Full Colour)"});
-            this.SSHMatrixType.Location = new System.Drawing.Point(331, 31);
+            "5 (Full Colour)",
+            "130 (8 bit, 256 Colour Index Compressed)"});
+            this.SSHMatrixType.Location = new System.Drawing.Point(311, 32);
             this.SSHMatrixType.Name = "SSHMatrixType";
-            this.SSHMatrixType.Size = new System.Drawing.Size(193, 21);
+            this.SSHMatrixType.Size = new System.Drawing.Size(227, 21);
             this.SSHMatrixType.TabIndex = 20;
             this.SSHMatrixType.TextChanged += new System.EventHandler(this.SSH_TextChanged);
             // 
@@ -1878,24 +1897,6 @@ namespace SSX_Modder
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
-            // 
-            // label44
-            // 
-            this.label44.AutoSize = true;
-            this.label44.Location = new System.Drawing.Point(406, 78);
-            this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(136, 13);
-            this.label44.TabIndex = 14;
-            this.label44.Text = "Uncompressed Size (Bytes)";
-            // 
-            // bigUncompressed
-            // 
-            this.bigUncompressed.AutoSize = true;
-            this.bigUncompressed.Location = new System.Drawing.Point(406, 91);
-            this.bigUncompressed.Name = "bigUncompressed";
-            this.bigUncompressed.Size = new System.Drawing.Size(13, 13);
-            this.bigUncompressed.TabIndex = 15;
-            this.bigUncompressed.Text = "0";
             // 
             // MainWindow
             // 

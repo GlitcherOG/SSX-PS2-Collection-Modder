@@ -53,6 +53,20 @@ namespace SSX_Modder.Utilities
             return BitConverter.ToInt32(tempByte, 0);
         }
 
+        public static int ReadInt24Big(Stream stream)
+        {
+            byte[] tempByte = new byte[4];
+            stream.Read(tempByte, 0, 3);
+            if (BitConverter.IsLittleEndian)
+                Array.Reverse(tempByte);
+            for (int bi = 1; bi < tempByte.Length; bi++)
+            {
+                tempByte[bi - 1] = tempByte[bi];
+            }
+            tempByte[3] = 0x00;
+            return BitConverter.ToInt32(tempByte, 0);
+        }
+
         public static int ReadInt32(Stream stream)
         {
             byte[] tempByte = new byte[4];

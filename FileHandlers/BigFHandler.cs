@@ -60,16 +60,8 @@ namespace SSX_Modder.FileHandlers
                     {
                         stream.Position = bigFiles[i].offset + 2;
                         BIGFFiles tempFile = bigFiles[i];
-                        byte[] tempByte = new byte[4];
-                        stream.Read(tempByte, 0, 3);
-                        if (BitConverter.IsLittleEndian)
-                            Array.Reverse(tempByte);
-                        for (int bi = 1; bi < tempByte.Length; bi++)
-                        {
-                            tempByte[bi - 1] = tempByte[bi];
-                        }
-                        tempByte[3] = 0x00;
-                        tempFile.UncompressedSize = BitConverter.ToInt32(tempByte, 0);
+
+                        tempFile.UncompressedSize = StreamUtil.ReadInt24Big(stream);
                         bigFiles[i] = tempFile;
                     }
                 }

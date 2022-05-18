@@ -34,14 +34,14 @@ namespace SSX_Modder.FileHandlers
 
                     format = StreamUtil.ReadString(stream, 4);
 
-                    try
+                    //try
                     {
                         StandardToBitmap(stream, (int)stream.Position);
                     }
-                    catch
+                    //catch
                     {
-                        sshImages = new List<SSHImage>();
-                        MessageBox.Show("Error reading File " + MagicWord + " " + format);
+                        //sshImages = new List<SSHImage>();
+                        //MessageBox.Show("Error reading File " + MagicWord + " " + format);
                     }
                 }
             }
@@ -108,6 +108,12 @@ namespace SSX_Modder.FileHandlers
                 stream.Read(tempByte, 0, tempByte.Length);
                 tempImage.Matrix = tempByte;
 
+                if (tempImageHeader.MatrixFormat == 130)
+                { 
+                    RefpackHandler refpackHandler = new RefpackHandler();
+                    tempImage.Matrix = refpackHandler.Decompress(tempImage.Matrix);
+                }
+
                 if (tempImageHeader.MatrixFormat == 1)
                 {
                     tempByte = new byte[RealSize * 2];
@@ -123,7 +129,7 @@ namespace SSX_Modder.FileHandlers
                 }
 
                 //INDEXED COLOUR
-                if (tempImageHeader.MatrixFormat == 2 || tempImageHeader.MatrixFormat == 1)
+                if (tempImageHeader.MatrixFormat == 2 || tempImageHeader.MatrixFormat == 1 || tempImageHeader.MatrixFormat == 130)
                 {
                     int Spos = (int)stream.Position;
                     bool find = false;
@@ -131,6 +137,7 @@ namespace SSX_Modder.FileHandlers
                     {
                         if (stream.ReadByte() == 0x21)
                         {
+                            Spos = (int)stream.Position;
                             find = true;
                         }
                     }
@@ -146,7 +153,6 @@ namespace SSX_Modder.FileHandlers
 
                     sshTable.Format = StreamUtil.ReadInt32(stream);
 
-                    stream.Position += 2;
                     sshTable.colorTable = new List<Color>();
 
                     int tempSize = (sshTable.Size / 4) - 4;
@@ -154,6 +160,8 @@ namespace SSX_Modder.FileHandlers
                     {
                         tempSize = sshTable.Total;
                     }
+
+                    stream.Position = Spos +15;
 
                     for (int a = 0; a < tempSize; a++)
                     {
@@ -200,7 +208,7 @@ namespace SSX_Modder.FileHandlers
                     }
                 }
                 else
-                if (tempImageHeader.MatrixFormat == 2)
+                if (tempImageHeader.MatrixFormat == 2 || tempImageHeader.MatrixFormat == 130)
                 {
                     if (true)
                     {
@@ -330,7 +338,6 @@ namespace SSX_Modder.FileHandlers
                 sshImages[i].bitmap.Save(path + "\\" + sshImages[i].shortname + "." + sshImages[i].longname + ".png", ImageFormat.Png);
             }
 
-            //File.Create(path + "\\Index.txt");
             File.WriteAllText(path + "\\Index.txt", index);
         }
 
