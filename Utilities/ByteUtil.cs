@@ -130,3 +130,21 @@ namespace SSX_Modder.Utilities
         }
     }
 }
+
+/*Point decodePixelLocation(Dimension imageDimensions, Dimension imageBlockDimensions, Point pxlLocation)
+{
+    final int pixelLocation = pxlLocation.x * imageDimensions.width + pxlLocation.y;
+
+    int result = pixelLocation;
+    if (!rowBit1EqualsRowBit2(imageDimensions, result))
+    {
+        result = toggleBit(result, 2);  // info += " -neq r1,r2 ? ^c2-> " + asBin(result); // 4,0 -> 4,16 (^b2 <<2)
+    }
+    result = swapRowBit0Bit1(imageDimensions, result); // info += " -Sw Ro 0,1-> " + asBin(result); // 1,0 -> 2,0
+
+    result = rotateColumnBlockBitsLeft(imageBlockDimensions, result);  // info += " -RL1 c0_c3-> " + asBin(result); // 0,32 -> 32,0
+
+    result = rotateColumnWithOneBitOfRowLeft(imageDimensions, result);  // info += " -RL1 c0_r1-> " + asBin(result); // 0,32 -> 32,0
+    return new Point(result / imageDimensions.width, result % imageDimensions.width);
+}
+*/

@@ -34,14 +34,14 @@ namespace SSX_Modder.FileHandlers
 
                     format = StreamUtil.ReadString(stream, 4);
 
-                    //try
+                    try
                     {
                         StandardToBitmap(stream, (int)stream.Position);
                     }
-                    //catch
+                    catch
                     {
-                        //sshImages = new List<SSHImage>();
-                        //MessageBox.Show("Error reading File " + MagicWord + " " + format);
+                        sshImages = new List<SSHImage>();
+                        MessageBox.Show("Error reading File " + MagicWord + " " + format);
                     }
                 }
             }
@@ -210,7 +210,7 @@ namespace SSX_Modder.FileHandlers
                 else
                 if (tempImageHeader.MatrixFormat == 2 || tempImageHeader.MatrixFormat == 130)
                 {
-                    if (true)
+                    if (false)
                     {
                         for (int y = 0; y < tempImageHeader.Height; y++)
                         {
@@ -221,8 +221,6 @@ namespace SSX_Modder.FileHandlers
                                 {
                                     colorPos = ByteUtil.ByteBitSwitch(colorPos);
                                 }
-                                //int tmpx = ByteUtil.ByteBitSwitch(x);
-                                //y = ByteUtil.simulateSwitching4th5thBit(y);
                                 tempImage.bitmap.SetPixel(x, y, tempImage.sshTable.colorTable[colorPos]);
                                 post++;
                             }
@@ -532,6 +530,10 @@ namespace SSX_Modder.FileHandlers
                 else if (sshImages[i].sshHeader.MatrixFormat == 5)
                 {
                     Maxtrix5Write(stream, i);
+                }
+                else if (sshImages[i].sshHeader.MatrixFormat==130)
+                {
+                    MessageBox.Show("Error Can't Compress file (Compresson method doesn't exist)");
                 }
 
                 //ending

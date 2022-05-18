@@ -6,9 +6,9 @@ This is a modding tool i came up and started making when i caught covid as a way
 
 ## Todo
 
-- Refpack Decompressor/Compressor
-- Big Refpack Decompress/Compress
-- SSH Refpack Decompress/Compress
+- Refpack Compressor
+- Big Refpack Compress
+- SSH Refpack Compress
 - Music Config Adding and Removing (Dont know why i keep putting this off)
 - Control Editor Menu
 - Redo Iso Extract And Making
@@ -18,5 +18,5 @@ This is a modding tool i came up and started making when i caught covid as a way
 - ImagMaik Tools To Convert Images to correct Formats
 - All in One EXE
 - Redo Windows Form
-- Make Stream Reading Class to Standardise Functions
+- Make Stream Writting Class to Standardise Functions
 

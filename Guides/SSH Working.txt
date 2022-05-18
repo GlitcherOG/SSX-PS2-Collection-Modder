@@ -2,9 +2,7 @@ Working with Standard Decoding
 2 (256 Indexed Colour With 4 and 5 Bit Switch)
 5 (Full Colour)
 1 (4 Bit Indexed Colour)
-Not Working Currently
-130
+130 (Compressed, 256 Indexed Colour With 4 and 5 Bit Switch)
 
-//Both Possibly Compressed
-G357 : 2 (Char SSH, Contains Header Data Currently Unknown)
 G357 : 2 (Other SSH, Reads but Byte Offset Wrong?)
+//Seems to be some advanced byte switching going on need to investigate more
