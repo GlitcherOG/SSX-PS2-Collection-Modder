@@ -54,7 +54,7 @@ namespace SSX_Modder.FileHandlers
                 stream.Read(bigHeader.footer, 0, bigHeader.footer.Length);
 
                 //Find UnCompressed Size
-                if(bigHeader.compression== "L231")
+                if (bigHeader.compression == "L231")
                 {
                     for (int i = 0; i < bigHeader.ammount; i++)
                     {
@@ -80,7 +80,7 @@ namespace SSX_Modder.FileHandlers
                     byte[] temp = new byte[bigFiles[i].size];
                     stream.Position = bigFiles[i].offset;
                     stream.Read(temp, 0, temp.Length);
-                    if(bigHeader.compression == "L231")
+                    if (bigHeader.compression == "L231")
                     {
                         RefpackHandler refpackHandler = new RefpackHandler();
                         temp = refpackHandler.Decompress(temp);

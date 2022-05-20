@@ -631,7 +631,8 @@ namespace SSX_Modder
                 SSHImageShortName.Text = sshHandler.sshImages[SSHlistBox1.SelectedIndex].shortname;
                 SSHXAxis.Value = sshHandler.sshImages[SSHlistBox1.SelectedIndex].sshHeader.Xaxis;
                 SSHYAxis.Value = sshHandler.sshImages[SSHlistBox1.SelectedIndex].sshHeader.Yaxis;
-                //SSHMatrixType.Text = sshHandler.sshImages[SSHlistBox1.SelectedIndex].sshHeader.MatrixFormat.ToString();
+
+
                 for (int i = 0; i < SSHMatrixType.Items.Count; i++)
                 {
                     if (SSHMatrixType.Items[i].ToString().Contains(sshHandler.sshImages[SSHlistBox1.SelectedIndex].sshHeader.MatrixFormat.ToString()+" "))
@@ -663,7 +664,8 @@ namespace SSX_Modder
                 tempHeader.Xaxis = (int)SSHXAxis.Value;
                 tempHeader.Yaxis = (int)SSHYAxis.Value;
                 string tempString = SSHMatrixType.Text;
-                tempString = tempString.Substring(0, 1);
+                string[] tempAString = tempString.Split(' ');
+                tempString = tempAString[0];
                 int indexInt = Int32.Parse(tempString);
                 tempHeader.MatrixFormat = (byte)indexInt;
                 SSHlistBox1.Items[SSHlistBox1.SelectedIndex] = temp.shortname + "." + temp.longname;

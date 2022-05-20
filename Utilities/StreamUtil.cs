@@ -46,6 +46,13 @@ namespace SSX_Modder.Utilities
             return BitConverter.ToInt16(tempByte, 0);
         }
 
+        public static int ReadInt12(Stream stream)
+        {
+            byte[] tempByte = new byte[2];
+            stream.Read(tempByte, 0, tempByte.Length);
+            return ByteUtil.BytesToBitConvert(tempByte,4,15);
+        }
+
         public static int ReadInt24(Stream stream)
         {
             byte[] tempByte = new byte[4];
@@ -89,6 +96,7 @@ namespace SSX_Modder.Utilities
             int G = stream.ReadByte();
             int B = stream.ReadByte();
             int A = stream.ReadByte() * 2 - 1;
+            A = 255;
             if (A < 0)
             {
                 A = 0;
