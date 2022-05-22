@@ -58,6 +58,11 @@ namespace SSX_Modder
             this.BigBox1 = new System.Windows.Forms.ListBox();
             this.tabSSH = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.SSHBothImport = new System.Windows.Forms.Button();
+            this.SSHBothExtract = new System.Windows.Forms.Button();
+            this.SSHAlphaMetal = new System.Windows.Forms.CheckBox();
+            this.SSHMetalLoad = new System.Windows.Forms.Button();
+            this.SSHMetalExtract = new System.Windows.Forms.Button();
             this.SSHColourAmmount = new System.Windows.Forms.Label();
             this.label42 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -179,6 +184,8 @@ namespace SSX_Modder
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.SSHImageByteSwapped = new System.Windows.Forms.CheckBox();
+            this.SSHColourByteSwapped = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabBootFile.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -531,6 +538,12 @@ namespace SSX_Modder
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.SSHColourByteSwapped);
+            this.groupBox3.Controls.Add(this.SSHBothImport);
+            this.groupBox3.Controls.Add(this.SSHBothExtract);
+            this.groupBox3.Controls.Add(this.SSHAlphaMetal);
+            this.groupBox3.Controls.Add(this.SSHMetalLoad);
+            this.groupBox3.Controls.Add(this.SSHMetalExtract);
             this.groupBox3.Controls.Add(this.SSHColourAmmount);
             this.groupBox3.Controls.Add(this.label42);
             this.groupBox3.Location = new System.Drawing.Point(202, 256);
@@ -539,6 +552,57 @@ namespace SSX_Modder
             this.groupBox3.TabIndex = 29;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Colour Table Info";
+            // 
+            // SSHBothImport
+            // 
+            this.SSHBothImport.Location = new System.Drawing.Point(452, 69);
+            this.SSHBothImport.Name = "SSHBothImport";
+            this.SSHBothImport.Size = new System.Drawing.Size(86, 23);
+            this.SSHBothImport.TabIndex = 6;
+            this.SSHBothImport.Text = "Both Import";
+            this.SSHBothImport.UseVisualStyleBackColor = true;
+            this.SSHBothImport.Click += new System.EventHandler(this.SSHBothImport_Click);
+            // 
+            // SSHBothExtract
+            // 
+            this.SSHBothExtract.Location = new System.Drawing.Point(360, 69);
+            this.SSHBothExtract.Name = "SSHBothExtract";
+            this.SSHBothExtract.Size = new System.Drawing.Size(86, 23);
+            this.SSHBothExtract.TabIndex = 5;
+            this.SSHBothExtract.Text = "Both Extract";
+            this.SSHBothExtract.UseVisualStyleBackColor = true;
+            this.SSHBothExtract.Click += new System.EventHandler(this.SSHBothExtract_Click);
+            // 
+            // SSHAlphaMetal
+            // 
+            this.SSHAlphaMetal.AutoSize = true;
+            this.SSHAlphaMetal.Location = new System.Drawing.Point(360, 17);
+            this.SSHAlphaMetal.Name = "SSHAlphaMetal";
+            this.SSHAlphaMetal.Size = new System.Drawing.Size(82, 17);
+            this.SSHAlphaMetal.TabIndex = 4;
+            this.SSHAlphaMetal.Text = "Metal Alpha";
+            this.SSHAlphaMetal.UseVisualStyleBackColor = true;
+            this.SSHAlphaMetal.CheckedChanged += new System.EventHandler(this.SSH_TextChanged);
+            // 
+            // SSHMetalLoad
+            // 
+            this.SSHMetalLoad.Location = new System.Drawing.Point(452, 40);
+            this.SSHMetalLoad.Name = "SSHMetalLoad";
+            this.SSHMetalLoad.Size = new System.Drawing.Size(86, 23);
+            this.SSHMetalLoad.TabIndex = 3;
+            this.SSHMetalLoad.Text = "Metal Import";
+            this.SSHMetalLoad.UseVisualStyleBackColor = true;
+            this.SSHMetalLoad.Click += new System.EventHandler(this.SSHMetalLoad_Click);
+            // 
+            // SSHMetalExtract
+            // 
+            this.SSHMetalExtract.Location = new System.Drawing.Point(360, 40);
+            this.SSHMetalExtract.Name = "SSHMetalExtract";
+            this.SSHMetalExtract.Size = new System.Drawing.Size(86, 23);
+            this.SSHMetalExtract.TabIndex = 2;
+            this.SSHMetalExtract.Text = "Metal Extract";
+            this.SSHMetalExtract.UseVisualStyleBackColor = true;
+            this.SSHMetalExtract.Click += new System.EventHandler(this.SSHMetalExtract_Click);
             // 
             // SSHColourAmmount
             // 
@@ -560,6 +624,7 @@ namespace SSX_Modder
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.SSHImageByteSwapped);
             this.groupBox2.Controls.Add(this.label35);
             this.groupBox2.Controls.Add(this.label36);
             this.groupBox2.Controls.Add(this.label37);
@@ -1898,6 +1963,28 @@ namespace SSX_Modder
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
             // 
+            // SSHImageByteSwapped
+            // 
+            this.SSHImageByteSwapped.AutoSize = true;
+            this.SSHImageByteSwapped.Location = new System.Drawing.Point(463, 154);
+            this.SSHImageByteSwapped.Name = "SSHImageByteSwapped";
+            this.SSHImageByteSwapped.Size = new System.Drawing.Size(95, 17);
+            this.SSHImageByteSwapped.TabIndex = 25;
+            this.SSHImageByteSwapped.Text = "Byte Swapped";
+            this.SSHImageByteSwapped.UseVisualStyleBackColor = true;
+            this.SSHImageByteSwapped.CheckedChanged += new System.EventHandler(this.SSH_TextChanged);
+            // 
+            // SSHColourByteSwapped
+            // 
+            this.SSHColourByteSwapped.AutoSize = true;
+            this.SSHColourByteSwapped.Location = new System.Drawing.Point(463, 112);
+            this.SSHColourByteSwapped.Name = "SSHColourByteSwapped";
+            this.SSHColourByteSwapped.Size = new System.Drawing.Size(95, 17);
+            this.SSHColourByteSwapped.TabIndex = 26;
+            this.SSHColourByteSwapped.Text = "Byte Swapped";
+            this.SSHColourByteSwapped.UseVisualStyleBackColor = true;
+            this.SSHColourByteSwapped.CheckedChanged += new System.EventHandler(this.SSH_TextChanged);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2113,6 +2200,13 @@ namespace SSX_Modder
         private System.Windows.Forms.Label BigCompressed;
         private System.Windows.Forms.Label bigUncompressed;
         private System.Windows.Forms.Label label44;
+        private System.Windows.Forms.Button SSHMetalExtract;
+        private System.Windows.Forms.Button SSHMetalLoad;
+        private System.Windows.Forms.CheckBox SSHAlphaMetal;
+        private System.Windows.Forms.Button SSHBothImport;
+        private System.Windows.Forms.Button SSHBothExtract;
+        private System.Windows.Forms.CheckBox SSHColourByteSwapped;
+        private System.Windows.Forms.CheckBox SSHImageByteSwapped;
     }
 }
 

@@ -625,24 +625,50 @@ namespace SSX_Modder
             if (SSHlistBox1.SelectedIndex != -1 && !sshHold)
             {
                 sshHold = true;
-                SSHColourAmmount.Text = sshHandler.sshImages[SSHlistBox1.SelectedIndex].sshTable.colorTable.Count.ToString();
+                SSHColourAmmount.Text = sshHandler.sshImages[SSHlistBox1.SelectedIndex].sshTable.Total.ToString();
+                if (sshHandler.sshImages[SSHlistBox1.SelectedIndex].sshTable.Total > 256)
+                {
+                    SSHColourAmmount.BackColor = Color.Red;
+                }
+                else
+                {
+                    SSHColourAmmount.BackColor = Color.White;
+                }
                 SSHpictureBox1.Image = sshHandler.sshImages[SSHlistBox1.SelectedIndex].bitmap;
                 SSHImageName.Text = sshHandler.sshImages[SSHlistBox1.SelectedIndex].longname;
                 SSHImageShortName.Text = sshHandler.sshImages[SSHlistBox1.SelectedIndex].shortname;
                 SSHXAxis.Value = sshHandler.sshImages[SSHlistBox1.SelectedIndex].sshHeader.Xaxis;
                 SSHYAxis.Value = sshHandler.sshImages[SSHlistBox1.SelectedIndex].sshHeader.Yaxis;
+                SSHAlphaMetal.Checked = sshHandler.sshImages[SSHlistBox1.SelectedIndex].MetalBin;
 
+                if (sshHandler.sshImages[SSHlistBox1.SelectedIndex].sshHeader.LXPos == 0)
+                {
+                    SSHImageByteSwapped.Checked = false;
+                }
+                else
+                {
+                    SSHImageByteSwapped.Checked = true;
+                }
+
+                if (sshHandler.sshImages[SSHlistBox1.SelectedIndex].sshTable.Format == 0)
+                {
+                    SSHColourByteSwapped.Checked = false;
+                }
+                else
+                {
+                    SSHColourByteSwapped.Checked = true;
+                }
 
                 for (int i = 0; i < SSHMatrixType.Items.Count; i++)
                 {
-                    if (SSHMatrixType.Items[i].ToString().Contains(sshHandler.sshImages[SSHlistBox1.SelectedIndex].sshHeader.MatrixFormat.ToString()+" "))
+                    if (SSHMatrixType.Items[i].ToString().Contains(sshHandler.sshImages[SSHlistBox1.SelectedIndex].sshHeader.MatrixFormat.ToString() + " "))
                     {
                         SSHMatrixType.SelectedIndex = i;
                         break;
                     }
                     else
                     {
-                        SSHMatrixType.SelectedIndex = SSHMatrixType.Items.Count-1;
+                        SSHMatrixType.SelectedIndex = SSHMatrixType.Items.Count - 1;
                     }
                 }
                 sshHold = false;
@@ -655,11 +681,12 @@ namespace SSX_Modder
             if (SSHlistBox1.SelectedIndex != -1 && !sshHold)
             {
                 sshHold = true;
-                //Fix
+
                 var temp = sshHandler.sshImages[SSHlistBox1.SelectedIndex];
                 var tempHeader = temp.sshHeader;
                 temp.longname = SSHImageName.Text;
                 temp.shortname = SSHImageShortName.Text;
+                temp.MetalBin = SSHAlphaMetal.Checked;
                 SSHFileFormat.Text = sshHandler.format;
                 tempHeader.Xaxis = (int)SSHXAxis.Value;
                 tempHeader.Yaxis = (int)SSHYAxis.Value;
@@ -669,6 +696,26 @@ namespace SSX_Modder
                 int indexInt = Int32.Parse(tempString);
                 tempHeader.MatrixFormat = (byte)indexInt;
                 SSHlistBox1.Items[SSHlistBox1.SelectedIndex] = temp.shortname + "." + temp.longname;
+
+                if (SSHColourByteSwapped.Checked)
+                {
+                    temp.sshTable.Format = 2;
+                }
+                else
+                {
+                    temp.sshTable.Format = 0;
+                }
+
+                if(SSHImageByteSwapped.Checked)
+                {
+                    tempHeader.LXPos = 2;
+                }
+                else
+                {
+                    tempHeader.LXPos = 0;
+                }
+
+
                 temp.sshHeader = tempHeader;
                 sshHandler.sshImages[SSHlistBox1.SelectedIndex] = temp;
                 sshHold = false;
@@ -777,7 +824,98 @@ namespace SSX_Modder
                 }
             }
         }
-        #endregion
 
+        private void SSHMetalExtract_Click(object sender, EventArgs e)
+        {
+            if (SSHlistBox1.SelectedIndex != -1)
+            {
+                if (sshHandler.sshImages[SSHlistBox1.SelectedIndex].MetalBin)
+                {
+                    SaveFileDialog openFileDialog = new SaveFileDialog
+                    {
+                        InitialDirectory = workspacePath,
+                        Filter = "Png File (*.png)|*.png|All files (*.*)|*.*",
+                        FilterIndex = 1,
+                        RestoreDirectory = false
+                    };
+                    openFileDialog.FileName = sshHandler.sshImages[SSHlistBox1.SelectedIndex].shortname + "." + sshHandler.sshImages[SSHlistBox1.SelectedIndex].longname + ".Metal.png";
+                    if (openFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        sshHandler.BMPOneExtractMetal(openFileDialog.FileName, SSHlistBox1.SelectedIndex);
+                        GC.Collect();
+                    }
+                }
+            }
+        }
+
+        private void SSHMetalLoad_Click(object sender, EventArgs e)
+        {
+            if (SSHlistBox1.SelectedIndex != -1)
+            {
+                if (sshHandler.sshImages[SSHlistBox1.SelectedIndex].MetalBin)
+                {
+                    OpenFileDialog openFileDialog = new OpenFileDialog
+                    {
+                        InitialDirectory = workspacePath,
+                        Filter = "Png File (*.png)|*.png|All files (*.*)|*.*",
+                        FilterIndex = 1,
+                        RestoreDirectory = false
+                    };
+                    if (openFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        sshHandler.LoadSingleMetal(openFileDialog.FileName, SSHlistBox1.SelectedIndex);
+                        GC.Collect();
+                    }
+                }
+            }
+        }
+
+        private void SSHBothExtract_Click(object sender, EventArgs e)
+        {
+            if (SSHlistBox1.SelectedIndex != -1)
+            {
+                if (sshHandler.sshImages[SSHlistBox1.SelectedIndex].MetalBin)
+                {
+                    SaveFileDialog openFileDialog = new SaveFileDialog
+                    {
+                        InitialDirectory = workspacePath,
+                        Filter = "Png File (*.png)|*.png|All files (*.*)|*.*",
+                        FilterIndex = 1,
+                        RestoreDirectory = false
+                    };
+                    openFileDialog.FileName = sshHandler.sshImages[SSHlistBox1.SelectedIndex].shortname + "." + sshHandler.sshImages[SSHlistBox1.SelectedIndex].longname + ".Both.png";
+                    if (openFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        sshHandler.BMPOneBothExtract(openFileDialog.FileName, SSHlistBox1.SelectedIndex);
+                        GC.Collect();
+                    }
+                }
+            }
+        }
+
+        private void SSHBothImport_Click(object sender, EventArgs e)
+        {
+            if (SSHlistBox1.SelectedIndex != -1)
+            {
+                if (sshHandler.sshImages[SSHlistBox1.SelectedIndex].MetalBin)
+                {
+                    OpenFileDialog openFileDialog = new OpenFileDialog
+                    {
+                        InitialDirectory = workspacePath,
+                        Filter = "Png File (*.png)|*.png|All files (*.*)|*.*",
+                        FilterIndex = 1,
+                        RestoreDirectory = false
+                    };
+                    if (openFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        sshHandler.LoadSingleBoth(openFileDialog.FileName, SSHlistBox1.SelectedIndex);
+                        SSHlistBox1.SelectedIndex = SSHlistBox1.SelectedIndex - 1;
+                        SSHlistBox1.SelectedIndex = SSHlistBox1.SelectedIndex + 1;
+                        GC.Collect();
+                    }
+                }
+            }
+        }
+        #endregion
     }
 }

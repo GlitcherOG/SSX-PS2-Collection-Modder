@@ -7,12 +7,15 @@ This is a modding tool i came up and started making when i caught covid as a way
 ## Todo
 
 ### Current Todo
-- Add SSH Mental Bin Attachment
-- Export Alpha Option
-- ReScramble Bytes
-- Fix Compression Check
+- Fix Compression Check Big
+- Disable Metal Alpha Buttons if none present
+- Refresh Colours Check
+- Fix byte swap unchecking on image replace
+- Fix crashing on importing a larger texture than metal
+- Add Delete Folder Button On Compression
 
 ### Todo Later
+- Make Better Workflow interface
 - Music Config Adding and Removing (Dont know why i keep putting this off)
 - Control Editor Menu
 - Redo Iso Extract And Making

@@ -311,6 +311,199 @@ namespace SSX_Modder.Utilities
             return MatrixRedo;
         }
 
+        public static byte[] ByteArrayReswap(byte[] Bytes, SSHImageHeader tempImageHeader)
+        {
+            byte[] Matrix = new byte[tempImageHeader.Height * tempImageHeader.Width];
+            byte[,] MatrixRedo = new byte[tempImageHeader.Height, tempImageHeader.Width];
+            int pos = 0;
+            for (int a = 0; a < tempImageHeader.Height; a++)
+            {
+                for (int b = 0; b < tempImageHeader.Width; b++)
+                {
+                    MatrixRedo[a, b] = Bytes[pos];
+                    pos++;
+                }
+            }
+
+            bool flip = true;
+            int LevelCheck = 3;
+
+            // Swap 16 bytes v1 and v2
+            for (int a = 0; a < tempImageHeader.Height; a++)
+            {
+                for (int i = 0; i < tempImageHeader.Width / 16; i++)
+                {
+                    int b = i * 16;
+                    byte[] bytes = new byte[16];
+                    if (flip)
+                    {
+                        bytes[1 - 1] = MatrixRedo[a, b + 1 - 1];
+                        bytes[5 - 1] = MatrixRedo[a, b + 2 - 1];
+                        bytes[9 - 1] = MatrixRedo[a, b + 3 - 1];
+                        bytes[13 - 1] = MatrixRedo[a, b + 4 - 1];
+                        bytes[2 - 1] = MatrixRedo[a, b + 5 - 1];
+                        bytes[6 - 1] = MatrixRedo[a, b + 6 - 1];
+                        bytes[10 - 1] = MatrixRedo[a, b + 7 - 1];
+                        bytes[14 - 1] = MatrixRedo[a, b + 8 - 1];
+                        bytes[3 - 1] = MatrixRedo[a, b + 9 - 1];
+                        bytes[7 - 1] = MatrixRedo[a, b + 10 - 1];
+                        bytes[11 - 1] = MatrixRedo[a, b + 11 - 1];
+                        bytes[15 - 1] = MatrixRedo[a, b + 12 - 1];
+                        bytes[4 - 1] = MatrixRedo[a, b + 13 - 1];
+                        bytes[8 - 1] = MatrixRedo[a, b + 14 - 1];
+                        bytes[12 - 1] = MatrixRedo[a, b + 15 - 1];
+                        bytes[16 - 1] = MatrixRedo[a, b + 16 - 1];
+                    }
+                    else
+                    {
+                        bytes[2 - 1] = MatrixRedo[a, b + 1 - 1];
+                        bytes[6 - 1] = MatrixRedo[a, b + 2 - 1];
+                        bytes[10 - 1] = MatrixRedo[a, b + 3 - 1];
+                        bytes[14 - 1] = MatrixRedo[a, b + 4 - 1];
+                        bytes[1 - 1] = MatrixRedo[a, b + 5 - 1];
+                        bytes[5 - 1] = MatrixRedo[a, b + 6 - 1];
+                        bytes[9 - 1] = MatrixRedo[a, b + 7 - 1];
+                        bytes[13 - 1] = MatrixRedo[a, b + 8 - 1];
+                        bytes[4 - 1] = MatrixRedo[a, b + 9 - 1];
+                        bytes[8 - 1] = MatrixRedo[a, b + 10 - 1];
+                        bytes[12 - 1] = MatrixRedo[a, b + 11 - 1];
+                        bytes[16 - 1] = MatrixRedo[a, b + 12 - 1];
+                        bytes[3 - 1] = MatrixRedo[a, b + 13 - 1];
+                        bytes[7 - 1] = MatrixRedo[a, b + 14 - 1];
+                        bytes[11 - 1] = MatrixRedo[a, b + 15 - 1];
+                        bytes[15 - 1] = MatrixRedo[a, b + 16 - 1];
+                    }
+
+                    for (int c = 0; c < bytes.Length; c++)
+                    {
+                        MatrixRedo[a, b + c] = bytes[c];
+                    }
+                }
+                LevelCheck++;
+                if (LevelCheck == 5)
+                {
+                    LevelCheck = 1;
+                    flip = !flip;
+                }
+            }
+
+            // Swap every few lines
+            LevelCheck = 1;
+            byte Holder;
+            for (int i = 0; i < tempImageHeader.Height; i++)
+            {
+                if (LevelCheck == 2)
+                {
+                    LevelCheck = 0;
+                    for (int a = 0; a < tempImageHeader.Width; a++)
+                    {
+                        Holder = MatrixRedo[i + 1, a];
+                        MatrixRedo[i + 1, a] = MatrixRedo[i, a];
+                        MatrixRedo[i, a] = Holder;
+                    }
+                    i += 2;
+                }
+                LevelCheck++;
+            }
+
+            //Every second byte swap position
+            int x = 0;
+            int oldx = 0;
+            int y = 0;
+            flip = true;
+            bool flipTemp = true;
+            for (int a = 0; a < tempImageHeader.Height / 2; a++)
+            {
+                for (int b = 0; b < tempImageHeader.Width; b++)
+                {
+                    if (oldx != 0 && flip == flipTemp)
+                    {
+                        byte holder = MatrixRedo[y, x];
+                        MatrixRedo[y, x] = MatrixRedo[y + 1, x - 1];
+                        MatrixRedo[y + 1, x - 1] = holder;
+                    }
+                    if (oldx != 0)
+                    {
+                        flip = !flip;
+                    }
+                    x++;
+                    oldx++;
+                    if (oldx == 16)
+                    {
+                        flipTemp = !flipTemp;
+                        oldx = 0;
+                    }
+                }
+                x = 0;
+                oldx = 0;
+                y += 2;
+            }
+
+            x = 0;
+            oldx = 0;
+            y = 0;
+            int x1 = 0;
+            int y1 = 0;
+            flip = false;
+
+            byte[,] MatrixRedo1 = new byte[tempImageHeader.Height, tempImageHeader.Width];
+
+            for (int a = 0; a < tempImageHeader.Height * (tempImageHeader.Width / 16); a++)
+            {
+                byte[] matrixNew = new byte[16];
+                for (int b = 0; b < 16; b++)
+                {
+                    matrixNew[b] = MatrixRedo[y,x];
+                    x++;
+                }
+
+                if (!flip)
+                {
+                    flip = true;
+                    y++;
+                    oldx = x;
+                    x -= 16;
+                }
+                else
+                {
+                    flip = false;
+                    y--;
+                    x= oldx;
+                }
+                if (x >= tempImageHeader.Width)
+                {
+                    x = 0;
+                    y += 2;
+                }
+
+                for (int b = 0; b < 16; b++)
+                {
+                    MatrixRedo1[y1, x1] = matrixNew[b];
+                    x1++;
+                    if (x1 == tempImageHeader.Width)
+                    {
+                        y1++;
+                        x1 = 0;
+                    }
+                }
+                if (y1 >= tempImageHeader.Height)
+                {
+                    break;
+                }
+            }
+
+            pos = 0;
+            for (int a = 0; a < tempImageHeader.Height; a++)
+            {
+                for (int b = 0; b < tempImageHeader.Width; b++)
+                {
+                    Matrix[pos] = MatrixRedo1[a,b];
+                    pos++;
+                }
+            }
+
+            return Matrix;
+        }
     }
 }
 public struct Point

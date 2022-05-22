@@ -96,7 +96,6 @@ namespace SSX_Modder.Utilities
             int G = stream.ReadByte();
             int B = stream.ReadByte();
             int A = stream.ReadByte() * 2 - 1;
-            A = 255;
             if (A < 0)
             {
                 A = 0;
