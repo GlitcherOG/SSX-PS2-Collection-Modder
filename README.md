@@ -12,7 +12,11 @@ This is a modding tool i came up and started making when i caught covid as a way
 - ImgBurn Installed in Default Location
 - ImageMagick
 
+## Special Thanks
+Special Thanks to the SSX Modding Community
+
 ## Todo
+
 ### Current Todo
 - Config Paths
 
