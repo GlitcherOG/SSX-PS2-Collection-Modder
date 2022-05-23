@@ -370,6 +370,11 @@ namespace SSX_Modder.FileHandlers
             SSHImage temp = sshImages[i];
             SSHColourTable colourTable = new SSHColourTable();
             colourTable.colorTable = new List<Color>();
+            if(sshImages[i].bitmap.Width== sshImages[i].metalBitmap.Width && sshImages[i].bitmap.Height == sshImages[i].metalBitmap.Height)
+            {
+                Bitmap metalBitmap = new Bitmap(sshImages[i].bitmap.Width, sshImages[i].bitmap.Height, PixelFormat.Format32bppArgb);
+                temp.metalBitmap = metalBitmap;
+            }
             for (int y = 0; y < temp.bitmap.Height; y++)
             {
                 for (int x = 0; x < temp.bitmap.Width; x++)
@@ -489,6 +494,7 @@ namespace SSX_Modder.FileHandlers
                     }
                 }
             }
+            colourTable.Format = sshImages[i].sshTable.Format;
             temp.sshTable = colourTable;
             sshImages[i] = temp;
             SSHColorCalculate(i);
@@ -565,6 +571,31 @@ namespace SSX_Modder.FileHandlers
 
         public void SaveSSH(string path)
         {
+            bool check = false;
+            for (int i = 0; i < sshImages.Count; i++)
+            {
+                SSHColorCalculate(i);
+                if (sshImages[i].sshTable.Total>256 && sshImages[i].sshHeader.MatrixFormat == 2)
+                {
+                    MessageBox.Show(sshImages[i].longname + " Exceeds 256 Colours");
+                    check = true;
+                }
+                if (sshImages[i].sshTable.Total > 16 && sshImages[i].sshHeader.MatrixFormat == 1)
+                {
+                    MessageBox.Show(sshImages[i].longname + " Exceeds 16 Colours");
+                    check = true;
+                }
+                if(sshImages[i].sshHeader.MatrixFormat == 130)
+                {
+                    MessageBox.Show("Error Unable to write to matrix 130");
+                    check = true;
+                }
+            }
+            if(check==true)
+            {
+                return;
+            }
+
             Stream stream = new MemoryStream();
             MagicWord = "SHPS";
             byte[] tempByte = new byte[4];
@@ -707,6 +738,7 @@ namespace SSX_Modder.FileHandlers
             stream.CopyTo(file);
             stream.Dispose();
             file.Close();
+            MessageBox.Show("File Saved");
         }
 
         public void Maxtrix1Write(Stream stream, int i, long pos)
@@ -717,7 +749,7 @@ namespace SSX_Modder.FileHandlers
             colourTable.colorTable = new List<Color>();
             byte[] ByteCombine = new byte[2];
             int bytepos = 0;
-            //colourTable.colorTable.Add(Color.FromArgb(0, 0, 0, 0));
+
             for (int y = 0; y < sshImages[i].bitmap.Height; y++)
             {
                 for (int x = 0; x < sshImages[i].bitmap.Width; x++)
@@ -749,11 +781,6 @@ namespace SSX_Modder.FileHandlers
                         stream.Write(tempByte, 0, 1);
                     }
                 }
-            }
-
-            if (colourTable.colorTable.Count > 16)
-            {
-                MessageBox.Show("Error More Than 16 Colours " + sshImages[i].longname);
             }
 
             //Colour Table
@@ -808,7 +835,7 @@ namespace SSX_Modder.FileHandlers
             byte[] tempByte;
             SSHColourTable colourTable = new SSHColourTable();
             colourTable.colorTable = new List<Color>();
-            //colourTable.colorTable.Add(Color.FromArgb(0, 0, 0, 0));
+
             byte[] Matrix = new byte[sshImages[i].bitmap.Height * sshImages[i].bitmap.Width];
             int pos1 = 0;
             for (int y = 0; y < sshImages[i].bitmap.Height; y++)
@@ -852,17 +879,10 @@ namespace SSX_Modder.FileHandlers
                 SSHImageHeader imageHeader = new SSHImageHeader();
                 imageHeader.Width = sshImages[i].bitmap.Width;
                 imageHeader.Height = sshImages[i].bitmap.Height;
-
                 Matrix = ByteUtil.ByteArrayReswap(Matrix, imageHeader);
             }
 
             stream.Write(Matrix, 0, Matrix.Length);
-
-
-            if (colourTable.colorTable.Count > 256)
-            {
-                MessageBox.Show("Error More Than 256 Colours " + sshImages[i].longname);
-            }
 
             //Colour Table
             tempByte = new byte[4];

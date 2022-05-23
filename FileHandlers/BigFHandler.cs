@@ -24,7 +24,7 @@ namespace SSX_Modder.FileHandlers
             {
                 bigHeader.MagicWords = StreamUtil.ReadString(stream, 4);
                 //Figure out what any of these mean
-                if(bigHeader.MagicWords!="BIGF")
+                if (bigHeader.MagicWords != "BIGF")
                 {
                     return;
                 }
@@ -48,19 +48,18 @@ namespace SSX_Modder.FileHandlers
                     stream.Position += 1;
                 }
 
-                bigHeader.compression = StreamUtil.ReadString(stream, 4);
-
-                bigHeader.footer = new byte[4];
+                bigHeader.footer = new byte[8];
                 stream.Read(bigHeader.footer, 0, bigHeader.footer.Length);
 
-                //Find UnCompressed Size
-                if (bigHeader.compression == "L231")
+                for (int i = 0; i < bigHeader.ammount; i++)
                 {
-                    for (int i = 0; i < bigHeader.ammount; i++)
+                    stream.Position = bigFiles[i].offset;
+                    BIGFFiles tempFile = bigFiles[i];
+                    byte[] bytes = new byte[2];
+                    stream.Read(bytes, 0, bytes.Length);
+                    if (bytes[1] == 0xFB)
                     {
-                        stream.Position = bigFiles[i].offset + 2;
-                        BIGFFiles tempFile = bigFiles[i];
-
+                        bigHeader.compression = true;
                         tempFile.UncompressedSize = StreamUtil.ReadInt24Big(stream);
                         bigFiles[i] = tempFile;
                     }
@@ -80,7 +79,7 @@ namespace SSX_Modder.FileHandlers
                     byte[] temp = new byte[bigFiles[i].size];
                     stream.Position = bigFiles[i].offset;
                     stream.Read(temp, 0, temp.Length);
-                    if (bigHeader.compression == "L231")
+                    if (bigHeader.compression)
                     {
                         RefpackHandler refpackHandler = new RefpackHandler();
                         temp = refpackHandler.Decompress(temp);
@@ -239,7 +238,7 @@ namespace SSX_Modder.FileHandlers
         public int fileSize;
         public int ammount;
         public int startOffset;
-        public string compression;
+        public bool compression;
         public byte[] footer;
     }
 

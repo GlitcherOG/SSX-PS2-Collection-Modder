@@ -29,6 +29,7 @@ namespace SSX_Modder
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabBootFile = new System.Windows.Forms.TabPage();
             this.label41 = new System.Windows.Forms.Label();
@@ -58,6 +59,8 @@ namespace SSX_Modder
             this.BigBox1 = new System.Windows.Forms.ListBox();
             this.tabSSH = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.SSHRefreshColor = new System.Windows.Forms.Button();
+            this.SSHColourByteSwapped = new System.Windows.Forms.CheckBox();
             this.SSHBothImport = new System.Windows.Forms.Button();
             this.SSHBothExtract = new System.Windows.Forms.Button();
             this.SSHAlphaMetal = new System.Windows.Forms.CheckBox();
@@ -66,6 +69,9 @@ namespace SSX_Modder
             this.SSHColourAmmount = new System.Windows.Forms.Label();
             this.label42 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.SSHImageSize = new System.Windows.Forms.Label();
+            this.label45 = new System.Windows.Forms.Label();
+            this.SSHImageByteSwapped = new System.Windows.Forms.CheckBox();
             this.label35 = new System.Windows.Forms.Label();
             this.label36 = new System.Windows.Forms.Label();
             this.label37 = new System.Windows.Forms.Label();
@@ -184,8 +190,11 @@ namespace SSX_Modder
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.SSHImageByteSwapped = new System.Windows.Forms.CheckBox();
-            this.SSHColourByteSwapped = new System.Windows.Forms.CheckBox();
+            this.tabTools = new System.Windows.Forms.TabPage();
+            this.tabSettings = new System.Windows.Forms.TabPage();
+            this.ToolsColours = new System.Windows.Forms.Button();
+            this.NumToolsColour = new System.Windows.Forms.NumericUpDown();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.tabControl1.SuspendLayout();
             this.tabBootFile.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -221,6 +230,9 @@ namespace SSX_Modder
             this.tabLoc.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            this.tabTools.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NumToolsColour)).BeginInit();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -234,6 +246,8 @@ namespace SSX_Modder
             this.tabControl1.Controls.Add(this.tabCharacters);
             this.tabControl1.Controls.Add(this.tabMusic);
             this.tabControl1.Controls.Add(this.tabLoc);
+            this.tabControl1.Controls.Add(this.tabTools);
+            this.tabControl1.Controls.Add(this.tabSettings);
             this.tabControl1.Location = new System.Drawing.Point(14, 29);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -265,6 +279,7 @@ namespace SSX_Modder
             // 
             // bootLoad
             // 
+            this.bootLoad.Enabled = false;
             this.bootLoad.Location = new System.Drawing.Point(948, 498);
             this.bootLoad.Name = "bootLoad";
             this.bootLoad.Size = new System.Drawing.Size(75, 23);
@@ -274,6 +289,7 @@ namespace SSX_Modder
             // 
             // bootSaveAs
             // 
+            this.bootSaveAs.Enabled = false;
             this.bootSaveAs.Location = new System.Drawing.Point(1029, 498);
             this.bootSaveAs.Name = "bootSaveAs";
             this.bootSaveAs.Size = new System.Drawing.Size(75, 23);
@@ -283,6 +299,7 @@ namespace SSX_Modder
             // 
             // bootSave
             // 
+            this.bootSave.Enabled = false;
             this.bootSave.Location = new System.Drawing.Point(1110, 498);
             this.bootSave.Name = "bootSave";
             this.bootSave.Size = new System.Drawing.Size(75, 23);
@@ -538,6 +555,7 @@ namespace SSX_Modder
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.SSHRefreshColor);
             this.groupBox3.Controls.Add(this.SSHColourByteSwapped);
             this.groupBox3.Controls.Add(this.SSHBothImport);
             this.groupBox3.Controls.Add(this.SSHBothExtract);
@@ -553,9 +571,31 @@ namespace SSX_Modder
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Colour Table Info";
             // 
+            // SSHRefreshColor
+            // 
+            this.SSHRefreshColor.Location = new System.Drawing.Point(11, 49);
+            this.SSHRefreshColor.Name = "SSHRefreshColor";
+            this.SSHRefreshColor.Size = new System.Drawing.Size(75, 23);
+            this.SSHRefreshColor.TabIndex = 27;
+            this.SSHRefreshColor.Text = "Refresh";
+            this.SSHRefreshColor.UseVisualStyleBackColor = true;
+            this.SSHRefreshColor.Click += new System.EventHandler(this.SSHRefreshColor_Click);
+            // 
+            // SSHColourByteSwapped
+            // 
+            this.SSHColourByteSwapped.AutoSize = true;
+            this.SSHColourByteSwapped.Location = new System.Drawing.Point(463, 112);
+            this.SSHColourByteSwapped.Name = "SSHColourByteSwapped";
+            this.SSHColourByteSwapped.Size = new System.Drawing.Size(95, 17);
+            this.SSHColourByteSwapped.TabIndex = 26;
+            this.SSHColourByteSwapped.Text = "Byte Swapped";
+            this.SSHColourByteSwapped.UseVisualStyleBackColor = true;
+            this.SSHColourByteSwapped.CheckedChanged += new System.EventHandler(this.SSH_TextChanged);
+            // 
             // SSHBothImport
             // 
-            this.SSHBothImport.Location = new System.Drawing.Point(452, 69);
+            this.SSHBothImport.Enabled = false;
+            this.SSHBothImport.Location = new System.Drawing.Point(452, 62);
             this.SSHBothImport.Name = "SSHBothImport";
             this.SSHBothImport.Size = new System.Drawing.Size(86, 23);
             this.SSHBothImport.TabIndex = 6;
@@ -565,7 +605,8 @@ namespace SSX_Modder
             // 
             // SSHBothExtract
             // 
-            this.SSHBothExtract.Location = new System.Drawing.Point(360, 69);
+            this.SSHBothExtract.Enabled = false;
+            this.SSHBothExtract.Location = new System.Drawing.Point(360, 62);
             this.SSHBothExtract.Name = "SSHBothExtract";
             this.SSHBothExtract.Size = new System.Drawing.Size(86, 23);
             this.SSHBothExtract.TabIndex = 5;
@@ -576,7 +617,7 @@ namespace SSX_Modder
             // SSHAlphaMetal
             // 
             this.SSHAlphaMetal.AutoSize = true;
-            this.SSHAlphaMetal.Location = new System.Drawing.Point(360, 17);
+            this.SSHAlphaMetal.Location = new System.Drawing.Point(360, 16);
             this.SSHAlphaMetal.Name = "SSHAlphaMetal";
             this.SSHAlphaMetal.Size = new System.Drawing.Size(82, 17);
             this.SSHAlphaMetal.TabIndex = 4;
@@ -586,7 +627,8 @@ namespace SSX_Modder
             // 
             // SSHMetalLoad
             // 
-            this.SSHMetalLoad.Location = new System.Drawing.Point(452, 40);
+            this.SSHMetalLoad.Enabled = false;
+            this.SSHMetalLoad.Location = new System.Drawing.Point(452, 33);
             this.SSHMetalLoad.Name = "SSHMetalLoad";
             this.SSHMetalLoad.Size = new System.Drawing.Size(86, 23);
             this.SSHMetalLoad.TabIndex = 3;
@@ -596,7 +638,8 @@ namespace SSX_Modder
             // 
             // SSHMetalExtract
             // 
-            this.SSHMetalExtract.Location = new System.Drawing.Point(360, 40);
+            this.SSHMetalExtract.Enabled = false;
+            this.SSHMetalExtract.Location = new System.Drawing.Point(360, 33);
             this.SSHMetalExtract.Name = "SSHMetalExtract";
             this.SSHMetalExtract.Size = new System.Drawing.Size(86, 23);
             this.SSHMetalExtract.TabIndex = 2;
@@ -624,6 +667,8 @@ namespace SSX_Modder
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.SSHImageSize);
+            this.groupBox2.Controls.Add(this.label45);
             this.groupBox2.Controls.Add(this.SSHImageByteSwapped);
             this.groupBox2.Controls.Add(this.label35);
             this.groupBox2.Controls.Add(this.label36);
@@ -641,6 +686,35 @@ namespace SSX_Modder
             this.groupBox2.TabIndex = 28;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Image Details";
+            // 
+            // SSHImageSize
+            // 
+            this.SSHImageSize.AutoSize = true;
+            this.SSHImageSize.Location = new System.Drawing.Point(311, 72);
+            this.SSHImageSize.Name = "SSHImageSize";
+            this.SSHImageSize.Size = new System.Drawing.Size(30, 13);
+            this.SSHImageSize.TabIndex = 27;
+            this.SSHImageSize.Text = "0 x 0";
+            // 
+            // label45
+            // 
+            this.label45.AutoSize = true;
+            this.label45.Location = new System.Drawing.Point(311, 55);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(59, 13);
+            this.label45.TabIndex = 26;
+            this.label45.Text = "Image Size";
+            // 
+            // SSHImageByteSwapped
+            // 
+            this.SSHImageByteSwapped.AutoSize = true;
+            this.SSHImageByteSwapped.Location = new System.Drawing.Point(463, 154);
+            this.SSHImageByteSwapped.Name = "SSHImageByteSwapped";
+            this.SSHImageByteSwapped.Size = new System.Drawing.Size(95, 17);
+            this.SSHImageByteSwapped.TabIndex = 25;
+            this.SSHImageByteSwapped.Text = "Byte Swapped";
+            this.SSHImageByteSwapped.UseVisualStyleBackColor = true;
+            this.SSHImageByteSwapped.CheckedChanged += new System.EventHandler(this.SSH_TextChanged);
             // 
             // label35
             // 
@@ -1306,6 +1380,7 @@ namespace SSX_Modder
             // 
             // MusSaveAs
             // 
+            this.MusSaveAs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.MusSaveAs.Location = new System.Drawing.Point(1110, 498);
             this.MusSaveAs.Name = "MusSaveAs";
             this.MusSaveAs.Size = new System.Drawing.Size(75, 23);
@@ -1316,7 +1391,7 @@ namespace SSX_Modder
             // 
             // MusINFnumericUpDown12
             // 
-            this.MusINFnumericUpDown12.Location = new System.Drawing.Point(563, 248);
+            this.MusINFnumericUpDown12.Location = new System.Drawing.Point(519, 224);
             this.MusINFnumericUpDown12.Minimum = new decimal(new int[] {
             1,
             0,
@@ -1329,7 +1404,7 @@ namespace SSX_Modder
             // label30
             // 
             this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(560, 232);
+            this.label30.Location = new System.Drawing.Point(516, 208);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(76, 13);
             this.label30.TabIndex = 47;
@@ -1338,7 +1413,7 @@ namespace SSX_Modder
             // MuscheckBox5
             // 
             this.MuscheckBox5.AutoSize = true;
-            this.MuscheckBox5.Location = new System.Drawing.Point(722, 130);
+            this.MuscheckBox5.Location = new System.Drawing.Point(181, 370);
             this.MuscheckBox5.Name = "MuscheckBox5";
             this.MuscheckBox5.Size = new System.Drawing.Size(124, 17);
             this.MuscheckBox5.TabIndex = 46;
@@ -1348,7 +1423,7 @@ namespace SSX_Modder
             // MuscheckBox4
             // 
             this.MuscheckBox4.AutoSize = true;
-            this.MuscheckBox4.Location = new System.Drawing.Point(722, 109);
+            this.MuscheckBox4.Location = new System.Drawing.Point(181, 349);
             this.MuscheckBox4.Name = "MuscheckBox4";
             this.MuscheckBox4.Size = new System.Drawing.Size(126, 17);
             this.MuscheckBox4.TabIndex = 45;
@@ -1358,7 +1433,7 @@ namespace SSX_Modder
             // MuscheckBox3
             // 
             this.MuscheckBox3.AutoSize = true;
-            this.MuscheckBox3.Location = new System.Drawing.Point(722, 90);
+            this.MuscheckBox3.Location = new System.Drawing.Point(181, 330);
             this.MuscheckBox3.Name = "MuscheckBox3";
             this.MuscheckBox3.Size = new System.Drawing.Size(113, 17);
             this.MuscheckBox3.TabIndex = 44;
@@ -1368,7 +1443,7 @@ namespace SSX_Modder
             // MuscheckBox2
             // 
             this.MuscheckBox2.AutoSize = true;
-            this.MuscheckBox2.Location = new System.Drawing.Point(722, 70);
+            this.MuscheckBox2.Location = new System.Drawing.Point(181, 310);
             this.MuscheckBox2.Name = "MuscheckBox2";
             this.MuscheckBox2.Size = new System.Drawing.Size(133, 17);
             this.MuscheckBox2.TabIndex = 43;
@@ -1378,7 +1453,7 @@ namespace SSX_Modder
             // MuscheckBox1
             // 
             this.MuscheckBox1.AutoSize = true;
-            this.MuscheckBox1.Location = new System.Drawing.Point(722, 50);
+            this.MuscheckBox1.Location = new System.Drawing.Point(181, 290);
             this.MuscheckBox1.Name = "MuscheckBox1";
             this.MuscheckBox1.Size = new System.Drawing.Size(109, 17);
             this.MuscheckBox1.TabIndex = 42;
@@ -1387,16 +1462,16 @@ namespace SSX_Modder
             // 
             // MusicID
             // 
-            this.MusicID.Location = new System.Drawing.Point(232, 51);
+            this.MusicID.Location = new System.Drawing.Point(181, 27);
             this.MusicID.Name = "MusicID";
-            this.MusicID.Size = new System.Drawing.Size(76, 20);
+            this.MusicID.Size = new System.Drawing.Size(168, 20);
             this.MusicID.TabIndex = 41;
             this.MusicID.TextChanged += new System.EventHandler(this.MusUpdate);
             // 
             // label29
             // 
             this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(229, 34);
+            this.label29.Location = new System.Drawing.Point(178, 10);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(18, 13);
             this.label29.TabIndex = 40;
@@ -1404,7 +1479,7 @@ namespace SSX_Modder
             // 
             // MusnumericUpDown0
             // 
-            this.MusnumericUpDown0.Location = new System.Drawing.Point(415, 50);
+            this.MusnumericUpDown0.Location = new System.Drawing.Point(376, 26);
             this.MusnumericUpDown0.Minimum = new decimal(new int[] {
             1,
             0,
@@ -1417,7 +1492,7 @@ namespace SSX_Modder
             // label28
             // 
             this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(415, 34);
+            this.label28.Location = new System.Drawing.Point(376, 10);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(57, 13);
             this.label28.TabIndex = 38;
@@ -1425,6 +1500,7 @@ namespace SSX_Modder
             // 
             // MusicLoad
             // 
+            this.MusicLoad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.MusicLoad.Location = new System.Drawing.Point(1029, 498);
             this.MusicLoad.Name = "MusicLoad";
             this.MusicLoad.Size = new System.Drawing.Size(75, 23);
@@ -1435,7 +1511,7 @@ namespace SSX_Modder
             // 
             // MusINFnumericUpDown11
             // 
-            this.MusINFnumericUpDown11.Location = new System.Drawing.Point(563, 209);
+            this.MusINFnumericUpDown11.Location = new System.Drawing.Point(519, 185);
             this.MusINFnumericUpDown11.Minimum = new decimal(new int[] {
             1,
             0,
@@ -1447,7 +1523,7 @@ namespace SSX_Modder
             // 
             // MusINFnumericUpDown10
             // 
-            this.MusINFnumericUpDown10.Location = new System.Drawing.Point(415, 289);
+            this.MusINFnumericUpDown10.Location = new System.Drawing.Point(376, 265);
             this.MusINFnumericUpDown10.Minimum = new decimal(new int[] {
             1,
             0,
@@ -1459,7 +1535,7 @@ namespace SSX_Modder
             // 
             // MusINFnumericUpDown9
             // 
-            this.MusINFnumericUpDown9.Location = new System.Drawing.Point(417, 248);
+            this.MusINFnumericUpDown9.Location = new System.Drawing.Point(378, 224);
             this.MusINFnumericUpDown9.Minimum = new decimal(new int[] {
             1,
             0,
@@ -1471,7 +1547,7 @@ namespace SSX_Modder
             // 
             // MusINFnumericUpDown8
             // 
-            this.MusINFnumericUpDown8.Location = new System.Drawing.Point(417, 209);
+            this.MusINFnumericUpDown8.Location = new System.Drawing.Point(378, 185);
             this.MusINFnumericUpDown8.Minimum = new decimal(new int[] {
             1,
             0,
@@ -1483,7 +1559,7 @@ namespace SSX_Modder
             // 
             // MusINFnumericUpDown7
             // 
-            this.MusINFnumericUpDown7.Location = new System.Drawing.Point(417, 169);
+            this.MusINFnumericUpDown7.Location = new System.Drawing.Point(378, 145);
             this.MusINFnumericUpDown7.Minimum = new decimal(new int[] {
             1,
             0,
@@ -1495,7 +1571,7 @@ namespace SSX_Modder
             // 
             // MusINFnumericUpDown6
             // 
-            this.MusINFnumericUpDown6.Location = new System.Drawing.Point(417, 129);
+            this.MusINFnumericUpDown6.Location = new System.Drawing.Point(378, 105);
             this.MusINFnumericUpDown6.Minimum = new decimal(new int[] {
             1,
             0,
@@ -1508,7 +1584,7 @@ namespace SSX_Modder
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(414, 113);
+            this.label26.Location = new System.Drawing.Point(375, 89);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(88, 13);
             this.label26.TabIndex = 30;
@@ -1516,7 +1592,7 @@ namespace SSX_Modder
             // 
             // MusINFnumericUpDown5
             // 
-            this.MusINFnumericUpDown5.Location = new System.Drawing.Point(563, 169);
+            this.MusINFnumericUpDown5.Location = new System.Drawing.Point(519, 145);
             this.MusINFnumericUpDown5.Minimum = new decimal(new int[] {
             1,
             0,
@@ -1528,7 +1604,7 @@ namespace SSX_Modder
             // 
             // MusINFnumericUpDown4
             // 
-            this.MusINFnumericUpDown4.Location = new System.Drawing.Point(563, 129);
+            this.MusINFnumericUpDown4.Location = new System.Drawing.Point(519, 105);
             this.MusINFnumericUpDown4.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -1545,7 +1621,7 @@ namespace SSX_Modder
             // 
             // MusINFnumericUpDown3
             // 
-            this.MusINFnumericUpDown3.Location = new System.Drawing.Point(563, 90);
+            this.MusINFnumericUpDown3.Location = new System.Drawing.Point(519, 66);
             this.MusINFnumericUpDown3.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -1562,7 +1638,7 @@ namespace SSX_Modder
             // 
             // MusINFnumericUpDown2
             // 
-            this.MusINFnumericUpDown2.Location = new System.Drawing.Point(563, 50);
+            this.MusINFnumericUpDown2.Location = new System.Drawing.Point(519, 26);
             this.MusINFnumericUpDown2.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -1579,23 +1655,23 @@ namespace SSX_Modder
             // 
             // MusicLoopData
             // 
-            this.MusicLoopData.Location = new System.Drawing.Point(232, 288);
+            this.MusicLoopData.Location = new System.Drawing.Point(181, 264);
             this.MusicLoopData.Name = "MusicLoopData";
-            this.MusicLoopData.Size = new System.Drawing.Size(101, 20);
+            this.MusicLoopData.Size = new System.Drawing.Size(168, 20);
             this.MusicLoopData.TabIndex = 25;
             this.MusicLoopData.TextChanged += new System.EventHandler(this.MusUpdate);
             // 
             // MusicDataBox
             // 
-            this.MusicDataBox.Location = new System.Drawing.Point(232, 248);
+            this.MusicDataBox.Location = new System.Drawing.Point(181, 224);
             this.MusicDataBox.Name = "MusicDataBox";
-            this.MusicDataBox.Size = new System.Drawing.Size(101, 20);
+            this.MusicDataBox.Size = new System.Drawing.Size(168, 20);
             this.MusicDataBox.TabIndex = 24;
             this.MusicDataBox.TextChanged += new System.EventHandler(this.MusUpdate);
             // 
             // MusicAlbumBox
             // 
-            this.MusicAlbumBox.Location = new System.Drawing.Point(232, 169);
+            this.MusicAlbumBox.Location = new System.Drawing.Point(181, 145);
             this.MusicAlbumBox.Name = "MusicAlbumBox";
             this.MusicAlbumBox.Size = new System.Drawing.Size(168, 20);
             this.MusicAlbumBox.TabIndex = 23;
@@ -1603,15 +1679,15 @@ namespace SSX_Modder
             // 
             // MusicPathDataBox
             // 
-            this.MusicPathDataBox.Location = new System.Drawing.Point(232, 208);
+            this.MusicPathDataBox.Location = new System.Drawing.Point(181, 184);
             this.MusicPathDataBox.Name = "MusicPathDataBox";
-            this.MusicPathDataBox.Size = new System.Drawing.Size(101, 20);
+            this.MusicPathDataBox.Size = new System.Drawing.Size(168, 20);
             this.MusicPathDataBox.TabIndex = 22;
             this.MusicPathDataBox.TextChanged += new System.EventHandler(this.MusUpdate);
             // 
             // MusicArtistBox
             // 
-            this.MusicArtistBox.Location = new System.Drawing.Point(232, 130);
+            this.MusicArtistBox.Location = new System.Drawing.Point(181, 106);
             this.MusicArtistBox.Name = "MusicArtistBox";
             this.MusicArtistBox.Size = new System.Drawing.Size(168, 20);
             this.MusicArtistBox.TabIndex = 21;
@@ -1619,7 +1695,7 @@ namespace SSX_Modder
             // 
             // MusicTitleBox
             // 
-            this.MusicTitleBox.Location = new System.Drawing.Point(232, 91);
+            this.MusicTitleBox.Location = new System.Drawing.Point(181, 67);
             this.MusicTitleBox.Name = "MusicTitleBox";
             this.MusicTitleBox.Size = new System.Drawing.Size(168, 20);
             this.MusicTitleBox.TabIndex = 20;
@@ -1627,7 +1703,7 @@ namespace SSX_Modder
             // 
             // MusINFnumericUpDown1
             // 
-            this.MusINFnumericUpDown1.Location = new System.Drawing.Point(417, 90);
+            this.MusINFnumericUpDown1.Location = new System.Drawing.Point(378, 66);
             this.MusINFnumericUpDown1.Minimum = new decimal(new int[] {
             1,
             0,
@@ -1640,7 +1716,7 @@ namespace SSX_Modder
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(229, 153);
+            this.label25.Location = new System.Drawing.Point(178, 129);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(36, 13);
             this.label25.TabIndex = 18;
@@ -1649,7 +1725,7 @@ namespace SSX_Modder
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(414, 152);
+            this.label24.Location = new System.Drawing.Point(375, 128);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(92, 13);
             this.label24.TabIndex = 17;
@@ -1658,7 +1734,7 @@ namespace SSX_Modder
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(414, 192);
+            this.label23.Location = new System.Drawing.Point(375, 168);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(92, 13);
             this.label23.TabIndex = 16;
@@ -1667,7 +1743,7 @@ namespace SSX_Modder
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(560, 192);
+            this.label21.Location = new System.Drawing.Point(516, 168);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(46, 13);
             this.label21.TabIndex = 14;
@@ -1676,7 +1752,7 @@ namespace SSX_Modder
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(560, 153);
+            this.label20.Location = new System.Drawing.Point(516, 129);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(45, 13);
             this.label20.TabIndex = 13;
@@ -1685,7 +1761,7 @@ namespace SSX_Modder
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(560, 113);
+            this.label19.Location = new System.Drawing.Point(516, 89);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(49, 13);
             this.label19.TabIndex = 12;
@@ -1694,7 +1770,7 @@ namespace SSX_Modder
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(560, 74);
+            this.label18.Location = new System.Drawing.Point(516, 50);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(44, 13);
             this.label18.TabIndex = 11;
@@ -1703,7 +1779,7 @@ namespace SSX_Modder
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(560, 34);
+            this.label17.Location = new System.Drawing.Point(516, 10);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(30, 13);
             this.label17.TabIndex = 10;
@@ -1712,7 +1788,7 @@ namespace SSX_Modder
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(412, 271);
+            this.label16.Location = new System.Drawing.Point(373, 247);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(75, 13);
             this.label16.TabIndex = 9;
@@ -1721,7 +1797,7 @@ namespace SSX_Modder
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(414, 232);
+            this.label15.Location = new System.Drawing.Point(375, 208);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(42, 13);
             this.label15.TabIndex = 8;
@@ -1730,7 +1806,7 @@ namespace SSX_Modder
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(414, 74);
+            this.label14.Location = new System.Drawing.Point(375, 50);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(97, 13);
             this.label14.TabIndex = 7;
@@ -1739,7 +1815,7 @@ namespace SSX_Modder
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(229, 271);
+            this.label13.Location = new System.Drawing.Point(178, 247);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(57, 13);
             this.label13.TabIndex = 6;
@@ -1748,7 +1824,7 @@ namespace SSX_Modder
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(229, 231);
+            this.label12.Location = new System.Drawing.Point(178, 207);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(61, 13);
             this.label12.TabIndex = 5;
@@ -1757,7 +1833,7 @@ namespace SSX_Modder
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(229, 192);
+            this.label11.Location = new System.Drawing.Point(178, 168);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(55, 13);
             this.label11.TabIndex = 4;
@@ -1766,7 +1842,7 @@ namespace SSX_Modder
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(229, 114);
+            this.label10.Location = new System.Drawing.Point(178, 90);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(30, 13);
             this.label10.TabIndex = 3;
@@ -1775,7 +1851,7 @@ namespace SSX_Modder
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(229, 74);
+            this.label9.Location = new System.Drawing.Point(178, 50);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(27, 13);
             this.label9.TabIndex = 2;
@@ -1783,6 +1859,8 @@ namespace SSX_Modder
             // 
             // musiclistBox1
             // 
+            this.musiclistBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.musiclistBox1.FormattingEnabled = true;
             this.musiclistBox1.Location = new System.Drawing.Point(7, 7);
             this.musiclistBox1.Name = "musiclistBox1";
@@ -1925,8 +2003,8 @@ namespace SSX_Modder
             this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(96, 22);
-            this.toolStripButton1.Text = "Extract SSX 3 Iso";
+            this.toolStripButton1.Size = new System.Drawing.Size(122, 22);
+            this.toolStripButton1.Text = "Extract Iso with 7-Zip";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // toolStripButton2
@@ -1963,27 +2041,62 @@ namespace SSX_Modder
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
             // 
-            // SSHImageByteSwapped
+            // tabTools
             // 
-            this.SSHImageByteSwapped.AutoSize = true;
-            this.SSHImageByteSwapped.Location = new System.Drawing.Point(463, 154);
-            this.SSHImageByteSwapped.Name = "SSHImageByteSwapped";
-            this.SSHImageByteSwapped.Size = new System.Drawing.Size(95, 17);
-            this.SSHImageByteSwapped.TabIndex = 25;
-            this.SSHImageByteSwapped.Text = "Byte Swapped";
-            this.SSHImageByteSwapped.UseVisualStyleBackColor = true;
-            this.SSHImageByteSwapped.CheckedChanged += new System.EventHandler(this.SSH_TextChanged);
+            this.tabTools.Controls.Add(this.groupBox4);
+            this.tabTools.Location = new System.Drawing.Point(4, 22);
+            this.tabTools.Name = "tabTools";
+            this.tabTools.Size = new System.Drawing.Size(1191, 527);
+            this.tabTools.TabIndex = 9;
+            this.tabTools.Text = "Tools";
+            this.tabTools.UseVisualStyleBackColor = true;
             // 
-            // SSHColourByteSwapped
+            // tabSettings
             // 
-            this.SSHColourByteSwapped.AutoSize = true;
-            this.SSHColourByteSwapped.Location = new System.Drawing.Point(463, 112);
-            this.SSHColourByteSwapped.Name = "SSHColourByteSwapped";
-            this.SSHColourByteSwapped.Size = new System.Drawing.Size(95, 17);
-            this.SSHColourByteSwapped.TabIndex = 26;
-            this.SSHColourByteSwapped.Text = "Byte Swapped";
-            this.SSHColourByteSwapped.UseVisualStyleBackColor = true;
-            this.SSHColourByteSwapped.CheckedChanged += new System.EventHandler(this.SSH_TextChanged);
+            this.tabSettings.Location = new System.Drawing.Point(4, 22);
+            this.tabSettings.Name = "tabSettings";
+            this.tabSettings.Size = new System.Drawing.Size(1191, 527);
+            this.tabSettings.TabIndex = 10;
+            this.tabSettings.Text = "Settings";
+            this.tabSettings.UseVisualStyleBackColor = true;
+            // 
+            // ToolsColours
+            // 
+            this.ToolsColours.Location = new System.Drawing.Point(6, 45);
+            this.ToolsColours.Name = "ToolsColours";
+            this.ToolsColours.Size = new System.Drawing.Size(235, 20);
+            this.ToolsColours.TabIndex = 0;
+            this.ToolsColours.Text = "Load And Limit Colours";
+            this.ToolsColours.UseVisualStyleBackColor = true;
+            this.ToolsColours.Click += new System.EventHandler(this.ToolsColours_Click);
+            // 
+            // NumToolsColour
+            // 
+            this.NumToolsColour.Location = new System.Drawing.Point(6, 19);
+            this.NumToolsColour.Maximum = new decimal(new int[] {
+            256,
+            0,
+            0,
+            0});
+            this.NumToolsColour.Name = "NumToolsColour";
+            this.NumToolsColour.Size = new System.Drawing.Size(235, 20);
+            this.NumToolsColour.TabIndex = 1;
+            this.NumToolsColour.Value = new decimal(new int[] {
+            256,
+            0,
+            0,
+            0});
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.ToolsColours);
+            this.groupBox4.Controls.Add(this.NumToolsColour);
+            this.groupBox4.Location = new System.Drawing.Point(4, 4);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(247, 72);
+            this.groupBox4.TabIndex = 2;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Image Tools (Image Magick)";
             // 
             // MainWindow
             // 
@@ -1993,9 +2106,10 @@ namespace SSX_Modder
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.tabControl1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(829, 449);
             this.Name = "MainWindow";
-            this.Text = "SSX Modder";
+            this.Text = "SSX 3 Modder";
             this.Load += new System.EventHandler(this.MainWindow_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabBootFile.ResumeLayout(false);
@@ -2043,6 +2157,9 @@ namespace SSX_Modder
             this.toolStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            this.tabTools.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.NumToolsColour)).EndInit();
+            this.groupBox4.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2207,6 +2324,14 @@ namespace SSX_Modder
         private System.Windows.Forms.Button SSHBothExtract;
         private System.Windows.Forms.CheckBox SSHColourByteSwapped;
         private System.Windows.Forms.CheckBox SSHImageByteSwapped;
+        private System.Windows.Forms.Button SSHRefreshColor;
+        private System.Windows.Forms.Label SSHImageSize;
+        private System.Windows.Forms.Label label45;
+        private System.Windows.Forms.TabPage tabTools;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Button ToolsColours;
+        private System.Windows.Forms.NumericUpDown NumToolsColour;
+        private System.Windows.Forms.TabPage tabSettings;
     }
 }
 

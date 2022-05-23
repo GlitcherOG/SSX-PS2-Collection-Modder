@@ -6,12 +6,15 @@ using System.Diagnostics;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using System.Drawing;
 using System.Drawing.Imaging;
+using SSX_Modder.Utilities;
 
 namespace SSX_Modder
 {
     public partial class MainWindow : Form
     {
         string workspacePath = Application.StartupPath + "\\disk\\SSX3\\";
+        string ImgBurnPath = @"C:\Program Files (x86)\ImgBurn\ImgBurn.exe";
+        string ZipPath = @"C:\Program Files\7-Zip\7z.exe";
         public MainWindow()
         {
             InitializeComponent();
@@ -35,82 +38,26 @@ namespace SSX_Modder
         }
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            //OpenFileDialog openFileDialog = new OpenFileDialog
-            //{
-            //    InitialDirectory = "c:\\",
-            //    Filter = "Iso Image (*.iso)|*.iso|All files (*.*)|*.*",
-            //    FilterIndex = 1,
-            //    //RestoreDirectory = true
-            //};
+            //MessageBox.Show("Extractor Currently Disabled. Extract Iso Files To \n" + workspacePath);
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                InitialDirectory = "c:\\",
+                Filter = "Iso Image (*.iso)|*.iso|All files (*.*)|*.*",
+                FilterIndex = 1,
+                //RestoreDirectory = true
+            };
 
-            //if (openFileDialog.ShowDialog() == DialogResult.OK)
-            //{
-            //    SetStatus("Starting Extraction... (Program may freeze)");
-            //    //ExtractISO(openFileDialog.FileName, workspacePath);
-            //    MessageBox.Show("Extraction Done");
-            //    SetStatus("");
-            //}
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                ProcessStartInfo startInfo = new ProcessStartInfo();
+                startInfo.FileName = ZipPath;
+                string test = Path.Combine(workspacePath, "");
+                startInfo.Arguments = "x \"" + openFileDialog.FileName +"\" *.* -o\"" + test + "\" -r -y";
+                Process.Start(startInfo);
+            }
 
         }
 
-        //void ExtractISO(string ISOName, string ExtractionPath)
-        //{
-        //    using (FileStream ISOStream = File.Open(ISOName, FileMode.Open))
-        //    {
-        //        CDReader Reader = new CDReader(ISOStream, true, true);
-        //        if (Directory.Exists(ExtractionPath))
-        //        {
-        //            Directory.Delete(ExtractionPath, true);
-        //        }
-        //        ExtractDirectory(Reader.Root, ExtractionPath + "\\", "");
-        //        Reader.Dispose();
-        //    }
-        //}
-        //void ExtractDirectory(DiscDirectoryInfo Dinfo, string RootPath, string PathinISO)
-        //{
-        //    if (!string.IsNullOrWhiteSpace(PathinISO))
-        //    {
-        //        PathinISO += "\\" + Dinfo.Name;
-        //    }
-        //    RootPath += "\\" + Dinfo.Name;
-        //    AppendDirectory(RootPath);
-        //    foreach (DiscDirectoryInfo dinfo in Dinfo.GetDirectories())
-        //    {
-        //        ExtractDirectory(dinfo, RootPath, PathinISO);
-        //    }
-        //    foreach (DiscFileInfo finfo in Dinfo.GetFiles())
-        //    {
-        //        using (Stream FileStr = finfo.OpenRead())
-        //        {
-        //            using (FileStream Fs = File.Create(RootPath + "\\" + finfo.Name)) // Here you can Set the BufferSize Also e.g. File.Create(RootPath + "\\" + finfo.Name, 4 * 1024)
-        //            {
-        //                FileStr.CopyTo(Fs, 4 * 1024); // Buffer Size is 4 * 1024 but you can modify it in your code as per your need
-        //            }
-        //        }
-        //    }
-        //}
-//        static void AppendDirectory(string path)
-//        {
-//            try
-//            {
-//                if (!Directory.Exists(path))
-//                {
-//                    Directory.CreateDirectory(path);
-//                }
-//            }
-//#pragma warning disable CS0168 // Variable is declared but never used
-//            catch (DirectoryNotFoundException Ex)
-//#pragma warning restore CS0168 // Variable is declared but never used
-//            {
-//                AppendDirectory(Path.GetDirectoryName(path));
-//            }
-//#pragma warning disable CS0168 // Variable is declared but never used
-//            catch (PathTooLongException Exx)
-//#pragma warning restore CS0168 // Variable is declared but never used
-//            {
-//                AppendDirectory(Path.GetDirectoryName(path));
-//            }
-//        }
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
             SaveFileDialog openFileDialog = new SaveFileDialog
@@ -123,45 +70,13 @@ namespace SSX_Modder
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                SetStatus("Starting Building...");
-                //CreateIsoImage(Path.GetFullPath(workspacePath + "/disk/" + Path.GetFileNameWithoutExtension("SSX3")), openFileDialog.FileName, "SSX3");
                 ProcessStartInfo startInfo = new ProcessStartInfo();
-                startInfo.FileName = @"C:\Program Files (x86)\ImgBurn\ImgBurn.exe";
+                startInfo.FileName = ImgBurnPath;
                 string test = Path.Combine(workspacePath, "");
-                startInfo.Arguments = "/MODE BUILD /BUILDINPUTMODE IMAGEFILE /SRC \"" + test + "\" /DEST \"" + openFileDialog.FileName + "\" /FILESYSTEM \"ISO9660 + UDF\" /UDFREVISION \"1.02\" /VOLUMELABEL \"SSX3\" /ERASE /OVERWITE YES /START /CLOSESUCCESS /NOIMAGEDETAILS /ROOTFOLDER";
+                startInfo.Arguments = "/MODE BUILD /BUILDINPUTMODE IMAGEFILE /SRC \"" + test + "\" /DEST \"" + openFileDialog.FileName + "\" /FILESYSTEM \"ISO9660 + UDF\" /UDFREVISION \"1.02\" /VOLUMELABEL \"SSX3\" /ERASE /OVERWITE YES /START /NOIMAGEDETAILS /ROOTFOLDER";
                 Process.Start(startInfo);
             }
         }
-        //public string CreateIsoImage(string sourceDrive, string targetIso, string volumeName)
-        //{
-        //    try
-        //    {
-        //        var srcFiles = Directory.GetFiles(sourceDrive, "*", SearchOption.AllDirectories);
-        //        var iso = new CDBuilder
-        //        {
-        //            UseJoliet = false,
-        //            VolumeIdentifier = volumeName
-        //        };
-        //        foreach (var file in srcFiles)
-        //        {
-        //            var fi = new FileInfo(file);
-        //            if (fi.Directory.FullName == sourceDrive)
-        //            {
-        //                iso.AddFile($"{fi.Name}", fi.FullName);
-        //                continue;
-        //            }
-        //            var srcDir = fi.Directory.FullName.Replace(sourceDrive, "").TrimEnd('\\');
-        //            iso.AddDirectory(srcDir);
-        //            iso.AddFile($"{srcDir}\\{fi.Name}", fi.FullName);
-        //        }
-        //        iso.Build(targetIso);
-        //        return "Success";
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return ex.Message;
-        //    }
-        //}
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
             Process.Start(workspacePath);
@@ -506,7 +421,7 @@ namespace SSX_Modder
                 bigfHandler.LoadBig(openFileDialog.FileName);
                 BigExtract.Enabled = true;
                 BuildBigButton.Enabled = false;
-                if(bigfHandler.bigHeader.compression== "L231")
+                if(bigfHandler.bigHeader.compression)
                 {
                     BigCompressed.Text = "Yes";
                 }
@@ -640,6 +555,13 @@ namespace SSX_Modder
                 SSHXAxis.Value = sshHandler.sshImages[SSHlistBox1.SelectedIndex].sshHeader.Xaxis;
                 SSHYAxis.Value = sshHandler.sshImages[SSHlistBox1.SelectedIndex].sshHeader.Yaxis;
                 SSHAlphaMetal.Checked = sshHandler.sshImages[SSHlistBox1.SelectedIndex].MetalBin;
+                bool tempBool = sshHandler.sshImages[SSHlistBox1.SelectedIndex].MetalBin;
+                SSHImageSize.Text = sshHandler.sshImages[SSHlistBox1.SelectedIndex].bitmap.Width + " Width x " + sshHandler.sshImages[SSHlistBox1.SelectedIndex].bitmap.Height + " Height";
+                sshHandler.SSHColorCalculate(SSHlistBox1.SelectedIndex);
+                SSHMetalExtract.Enabled = tempBool;
+                SSHMetalLoad.Enabled = tempBool;
+                SSHBothExtract.Enabled = tempBool;
+                SSHBothImport.Enabled = tempBool;
 
                 if (sshHandler.sshImages[SSHlistBox1.SelectedIndex].sshHeader.LXPos == 0)
                 {
@@ -715,6 +637,12 @@ namespace SSX_Modder
                     tempHeader.LXPos = 0;
                 }
 
+                bool tempBool = temp.MetalBin;
+                SSHMetalExtract.Enabled = tempBool;
+                SSHMetalLoad.Enabled = tempBool;
+                SSHBothExtract.Enabled = tempBool;
+                SSHBothImport.Enabled = tempBool;
+                sshHandler.SSHColorCalculate(SSHlistBox1.SelectedIndex);
 
                 temp.sshHeader = tempHeader;
                 sshHandler.sshImages[SSHlistBox1.SelectedIndex] = temp;
@@ -775,7 +703,7 @@ namespace SSX_Modder
             SaveFileDialog openFileDialog = new SaveFileDialog
             {
                 InitialDirectory = workspacePath + "DATA",
-                Filter = "Config File (*.ssh)|*.ssh|All files (*.*)|*.*",
+                Filter = "SSH File (*.ssh)|*.ssh|All files (*.*)|*.*",
                 FilterIndex = 1,
                 RestoreDirectory = false
             };
@@ -916,6 +844,30 @@ namespace SSX_Modder
                 }
             }
         }
+
+        private void SSHRefreshColor_Click(object sender, EventArgs e)
+        {
+            if (SSHlistBox1.SelectedIndex != -1)
+            {
+                sshHandler.SSHColorCalculate(SSHlistBox1.SelectedIndex);
+            }
+        }
         #endregion
+
+        private void ToolsColours_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                InitialDirectory = workspacePath,
+                Filter = "Png Image (*.Png)|*.Png|All files (*.*)|*.*",
+                FilterIndex = 1,
+                RestoreDirectory = false
+            };
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string strCmdText = "/C magick convert \"" + openFileDialog.FileName + "\" -colors " + (int)NumToolsColour.Value + " \"" + openFileDialog.FileName + "\"";
+                System.Diagnostics.Process.Start("CMD.exe", strCmdText);
+            }
+        }
     }
 }
