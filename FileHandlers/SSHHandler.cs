@@ -6,7 +6,6 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Windows.Forms;
 using SSX_Modder.Utilities;
-using ImageMagick;
 
 namespace SSX_Modder.FileHandlers
 {

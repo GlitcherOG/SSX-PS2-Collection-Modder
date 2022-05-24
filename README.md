@@ -8,8 +8,8 @@ This is a modding tool i came up and started making when i caught covid as a way
 - .NET Framework 4.7.2
 
 ###For Optional Functionality
-- 7-Zip Installed in Default Location
-- ImgBurn Installed in Default Location
+- 7-Zip
+- ImgBurn
 - ImageMagick
 
 ## Special Thanks
@@ -18,7 +18,7 @@ Special Thanks to the SSX Modding Community
 ## Todo
 
 ### Current Todo
-- Config Paths
+- Tools Button to Delete Padding Files
 
 ### Todo Later
 - Make Better Workflow interface
@@ -26,11 +26,11 @@ Special Thanks to the SSX Modding Community
 - Control Editor Menu
 - MUS Extractor
 - Mod Pack Maker
-- GS Collection After All Functions
-- Redo Windows Form
 - Redo Loc and BigF
 - Auto Uncompress Workspace/Auto Compress 
 - Make Stream Writting Class to Standardise Functions
+- Redo in .Net Core
+- In Application Iso Making And Extraction
 
 ### If i ever find the correct code or work it out
 - Refpack Compressor

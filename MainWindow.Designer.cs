@@ -31,15 +31,6 @@ namespace SSX_Modder
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabBootFile = new System.Windows.Forms.TabPage();
-            this.label41 = new System.Windows.Forms.Label();
-            this.bootLoad = new System.Windows.Forms.Button();
-            this.bootSaveAs = new System.Windows.Forms.Button();
-            this.bootSave = new System.Windows.Forms.Button();
-            this.tabControl2 = new System.Windows.Forms.TabControl();
-            this.tab1CheatCharacter = new System.Windows.Forms.TabPage();
-            this.tab1TrickPage = new System.Windows.Forms.TabPage();
-            this.tab1TrackData = new System.Windows.Forms.TabPage();
             this.tabBig = new System.Windows.Forms.TabPage();
             this.bigUncompressed = new System.Windows.Forms.Label();
             this.label44 = new System.Windows.Forms.Label();
@@ -184,20 +175,28 @@ namespace SSX_Modder
             this.LocSaveAs = new System.Windows.Forms.Button();
             this.LocLoad = new System.Windows.Forms.Button();
             this.LocBox1 = new System.Windows.Forms.ListBox();
+            this.tabTools = new System.Windows.Forms.TabPage();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.ToolsColours = new System.Windows.Forms.Button();
+            this.NumToolsColour = new System.Windows.Forms.NumericUpDown();
+            this.tabSettings = new System.Windows.Forms.TabPage();
+            this.SettingsImgBurnButton = new System.Windows.Forms.Button();
+            this.Settings7ZipButton = new System.Windows.Forms.Button();
+            this.SettingsImgBurn = new System.Windows.Forms.Label();
+            this.Settings7ZipPath = new System.Windows.Forms.Label();
+            this.label46 = new System.Windows.Forms.Label();
+            this.label41 = new System.Windows.Forms.Label();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tabTools = new System.Windows.Forms.TabPage();
-            this.tabSettings = new System.Windows.Forms.TabPage();
-            this.ToolsColours = new System.Windows.Forms.Button();
-            this.NumToolsColour = new System.Windows.Forms.NumericUpDown();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
+            this.SettingsPCSX2Path = new System.Windows.Forms.Label();
+            this.label48 = new System.Windows.Forms.Label();
+            this.SettingsPCSX2Button = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
-            this.tabBootFile.SuspendLayout();
-            this.tabControl2.SuspendLayout();
             this.tabBig.SuspendLayout();
             this.tabSSH.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -228,11 +227,12 @@ namespace SSX_Modder
             ((System.ComponentModel.ISupportInitialize)(this.MusINFnumericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MusINFnumericUpDown1)).BeginInit();
             this.tabLoc.SuspendLayout();
+            this.tabTools.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NumToolsColour)).BeginInit();
+            this.tabSettings.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
-            this.tabTools.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NumToolsColour)).BeginInit();
-            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -240,7 +240,6 @@ namespace SSX_Modder
             this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabControl1.Controls.Add(this.tabBootFile);
             this.tabControl1.Controls.Add(this.tabBig);
             this.tabControl1.Controls.Add(this.tabSSH);
             this.tabControl1.Controls.Add(this.tabCharacters);
@@ -253,102 +252,6 @@ namespace SSX_Modder
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1199, 553);
             this.tabControl1.TabIndex = 0;
-            // 
-            // tabBootFile
-            // 
-            this.tabBootFile.Controls.Add(this.label41);
-            this.tabBootFile.Controls.Add(this.bootLoad);
-            this.tabBootFile.Controls.Add(this.bootSaveAs);
-            this.tabBootFile.Controls.Add(this.bootSave);
-            this.tabBootFile.Controls.Add(this.tabControl2);
-            this.tabBootFile.Location = new System.Drawing.Point(4, 22);
-            this.tabBootFile.Name = "tabBootFile";
-            this.tabBootFile.Size = new System.Drawing.Size(1191, 527);
-            this.tabBootFile.TabIndex = 7;
-            this.tabBootFile.Text = "Boot File (WIP)";
-            this.tabBootFile.UseVisualStyleBackColor = true;
-            // 
-            // label41
-            // 
-            this.label41.AutoSize = true;
-            this.label41.Location = new System.Drawing.Point(876, 503);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(66, 13);
-            this.label41.TabIndex = 0;
-            this.label41.Text = "Need to add";
-            // 
-            // bootLoad
-            // 
-            this.bootLoad.Enabled = false;
-            this.bootLoad.Location = new System.Drawing.Point(948, 498);
-            this.bootLoad.Name = "bootLoad";
-            this.bootLoad.Size = new System.Drawing.Size(75, 23);
-            this.bootLoad.TabIndex = 3;
-            this.bootLoad.Text = "Load";
-            this.bootLoad.UseVisualStyleBackColor = true;
-            // 
-            // bootSaveAs
-            // 
-            this.bootSaveAs.Enabled = false;
-            this.bootSaveAs.Location = new System.Drawing.Point(1029, 498);
-            this.bootSaveAs.Name = "bootSaveAs";
-            this.bootSaveAs.Size = new System.Drawing.Size(75, 23);
-            this.bootSaveAs.TabIndex = 2;
-            this.bootSaveAs.Text = "Save As";
-            this.bootSaveAs.UseVisualStyleBackColor = true;
-            // 
-            // bootSave
-            // 
-            this.bootSave.Enabled = false;
-            this.bootSave.Location = new System.Drawing.Point(1110, 498);
-            this.bootSave.Name = "bootSave";
-            this.bootSave.Size = new System.Drawing.Size(75, 23);
-            this.bootSave.TabIndex = 1;
-            this.bootSave.Text = "Save";
-            this.bootSave.UseVisualStyleBackColor = true;
-            // 
-            // tabControl2
-            // 
-            this.tabControl2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabControl2.Controls.Add(this.tab1CheatCharacter);
-            this.tabControl2.Controls.Add(this.tab1TrickPage);
-            this.tabControl2.Controls.Add(this.tab1TrackData);
-            this.tabControl2.Location = new System.Drawing.Point(4, 4);
-            this.tabControl2.Name = "tabControl2";
-            this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(1181, 488);
-            this.tabControl2.TabIndex = 0;
-            // 
-            // tab1CheatCharacter
-            // 
-            this.tab1CheatCharacter.Location = new System.Drawing.Point(4, 22);
-            this.tab1CheatCharacter.Name = "tab1CheatCharacter";
-            this.tab1CheatCharacter.Padding = new System.Windows.Forms.Padding(3);
-            this.tab1CheatCharacter.Size = new System.Drawing.Size(1173, 462);
-            this.tab1CheatCharacter.TabIndex = 0;
-            this.tab1CheatCharacter.Text = "Cheat Characters";
-            this.tab1CheatCharacter.UseVisualStyleBackColor = true;
-            // 
-            // tab1TrickPage
-            // 
-            this.tab1TrickPage.Location = new System.Drawing.Point(4, 22);
-            this.tab1TrickPage.Name = "tab1TrickPage";
-            this.tab1TrickPage.Padding = new System.Windows.Forms.Padding(3);
-            this.tab1TrickPage.Size = new System.Drawing.Size(1173, 462);
-            this.tab1TrickPage.TabIndex = 1;
-            this.tab1TrickPage.Text = "Trick Page";
-            this.tab1TrickPage.UseVisualStyleBackColor = true;
-            // 
-            // tab1TrackData
-            // 
-            this.tab1TrackData.Location = new System.Drawing.Point(4, 22);
-            this.tab1TrackData.Name = "tab1TrackData";
-            this.tab1TrackData.Size = new System.Drawing.Size(1173, 462);
-            this.tab1TrackData.TabIndex = 2;
-            this.tab1TrackData.Text = "Track Data";
-            this.tab1TrackData.UseVisualStyleBackColor = true;
             // 
             // tabBig
             // 
@@ -415,7 +318,7 @@ namespace SSX_Modder
             // 
             this.label40.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label40.AutoSize = true;
-            this.label40.Location = new System.Drawing.Point(1034, 485);
+            this.label40.Location = new System.Drawing.Point(1041, 476);
             this.label40.Name = "label40";
             this.label40.Size = new System.Drawing.Size(147, 13);
             this.label40.TabIndex = 11;
@@ -472,7 +375,7 @@ namespace SSX_Modder
             // 
             this.BuildBigButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BuildBigButton.Enabled = false;
-            this.BuildBigButton.Location = new System.Drawing.Point(1094, 501);
+            this.BuildBigButton.Location = new System.Drawing.Point(1101, 492);
             this.BuildBigButton.Name = "BuildBigButton";
             this.BuildBigButton.Size = new System.Drawing.Size(87, 23);
             this.BuildBigButton.TabIndex = 5;
@@ -484,7 +387,7 @@ namespace SSX_Modder
             // 
             this.BigExtract.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BigExtract.Enabled = false;
-            this.BigExtract.Location = new System.Drawing.Point(1001, 501);
+            this.BigExtract.Location = new System.Drawing.Point(1008, 492);
             this.BigExtract.Name = "BigExtract";
             this.BigExtract.Size = new System.Drawing.Size(87, 23);
             this.BigExtract.TabIndex = 4;
@@ -1986,12 +1889,135 @@ namespace SSX_Modder
             this.LocBox1.TabIndex = 1;
             this.LocBox1.SelectedIndexChanged += new System.EventHandler(this.LocBox1_SelectedIndexChanged);
             // 
+            // tabTools
+            // 
+            this.tabTools.Controls.Add(this.groupBox4);
+            this.tabTools.Location = new System.Drawing.Point(4, 22);
+            this.tabTools.Name = "tabTools";
+            this.tabTools.Size = new System.Drawing.Size(1191, 527);
+            this.tabTools.TabIndex = 9;
+            this.tabTools.Text = "Tools";
+            this.tabTools.UseVisualStyleBackColor = true;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.ToolsColours);
+            this.groupBox4.Controls.Add(this.NumToolsColour);
+            this.groupBox4.Location = new System.Drawing.Point(4, 4);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(247, 72);
+            this.groupBox4.TabIndex = 2;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Image Tools (Image Magick)";
+            // 
+            // ToolsColours
+            // 
+            this.ToolsColours.Location = new System.Drawing.Point(6, 45);
+            this.ToolsColours.Name = "ToolsColours";
+            this.ToolsColours.Size = new System.Drawing.Size(235, 20);
+            this.ToolsColours.TabIndex = 0;
+            this.ToolsColours.Text = "Load And Limit Colours";
+            this.ToolsColours.UseVisualStyleBackColor = true;
+            this.ToolsColours.Click += new System.EventHandler(this.ToolsColours_Click);
+            // 
+            // NumToolsColour
+            // 
+            this.NumToolsColour.Location = new System.Drawing.Point(6, 19);
+            this.NumToolsColour.Maximum = new decimal(new int[] {
+            256,
+            0,
+            0,
+            0});
+            this.NumToolsColour.Name = "NumToolsColour";
+            this.NumToolsColour.Size = new System.Drawing.Size(235, 20);
+            this.NumToolsColour.TabIndex = 1;
+            this.NumToolsColour.Value = new decimal(new int[] {
+            256,
+            0,
+            0,
+            0});
+            // 
+            // tabSettings
+            // 
+            this.tabSettings.Controls.Add(this.SettingsPCSX2Button);
+            this.tabSettings.Controls.Add(this.SettingsPCSX2Path);
+            this.tabSettings.Controls.Add(this.label48);
+            this.tabSettings.Controls.Add(this.SettingsImgBurnButton);
+            this.tabSettings.Controls.Add(this.Settings7ZipButton);
+            this.tabSettings.Controls.Add(this.SettingsImgBurn);
+            this.tabSettings.Controls.Add(this.Settings7ZipPath);
+            this.tabSettings.Controls.Add(this.label46);
+            this.tabSettings.Controls.Add(this.label41);
+            this.tabSettings.Location = new System.Drawing.Point(4, 22);
+            this.tabSettings.Name = "tabSettings";
+            this.tabSettings.Size = new System.Drawing.Size(1191, 527);
+            this.tabSettings.TabIndex = 10;
+            this.tabSettings.Text = "Settings";
+            this.tabSettings.UseVisualStyleBackColor = true;
+            // 
+            // SettingsImgBurnButton
+            // 
+            this.SettingsImgBurnButton.Location = new System.Drawing.Point(19, 101);
+            this.SettingsImgBurnButton.Name = "SettingsImgBurnButton";
+            this.SettingsImgBurnButton.Size = new System.Drawing.Size(75, 23);
+            this.SettingsImgBurnButton.TabIndex = 5;
+            this.SettingsImgBurnButton.Text = "Set Path";
+            this.SettingsImgBurnButton.UseVisualStyleBackColor = true;
+            this.SettingsImgBurnButton.Click += new System.EventHandler(this.SettingsImgBurnButton_Click);
+            // 
+            // Settings7ZipButton
+            // 
+            this.Settings7ZipButton.Location = new System.Drawing.Point(19, 45);
+            this.Settings7ZipButton.Name = "Settings7ZipButton";
+            this.Settings7ZipButton.Size = new System.Drawing.Size(75, 23);
+            this.Settings7ZipButton.TabIndex = 4;
+            this.Settings7ZipButton.Text = "Set Path";
+            this.Settings7ZipButton.UseVisualStyleBackColor = true;
+            this.Settings7ZipButton.Click += new System.EventHandler(this.Settings7ZipButton_Click);
+            // 
+            // SettingsImgBurn
+            // 
+            this.SettingsImgBurn.AutoSize = true;
+            this.SettingsImgBurn.Location = new System.Drawing.Point(16, 85);
+            this.SettingsImgBurn.Name = "SettingsImgBurn";
+            this.SettingsImgBurn.Size = new System.Drawing.Size(25, 13);
+            this.SettingsImgBurn.TabIndex = 3;
+            this.SettingsImgBurn.Text = "Null";
+            // 
+            // Settings7ZipPath
+            // 
+            this.Settings7ZipPath.AutoSize = true;
+            this.Settings7ZipPath.Location = new System.Drawing.Point(16, 29);
+            this.Settings7ZipPath.Name = "Settings7ZipPath";
+            this.Settings7ZipPath.Size = new System.Drawing.Size(25, 13);
+            this.Settings7ZipPath.TabIndex = 2;
+            this.Settings7ZipPath.Text = "Null";
+            // 
+            // label46
+            // 
+            this.label46.AutoSize = true;
+            this.label46.Location = new System.Drawing.Point(16, 72);
+            this.label46.Name = "label46";
+            this.label46.Size = new System.Drawing.Size(71, 13);
+            this.label46.TabIndex = 1;
+            this.label46.Text = "ImgBurn Path";
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Location = new System.Drawing.Point(16, 16);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(56, 13);
+            this.label41.TabIndex = 0;
+            this.label41.Text = "7-Zip Path";
+            // 
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton1,
             this.toolStripButton2,
-            this.toolStripButton3});
+            this.toolStripButton3,
+            this.toolStripButton4});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1224, 25);
@@ -2041,62 +2067,44 @@ namespace SSX_Modder
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
             // 
-            // tabTools
+            // toolStripButton4
             // 
-            this.tabTools.Controls.Add(this.groupBox4);
-            this.tabTools.Location = new System.Drawing.Point(4, 22);
-            this.tabTools.Name = "tabTools";
-            this.tabTools.Size = new System.Drawing.Size(1191, 527);
-            this.tabTools.TabIndex = 9;
-            this.tabTools.Text = "Tools";
-            this.tabTools.UseVisualStyleBackColor = true;
+            this.toolStripButton4.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
+            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton4.Name = "toolStripButton4";
+            this.toolStripButton4.Size = new System.Drawing.Size(135, 22);
+            this.toolStripButton4.Text = "Start Emulator With ISO";
+            this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
             // 
-            // tabSettings
+            // SettingsPCSX2Path
             // 
-            this.tabSettings.Location = new System.Drawing.Point(4, 22);
-            this.tabSettings.Name = "tabSettings";
-            this.tabSettings.Size = new System.Drawing.Size(1191, 527);
-            this.tabSettings.TabIndex = 10;
-            this.tabSettings.Text = "Settings";
-            this.tabSettings.UseVisualStyleBackColor = true;
+            this.SettingsPCSX2Path.AutoSize = true;
+            this.SettingsPCSX2Path.Location = new System.Drawing.Point(16, 140);
+            this.SettingsPCSX2Path.Name = "SettingsPCSX2Path";
+            this.SettingsPCSX2Path.Size = new System.Drawing.Size(25, 13);
+            this.SettingsPCSX2Path.TabIndex = 7;
+            this.SettingsPCSX2Path.Text = "Null";
             // 
-            // ToolsColours
+            // label48
             // 
-            this.ToolsColours.Location = new System.Drawing.Point(6, 45);
-            this.ToolsColours.Name = "ToolsColours";
-            this.ToolsColours.Size = new System.Drawing.Size(235, 20);
-            this.ToolsColours.TabIndex = 0;
-            this.ToolsColours.Text = "Load And Limit Colours";
-            this.ToolsColours.UseVisualStyleBackColor = true;
-            this.ToolsColours.Click += new System.EventHandler(this.ToolsColours_Click);
+            this.label48.AutoSize = true;
+            this.label48.Location = new System.Drawing.Point(16, 127);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(61, 13);
+            this.label48.TabIndex = 6;
+            this.label48.Text = "Pcsx2 Path";
             // 
-            // NumToolsColour
+            // SettingsPCSX2Button
             // 
-            this.NumToolsColour.Location = new System.Drawing.Point(6, 19);
-            this.NumToolsColour.Maximum = new decimal(new int[] {
-            256,
-            0,
-            0,
-            0});
-            this.NumToolsColour.Name = "NumToolsColour";
-            this.NumToolsColour.Size = new System.Drawing.Size(235, 20);
-            this.NumToolsColour.TabIndex = 1;
-            this.NumToolsColour.Value = new decimal(new int[] {
-            256,
-            0,
-            0,
-            0});
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.ToolsColours);
-            this.groupBox4.Controls.Add(this.NumToolsColour);
-            this.groupBox4.Location = new System.Drawing.Point(4, 4);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(247, 72);
-            this.groupBox4.TabIndex = 2;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Image Tools (Image Magick)";
+            this.SettingsPCSX2Button.Location = new System.Drawing.Point(19, 156);
+            this.SettingsPCSX2Button.Name = "SettingsPCSX2Button";
+            this.SettingsPCSX2Button.Size = new System.Drawing.Size(75, 23);
+            this.SettingsPCSX2Button.TabIndex = 8;
+            this.SettingsPCSX2Button.Text = "Set Path";
+            this.SettingsPCSX2Button.UseVisualStyleBackColor = true;
+            this.SettingsPCSX2Button.Click += new System.EventHandler(this.SettingsPCSX2Button_Click);
             // 
             // MainWindow
             // 
@@ -2112,9 +2120,6 @@ namespace SSX_Modder
             this.Text = "SSX 3 Modder";
             this.Load += new System.EventHandler(this.MainWindow_Load);
             this.tabControl1.ResumeLayout(false);
-            this.tabBootFile.ResumeLayout(false);
-            this.tabBootFile.PerformLayout();
-            this.tabControl2.ResumeLayout(false);
             this.tabBig.ResumeLayout(false);
             this.tabBig.PerformLayout();
             this.tabSSH.ResumeLayout(false);
@@ -2153,13 +2158,15 @@ namespace SSX_Modder
             ((System.ComponentModel.ISupportInitialize)(this.MusINFnumericUpDown1)).EndInit();
             this.tabLoc.ResumeLayout(false);
             this.tabLoc.PerformLayout();
+            this.tabTools.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.NumToolsColour)).EndInit();
+            this.tabSettings.ResumeLayout(false);
+            this.tabSettings.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            this.tabTools.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.NumToolsColour)).EndInit();
-            this.groupBox4.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2271,13 +2278,6 @@ namespace SSX_Modder
         private System.Windows.Forms.Button BigLoadFolder;
         private System.Windows.Forms.Button BuildBigButton;
         private System.Windows.Forms.Button BigExtract;
-        private System.Windows.Forms.TabControl tabControl2;
-        private System.Windows.Forms.TabPage tab1CheatCharacter;
-        private System.Windows.Forms.TabPage tab1TrickPage;
-        private System.Windows.Forms.Button bootLoad;
-        private System.Windows.Forms.Button bootSaveAs;
-        private System.Windows.Forms.Button bootSave;
-        private System.Windows.Forms.TabPage tab1TrackData;
         private System.Windows.Forms.TabPage tabSSH;
         private System.Windows.Forms.ListBox SSHlistBox1;
         private System.Windows.Forms.PictureBox SSHpictureBox1;
@@ -2293,7 +2293,6 @@ namespace SSX_Modder
         private System.Windows.Forms.TextBox LocSearchText;
         private System.Windows.Forms.Button LocSearchBack;
         private System.Windows.Forms.Button LocSearchNext;
-        private System.Windows.Forms.TabPage tabBootFile;
         private System.Windows.Forms.Button SSHLoadFolder;
         private System.Windows.Forms.Button SSHSave;
         private System.Windows.Forms.TextBox SSHFileFormat;
@@ -2305,7 +2304,6 @@ namespace SSX_Modder
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.Label label38;
         private System.Windows.Forms.Label label40;
-        private System.Windows.Forms.Label label41;
         private System.Windows.Forms.Button SSHExportOne;
         private System.Windows.Forms.Button SSHReplace;
         private System.Windows.Forms.GroupBox groupBox3;
@@ -2332,6 +2330,16 @@ namespace SSX_Modder
         private System.Windows.Forms.Button ToolsColours;
         private System.Windows.Forms.NumericUpDown NumToolsColour;
         private System.Windows.Forms.TabPage tabSettings;
+        private System.Windows.Forms.Button SettingsImgBurnButton;
+        private System.Windows.Forms.Button Settings7ZipButton;
+        private System.Windows.Forms.Label SettingsImgBurn;
+        private System.Windows.Forms.Label Settings7ZipPath;
+        private System.Windows.Forms.Label label46;
+        private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.ToolStripButton toolStripButton4;
+        private System.Windows.Forms.Button SettingsPCSX2Button;
+        private System.Windows.Forms.Label SettingsPCSX2Path;
+        private System.Windows.Forms.Label label48;
     }
 }
 

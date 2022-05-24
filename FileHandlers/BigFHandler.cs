@@ -87,17 +87,10 @@ namespace SSX_Modder.FileHandlers
                     stream1.Write(temp, 0, temp.Length);
 
                     Directory.CreateDirectory(Path.GetDirectoryName(path + "//" + bigFiles[i].path));
-                    try
-                    {
-                        var file = File.Create(path + "//" + bigFiles[i].path);
-                        stream1.Position = 0;
-                        stream1.CopyTo(file);
-                        file.Close();
-                    }
-                    catch
-                    {
-
-                    }
+                    var file = File.Create(path + "//" + bigFiles[i].path);
+                    stream1.Position = 0;
+                    stream1.CopyTo(file);
+                    file.Close();
                     stream1.Dispose();
                 }
                 stream.Dispose();

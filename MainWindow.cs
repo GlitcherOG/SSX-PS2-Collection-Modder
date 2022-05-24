@@ -12,12 +12,15 @@ namespace SSX_Modder
 {
     public partial class MainWindow : Form
     {
+        Settings settings = new Settings();
         string workspacePath = Application.StartupPath + "\\disk\\SSX3\\";
-        string ImgBurnPath = @"C:\Program Files (x86)\ImgBurn\ImgBurn.exe";
-        string ZipPath = @"C:\Program Files\7-Zip\7z.exe";
         public MainWindow()
         {
             InitializeComponent();
+            settings = Settings.Load();
+            Settings7ZipPath.Text = settings.ZipPath;
+            SettingsImgBurn.Text = settings.ImgBurnPath;
+            SettingsPCSX2Path.Text = settings.Pcsx2Path;
         }
         private void ResetStatus(object sender, EventArgs e)
         {
@@ -38,48 +41,118 @@ namespace SSX_Modder
         }
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            //MessageBox.Show("Extractor Currently Disabled. Extract Iso Files To \n" + workspacePath);
-            OpenFileDialog openFileDialog = new OpenFileDialog
+            if (File.Exists(settings.ZipPath))
             {
-                InitialDirectory = "c:\\",
-                Filter = "Iso Image (*.iso)|*.iso|All files (*.*)|*.*",
-                FilterIndex = 1,
-                //RestoreDirectory = true
-            };
+                //MessageBox.Show("Extractor Currently Disabled. Extract Iso Files To \n" + workspacePath);
+                OpenFileDialog openFileDialog = new OpenFileDialog
+                {
+                    InitialDirectory = "c:\\",
+                    Filter = "Iso Image (*.iso)|*.iso|All files (*.*)|*.*",
+                    FilterIndex = 1,
+                    //RestoreDirectory = true
+                };
 
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                ProcessStartInfo startInfo = new ProcessStartInfo();
-                startInfo.FileName = ZipPath;
-                string test = Path.Combine(workspacePath, "");
-                startInfo.Arguments = "x \"" + openFileDialog.FileName +"\" *.* -o\"" + test + "\" -r -y";
-                Process.Start(startInfo);
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    ProcessStartInfo startInfo = new ProcessStartInfo();
+                    startInfo.FileName = settings.ZipPath;
+                    string test = Path.Combine(workspacePath, "");
+                    startInfo.Arguments = "x \"" + openFileDialog.FileName + "\" *.* -o\"" + test + "\" -r -y";
+                    Process.Start(startInfo);
+                }
             }
-
         }
 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
-            SaveFileDialog openFileDialog = new SaveFileDialog
+            if (File.Exists(settings.ImgBurnPath))
             {
-                InitialDirectory = Application.StartupPath,
-                Filter = "Iso Image (*.iso)|*.iso|All files (*.*)|*.*",
-                FilterIndex = 1,
-                RestoreDirectory = false
-            };
+                SaveFileDialog openFileDialog = new SaveFileDialog
+                {
+                    InitialDirectory = Application.StartupPath,
+                    Filter = "Iso Image (*.iso)|*.iso|All files (*.*)|*.*",
+                    FilterIndex = 1,
+                    RestoreDirectory = false
+                };
 
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                ProcessStartInfo startInfo = new ProcessStartInfo();
-                startInfo.FileName = ImgBurnPath;
-                string test = Path.Combine(workspacePath, "");
-                startInfo.Arguments = "/MODE BUILD /BUILDINPUTMODE IMAGEFILE /SRC \"" + test + "\" /DEST \"" + openFileDialog.FileName + "\" /FILESYSTEM \"ISO9660 + UDF\" /UDFREVISION \"1.02\" /VOLUMELABEL \"SSX3\" /ERASE /OVERWITE YES /START /NOIMAGEDETAILS /ROOTFOLDER";
-                Process.Start(startInfo);
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    ProcessStartInfo startInfo = new ProcessStartInfo();
+                    startInfo.FileName = settings.ImgBurnPath;
+                    string test = Path.Combine(workspacePath, "");
+                    settings.ISOPath = openFileDialog.FileName;
+                    settings.Save();
+                    startInfo.Arguments = "/MODE BUILD /BUILDINPUTMODE IMAGEFILE /SRC \"" + test + "\" /DEST \"" + openFileDialog.FileName + "\" /FILESYSTEM \"ISO9660 + UDF\" /UDFREVISION \"1.02\" /VOLUMELABEL \"SSX3\" /ERASE /OVERWITE YES /START /NOIMAGEDETAILS /ROOTFOLDER";
+                    Process.Start(startInfo);
+                }
             }
         }
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
             Process.Start(workspacePath);
+        }
+        private void toolStripButton4_Click(object sender, EventArgs e)
+        {
+            if (File.Exists(settings.Pcsx2Path))
+            {
+                ProcessStartInfo startInfo = new ProcessStartInfo();
+                startInfo.FileName = settings.Pcsx2Path;
+                string test = Path.Combine(workspacePath, "");
+                if (File.Exists(settings.ISOPath))
+                {
+                    startInfo.Arguments = "\"" + settings.ISOPath + "\"";
+                }
+                Process.Start(startInfo);
+            }
+        }
+
+        private void Settings7ZipButton_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                InitialDirectory = workspacePath,
+                Filter = "7z (7z.exe)|7z.exe|All files (*.*)|*.*",
+                FilterIndex = 1,
+                RestoreDirectory = false
+            };
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                settings.ZipPath = openFileDialog.FileName;
+                Settings7ZipPath.Text = settings.ZipPath;
+                settings.Save();
+            }
+        }
+
+        private void SettingsImgBurnButton_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Filter = "ImgBurn (ImgBurn.exe)|ImgBurn.exe|All files (*.*)|*.*",
+                FilterIndex = 1,
+                RestoreDirectory = false
+            };
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                settings.ImgBurnPath = openFileDialog.FileName;
+                SettingsImgBurn.Text = settings.ImgBurnPath;
+                settings.Save();
+            }
+        }
+
+        private void SettingsPCSX2Button_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Filter = "Exe Application (*.exe)|*.exe|All files (*.*)|*.*",
+                FilterIndex = 1,
+                RestoreDirectory = false
+            };
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                settings.Pcsx2Path = openFileDialog.FileName;
+                SettingsPCSX2Path.Text = settings.Pcsx2Path;
+                settings.Save();
+            }
         }
 
         #region Loc File
