@@ -608,6 +608,7 @@ namespace SSX_Modder.FileHandlers
             Encoding.ASCII.GetBytes(MagicWord).CopyTo(tempByte, 0);
             stream.Write(tempByte, 0, tempByte.Length);
 
+            long SizePos = stream.Position;
             tempByte = new byte[4];
             stream.Write(tempByte, 0, tempByte.Length);
 
@@ -734,6 +735,12 @@ namespace SSX_Modder.FileHandlers
                 Encoding.ASCII.GetBytes("Buy ERTS").CopyTo(tempByte, 0);
                 stream.Write(tempByte, 0, tempByte.Length);
             }
+
+            stream.Position = SizePos;
+            tempByte = new byte[4];
+            BitConverter.GetBytes((int)stream.Length).CopyTo(tempByte, 0);
+            stream.Write(tempByte, 0, tempByte.Length);
+
 
             if (File.Exists(path))
             {
