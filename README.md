@@ -1,7 +1,16 @@
 
 # SSX 3 PS2 MODDER
 
-This is a modding tool i came up and started making when i caught covid as a way to keep busy. Made for the PAL Version but may work with other versions
+This is a modding tool i came up and started making when i caught covid as a way to keep busy. Made for the PAL Version but may work with other versions.
+
+## Features
+- SSH Texture Extractor/Maker
+- Big (BigF) Decompressor/Extractor and Making
+- Character DB Editor
+- Music Inf Editor
+- Loc (Language) Files Editor
+- Easy Iso Extraction and Making (Using External Programs)
+- Auto Boot PCSX2 Emulator With Iso
 
 ## Requirements
 
@@ -12,19 +21,18 @@ This is a modding tool i came up and started making when i caught covid as a way
 - ImgBurn
 - ImageMagick
 
-## Special Thanks
-Special Thanks to the SSX Modding Community
-
 ## Todo
 
 ### Current Todo
-- Mod Pack Making
+- Mod File Making
 
 ### Todo Later
+- Custom Arguments For Iso Extraction and Making (To allow the use of other programs)
 - Make Better Workflow interface
 - Control Editor Menu
 - MUS Extractor
 - Redo Loc and BigF
+- Add COFB (.Big)
 - Make Stream Writting Class to Standardise Functions
 - Redo in .Net Core
 

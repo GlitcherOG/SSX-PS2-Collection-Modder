@@ -199,6 +199,7 @@ namespace SSX_Modder
             this.MusAdd = new System.Windows.Forms.Button();
             this.MusRemove = new System.Windows.Forms.Button();
             this.ToolsPadding = new System.Windows.Forms.Button();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.tabControl1.SuspendLayout();
             this.tabBig.SuspendLayout();
             this.tabSSH.SuspendLayout();
@@ -236,6 +237,7 @@ namespace SSX_Modder
             this.tabSettings.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -1941,7 +1943,7 @@ namespace SSX_Modder
             // 
             // tabTools
             // 
-            this.tabTools.Controls.Add(this.ToolsPadding);
+            this.tabTools.Controls.Add(this.groupBox5);
             this.tabTools.Controls.Add(this.groupBox4);
             this.tabTools.Location = new System.Drawing.Point(4, 22);
             this.tabTools.Name = "tabTools";
@@ -2179,13 +2181,23 @@ namespace SSX_Modder
             // 
             // ToolsPadding
             // 
-            this.ToolsPadding.Location = new System.Drawing.Point(4, 82);
+            this.ToolsPadding.Location = new System.Drawing.Point(6, 19);
             this.ToolsPadding.Name = "ToolsPadding";
-            this.ToolsPadding.Size = new System.Drawing.Size(247, 23);
+            this.ToolsPadding.Size = new System.Drawing.Size(188, 23);
             this.ToolsPadding.TabIndex = 3;
-            this.ToolsPadding.Text = "Delete Padding";
+            this.ToolsPadding.Text = "Delete Pad Files";
             this.ToolsPadding.UseVisualStyleBackColor = true;
             this.ToolsPadding.Click += new System.EventHandler(this.ToolsPadding_Click);
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.ToolsPadding);
+            this.groupBox5.Location = new System.Drawing.Point(257, 4);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(200, 100);
+            this.groupBox5.TabIndex = 4;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Other";
             // 
             // MainWindow
             // 
@@ -2248,6 +2260,7 @@ namespace SSX_Modder
             this.toolStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2424,6 +2437,7 @@ namespace SSX_Modder
         private System.Windows.Forms.Button MusRemove;
         private System.Windows.Forms.Button MusAdd;
         private System.Windows.Forms.Button ToolsPadding;
+        private System.Windows.Forms.GroupBox groupBox5;
     }
 }
 
