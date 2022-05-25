@@ -18,15 +18,14 @@ Special Thanks to the SSX Modding Community
 ## Todo
 
 ### Current Todo
-- Tools Button to Delete Padding Files
 
 ### Todo Later
 - Make Better Workflow interface
-- Music Config Adding and Removing (Dont know why i keep putting this off)
 - Control Editor Menu
 - MUS Extractor
 - Mod Pack Maker
 - Redo Loc and BigF
+- LUI Colour Edit
 - Auto Uncompress Workspace/Auto Compress 
 - Make Stream Writting Class to Standardise Functions
 - Redo in .Net Core

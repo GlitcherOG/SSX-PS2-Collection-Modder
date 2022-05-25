@@ -180,6 +180,9 @@ namespace SSX_Modder
             this.ToolsColours = new System.Windows.Forms.Button();
             this.NumToolsColour = new System.Windows.Forms.NumericUpDown();
             this.tabSettings = new System.Windows.Forms.TabPage();
+            this.SettingsPCSX2Button = new System.Windows.Forms.Button();
+            this.SettingsPCSX2Path = new System.Windows.Forms.Label();
+            this.label48 = new System.Windows.Forms.Label();
             this.SettingsImgBurnButton = new System.Windows.Forms.Button();
             this.Settings7ZipButton = new System.Windows.Forms.Button();
             this.SettingsImgBurn = new System.Windows.Forms.Label();
@@ -190,12 +193,12 @@ namespace SSX_Modder
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
-            this.SettingsPCSX2Path = new System.Windows.Forms.Label();
-            this.label48 = new System.Windows.Forms.Label();
-            this.SettingsPCSX2Button = new System.Windows.Forms.Button();
+            this.MusAdd = new System.Windows.Forms.Button();
+            this.MusRemove = new System.Windows.Forms.Button();
+            this.ToolsPadding = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabBig.SuspendLayout();
             this.tabSSH.SuspendLayout();
@@ -1225,6 +1228,8 @@ namespace SSX_Modder
             // 
             // tabMusic
             // 
+            this.tabMusic.Controls.Add(this.MusRemove);
+            this.tabMusic.Controls.Add(this.MusAdd);
             this.tabMusic.Controls.Add(this.MusSaveAs);
             this.tabMusic.Controls.Add(this.MusINFnumericUpDown12);
             this.tabMusic.Controls.Add(this.label30);
@@ -1295,6 +1300,11 @@ namespace SSX_Modder
             // MusINFnumericUpDown12
             // 
             this.MusINFnumericUpDown12.Location = new System.Drawing.Point(519, 224);
+            this.MusINFnumericUpDown12.Maximum = new decimal(new int[] {
+            100000000,
+            0,
+            0,
+            0});
             this.MusINFnumericUpDown12.Minimum = new decimal(new int[] {
             1,
             0,
@@ -1415,6 +1425,11 @@ namespace SSX_Modder
             // MusINFnumericUpDown11
             // 
             this.MusINFnumericUpDown11.Location = new System.Drawing.Point(519, 185);
+            this.MusINFnumericUpDown11.Maximum = new decimal(new int[] {
+            100000000,
+            0,
+            0,
+            0});
             this.MusINFnumericUpDown11.Minimum = new decimal(new int[] {
             1,
             0,
@@ -1427,6 +1442,11 @@ namespace SSX_Modder
             // MusINFnumericUpDown10
             // 
             this.MusINFnumericUpDown10.Location = new System.Drawing.Point(376, 265);
+            this.MusINFnumericUpDown10.Maximum = new decimal(new int[] {
+            100000000,
+            0,
+            0,
+            0});
             this.MusINFnumericUpDown10.Minimum = new decimal(new int[] {
             1,
             0,
@@ -1439,6 +1459,11 @@ namespace SSX_Modder
             // MusINFnumericUpDown9
             // 
             this.MusINFnumericUpDown9.Location = new System.Drawing.Point(378, 224);
+            this.MusINFnumericUpDown9.Maximum = new decimal(new int[] {
+            100000000,
+            0,
+            0,
+            0});
             this.MusINFnumericUpDown9.Minimum = new decimal(new int[] {
             1,
             0,
@@ -1451,6 +1476,11 @@ namespace SSX_Modder
             // MusINFnumericUpDown8
             // 
             this.MusINFnumericUpDown8.Location = new System.Drawing.Point(378, 185);
+            this.MusINFnumericUpDown8.Maximum = new decimal(new int[] {
+            100000000,
+            0,
+            0,
+            0});
             this.MusINFnumericUpDown8.Minimum = new decimal(new int[] {
             1,
             0,
@@ -1463,6 +1493,11 @@ namespace SSX_Modder
             // MusINFnumericUpDown7
             // 
             this.MusINFnumericUpDown7.Location = new System.Drawing.Point(378, 145);
+            this.MusINFnumericUpDown7.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
             this.MusINFnumericUpDown7.Minimum = new decimal(new int[] {
             1,
             0,
@@ -1475,6 +1510,11 @@ namespace SSX_Modder
             // MusINFnumericUpDown6
             // 
             this.MusINFnumericUpDown6.Location = new System.Drawing.Point(378, 105);
+            this.MusINFnumericUpDown6.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
             this.MusINFnumericUpDown6.Minimum = new decimal(new int[] {
             1,
             0,
@@ -1496,6 +1536,11 @@ namespace SSX_Modder
             // MusINFnumericUpDown5
             // 
             this.MusINFnumericUpDown5.Location = new System.Drawing.Point(519, 145);
+            this.MusINFnumericUpDown5.Maximum = new decimal(new int[] {
+            100000000,
+            0,
+            0,
+            0});
             this.MusINFnumericUpDown5.Minimum = new decimal(new int[] {
             1,
             0,
@@ -1509,7 +1554,7 @@ namespace SSX_Modder
             // 
             this.MusINFnumericUpDown4.Location = new System.Drawing.Point(519, 105);
             this.MusINFnumericUpDown4.Maximum = new decimal(new int[] {
-            100000,
+            100000000,
             0,
             0,
             0});
@@ -1543,7 +1588,7 @@ namespace SSX_Modder
             // 
             this.MusINFnumericUpDown2.Location = new System.Drawing.Point(519, 26);
             this.MusINFnumericUpDown2.Maximum = new decimal(new int[] {
-            1000,
+            100000000,
             0,
             0,
             0});
@@ -1607,6 +1652,11 @@ namespace SSX_Modder
             // MusINFnumericUpDown1
             // 
             this.MusINFnumericUpDown1.Location = new System.Drawing.Point(378, 66);
+            this.MusINFnumericUpDown1.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
             this.MusINFnumericUpDown1.Minimum = new decimal(new int[] {
             1,
             0,
@@ -1767,7 +1817,7 @@ namespace SSX_Modder
             this.musiclistBox1.FormattingEnabled = true;
             this.musiclistBox1.Location = new System.Drawing.Point(7, 7);
             this.musiclistBox1.Name = "musiclistBox1";
-            this.musiclistBox1.Size = new System.Drawing.Size(168, 511);
+            this.musiclistBox1.Size = new System.Drawing.Size(168, 485);
             this.musiclistBox1.TabIndex = 0;
             this.musiclistBox1.SelectedIndexChanged += new System.EventHandler(this.musiclistBox1_SelectedIndexChanged);
             // 
@@ -1891,6 +1941,7 @@ namespace SSX_Modder
             // 
             // tabTools
             // 
+            this.tabTools.Controls.Add(this.ToolsPadding);
             this.tabTools.Controls.Add(this.groupBox4);
             this.tabTools.Location = new System.Drawing.Point(4, 22);
             this.tabTools.Name = "tabTools";
@@ -1954,6 +2005,34 @@ namespace SSX_Modder
             this.tabSettings.TabIndex = 10;
             this.tabSettings.Text = "Settings";
             this.tabSettings.UseVisualStyleBackColor = true;
+            // 
+            // SettingsPCSX2Button
+            // 
+            this.SettingsPCSX2Button.Location = new System.Drawing.Point(19, 156);
+            this.SettingsPCSX2Button.Name = "SettingsPCSX2Button";
+            this.SettingsPCSX2Button.Size = new System.Drawing.Size(75, 23);
+            this.SettingsPCSX2Button.TabIndex = 8;
+            this.SettingsPCSX2Button.Text = "Set Path";
+            this.SettingsPCSX2Button.UseVisualStyleBackColor = true;
+            this.SettingsPCSX2Button.Click += new System.EventHandler(this.SettingsPCSX2Button_Click);
+            // 
+            // SettingsPCSX2Path
+            // 
+            this.SettingsPCSX2Path.AutoSize = true;
+            this.SettingsPCSX2Path.Location = new System.Drawing.Point(16, 140);
+            this.SettingsPCSX2Path.Name = "SettingsPCSX2Path";
+            this.SettingsPCSX2Path.Size = new System.Drawing.Size(25, 13);
+            this.SettingsPCSX2Path.TabIndex = 7;
+            this.SettingsPCSX2Path.Text = "Null";
+            // 
+            // label48
+            // 
+            this.label48.AutoSize = true;
+            this.label48.Location = new System.Drawing.Point(16, 127);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(61, 13);
+            this.label48.TabIndex = 6;
+            this.label48.Text = "Pcsx2 Path";
             // 
             // SettingsImgBurnButton
             // 
@@ -2052,6 +2131,17 @@ namespace SSX_Modder
             this.toolStripButton3.Text = "Open Workspace";
             this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
             // 
+            // toolStripButton4
+            // 
+            this.toolStripButton4.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
+            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton4.Name = "toolStripButton4";
+            this.toolStripButton4.Size = new System.Drawing.Size(135, 22);
+            this.toolStripButton4.Text = "Start Emulator With ISO";
+            this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
+            // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -2067,44 +2157,35 @@ namespace SSX_Modder
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
             // 
-            // toolStripButton4
+            // MusAdd
             // 
-            this.toolStripButton4.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
-            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(135, 22);
-            this.toolStripButton4.Text = "Start Emulator With ISO";
-            this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
+            this.MusAdd.Location = new System.Drawing.Point(7, 499);
+            this.MusAdd.Name = "MusAdd";
+            this.MusAdd.Size = new System.Drawing.Size(75, 23);
+            this.MusAdd.TabIndex = 50;
+            this.MusAdd.Text = "Add";
+            this.MusAdd.UseVisualStyleBackColor = true;
+            this.MusAdd.Click += new System.EventHandler(this.MusAdd_Click);
             // 
-            // SettingsPCSX2Path
+            // MusRemove
             // 
-            this.SettingsPCSX2Path.AutoSize = true;
-            this.SettingsPCSX2Path.Location = new System.Drawing.Point(16, 140);
-            this.SettingsPCSX2Path.Name = "SettingsPCSX2Path";
-            this.SettingsPCSX2Path.Size = new System.Drawing.Size(25, 13);
-            this.SettingsPCSX2Path.TabIndex = 7;
-            this.SettingsPCSX2Path.Text = "Null";
+            this.MusRemove.Location = new System.Drawing.Point(100, 499);
+            this.MusRemove.Name = "MusRemove";
+            this.MusRemove.Size = new System.Drawing.Size(75, 23);
+            this.MusRemove.TabIndex = 51;
+            this.MusRemove.Text = "Remove";
+            this.MusRemove.UseVisualStyleBackColor = true;
+            this.MusRemove.Click += new System.EventHandler(this.MusRemove_Click);
             // 
-            // label48
+            // ToolsPadding
             // 
-            this.label48.AutoSize = true;
-            this.label48.Location = new System.Drawing.Point(16, 127);
-            this.label48.Name = "label48";
-            this.label48.Size = new System.Drawing.Size(61, 13);
-            this.label48.TabIndex = 6;
-            this.label48.Text = "Pcsx2 Path";
-            // 
-            // SettingsPCSX2Button
-            // 
-            this.SettingsPCSX2Button.Location = new System.Drawing.Point(19, 156);
-            this.SettingsPCSX2Button.Name = "SettingsPCSX2Button";
-            this.SettingsPCSX2Button.Size = new System.Drawing.Size(75, 23);
-            this.SettingsPCSX2Button.TabIndex = 8;
-            this.SettingsPCSX2Button.Text = "Set Path";
-            this.SettingsPCSX2Button.UseVisualStyleBackColor = true;
-            this.SettingsPCSX2Button.Click += new System.EventHandler(this.SettingsPCSX2Button_Click);
+            this.ToolsPadding.Location = new System.Drawing.Point(4, 82);
+            this.ToolsPadding.Name = "ToolsPadding";
+            this.ToolsPadding.Size = new System.Drawing.Size(247, 23);
+            this.ToolsPadding.TabIndex = 3;
+            this.ToolsPadding.Text = "Delete Padding";
+            this.ToolsPadding.UseVisualStyleBackColor = true;
+            this.ToolsPadding.Click += new System.EventHandler(this.ToolsPadding_Click);
             // 
             // MainWindow
             // 
@@ -2340,6 +2421,9 @@ namespace SSX_Modder
         private System.Windows.Forms.Button SettingsPCSX2Button;
         private System.Windows.Forms.Label SettingsPCSX2Path;
         private System.Windows.Forms.Label label48;
+        private System.Windows.Forms.Button MusRemove;
+        private System.Windows.Forms.Button MusAdd;
+        private System.Windows.Forms.Button ToolsPadding;
     }
 }
 

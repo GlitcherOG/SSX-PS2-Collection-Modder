@@ -39,6 +39,8 @@ namespace SSX_Modder
             }
 
         }
+
+        #region ToolStrip
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
             if (File.Exists(settings.ZipPath))
@@ -105,7 +107,27 @@ namespace SSX_Modder
                 Process.Start(startInfo);
             }
         }
+        #endregion
 
+        #region Tools
+        private void ToolsColours_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                InitialDirectory = workspacePath,
+                Filter = "Png Image (*.Png)|*.Png|All files (*.*)|*.*",
+                FilterIndex = 1,
+                RestoreDirectory = false
+            };
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string strCmdText = "/C magick convert \"" + openFileDialog.FileName + "\" -colors " + (int)NumToolsColour.Value + " \"" + openFileDialog.FileName + "\"";
+                System.Diagnostics.Process.Start("CMD.exe", strCmdText);
+            }
+        }
+        #endregion
+
+        #region Settings
         private void Settings7ZipButton_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog
@@ -154,6 +176,7 @@ namespace SSX_Modder
                 settings.Save();
             }
         }
+        #endregion
 
         #region Loc File
         LOCHandler locHandler = new LOCHandler();
@@ -382,6 +405,7 @@ namespace SSX_Modder
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
+                musiclistBox1.Items.Clear();
                 musicINFHandler.musPath = openFileDialog.FileName;
                 musicINFHandler.LoadMusFile(openFileDialog.FileName);
                 for (int i = 0; i < musicINFHandler.musFileSongs.Count; i++)
@@ -473,6 +497,31 @@ namespace SSX_Modder
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 musicINFHandler.SaveMusFile(openFileDialog.FileName);
+            }
+        }
+
+        private void MusAdd_Click(object sender, EventArgs e)
+        {
+            MusFileSong song = new MusFileSong();
+            song.ID = "[Null]";
+            musicINFHandler.musFileSongs.Add(song);
+            musiclistBox1.Items.Clear();
+            for (int i = 0; i < musicINFHandler.musFileSongs.Count; i++)
+            {
+                musiclistBox1.Items.Add(musicINFHandler.musFileSongs[i].ID);
+            }
+        }
+
+        private void MusRemove_Click(object sender, EventArgs e)
+        {
+            if(musiclistBox1.SelectedIndex!=-1)
+            {
+                musicINFHandler.musFileSongs.RemoveAt(musiclistBox1.SelectedIndex);
+                musiclistBox1.Items.Clear();
+                for (int i = 0; i < musicINFHandler.musFileSongs.Count; i++)
+                {
+                    musiclistBox1.Items.Add(musicINFHandler.musFileSongs[i].ID);
+                }
             }
         }
         #endregion
@@ -927,20 +976,10 @@ namespace SSX_Modder
         }
         #endregion
 
-        private void ToolsColours_Click(object sender, EventArgs e)
+        private void ToolsPadding_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog
-            {
-                InitialDirectory = workspacePath,
-                Filter = "Png Image (*.Png)|*.Png|All files (*.*)|*.*",
-                FilterIndex = 1,
-                RestoreDirectory = false
-            };
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                string strCmdText = "/C magick convert \"" + openFileDialog.FileName + "\" -colors " + (int)NumToolsColour.Value + " \"" + openFileDialog.FileName + "\"";
-                System.Diagnostics.Process.Start("CMD.exe", strCmdText);
-            }
+            File.Delete(workspacePath+"//PAD0.000");
+            File.Delete(workspacePath + "//PAD1.000");
         }
     }
 }

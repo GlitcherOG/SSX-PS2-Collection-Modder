@@ -1,0 +1,6 @@
+50 - Object deloration?
+next 7 bytes unknown
+3-maybe 4 bytes = colour
+next 5 unknown
+
+51 - Point Deloration?

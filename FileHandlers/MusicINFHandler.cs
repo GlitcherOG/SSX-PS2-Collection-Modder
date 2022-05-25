@@ -15,6 +15,7 @@ namespace SSX_Modder.FileHandlers
 
         public void LoadMusFile(string path)
         {
+            musFileSongs.Clear();
             string wholeFile = File.ReadAllText(path);
             string[] splitPoint = new string[1] { "#### " };
             string[] LineSplit = wholeFile.Split(splitPoint, StringSplitOptions.None);
@@ -308,7 +309,7 @@ namespace SSX_Modder.FileHandlers
         }
     }
 
-    struct MusFileSong
+    public struct MusFileSong
     {
         public string Comment;
         public string ID;

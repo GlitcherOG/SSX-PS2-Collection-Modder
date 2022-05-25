@@ -519,52 +519,59 @@ namespace SSX_Modder.FileHandlers
             group = "";
             endingstring = "";
             sshImages = new List<SSHImage>();
-            string[] paths = File.ReadAllLines(path + "\\Index.txt");
-            format = paths[0].Replace(Environment.NewLine, "");
-            Ammount = paths.Length - 1;
-            int[] Maxtrixarray = new int[paths.Length - 1];
-            for (int i = 1; i < paths.Length; i++)
+            if (File.Exists(path + "\\Index.txt"))
             {
-                string[] temp1 = paths[i].Split(',');
-                paths[i] = path + "\\" + temp1[0];
-                Maxtrixarray[i - 1] = int.Parse(temp1[1]);
-            }
-
-            for (int i = 1; i < paths.Length; i++)
-            {
-                Stream stream = File.Open(paths[i], FileMode.Open);
-                SSHImage tempImage = new SSHImage();
-                SSHImageHeader imageHeader = new SSHImageHeader();
-                var ImageTemp = Image.FromStream(stream);
-                stream.Close();
-                stream.Dispose();
-                tempImage.bitmap = (Bitmap)ImageTemp;
-                imageHeader.MatrixFormat = (byte)Maxtrixarray[i - 1];
-
-                string name = Path.GetFileName(paths[i].Replace(".png", ""));
-                string[] NameList = name.Split('.');
-
-                tempImage.longname = NameList[1];
-                tempImage.shortname = NameList[0];
-                imageHeader.Width = tempImage.bitmap.Width;
-                imageHeader.Height = tempImage.bitmap.Height;
-                SSHColourTable colourTable = new SSHColourTable();
-                colourTable.colorTable = new List<Color>();
-
-                for (int y = 0; y < tempImage.bitmap.Height; y++)
+                string[] paths = File.ReadAllLines(path + "\\Index.txt");
+                format = paths[0].Replace(Environment.NewLine, "");
+                Ammount = paths.Length - 1;
+                int[] Maxtrixarray = new int[paths.Length - 1];
+                for (int i = 1; i < paths.Length; i++)
                 {
-                    for (int x = 0; x < tempImage.bitmap.Width; x++)
+                    string[] temp1 = paths[i].Split(',');
+                    paths[i] = path + "\\" + temp1[0];
+                    Maxtrixarray[i - 1] = int.Parse(temp1[1]);
+                }
+
+                for (int i = 1; i < paths.Length; i++)
+                {
+                    Stream stream = File.Open(paths[i], FileMode.Open);
+                    SSHImage tempImage = new SSHImage();
+                    SSHImageHeader imageHeader = new SSHImageHeader();
+                    var ImageTemp = Image.FromStream(stream);
+                    stream.Close();
+                    stream.Dispose();
+                    tempImage.bitmap = (Bitmap)ImageTemp;
+                    imageHeader.MatrixFormat = (byte)Maxtrixarray[i - 1];
+
+                    string name = Path.GetFileName(paths[i].Replace(".png", ""));
+                    string[] NameList = name.Split('.');
+
+                    tempImage.longname = NameList[1];
+                    tempImage.shortname = NameList[0];
+                    imageHeader.Width = tempImage.bitmap.Width;
+                    imageHeader.Height = tempImage.bitmap.Height;
+                    SSHColourTable colourTable = new SSHColourTable();
+                    colourTable.colorTable = new List<Color>();
+
+                    for (int y = 0; y < tempImage.bitmap.Height; y++)
                     {
-                        Color color = sshImages[i].bitmap.GetPixel(x, y);
-                        if (!colourTable.colorTable.Contains(color))
+                        for (int x = 0; x < tempImage.bitmap.Width; x++)
                         {
-                            colourTable.colorTable.Add(color);
+                            Color color = sshImages[i].bitmap.GetPixel(x, y);
+                            if (!colourTable.colorTable.Contains(color))
+                            {
+                                colourTable.colorTable.Add(color);
+                            }
                         }
                     }
+                    tempImage.sshTable = colourTable;
+                    tempImage.sshHeader = imageHeader;
+                    sshImages.Add(tempImage);
                 }
-                tempImage.sshTable = colourTable;
-                tempImage.sshHeader = imageHeader;
-                sshImages.Add(tempImage);
+            }
+            else
+            {
+                MessageBox.Show("Missing Index.txt");
             }
         }
 
