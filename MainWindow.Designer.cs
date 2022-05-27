@@ -32,6 +32,8 @@ namespace SSX_Modder
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabBig = new System.Windows.Forms.TabPage();
+            this.label47 = new System.Windows.Forms.Label();
+            this.BigFType = new System.Windows.Forms.ComboBox();
             this.bigUncompressed = new System.Windows.Forms.Label();
             this.label44 = new System.Windows.Forms.Label();
             this.BigCompressed = new System.Windows.Forms.Label();
@@ -198,11 +200,9 @@ namespace SSX_Modder
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
+            this.GameType = new System.Windows.Forms.ToolStripComboBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.BigFType = new System.Windows.Forms.ComboBox();
-            this.GameType = new System.Windows.Forms.ToolStripComboBox();
-            this.label47 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabBig.SuspendLayout();
             this.tabSSH.SuspendLayout();
@@ -250,9 +250,9 @@ namespace SSX_Modder
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabBig);
             this.tabControl1.Controls.Add(this.tabSSH);
+            this.tabControl1.Controls.Add(this.tabLoc);
             this.tabControl1.Controls.Add(this.tabCharacters);
             this.tabControl1.Controls.Add(this.tabMusic);
-            this.tabControl1.Controls.Add(this.tabLoc);
             this.tabControl1.Controls.Add(this.tabTools);
             this.tabControl1.Controls.Add(this.tabSettings);
             this.tabControl1.Location = new System.Drawing.Point(14, 29);
@@ -287,6 +287,27 @@ namespace SSX_Modder
             this.tabBig.TabIndex = 6;
             this.tabBig.Text = "Big Files";
             this.tabBig.UseVisualStyleBackColor = true;
+            // 
+            // label47
+            // 
+            this.label47.AutoSize = true;
+            this.label47.Location = new System.Drawing.Point(253, 146);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(49, 13);
+            this.label47.TabIndex = 17;
+            this.label47.Text = "Big Type";
+            // 
+            // BigFType
+            // 
+            this.BigFType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.BigFType.FormattingEnabled = true;
+            this.BigFType.Items.AddRange(new object[] {
+            "C0FB",
+            "BIGF"});
+            this.BigFType.Location = new System.Drawing.Point(256, 162);
+            this.BigFType.Name = "BigFType";
+            this.BigFType.Size = new System.Drawing.Size(121, 21);
+            this.BigFType.TabIndex = 16;
             // 
             // bigUncompressed
             // 
@@ -921,7 +942,7 @@ namespace SSX_Modder
             this.tabCharacters.Name = "tabCharacters";
             this.tabCharacters.Size = new System.Drawing.Size(1191, 527);
             this.tabCharacters.TabIndex = 5;
-            this.tabCharacters.Text = "Character Database";
+            this.tabCharacters.Text = "Character Database (SSX 3)";
             this.tabCharacters.UseVisualStyleBackColor = true;
             // 
             // label32
@@ -1291,7 +1312,7 @@ namespace SSX_Modder
             this.tabMusic.Padding = new System.Windows.Forms.Padding(3);
             this.tabMusic.Size = new System.Drawing.Size(1191, 527);
             this.tabMusic.TabIndex = 1;
-            this.tabMusic.Text = "Music Config";
+            this.tabMusic.Text = "Music Config (SSX 3)";
             this.tabMusic.UseVisualStyleBackColor = true;
             // 
             // MusRemove
@@ -2191,6 +2212,19 @@ namespace SSX_Modder
             this.toolStripButton4.Text = "Start Emulator With ISO";
             this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
             // 
+            // GameType
+            // 
+            this.GameType.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.GameType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.GameType.Items.AddRange(new object[] {
+            "SSX (Unsupported)",
+            "SSX Tricky",
+            "SSX 3"});
+            this.GameType.Name = "GameType";
+            this.GameType.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.GameType.Size = new System.Drawing.Size(121, 25);
+            this.GameType.SelectedIndexChanged += new System.EventHandler(this.GameType_Click);
+            // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -2205,40 +2239,6 @@ namespace SSX_Modder
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
-            // 
-            // BigFType
-            // 
-            this.BigFType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.BigFType.FormattingEnabled = true;
-            this.BigFType.Items.AddRange(new object[] {
-            "C0FB",
-            "BIGF"});
-            this.BigFType.Location = new System.Drawing.Point(256, 162);
-            this.BigFType.Name = "BigFType";
-            this.BigFType.Size = new System.Drawing.Size(121, 21);
-            this.BigFType.TabIndex = 16;
-            // 
-            // GameType
-            // 
-            this.GameType.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.GameType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.GameType.Items.AddRange(new object[] {
-            "SSX (Unsupported)",
-            "SSX Tricky",
-            "SSX 3"});
-            this.GameType.Name = "GameType";
-            this.GameType.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.GameType.Size = new System.Drawing.Size(121, 25);
-            this.GameType.SelectedIndexChanged += new System.EventHandler(this.GameType_Click);
-            // 
-            // label47
-            // 
-            this.label47.AutoSize = true;
-            this.label47.Location = new System.Drawing.Point(253, 146);
-            this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(49, 13);
-            this.label47.TabIndex = 17;
-            this.label47.Text = "Big Type";
             // 
             // MainWindow
             // 

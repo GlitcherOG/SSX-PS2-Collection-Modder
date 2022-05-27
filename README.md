@@ -5,11 +5,11 @@ This is a modding tool i came up and started making when i caught covid as a way
 
 ## Features
 - SSH Texture Extractor/Maker
-- Big (BigF) Decompressor/Extractor and Making
-- Character DB Editor
-- Music Inf Editor
+- Big (BigF And C0FB) Decompressor/Extractor and Making (BigF)
+- Character DB Editor (SSX 3)
+- Music Inf Editor (SSX 3)
 - Loc (Language) Files Editor
-- Easy Iso Extraction and Making (Using External Programs)
+- Easy Iso Extraction and Making (Using External Programs) (SSX 3, Tricky)
 - Auto Boot PCSX2 Emulator With Iso
 
 ## Requirements
@@ -25,14 +25,16 @@ This is a modding tool i came up and started making when i caught covid as a way
 
 ### Current Todo
 - Mod File Making
+- Add COFB Making (.Big)
+- Backups
+- Extracted Colour Fix (Tricky)
 
 ### Todo Later
 - Custom Arguments For Iso Extraction and Making (To allow the use of other programs)
 - Make Better Workflow interface
 - Control Editor Menu
 - MUS Extractor
-- Redo Loc and BigF
-- Add COFB (.Big)
+- Redo Loc and Music (Support Other Games)
 
 ### If i ever find the correct code or work it out
 - Refpack Compressor

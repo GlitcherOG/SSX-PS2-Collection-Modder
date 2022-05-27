@@ -73,11 +73,14 @@ namespace SSX_Modder
                 SaveFileDialog openFileDialog = new SaveFileDialog
                 {
                     InitialDirectory = Application.StartupPath,
-                    Filter = "Iso Image (*.iso)|*.iso|All files (*.*)|*.*",
+                    Filter = "Iso Image (*.iso)|*.iso|Bin Image (*.bin)|*.bin|All files (*.*)|*.*",
                     FilterIndex = 1,
                     RestoreDirectory = false
                 };
-
+                if(GameType.SelectedIndex==0)
+                {
+                    openFileDialog.FilterIndex = 2;
+                }
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     ProcessStartInfo startInfo = new ProcessStartInfo();
