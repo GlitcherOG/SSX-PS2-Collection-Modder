@@ -1,5 +1,5 @@
 
-# SSX 3 PS2 MODDER
+# SSX 3 Trilogy MODDER
 
 This is a modding tool i came up and started making when i caught covid as a way to keep busy. Made for the PAL Version but may work with other versions.
 
