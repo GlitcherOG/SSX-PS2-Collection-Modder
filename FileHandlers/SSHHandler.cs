@@ -601,40 +601,30 @@ namespace SSX_Modder.FileHandlers
             {
                 return;
             }
-
-            Stream stream = new MemoryStream();
-            MagicWord = "SHPS";
             byte[] tempByte = new byte[4];
-            Encoding.ASCII.GetBytes(MagicWord).CopyTo(tempByte, 0);
-            stream.Write(tempByte, 0, tempByte.Length);
+            Stream stream = new MemoryStream();
+
+            StreamUtil.WriteString(stream, MagicWord);
 
             long SizePos = stream.Position;
             tempByte = new byte[4];
             stream.Write(tempByte, 0, tempByte.Length);
 
-            tempByte = new byte[4];
-            BitConverter.GetBytes(sshImages.Count).CopyTo(tempByte, 0);
-            stream.Write(tempByte, 0, tempByte.Length);
+            StreamUtil.WriteInt32(stream, sshImages.Count);
 
-            tempByte = new byte[4];
-            Encoding.ASCII.GetBytes(format).CopyTo(tempByte, 0);
-            stream.Write(tempByte, 0, tempByte.Length);
+            StreamUtil.WriteString(stream, format);
 
             List<int> intPos = new List<int>();
 
             for (int i = 0; i < sshImages.Count; i++)
             {
-                tempByte = new byte[4];
-                Encoding.ASCII.GetBytes(sshImages[i].shortname).CopyTo(tempByte, 0);
-                stream.Write(tempByte, 0, tempByte.Length);
+                StreamUtil.WriteString(stream, sshImages[i].shortname);
                 intPos.Add((int)stream.Position);
                 tempByte = new byte[4];
                 stream.Write(tempByte, 0, tempByte.Length);
             }
 
-            tempByte = new byte[16];
-            Encoding.ASCII.GetBytes("Buy ERTS").CopyTo(tempByte, 0);
-            stream.Write(tempByte, 0, tempByte.Length);
+            StreamUtil.WriteString(stream, "Buy ERTS", 16);
 
             for (int i = 0; i < sshImages.Count; i++)
             {
@@ -643,52 +633,34 @@ namespace SSX_Modder.FileHandlers
 
                 //Set Start Offset
 
-                tempByte = new byte[4];
-                BitConverter.GetBytes(temp).CopyTo(tempByte, 0);
-                stream.Write(tempByte, 0, tempByte.Length);
+                StreamUtil.WriteInt32(stream, temp);
 
                 stream.Position = temp;
 
-                tempByte = new byte[4];
-                BitConverter.GetBytes(sshImages[i].sshHeader.MatrixFormat).CopyTo(tempByte, 0);
-                stream.Write(tempByte, 0, 1);
+                StreamUtil.WriteInt8(stream, sshImages[i].sshHeader.MatrixFormat);
 
                 //Set SSH Header Info
                 if (sshImages[i].sshHeader.MatrixFormat == 1)
                 {
-                    tempByte = new byte[4];
-                    BitConverter.GetBytes((sshImages[i].bitmap.Width * sshImages[i].bitmap.Height / 2) + 16).CopyTo(tempByte, 0);
-                    stream.Write(tempByte, 0, 3);
+                    StreamUtil.WriteInt24(stream, (sshImages[i].bitmap.Width * sshImages[i].bitmap.Height / 2) + 16);
                 }
                 else
                 if (sshImages[i].sshHeader.MatrixFormat == 2)
                 {
-                    tempByte = new byte[4];
-                    BitConverter.GetBytes(sshImages[i].bitmap.Width * sshImages[i].bitmap.Height + 16).CopyTo(tempByte, 0);
-                    stream.Write(tempByte, 0, 3);
+                    StreamUtil.WriteInt24(stream, sshImages[i].bitmap.Width * sshImages[i].bitmap.Height + 16);
                 }
                 else if (sshImages[i].sshHeader.MatrixFormat == 5)
                 {
-                    tempByte = new byte[4];
-                    BitConverter.GetBytes((sshImages[i].bitmap.Width * sshImages[i].bitmap.Height * 4) + 16).CopyTo(tempByte, 0);
-                    stream.Write(tempByte, 0, 3);
+                    StreamUtil.WriteInt24(stream, (sshImages[i].bitmap.Width * sshImages[i].bitmap.Height * 4) + 16);
                 }
 
-                tempByte = new byte[4];
-                BitConverter.GetBytes(sshImages[i].bitmap.Width).CopyTo(tempByte, 0);
-                stream.Write(tempByte, 0, 2);
+                StreamUtil.WriteInt16(stream, sshImages[i].bitmap.Width);
 
-                tempByte = new byte[4];
-                BitConverter.GetBytes(sshImages[i].bitmap.Height).CopyTo(tempByte, 0);
-                stream.Write(tempByte, 0, 2);
+                StreamUtil.WriteInt16(stream, sshImages[i].bitmap.Height);
 
-                tempByte = new byte[4];
-                BitConverter.GetBytes(sshImages[i].sshHeader.Xaxis).CopyTo(tempByte, 0);
-                stream.Write(tempByte, 0, 2);
+                StreamUtil.WriteInt16(stream, sshImages[i].sshHeader.Xaxis);
 
-                tempByte = new byte[4];
-                BitConverter.GetBytes(sshImages[i].sshHeader.Yaxis).CopyTo(tempByte, 0);
-                stream.Write(tempByte, 0, 2);
+                StreamUtil.WriteInt16(stream, sshImages[i].sshHeader.Yaxis);
 
                 if (sshImages[i].sshHeader.LXPos==2)
                 {
@@ -727,20 +699,14 @@ namespace SSX_Modder.FileHandlers
                 tempByte = new byte[4] { 0x70, 0x00, 0x00, 0x00 };
                 stream.Write(tempByte, 0, tempByte.Length);
 
-                tempByte = new byte[sshImages[i].longname.Length + 1];
-                Encoding.ASCII.GetBytes(sshImages[i].longname).CopyTo(tempByte, 0);
-                stream.Write(tempByte, 0, tempByte.Length);
+                StreamUtil.WriteNullString(stream, sshImages[i].longname);
 
-                tempByte = new byte[9];
-                Encoding.ASCII.GetBytes("Buy ERTS").CopyTo(tempByte, 0);
-                stream.Write(tempByte, 0, tempByte.Length);
+                StreamUtil.WriteString(stream, "Buy ERTS", 9);
             }
 
             stream.Position = SizePos;
-            tempByte = new byte[4];
-            BitConverter.GetBytes((int)stream.Length).CopyTo(tempByte, 0);
-            stream.Write(tempByte, 0, tempByte.Length);
 
+            StreamUtil.WriteInt32(stream, (int)stream.Length);
 
             if (File.Exists(path))
             {

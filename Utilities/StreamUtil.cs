@@ -107,5 +107,60 @@ namespace SSX_Modder.Utilities
             return Color.FromArgb(A, R, G, B);
         }
 
+        public static void WriteNullString(Stream stream, string String)
+        {
+            byte[] tempByte = new byte[String.Length + 1];
+            Encoding.ASCII.GetBytes(String).CopyTo(tempByte, 0);
+            stream.Write(tempByte, 0, tempByte.Length);
+        }
+
+        public static void WriteString(Stream stream, string String, int Length = 0)
+        {
+            int tempLength = String.Length;
+            if (Length != 0)
+            {
+                tempLength = Length;
+            }
+            byte[] tempByte = new byte[tempLength];
+            Encoding.ASCII.GetBytes(String).CopyTo(tempByte, 0);
+            stream.Write(tempByte, 0, tempByte.Length);
+        }
+
+        public static void WriteInt8(Stream stream, int Int)
+        {
+            byte[] tempByte = new byte[4];
+            BitConverter.GetBytes(Int).CopyTo(tempByte, 0);
+            stream.Write(tempByte, 0, 1);
+        }
+
+        public static void WriteInt16(Stream stream, int Int)
+        {
+            byte[] tempByte = new byte[4];
+            BitConverter.GetBytes(Int).CopyTo(tempByte, 0);
+            stream.Write(tempByte, 0, 2);
+        }
+
+        public static void WriteInt24(Stream stream, int Int)
+        {
+            byte[] tempByte = new byte[4];
+            BitConverter.GetBytes(Int).CopyTo(tempByte, 0);
+            stream.Write(tempByte, 0, 3);
+        }
+
+        public static void WriteInt32(Stream stream, int Int)
+        {
+            byte[] tempByte = new byte[4];
+            BitConverter.GetBytes(Int).CopyTo(tempByte, 0);
+            stream.Write(tempByte, 0, tempByte.Length);
+        }
+
+        public static void WriteInt32Big(Stream stream, int Int)
+        {
+            byte[] tempByte = new byte[4];
+            BitConverter.GetBytes(Int).CopyTo(tempByte, 0);
+            if (BitConverter.IsLittleEndian)
+                Array.Reverse(tempByte);
+            stream.Write(tempByte, 0, tempByte.Length);
+        }
     }
 }

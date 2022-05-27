@@ -60,53 +60,29 @@ namespace SSX_Modder.FileHandlers
             Stream stream = new MemoryStream();
             for (int i = 0; i < charDBs.Count; i++)
             {
-                byte[] tempByte = new byte[32];
-                Encoding.ASCII.GetBytes(charDBs[i].LongName).CopyTo(tempByte, 0);
-                stream.Write(tempByte, 0, tempByte.Length);
+                StreamUtil.WriteString(stream, charDBs[i].LongName, 32);
 
-                tempByte = new byte[16];
-                Encoding.ASCII.GetBytes(charDBs[i].FirstName).CopyTo(tempByte, 0);
-                stream.Write(tempByte, 0, tempByte.Length);
+                StreamUtil.WriteString(stream, charDBs[i].FirstName, 16);
 
-                tempByte = new byte[16];
-                Encoding.ASCII.GetBytes(charDBs[i].NickName).CopyTo(tempByte, 0);
-                stream.Write(tempByte, 0, tempByte.Length);
+                StreamUtil.WriteString(stream, charDBs[i].NickName, 16);
 
-                tempByte = new byte[4];
-                tempByte = BitConverter.GetBytes(charDBs[i].Unkown1);
-                stream.Write(tempByte, 0, tempByte.Length);
+                StreamUtil.WriteInt32(stream, charDBs[i].Unkown1);
 
-                tempByte = new byte[4];
-                tempByte = BitConverter.GetBytes(charDBs[i].Stance);
-                stream.Write(tempByte, 0, tempByte.Length);
+                StreamUtil.WriteInt32(stream, charDBs[i].Stance);
 
-                tempByte = new byte[4];
-                tempByte = BitConverter.GetBytes(charDBs[i].ModelSize);
-                stream.Write(tempByte, 0, tempByte.Length);
+                StreamUtil.WriteInt32(stream, charDBs[i].ModelSize);
 
-                tempByte = new byte[16];
-                Encoding.ASCII.GetBytes(charDBs[i].BloodType).CopyTo(tempByte, 0);
-                stream.Write(tempByte, 0, tempByte.Length);
+                StreamUtil.WriteString(stream, charDBs[i].BloodType, 16);
 
-                tempByte = new byte[4];
-                tempByte = BitConverter.GetBytes(charDBs[i].Gender);
-                stream.Write(tempByte, 0, tempByte.Length);
+                StreamUtil.WriteInt32(stream, charDBs[i].Gender);
 
-                tempByte = new byte[4];
-                tempByte = BitConverter.GetBytes(charDBs[i].Age);
-                stream.Write(tempByte, 0, tempByte.Length);
+                StreamUtil.WriteInt32(stream, charDBs[i].Age);
 
-                tempByte = new byte[16];
-                Encoding.ASCII.GetBytes(charDBs[i].Height).CopyTo(tempByte, 0);
-                stream.Write(tempByte, 0, tempByte.Length);
+                StreamUtil.WriteString(stream, charDBs[i].Height, 16);
 
-                tempByte = new byte[16];
-                Encoding.ASCII.GetBytes(charDBs[i].Nationality).CopyTo(tempByte, 0);
-                stream.Write(tempByte, 0, tempByte.Length);
+                StreamUtil.WriteString(stream, charDBs[i].Nationality, 16);
 
-                tempByte = new byte[4];
-                tempByte = BitConverter.GetBytes(charDBs[i].Position);
-                stream.Write(tempByte, 0, tempByte.Length);
+                StreamUtil.WriteInt32(stream, charDBs[i].Position);
             }
 
             if (File.Exists(path))

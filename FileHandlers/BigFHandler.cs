@@ -132,19 +132,14 @@ namespace SSX_Modder.FileHandlers
             Stream stream = new MemoryStream();
             bigHeader.MagicWords = "BIGF";
             byte[] tempByte = new byte[4];
-            Encoding.ASCII.GetBytes(bigHeader.MagicWords).CopyTo(tempByte, 0);
-            stream.Write(tempByte, 0, tempByte.Length);
+            StreamUtil.WriteString(stream, bigHeader.MagicWords);
 
             // Set File Size Later
             tempByte = new byte[4];
             stream.Write(tempByte, 0, tempByte.Length);
 
             //Set Ammount
-            tempByte = new byte[4];
-            BitConverter.GetBytes(bigHeader.ammount).CopyTo(tempByte, 0);
-            if (BitConverter.IsLittleEndian)
-                Array.Reverse(tempByte);
-            stream.Write(tempByte, 0, tempByte.Length);
+            StreamUtil.WriteInt32Big(stream, bigHeader.ammount);
 
             //Set Blank Start of file offset
             tempByte = new byte[4];
@@ -153,23 +148,13 @@ namespace SSX_Modder.FileHandlers
             for (int i = 0; i < bigFiles.Count; i++)
             {
                 //Write offset
-                tempByte = new byte[4];
-                BitConverter.GetBytes(bigFiles[i].offset).CopyTo(tempByte, 0);
-                if (BitConverter.IsLittleEndian)
-                    Array.Reverse(tempByte);
-                stream.Write(tempByte, 0, tempByte.Length);
+                StreamUtil.WriteInt32Big(stream, bigFiles[i].offset);
 
                 //Write size
-                tempByte = new byte[4];
-                BitConverter.GetBytes(bigFiles[i].size).CopyTo(tempByte, 0);
-                if (BitConverter.IsLittleEndian)
-                    Array.Reverse(tempByte);
-                stream.Write(tempByte, 0, tempByte.Length);
+                StreamUtil.WriteInt32Big(stream, bigFiles[i].size);
 
                 //Write Path
-                tempByte = new byte[bigFiles[i].path.Length + 1];
-                Encoding.ASCII.GetBytes(bigFiles[i].path).CopyTo(tempByte, 0);
-                stream.Write(tempByte, 0, tempByte.Length);
+                StreamUtil.WriteNullString(stream, bigFiles[i].path);
             }
             //Write Footer
             tempByte = new byte[8];
@@ -179,13 +164,11 @@ namespace SSX_Modder.FileHandlers
             //Set File start offset
             long pos = stream.Position;
             stream.Position = 12;
-            tempByte = new byte[4];
-            BitConverter.GetBytes((int)pos).CopyTo(tempByte, 0);
-            if (BitConverter.IsLittleEndian)
-                Array.Reverse(tempByte);
-            stream.Write(tempByte, 0, tempByte.Length);
+
+            StreamUtil.WriteInt32Big(stream, (int)pos);
 
             stream.Position = stream.Length;
+
             //Write Files
             for (int i = 0; i < bigFiles.Count; i++)
             {
@@ -199,14 +182,14 @@ namespace SSX_Modder.FileHandlers
 
             //Set filesize
             stream.Position = 4;
-            tempByte = new byte[4];
-            BitConverter.GetBytes((int)stream.Length).CopyTo(tempByte,0);
-            stream.Write(tempByte, 0, tempByte.Length);
+
+            StreamUtil.WriteInt32Big(stream, (int)stream.Length);
 
             if (File.Exists(path))
             {
                 File.Delete(path);
             }
+
             var file = File.Create(path);
             stream.Position = 0;
             stream.CopyTo(file);
