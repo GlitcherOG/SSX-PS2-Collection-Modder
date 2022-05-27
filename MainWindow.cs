@@ -13,7 +13,7 @@ namespace SSX_Modder
     public partial class MainWindow : Form
     {
         Settings settings = new Settings();
-        string workspacePath = Application.StartupPath + "\\disk\\SSX3\\";
+        string workspacePath = Application.StartupPath + "\\disk\\SSX 3\\";
         public MainWindow()
         {
             InitializeComponent();
@@ -21,6 +21,7 @@ namespace SSX_Modder
             Settings7ZipPath.Text = settings.ZipPath;
             SettingsImgBurn.Text = settings.ImgBurnPath;
             SettingsPCSX2Path.Text = settings.Pcsx2Path;
+            GameType.SelectedIndex = 2;
         }
         private void ResetStatus(object sender, EventArgs e)
         {
@@ -527,7 +528,7 @@ namespace SSX_Modder
         #endregion
 
         #region BIGF
-        BigFHandler bigfHandler = new BigFHandler();
+        BigHandler bigfHandler = new BigHandler();
         private void BigLoad_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog
@@ -543,6 +544,7 @@ namespace SSX_Modder
                 bigfHandler.LoadBig(openFileDialog.FileName);
                 BigExtract.Enabled = true;
                 BuildBigButton.Enabled = false;
+                BigFType.Text = bigfHandler.bigType.ToString();
                 if(bigfHandler.bigHeader.compression)
                 {
                     BigCompressed.Text = "Yes";
@@ -627,6 +629,7 @@ namespace SSX_Modder
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 bigfHandler.BuildBig(openFileDialog.FileName);
+                bigfHandler.bigType = (BigType)Enum.Parse(typeof(BigType), BigFType.Text);
                 MessageBox.Show("Building Done");
                 GC.Collect();
             }
@@ -980,6 +983,34 @@ namespace SSX_Modder
         {
             File.Delete(workspacePath+"//PAD0.000");
             File.Delete(workspacePath + "//PAD1.000");
+        }
+
+        private void GameType_Click(object sender, EventArgs e)
+        {
+            if(GameType.SelectedIndex == 0)
+            {
+                workspacePath = Application.StartupPath + "\\disk\\SSX\\";
+                if (!Directory.Exists(workspacePath))
+                {
+                    Directory.CreateDirectory(workspacePath);
+                }
+            }
+            if (GameType.SelectedIndex == 1)
+            {
+                workspacePath = Application.StartupPath + "\\disk\\SSX Tricky\\";
+                if (!Directory.Exists(workspacePath))
+                {
+                    Directory.CreateDirectory(workspacePath);
+                }
+            }
+            if (GameType.SelectedIndex == 2)
+            {
+                workspacePath = Application.StartupPath + "\\disk\\SSX 3\\";
+                if (!Directory.Exists(workspacePath))
+                {
+                    Directory.CreateDirectory(workspacePath);
+                }
+            }
         }
     }
 }

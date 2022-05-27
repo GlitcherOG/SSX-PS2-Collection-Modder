@@ -33,8 +33,6 @@ This is a modding tool i came up and started making when i caught covid as a way
 - MUS Extractor
 - Redo Loc and BigF
 - Add COFB (.Big)
-- Make Stream Writting Class to Standardise Functions
-- Redo in .Net Core
 
 ### If i ever find the correct code or work it out
 - Refpack Compressor

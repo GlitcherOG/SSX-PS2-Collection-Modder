@@ -117,6 +117,8 @@ namespace SSX_Modder
             this.charSaveAs = new System.Windows.Forms.Button();
             this.charLoad = new System.Windows.Forms.Button();
             this.tabMusic = new System.Windows.Forms.TabPage();
+            this.MusRemove = new System.Windows.Forms.Button();
+            this.MusAdd = new System.Windows.Forms.Button();
             this.MusSaveAs = new System.Windows.Forms.Button();
             this.MusINFnumericUpDown12 = new System.Windows.Forms.NumericUpDown();
             this.label30 = new System.Windows.Forms.Label();
@@ -176,6 +178,8 @@ namespace SSX_Modder
             this.LocLoad = new System.Windows.Forms.Button();
             this.LocBox1 = new System.Windows.Forms.ListBox();
             this.tabTools = new System.Windows.Forms.TabPage();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.ToolsPadding = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.ToolsColours = new System.Windows.Forms.Button();
             this.NumToolsColour = new System.Windows.Forms.NumericUpDown();
@@ -196,10 +200,9 @@ namespace SSX_Modder
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.MusAdd = new System.Windows.Forms.Button();
-            this.MusRemove = new System.Windows.Forms.Button();
-            this.ToolsPadding = new System.Windows.Forms.Button();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.BigFType = new System.Windows.Forms.ComboBox();
+            this.GameType = new System.Windows.Forms.ToolStripComboBox();
+            this.label47 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabBig.SuspendLayout();
             this.tabSSH.SuspendLayout();
@@ -232,12 +235,12 @@ namespace SSX_Modder
             ((System.ComponentModel.ISupportInitialize)(this.MusINFnumericUpDown1)).BeginInit();
             this.tabLoc.SuspendLayout();
             this.tabTools.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NumToolsColour)).BeginInit();
             this.tabSettings.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
-            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -260,6 +263,8 @@ namespace SSX_Modder
             // 
             // tabBig
             // 
+            this.tabBig.Controls.Add(this.label47);
+            this.tabBig.Controls.Add(this.BigFType);
             this.tabBig.Controls.Add(this.bigUncompressed);
             this.tabBig.Controls.Add(this.label44);
             this.tabBig.Controls.Add(this.BigCompressed);
@@ -696,6 +701,7 @@ namespace SSX_Modder
             // 
             // SSHMatrixType
             // 
+            this.SSHMatrixType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.SSHMatrixType.FormattingEnabled = true;
             this.SSHMatrixType.Items.AddRange(new object[] {
             "1 (4 Bit, 16 Colour Index)",
@@ -1287,6 +1293,26 @@ namespace SSX_Modder
             this.tabMusic.TabIndex = 1;
             this.tabMusic.Text = "Music Config";
             this.tabMusic.UseVisualStyleBackColor = true;
+            // 
+            // MusRemove
+            // 
+            this.MusRemove.Location = new System.Drawing.Point(100, 499);
+            this.MusRemove.Name = "MusRemove";
+            this.MusRemove.Size = new System.Drawing.Size(75, 23);
+            this.MusRemove.TabIndex = 51;
+            this.MusRemove.Text = "Remove";
+            this.MusRemove.UseVisualStyleBackColor = true;
+            this.MusRemove.Click += new System.EventHandler(this.MusRemove_Click);
+            // 
+            // MusAdd
+            // 
+            this.MusAdd.Location = new System.Drawing.Point(7, 499);
+            this.MusAdd.Name = "MusAdd";
+            this.MusAdd.Size = new System.Drawing.Size(75, 23);
+            this.MusAdd.TabIndex = 50;
+            this.MusAdd.Text = "Add";
+            this.MusAdd.UseVisualStyleBackColor = true;
+            this.MusAdd.Click += new System.EventHandler(this.MusAdd_Click);
             // 
             // MusSaveAs
             // 
@@ -1952,6 +1978,26 @@ namespace SSX_Modder
             this.tabTools.Text = "Tools";
             this.tabTools.UseVisualStyleBackColor = true;
             // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.ToolsPadding);
+            this.groupBox5.Location = new System.Drawing.Point(257, 4);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(200, 100);
+            this.groupBox5.TabIndex = 4;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Other";
+            // 
+            // ToolsPadding
+            // 
+            this.ToolsPadding.Location = new System.Drawing.Point(6, 19);
+            this.ToolsPadding.Name = "ToolsPadding";
+            this.ToolsPadding.Size = new System.Drawing.Size(188, 23);
+            this.ToolsPadding.TabIndex = 3;
+            this.ToolsPadding.Text = "Delete Pad Files";
+            this.ToolsPadding.UseVisualStyleBackColor = true;
+            this.ToolsPadding.Click += new System.EventHandler(this.ToolsPadding_Click);
+            // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.ToolsColours);
@@ -2098,7 +2144,8 @@ namespace SSX_Modder
             this.toolStripButton1,
             this.toolStripButton2,
             this.toolStripButton3,
-            this.toolStripButton4});
+            this.toolStripButton4,
+            this.GameType});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1224, 25);
@@ -2159,45 +2206,39 @@ namespace SSX_Modder
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
             // 
-            // MusAdd
+            // BigFType
             // 
-            this.MusAdd.Location = new System.Drawing.Point(7, 499);
-            this.MusAdd.Name = "MusAdd";
-            this.MusAdd.Size = new System.Drawing.Size(75, 23);
-            this.MusAdd.TabIndex = 50;
-            this.MusAdd.Text = "Add";
-            this.MusAdd.UseVisualStyleBackColor = true;
-            this.MusAdd.Click += new System.EventHandler(this.MusAdd_Click);
+            this.BigFType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.BigFType.FormattingEnabled = true;
+            this.BigFType.Items.AddRange(new object[] {
+            "C0FB",
+            "BIGF"});
+            this.BigFType.Location = new System.Drawing.Point(256, 162);
+            this.BigFType.Name = "BigFType";
+            this.BigFType.Size = new System.Drawing.Size(121, 21);
+            this.BigFType.TabIndex = 16;
             // 
-            // MusRemove
+            // GameType
             // 
-            this.MusRemove.Location = new System.Drawing.Point(100, 499);
-            this.MusRemove.Name = "MusRemove";
-            this.MusRemove.Size = new System.Drawing.Size(75, 23);
-            this.MusRemove.TabIndex = 51;
-            this.MusRemove.Text = "Remove";
-            this.MusRemove.UseVisualStyleBackColor = true;
-            this.MusRemove.Click += new System.EventHandler(this.MusRemove_Click);
+            this.GameType.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.GameType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.GameType.Items.AddRange(new object[] {
+            "SSX (Unsupported)",
+            "SSX Tricky",
+            "SSX 3"});
+            this.GameType.Name = "GameType";
+            this.GameType.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.GameType.Size = new System.Drawing.Size(121, 25);
+            this.GameType.SelectedIndexChanged += new System.EventHandler(this.GameType_Click);
             // 
-            // ToolsPadding
+            // label47
             // 
-            this.ToolsPadding.Location = new System.Drawing.Point(6, 19);
-            this.ToolsPadding.Name = "ToolsPadding";
-            this.ToolsPadding.Size = new System.Drawing.Size(188, 23);
-            this.ToolsPadding.TabIndex = 3;
-            this.ToolsPadding.Text = "Delete Pad Files";
-            this.ToolsPadding.UseVisualStyleBackColor = true;
-            this.ToolsPadding.Click += new System.EventHandler(this.ToolsPadding_Click);
-            // 
-            // groupBox5
-            // 
-            this.groupBox5.Controls.Add(this.ToolsPadding);
-            this.groupBox5.Location = new System.Drawing.Point(257, 4);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(200, 100);
-            this.groupBox5.TabIndex = 4;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Other";
+            this.label47.AutoSize = true;
+            this.label47.Location = new System.Drawing.Point(253, 146);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(49, 13);
+            this.label47.TabIndex = 17;
+            this.label47.Text = "Big Type";
             // 
             // MainWindow
             // 
@@ -2210,7 +2251,7 @@ namespace SSX_Modder
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(829, 449);
             this.Name = "MainWindow";
-            this.Text = "SSX 3 Modder";
+            this.Text = "SSX Modder";
             this.Load += new System.EventHandler(this.MainWindow_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabBig.ResumeLayout(false);
@@ -2252,6 +2293,7 @@ namespace SSX_Modder
             this.tabLoc.ResumeLayout(false);
             this.tabLoc.PerformLayout();
             this.tabTools.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.NumToolsColour)).EndInit();
             this.tabSettings.ResumeLayout(false);
@@ -2260,7 +2302,6 @@ namespace SSX_Modder
             this.toolStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            this.groupBox5.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2438,6 +2479,9 @@ namespace SSX_Modder
         private System.Windows.Forms.Button MusAdd;
         private System.Windows.Forms.Button ToolsPadding;
         private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.ComboBox BigFType;
+        private System.Windows.Forms.ToolStripComboBox GameType;
+        private System.Windows.Forms.Label label47;
     }
 }
 

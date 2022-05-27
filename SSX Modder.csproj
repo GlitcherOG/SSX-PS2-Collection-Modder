@@ -259,7 +259,7 @@
   <ItemGroup>
     <Compile Include="FileHandlers\RefpackHandler.cs" />
     <Compile Include="Utilities\ByteUtil.cs" />
-    <Compile Include="FileHandlers\BigFHandler.cs" />
+    <Compile Include="FileHandlers\BigHandler.cs" />
     <Compile Include="FileHandlers\CHARDBLHandler.cs" />
     <Compile Include="FileHandlers\LOCHandler.cs" />
     <Compile Include="FileHandlers\MusicINFHandler.cs" />

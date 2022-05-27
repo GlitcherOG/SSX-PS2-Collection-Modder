@@ -4,12 +4,14 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using SSX_Modder.Utilities;
 
 namespace SSX_Modder.FileHandlers
 {
-    class BigFHandler
+    class BigHandler
     {
+        public BigType bigType;
         public BIGFHeader bigHeader;
         public List<BIGFFiles> bigFiles;
         string bigPath;
@@ -24,48 +26,103 @@ namespace SSX_Modder.FileHandlers
             {
                 bigHeader.MagicWords = StreamUtil.ReadString(stream, 4);
                 //Figure out what any of these mean
-                if (bigHeader.MagicWords != "BIGF")
+                if (bigHeader.MagicWords == "BIGF")
                 {
-                    return;
+                    ReadBigF(stream);
                 }
-
-                bigHeader.fileSize = StreamUtil.ReadInt32(stream);
-
-                bigHeader.ammount = StreamUtil.ReadInt32Big(stream);
-
-                bigHeader.startOffset = StreamUtil.ReadInt32Big(stream);
-
-                for (int i = 0; i < bigHeader.ammount; i++)
+                else
                 {
-                    BIGFFiles temp = new BIGFFiles();
-
-                    temp.offset = StreamUtil.ReadInt32Big(stream);
-
-                    temp.size = StreamUtil.ReadInt32Big(stream);
-
-                    temp.path = StreamUtil.ReadNullEndString(stream);
-                    bigFiles.Add(temp);
-                    stream.Position += 1;
-                }
-
-                bigHeader.footer = new byte[8];
-                stream.Read(bigHeader.footer, 0, bigHeader.footer.Length);
-
-                for (int i = 0; i < bigHeader.ammount; i++)
-                {
-                    stream.Position = bigFiles[i].offset;
-                    BIGFFiles tempFile = bigFiles[i];
+                    stream.Position = 0;
                     byte[] bytes = new byte[2];
-                    stream.Read(bytes, 0, bytes.Length);
+                    stream.Read(bytes, 0, 2);
                     if (bytes[1] == 0xFB)
                     {
-                        bigHeader.compression = true;
-                        tempFile.UncompressedSize = StreamUtil.ReadInt24Big(stream);
-                        bigFiles[i] = tempFile;
+                        ReadBigC0FB(stream);
+                    }
+                    else
+                    {
+                        MessageBox.Show(bigHeader.MagicWords + " Unknown Big Format");
                     }
                 }
-
                 stream.Dispose();
+            }
+        }
+
+        public void ReadBigF(Stream stream)
+        {
+            bigType = BigType.BIGF;
+
+            bigHeader.fileSize = StreamUtil.ReadInt32(stream);
+
+            bigHeader.ammount = StreamUtil.ReadInt32Big(stream);
+
+            bigHeader.startOffset = StreamUtil.ReadInt32Big(stream);
+
+            for (int i = 0; i < bigHeader.ammount; i++)
+            {
+                BIGFFiles temp = new BIGFFiles();
+
+                temp.offset = StreamUtil.ReadInt32Big(stream);
+
+                temp.size = StreamUtil.ReadInt32Big(stream);
+
+                temp.path = StreamUtil.ReadNullEndString(stream);
+                bigFiles.Add(temp);
+                stream.Position += 1;
+            }
+
+            bigHeader.footer = new byte[8];
+            stream.Read(bigHeader.footer, 0, bigHeader.footer.Length);
+
+            for (int i = 0; i < bigHeader.ammount; i++)
+            {
+                stream.Position = bigFiles[i].offset;
+                BIGFFiles tempFile = bigFiles[i];
+                byte[] bytes = new byte[2];
+                stream.Read(bytes, 0, bytes.Length);
+                if (bytes[1] == 0xFB)
+                {
+                    bigHeader.compression = true;
+                    tempFile.UncompressedSize = StreamUtil.ReadInt24Big(stream);
+                    bigFiles[i] = tempFile;
+                }
+            }
+
+        }
+
+        public void ReadBigC0FB(Stream stream)
+        {
+            bigType = BigType.c0FB;
+
+            bigHeader.startOffset = StreamUtil.ReadInt16Big(stream);
+
+            bigHeader.ammount = StreamUtil.ReadInt16Big(stream);
+
+            for (int i = 0; i < bigHeader.ammount; i++)
+            {
+                BIGFFiles temp = new BIGFFiles();
+
+                temp.offset = StreamUtil.ReadInt24Big(stream);
+
+                temp.size = StreamUtil.ReadInt24Big(stream);
+
+                temp.path = StreamUtil.ReadNullEndString(stream);
+                bigFiles.Add(temp);
+                stream.Position += 1;
+            }
+
+            for (int i = 0; i < bigHeader.ammount; i++)
+            {
+                stream.Position = bigFiles[i].offset;
+                BIGFFiles tempFile = bigFiles[i];
+                byte[] bytes = new byte[2];
+                stream.Read(bytes, 0, bytes.Length);
+                if (bytes[1] == 0xFB)
+                {
+                    bigHeader.compression = true;
+                    tempFile.UncompressedSize = StreamUtil.ReadInt24Big(stream);
+                    bigFiles[i] = tempFile;
+                }
             }
         }
 
@@ -130,6 +187,30 @@ namespace SSX_Modder.FileHandlers
         {
             LoadFolder(bigPath);
             Stream stream = new MemoryStream();
+
+            if (bigType == BigType.BIGF)
+            {
+                BuildBigF(stream);
+            }
+            else if (bigType == BigType.c0FB)
+            {
+                MessageBox.Show("C0FB Currently Not Supported");
+            }
+
+            if (File.Exists(path))
+            {
+                File.Delete(path);
+            }
+
+            var file = File.Create(path);
+            stream.Position = 0;
+            stream.CopyTo(file);
+            stream.Dispose();
+            file.Close();
+        }
+
+        public void BuildBigF(Stream stream)
+        {
             bigHeader.MagicWords = "BIGF";
             byte[] tempByte = new byte[4];
             StreamUtil.WriteString(stream, bigHeader.MagicWords);
@@ -172,7 +253,7 @@ namespace SSX_Modder.FileHandlers
             //Write Files
             for (int i = 0; i < bigFiles.Count; i++)
             {
-                using (Stream stream1 = File.Open(bigPath+ "\\" + bigFiles[i].path, FileMode.Open))
+                using (Stream stream1 = File.Open(bigPath + "\\" + bigFiles[i].path, FileMode.Open))
                 {
                     tempByte = new byte[stream1.Length];
                     stream1.Read(tempByte, 0, tempByte.Length);
@@ -184,17 +265,6 @@ namespace SSX_Modder.FileHandlers
             stream.Position = 4;
 
             StreamUtil.WriteInt32Big(stream, (int)stream.Length);
-
-            if (File.Exists(path))
-            {
-                File.Delete(path);
-            }
-
-            var file = File.Create(path);
-            stream.Position = 0;
-            stream.CopyTo(file);
-            stream.Dispose();
-            file.Close();
         }
     }
 
@@ -224,5 +294,11 @@ namespace SSX_Modder.FileHandlers
         public int size;
         public int offset;
         public int UncompressedSize;
+    }
+
+    enum BigType
+    {
+        BIGF,
+        c0FB
     }
 }

@@ -39,6 +39,13 @@ namespace SSX_Modder.Utilities
             return Encoding.ASCII.GetString(tempByte);
         }
 
+        public static int ReadInt12(Stream stream)
+        {
+            byte[] tempByte = new byte[2];
+            stream.Read(tempByte, 0, tempByte.Length);
+            return ByteUtil.BytesToBitConvert(tempByte, 4, 15);
+        }
+
         public static int ReadInt16(Stream stream)
         {
             byte[] tempByte = new byte[2];
@@ -46,11 +53,13 @@ namespace SSX_Modder.Utilities
             return BitConverter.ToInt16(tempByte, 0);
         }
 
-        public static int ReadInt12(Stream stream)
+        public static int ReadInt16Big(Stream stream)
         {
             byte[] tempByte = new byte[2];
             stream.Read(tempByte, 0, tempByte.Length);
-            return ByteUtil.BytesToBitConvert(tempByte,4,15);
+            if (BitConverter.IsLittleEndian)
+                Array.Reverse(tempByte);
+            return BitConverter.ToInt16(tempByte, 0);
         }
 
         public static int ReadInt24(Stream stream)
