@@ -21,6 +21,8 @@ namespace SSX_Modder
             Settings7ZipPath.Text = settings.ZipPath;
             SettingsImgBurn.Text = settings.ImgBurnPath;
             SettingsPCSX2Path.Text = settings.Pcsx2Path;
+            SettingsIsoPath.Text = settings.ISOPath;
+            SettingsOverride.Checked = settings.Override;
             GameType.SelectedIndex = 2;
         }
         private void ResetStatus(object sender, EventArgs e)
@@ -86,8 +88,11 @@ namespace SSX_Modder
                     ProcessStartInfo startInfo = new ProcessStartInfo();
                     startInfo.FileName = settings.ImgBurnPath;
                     string test = Path.Combine(workspacePath, "");
-                    settings.ISOPath = openFileDialog.FileName;
-                    settings.Save();
+                    if (!SettingsOverride.Checked)
+                    {
+                        settings.ISOPath = openFileDialog.FileName;
+                        settings.Save();
+                    }
                     startInfo.Arguments = "/MODE BUILD /BUILDINPUTMODE IMAGEFILE /SRC \"" + test + "\" /DEST \"" + openFileDialog.FileName + "\" /FILESYSTEM \"ISO9660 + UDF\" /UDFREVISION \"1.02\" /VOLUMELABEL \"SSX3\" /ERASE /OVERWITE YES /START /NOIMAGEDETAILS /ROOTFOLDER";
                     Process.Start(startInfo);
                 }
@@ -106,7 +111,14 @@ namespace SSX_Modder
                 string test = Path.Combine(workspacePath, "");
                 if (File.Exists(settings.ISOPath))
                 {
-                    startInfo.Arguments = "\"" + settings.ISOPath + "\"";
+                    if (settings.ISOPath.ToLower().Contains(".iso"))
+                    {
+                        startInfo.Arguments = "\"" + settings.ISOPath + "\"";
+                    }
+                    else if (settings.ISOPath.ToLower().Contains(".elf"))
+                    {
+                        startInfo.Arguments = "--elf \"" + settings.ISOPath + "\"";
+                    }
                 }
                 Process.Start(startInfo);
             }
@@ -180,6 +192,7 @@ namespace SSX_Modder
                 settings.Save();
             }
         }
+
         #endregion
 
         #region Loc File
@@ -1014,6 +1027,28 @@ namespace SSX_Modder
                     Directory.CreateDirectory(workspacePath);
                 }
             }
+        }
+
+        private void SettingsIsoSet_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Filter = "iso File (*.iso)|*.iso|All files (*.*)|*.*",
+                FilterIndex = 1,
+                RestoreDirectory = false
+            };
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                settings.ISOPath = openFileDialog.FileName;
+                SettingsIsoPath.Text = settings.ISOPath;
+                settings.Save();
+            }
+        }
+
+        private void SettingsOverride_CheckedChanged(object sender, EventArgs e)
+        {
+            settings.Override = SettingsOverride.Checked;
+            settings.Save();
         }
     }
 }

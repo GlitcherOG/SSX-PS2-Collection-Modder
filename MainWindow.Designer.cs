@@ -89,6 +89,16 @@ namespace SSX_Modder
             this.SSHLoad = new System.Windows.Forms.Button();
             this.SSHlistBox1 = new System.Windows.Forms.ListBox();
             this.SSHpictureBox1 = new System.Windows.Forms.PictureBox();
+            this.tabLoc = new System.Windows.Forms.TabPage();
+            this.LocSearchText = new System.Windows.Forms.TextBox();
+            this.LocSearchBack = new System.Windows.Forms.Button();
+            this.LocSearchNext = new System.Windows.Forms.Button();
+            this.Save = new System.Windows.Forms.Button();
+            this.LocrichTextBox2 = new System.Windows.Forms.RichTextBox();
+            this.LocrichTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.LocSaveAs = new System.Windows.Forms.Button();
+            this.LocLoad = new System.Windows.Forms.Button();
+            this.LocBox1 = new System.Windows.Forms.ListBox();
             this.tabCharacters = new System.Windows.Forms.TabPage();
             this.label32 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
@@ -169,16 +179,6 @@ namespace SSX_Modder
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.musiclistBox1 = new System.Windows.Forms.ListBox();
-            this.tabLoc = new System.Windows.Forms.TabPage();
-            this.LocSearchText = new System.Windows.Forms.TextBox();
-            this.LocSearchBack = new System.Windows.Forms.Button();
-            this.LocSearchNext = new System.Windows.Forms.Button();
-            this.Save = new System.Windows.Forms.Button();
-            this.LocrichTextBox2 = new System.Windows.Forms.RichTextBox();
-            this.LocrichTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.LocSaveAs = new System.Windows.Forms.Button();
-            this.LocLoad = new System.Windows.Forms.Button();
-            this.LocBox1 = new System.Windows.Forms.ListBox();
             this.tabTools = new System.Windows.Forms.TabPage();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.ToolsPadding = new System.Windows.Forms.Button();
@@ -186,6 +186,10 @@ namespace SSX_Modder
             this.ToolsColours = new System.Windows.Forms.Button();
             this.NumToolsColour = new System.Windows.Forms.NumericUpDown();
             this.tabSettings = new System.Windows.Forms.TabPage();
+            this.SettingsIsoPath = new System.Windows.Forms.Label();
+            this.SettingsIsoSet = new System.Windows.Forms.Button();
+            this.SettingsOverride = new System.Windows.Forms.CheckBox();
+            this.label49 = new System.Windows.Forms.Label();
             this.SettingsPCSX2Button = new System.Windows.Forms.Button();
             this.SettingsPCSX2Path = new System.Windows.Forms.Label();
             this.label48 = new System.Windows.Forms.Label();
@@ -212,6 +216,7 @@ namespace SSX_Modder
             ((System.ComponentModel.ISupportInitialize)(this.SSHXAxis)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SSHpictureBox1)).BeginInit();
+            this.tabLoc.SuspendLayout();
             this.tabCharacters.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.charnumericUpDown6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.charnumericUpDown5)).BeginInit();
@@ -233,7 +238,6 @@ namespace SSX_Modder
             ((System.ComponentModel.ISupportInitialize)(this.MusINFnumericUpDown3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MusINFnumericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MusINFnumericUpDown1)).BeginInit();
-            this.tabLoc.SuspendLayout();
             this.tabTools.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -907,6 +911,124 @@ namespace SSX_Modder
             this.SSHpictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.SSHpictureBox1.TabIndex = 0;
             this.SSHpictureBox1.TabStop = false;
+            // 
+            // tabLoc
+            // 
+            this.tabLoc.Controls.Add(this.LocSearchText);
+            this.tabLoc.Controls.Add(this.LocSearchBack);
+            this.tabLoc.Controls.Add(this.LocSearchNext);
+            this.tabLoc.Controls.Add(this.Save);
+            this.tabLoc.Controls.Add(this.LocrichTextBox2);
+            this.tabLoc.Controls.Add(this.LocrichTextBox1);
+            this.tabLoc.Controls.Add(this.LocSaveAs);
+            this.tabLoc.Controls.Add(this.LocLoad);
+            this.tabLoc.Controls.Add(this.LocBox1);
+            this.tabLoc.Location = new System.Drawing.Point(4, 22);
+            this.tabLoc.Name = "tabLoc";
+            this.tabLoc.Size = new System.Drawing.Size(1191, 527);
+            this.tabLoc.TabIndex = 4;
+            this.tabLoc.Text = "Language Files";
+            this.tabLoc.UseVisualStyleBackColor = true;
+            // 
+            // LocSearchText
+            // 
+            this.LocSearchText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.LocSearchText.Location = new System.Drawing.Point(85, 497);
+            this.LocSearchText.Name = "LocSearchText";
+            this.LocSearchText.Size = new System.Drawing.Size(157, 20);
+            this.LocSearchText.TabIndex = 9;
+            // 
+            // LocSearchBack
+            // 
+            this.LocSearchBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.LocSearchBack.Location = new System.Drawing.Point(4, 495);
+            this.LocSearchBack.Name = "LocSearchBack";
+            this.LocSearchBack.Size = new System.Drawing.Size(75, 23);
+            this.LocSearchBack.TabIndex = 8;
+            this.LocSearchBack.Text = "Find Back";
+            this.LocSearchBack.UseVisualStyleBackColor = true;
+            this.LocSearchBack.Click += new System.EventHandler(this.LocSearchBack_Click);
+            // 
+            // LocSearchNext
+            // 
+            this.LocSearchNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.LocSearchNext.Location = new System.Drawing.Point(248, 495);
+            this.LocSearchNext.Name = "LocSearchNext";
+            this.LocSearchNext.Size = new System.Drawing.Size(75, 23);
+            this.LocSearchNext.TabIndex = 7;
+            this.LocSearchNext.Text = "Find Next";
+            this.LocSearchNext.UseVisualStyleBackColor = true;
+            this.LocSearchNext.Click += new System.EventHandler(this.LocSearchNext_Click);
+            // 
+            // Save
+            // 
+            this.Save.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Save.Location = new System.Drawing.Point(1107, 501);
+            this.Save.Name = "Save";
+            this.Save.Size = new System.Drawing.Size(75, 23);
+            this.Save.TabIndex = 6;
+            this.Save.Text = "Save";
+            this.Save.UseVisualStyleBackColor = true;
+            this.Save.Click += new System.EventHandler(this.LOCSave_Click);
+            this.Save.MouseLeave += new System.EventHandler(this.ResetStatus);
+            // 
+            // LocrichTextBox2
+            // 
+            this.LocrichTextBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.LocrichTextBox2.Location = new System.Drawing.Point(339, 277);
+            this.LocrichTextBox2.Name = "LocrichTextBox2";
+            this.LocrichTextBox2.ReadOnly = true;
+            this.LocrichTextBox2.Size = new System.Drawing.Size(849, 218);
+            this.LocrichTextBox2.TabIndex = 5;
+            this.LocrichTextBox2.Text = "";
+            // 
+            // LocrichTextBox1
+            // 
+            this.LocrichTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.LocrichTextBox1.Location = new System.Drawing.Point(339, 3);
+            this.LocrichTextBox1.Name = "LocrichTextBox1";
+            this.LocrichTextBox1.Size = new System.Drawing.Size(849, 268);
+            this.LocrichTextBox1.TabIndex = 4;
+            this.LocrichTextBox1.Text = "";
+            this.LocrichTextBox1.TextChanged += new System.EventHandler(this.LocrichTextBox1_TextChanged);
+            // 
+            // LocSaveAs
+            // 
+            this.LocSaveAs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.LocSaveAs.Location = new System.Drawing.Point(1026, 501);
+            this.LocSaveAs.Name = "LocSaveAs";
+            this.LocSaveAs.Size = new System.Drawing.Size(75, 23);
+            this.LocSaveAs.TabIndex = 3;
+            this.LocSaveAs.Text = "Save As";
+            this.LocSaveAs.UseVisualStyleBackColor = true;
+            this.LocSaveAs.Click += new System.EventHandler(this.LocSaveAs_Click);
+            this.LocSaveAs.MouseLeave += new System.EventHandler(this.ResetStatus);
+            // 
+            // LocLoad
+            // 
+            this.LocLoad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.LocLoad.Location = new System.Drawing.Point(945, 501);
+            this.LocLoad.Name = "LocLoad";
+            this.LocLoad.Size = new System.Drawing.Size(75, 23);
+            this.LocLoad.TabIndex = 2;
+            this.LocLoad.Text = "Load";
+            this.LocLoad.UseVisualStyleBackColor = true;
+            this.LocLoad.Click += new System.EventHandler(this.LocLoad_Click);
+            this.LocLoad.MouseLeave += new System.EventHandler(this.ResetStatus);
+            // 
+            // LocBox1
+            // 
+            this.LocBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.LocBox1.FormattingEnabled = true;
+            this.LocBox1.Location = new System.Drawing.Point(4, 4);
+            this.LocBox1.Name = "LocBox1";
+            this.LocBox1.Size = new System.Drawing.Size(319, 485);
+            this.LocBox1.TabIndex = 1;
+            this.LocBox1.SelectedIndexChanged += new System.EventHandler(this.LocBox1_SelectedIndexChanged);
             // 
             // tabCharacters
             // 
@@ -1870,124 +1992,6 @@ namespace SSX_Modder
             this.musiclistBox1.TabIndex = 0;
             this.musiclistBox1.SelectedIndexChanged += new System.EventHandler(this.musiclistBox1_SelectedIndexChanged);
             // 
-            // tabLoc
-            // 
-            this.tabLoc.Controls.Add(this.LocSearchText);
-            this.tabLoc.Controls.Add(this.LocSearchBack);
-            this.tabLoc.Controls.Add(this.LocSearchNext);
-            this.tabLoc.Controls.Add(this.Save);
-            this.tabLoc.Controls.Add(this.LocrichTextBox2);
-            this.tabLoc.Controls.Add(this.LocrichTextBox1);
-            this.tabLoc.Controls.Add(this.LocSaveAs);
-            this.tabLoc.Controls.Add(this.LocLoad);
-            this.tabLoc.Controls.Add(this.LocBox1);
-            this.tabLoc.Location = new System.Drawing.Point(4, 22);
-            this.tabLoc.Name = "tabLoc";
-            this.tabLoc.Size = new System.Drawing.Size(1191, 527);
-            this.tabLoc.TabIndex = 4;
-            this.tabLoc.Text = "Language Files";
-            this.tabLoc.UseVisualStyleBackColor = true;
-            // 
-            // LocSearchText
-            // 
-            this.LocSearchText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.LocSearchText.Location = new System.Drawing.Point(85, 497);
-            this.LocSearchText.Name = "LocSearchText";
-            this.LocSearchText.Size = new System.Drawing.Size(157, 20);
-            this.LocSearchText.TabIndex = 9;
-            // 
-            // LocSearchBack
-            // 
-            this.LocSearchBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.LocSearchBack.Location = new System.Drawing.Point(4, 495);
-            this.LocSearchBack.Name = "LocSearchBack";
-            this.LocSearchBack.Size = new System.Drawing.Size(75, 23);
-            this.LocSearchBack.TabIndex = 8;
-            this.LocSearchBack.Text = "Find Back";
-            this.LocSearchBack.UseVisualStyleBackColor = true;
-            this.LocSearchBack.Click += new System.EventHandler(this.LocSearchBack_Click);
-            // 
-            // LocSearchNext
-            // 
-            this.LocSearchNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.LocSearchNext.Location = new System.Drawing.Point(248, 495);
-            this.LocSearchNext.Name = "LocSearchNext";
-            this.LocSearchNext.Size = new System.Drawing.Size(75, 23);
-            this.LocSearchNext.TabIndex = 7;
-            this.LocSearchNext.Text = "Find Next";
-            this.LocSearchNext.UseVisualStyleBackColor = true;
-            this.LocSearchNext.Click += new System.EventHandler(this.LocSearchNext_Click);
-            // 
-            // Save
-            // 
-            this.Save.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Save.Location = new System.Drawing.Point(1107, 501);
-            this.Save.Name = "Save";
-            this.Save.Size = new System.Drawing.Size(75, 23);
-            this.Save.TabIndex = 6;
-            this.Save.Text = "Save";
-            this.Save.UseVisualStyleBackColor = true;
-            this.Save.Click += new System.EventHandler(this.LOCSave_Click);
-            this.Save.MouseLeave += new System.EventHandler(this.ResetStatus);
-            // 
-            // LocrichTextBox2
-            // 
-            this.LocrichTextBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.LocrichTextBox2.Location = new System.Drawing.Point(339, 277);
-            this.LocrichTextBox2.Name = "LocrichTextBox2";
-            this.LocrichTextBox2.ReadOnly = true;
-            this.LocrichTextBox2.Size = new System.Drawing.Size(849, 218);
-            this.LocrichTextBox2.TabIndex = 5;
-            this.LocrichTextBox2.Text = "";
-            // 
-            // LocrichTextBox1
-            // 
-            this.LocrichTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.LocrichTextBox1.Location = new System.Drawing.Point(339, 3);
-            this.LocrichTextBox1.Name = "LocrichTextBox1";
-            this.LocrichTextBox1.Size = new System.Drawing.Size(849, 268);
-            this.LocrichTextBox1.TabIndex = 4;
-            this.LocrichTextBox1.Text = "";
-            this.LocrichTextBox1.TextChanged += new System.EventHandler(this.LocrichTextBox1_TextChanged);
-            // 
-            // LocSaveAs
-            // 
-            this.LocSaveAs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.LocSaveAs.Location = new System.Drawing.Point(1026, 501);
-            this.LocSaveAs.Name = "LocSaveAs";
-            this.LocSaveAs.Size = new System.Drawing.Size(75, 23);
-            this.LocSaveAs.TabIndex = 3;
-            this.LocSaveAs.Text = "Save As";
-            this.LocSaveAs.UseVisualStyleBackColor = true;
-            this.LocSaveAs.Click += new System.EventHandler(this.LocSaveAs_Click);
-            this.LocSaveAs.MouseLeave += new System.EventHandler(this.ResetStatus);
-            // 
-            // LocLoad
-            // 
-            this.LocLoad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.LocLoad.Location = new System.Drawing.Point(945, 501);
-            this.LocLoad.Name = "LocLoad";
-            this.LocLoad.Size = new System.Drawing.Size(75, 23);
-            this.LocLoad.TabIndex = 2;
-            this.LocLoad.Text = "Load";
-            this.LocLoad.UseVisualStyleBackColor = true;
-            this.LocLoad.Click += new System.EventHandler(this.LocLoad_Click);
-            this.LocLoad.MouseLeave += new System.EventHandler(this.ResetStatus);
-            // 
-            // LocBox1
-            // 
-            this.LocBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.LocBox1.FormattingEnabled = true;
-            this.LocBox1.Location = new System.Drawing.Point(4, 4);
-            this.LocBox1.Name = "LocBox1";
-            this.LocBox1.Size = new System.Drawing.Size(319, 485);
-            this.LocBox1.TabIndex = 1;
-            this.LocBox1.SelectedIndexChanged += new System.EventHandler(this.LocBox1_SelectedIndexChanged);
-            // 
             // tabTools
             // 
             this.tabTools.Controls.Add(this.groupBox5);
@@ -2059,6 +2063,10 @@ namespace SSX_Modder
             // 
             // tabSettings
             // 
+            this.tabSettings.Controls.Add(this.SettingsIsoPath);
+            this.tabSettings.Controls.Add(this.SettingsIsoSet);
+            this.tabSettings.Controls.Add(this.SettingsOverride);
+            this.tabSettings.Controls.Add(this.label49);
             this.tabSettings.Controls.Add(this.SettingsPCSX2Button);
             this.tabSettings.Controls.Add(this.SettingsPCSX2Path);
             this.tabSettings.Controls.Add(this.label48);
@@ -2074,6 +2082,45 @@ namespace SSX_Modder
             this.tabSettings.TabIndex = 10;
             this.tabSettings.Text = "Settings";
             this.tabSettings.UseVisualStyleBackColor = true;
+            // 
+            // SettingsIsoPath
+            // 
+            this.SettingsIsoPath.AutoSize = true;
+            this.SettingsIsoPath.Location = new System.Drawing.Point(16, 199);
+            this.SettingsIsoPath.Name = "SettingsIsoPath";
+            this.SettingsIsoPath.Size = new System.Drawing.Size(25, 13);
+            this.SettingsIsoPath.TabIndex = 12;
+            this.SettingsIsoPath.Text = "Null";
+            // 
+            // SettingsIsoSet
+            // 
+            this.SettingsIsoSet.Location = new System.Drawing.Point(19, 213);
+            this.SettingsIsoSet.Name = "SettingsIsoSet";
+            this.SettingsIsoSet.Size = new System.Drawing.Size(75, 23);
+            this.SettingsIsoSet.TabIndex = 11;
+            this.SettingsIsoSet.Text = "Set Path";
+            this.SettingsIsoSet.UseVisualStyleBackColor = true;
+            this.SettingsIsoSet.Click += new System.EventHandler(this.SettingsIsoSet_Click);
+            // 
+            // SettingsOverride
+            // 
+            this.SettingsOverride.AutoSize = true;
+            this.SettingsOverride.Location = new System.Drawing.Point(100, 219);
+            this.SettingsOverride.Name = "SettingsOverride";
+            this.SettingsOverride.Size = new System.Drawing.Size(96, 17);
+            this.SettingsOverride.TabIndex = 10;
+            this.SettingsOverride.Text = "Force Override";
+            this.SettingsOverride.UseVisualStyleBackColor = true;
+            this.SettingsOverride.CheckedChanged += new System.EventHandler(this.SettingsOverride_CheckedChanged);
+            // 
+            // label49
+            // 
+            this.label49.AutoSize = true;
+            this.label49.Location = new System.Drawing.Point(16, 186);
+            this.label49.Name = "label49";
+            this.label49.Size = new System.Drawing.Size(67, 13);
+            this.label49.TabIndex = 9;
+            this.label49.Text = "Last Built Iso";
             // 
             // SettingsPCSX2Button
             // 
@@ -2208,8 +2255,8 @@ namespace SSX_Modder
             this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
             this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(135, 22);
-            this.toolStripButton4.Text = "Start Emulator With ISO";
+            this.toolStripButton4.Size = new System.Drawing.Size(148, 22);
+            this.toolStripButton4.Text = "Start Emulator With Game";
             this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
             // 
             // GameType
@@ -2267,6 +2314,8 @@ namespace SSX_Modder
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SSHpictureBox1)).EndInit();
+            this.tabLoc.ResumeLayout(false);
+            this.tabLoc.PerformLayout();
             this.tabCharacters.ResumeLayout(false);
             this.tabCharacters.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.charnumericUpDown6)).EndInit();
@@ -2290,8 +2339,6 @@ namespace SSX_Modder
             ((System.ComponentModel.ISupportInitialize)(this.MusINFnumericUpDown3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.MusINFnumericUpDown2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.MusINFnumericUpDown1)).EndInit();
-            this.tabLoc.ResumeLayout(false);
-            this.tabLoc.PerformLayout();
             this.tabTools.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
@@ -2482,6 +2529,10 @@ namespace SSX_Modder
         private System.Windows.Forms.ComboBox BigFType;
         private System.Windows.Forms.ToolStripComboBox GameType;
         private System.Windows.Forms.Label label47;
+        private System.Windows.Forms.Label SettingsIsoPath;
+        private System.Windows.Forms.Button SettingsIsoSet;
+        private System.Windows.Forms.CheckBox SettingsOverride;
+        private System.Windows.Forms.Label label49;
     }
 }
 

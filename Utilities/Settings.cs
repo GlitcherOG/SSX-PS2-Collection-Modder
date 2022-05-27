@@ -16,6 +16,7 @@ namespace SSX_Modder.Utilities
         public string ZipPath = @"C:\Program Files\7-Zip\7z.exe";
         public string Pcsx2Path = "";
         public string ISOPath = "";
+        public bool Override = false;
 
         public void Save()
         {

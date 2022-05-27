@@ -27,7 +27,20 @@ This is a modding tool i came up and started making when i caught covid as a way
 - Mod File Making
 - Add COFB Making (.Big)
 - Backups
-- Extracted Colour Fix (Tricky)
+- Extracted Colour Fix (Colours to Dark, Tricky)
+- Extraction .Bin (SSX)
+
+### Mod File System Todo
+- About File (ModSystemV, Name, Author, Description, Image(?), List of Files Replaced)
+- Zip Archive System
+- Delete File On Instruction
+- Instructions System
+- Big Extraction
+- Big Making
+- Possible SSH Image Insertion (Probably not needed to due sizes of such files but should look into it)
+- Test for SSX 3 300%
+- Test for SSX-ElfLdr Setup Mod
+- Add ModList File to ISO
 
 ### Todo Later
 - Custom Arguments For Iso Extraction and Making (To allow the use of other programs)
