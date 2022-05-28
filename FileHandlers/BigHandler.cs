@@ -157,6 +157,7 @@ namespace SSX_Modder.FileHandlers
         public void LoadFolder(string path)
         {
             //BuildMode = true;
+            bigType = BigType.BIGF;
             bigPath = path;
             bigHeader = new BIGFHeader();
             bigFiles = new List<BIGFFiles>();

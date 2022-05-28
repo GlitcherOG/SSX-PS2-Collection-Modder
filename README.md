@@ -25,10 +25,8 @@ This is a modding tool i came up and started making when i caught covid as a way
 
 ### Current Todo
 - Mod File Making
-- Backups
 - Extraction .Bin (SSX)
 - Iso Path Per Game
-- Fix Offset Grab BigF
 
 ### Mod File System Todo
 - About File (ModSystemV, Name, Author, Description, Image(?), List of Files Replaced)
@@ -43,6 +41,7 @@ This is a modding tool i came up and started making when i caught covid as a way
 - Add ModList File to ISO
 
 ### Todo Later
+- Fix Offset Grab BigF
 - Custom Arguments For Iso Extraction and Making (To allow the use of other programs)
 - Make Better Workflow interface
 - Control Editor Menu

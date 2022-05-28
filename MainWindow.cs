@@ -23,7 +23,7 @@ namespace SSX_Modder
             SettingsPCSX2Path.Text = settings.Pcsx2Path;
             SettingsIsoPath.Text = settings.ISOPath;
             SettingsOverride.Checked = settings.Override;
-            GameType.SelectedIndex = 2;
+            GameType.SelectedIndex = settings.Game;
         }
         private void ResetStatus(object sender, EventArgs e)
         {
@@ -139,6 +139,254 @@ namespace SSX_Modder
             {
                 string strCmdText = "/C magick convert \"" + openFileDialog.FileName + "\" -colors " + (int)NumToolsColour.Value + " \"" + openFileDialog.FileName + "\"";
                 System.Diagnostics.Process.Start("CMD.exe", strCmdText);
+            }
+        }
+
+        private void ToolsPadding_Click(object sender, EventArgs e)
+        {
+            File.Delete(workspacePath + "//PAD0.000");
+            File.Delete(workspacePath + "//PAD1.000");
+        }
+
+        private void GameType_Click(object sender, EventArgs e)
+        {
+            if (GameType.SelectedIndex == 0)
+            {
+                workspacePath = Application.StartupPath + "\\disk\\SSX\\";
+                if (!Directory.Exists(workspacePath))
+                {
+                    Directory.CreateDirectory(workspacePath);
+                }
+            }
+            if (GameType.SelectedIndex == 1)
+            {
+                workspacePath = Application.StartupPath + "\\disk\\SSX Tricky\\";
+                if (!Directory.Exists(workspacePath))
+                {
+                    Directory.CreateDirectory(workspacePath);
+                }
+            }
+            if (GameType.SelectedIndex == 2)
+            {
+                workspacePath = Application.StartupPath + "\\disk\\SSX 3\\";
+                if (!Directory.Exists(workspacePath))
+                {
+                    Directory.CreateDirectory(workspacePath);
+                }
+            }
+            settings.Game = GameType.SelectedIndex;
+            settings.Save();
+        }
+
+        private void SettingsIsoSet_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Filter = "iso File (*.iso)|*.iso|All files (*.*)|*.*",
+                FilterIndex = 1,
+                RestoreDirectory = false
+            };
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                settings.ISOPath = openFileDialog.FileName;
+                SettingsIsoPath.Text = settings.ISOPath;
+                settings.Save();
+            }
+        }
+
+        private void SettingsOverride_CheckedChanged(object sender, EventArgs e)
+        {
+            settings.Override = SettingsOverride.Checked;
+            settings.Save();
+        }
+
+        private void ToolBrighten_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                InitialDirectory = workspacePath,
+                Filter = "png File (*.png)|*.png|All files (*.*)|*.*",
+                FilterIndex = 1,
+                RestoreDirectory = false
+            };
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                ImageUtil.Brighten(openFileDialog.FileName);
+            }
+        }
+
+        private void ToolDarken_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                InitialDirectory = workspacePath,
+                Filter = "png File (*.png)|*.png|All files (*.*)|*.*",
+                FilterIndex = 1,
+                RestoreDirectory = false
+            };
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                ImageUtil.Darken(openFileDialog.FileName);
+            }
+        }
+
+        private void ToolBrightenFolder_Click(object sender, EventArgs e)
+        {
+            CommonOpenFileDialog openFileDialog = new CommonOpenFileDialog
+            {
+                InitialDirectory = workspacePath,
+                IsFolderPicker = true,
+            };
+            if (openFileDialog.ShowDialog() == CommonFileDialogResult.Ok)
+            {
+                ImageUtil.BrightenFolder(openFileDialog.FileName);
+            }
+        }
+
+        private void ToolDarkenFolder_Click(object sender, EventArgs e)
+        {
+            CommonOpenFileDialog openFileDialog = new CommonOpenFileDialog
+            {
+                InitialDirectory = workspacePath,
+                IsFolderPicker = true,
+            };
+            if (openFileDialog.ShowDialog() == CommonFileDialogResult.Ok)
+            {
+                ImageUtil.DarkenFolder(openFileDialog.FileName);
+            }
+        }
+        private void ToolsBackupSSX_Click(object sender, EventArgs e)
+        {
+            string Path = Application.StartupPath + "\\disk\\SSX\\";
+            string Path2 = Application.StartupPath + "\\backup\\SSX\\";
+            if (!Directory.Exists(Path2))
+            {
+                Directory.CreateDirectory(Path2);
+            }
+            else
+            {
+                Directory.Delete(Path2, true);
+                Directory.CreateDirectory(Path2);
+            }
+            CopyDirectory(Path, Path2, true);
+            MessageBox.Show("Workspace backed up");
+        }
+
+        private void ToolsBackupSSXTricky_Click(object sender, EventArgs e)
+        {
+            string Path = Application.StartupPath + "\\disk\\SSX Tricky\\";
+            string Path2 = Application.StartupPath + "\\backup\\SSX Tricky\\";
+            if (!Directory.Exists(Path2))
+            {
+                Directory.CreateDirectory(Path2);
+            }
+            else
+            {
+                Directory.Delete(Path2, true);
+                Directory.CreateDirectory(Path2);
+            }
+            CopyDirectory(Path, Path2, true);
+            MessageBox.Show("Workspace backed up");
+        }
+
+        private void ToolsBackupSSX3_Click(object sender, EventArgs e)
+        {
+            string Path = Application.StartupPath + "\\disk\\SSX 3\\";
+            string Path2 = Application.StartupPath + "\\backup\\SSX 3\\";
+            if (!Directory.Exists(Path2))
+            {
+                Directory.CreateDirectory(Path2);
+            }
+            else
+            {
+                Directory.Delete(Path2, true);
+                Directory.CreateDirectory(Path2);
+            }
+            CopyDirectory(Path, Path2, true);
+            MessageBox.Show("Workspace backed up");
+        }
+
+        private void ToolsRestoreSSX_Click(object sender, EventArgs e)
+        {
+            string Path2 = Application.StartupPath + "\\disk\\SSX\\";
+            string Path = Application.StartupPath + "\\backup\\SSX\\";
+            if (!Directory.Exists(Path2))
+            {
+                Directory.CreateDirectory(Path2);
+            }
+            else
+            {
+                Directory.Delete(Path2, true);
+                Directory.CreateDirectory(Path2);
+            }
+            CopyDirectory(Path, Path2, true);
+            MessageBox.Show("Workspace backed up");
+        }
+
+        private void ToolsRestoreSSXTricky_Click(object sender, EventArgs e)
+        {
+            string Path2 = Application.StartupPath + "\\disk\\SSX Tricky\\";
+            string Path = Application.StartupPath + "\\backup\\SSX Tricky\\";
+            if (!Directory.Exists(Path2))
+            {
+                Directory.CreateDirectory(Path2);
+            }
+            else
+            {
+                Directory.Delete(Path2, true);
+                Directory.CreateDirectory(Path2);
+            }
+            CopyDirectory(Path, Path2, true);
+            MessageBox.Show("Workspace backed up");
+        }
+
+        private void ToolsRestoreSSX3_Click(object sender, EventArgs e)
+        {
+            string Path2 = Application.StartupPath + "\\disk\\SSX 3\\";
+            string Path = Application.StartupPath + "\\backup\\SSX 3\\";
+            if (!Directory.Exists(Path2))
+            {
+                Directory.CreateDirectory(Path2);
+            }
+            else
+            {
+                Directory.Delete(Path2, true);
+                Directory.CreateDirectory(Path2);
+            }
+            CopyDirectory(Path, Path2, true);
+            MessageBox.Show("Workspace backed up");
+        }
+
+        static void CopyDirectory(string sourceDir, string destinationDir, bool recursive)
+        {
+            // Get information about the source directory
+            var dir = new DirectoryInfo(sourceDir);
+
+            // Check if the source directory exists
+            if (!dir.Exists)
+                throw new DirectoryNotFoundException($"Source directory not found: {dir.FullName}");
+
+            // Cache directories before we start copying
+            DirectoryInfo[] dirs = dir.GetDirectories();
+
+            // Create the destination directory
+            Directory.CreateDirectory(destinationDir);
+
+            // Get the files in the source directory and copy to the destination directory
+            foreach (FileInfo file in dir.GetFiles())
+            {
+                string targetFilePath = Path.Combine(destinationDir, file.Name);
+                file.CopyTo(targetFilePath);
+            }
+
+            // If recursive and copying subdirectories, recursively call this method
+            if (recursive)
+            {
+                foreach (DirectoryInfo subDir in dirs)
+                {
+                    string newDestinationDir = Path.Combine(destinationDir, subDir.Name);
+                    CopyDirectory(subDir.FullName, newDestinationDir, true);
+                }
             }
         }
         #endregion
@@ -995,116 +1243,5 @@ namespace SSX_Modder
         }
         #endregion
 
-        private void ToolsPadding_Click(object sender, EventArgs e)
-        {
-            File.Delete(workspacePath+"//PAD0.000");
-            File.Delete(workspacePath + "//PAD1.000");
-        }
-
-        private void GameType_Click(object sender, EventArgs e)
-        {
-            if(GameType.SelectedIndex == 0)
-            {
-                workspacePath = Application.StartupPath + "\\disk\\SSX\\";
-                if (!Directory.Exists(workspacePath))
-                {
-                    Directory.CreateDirectory(workspacePath);
-                }
-            }
-            if (GameType.SelectedIndex == 1)
-            {
-                workspacePath = Application.StartupPath + "\\disk\\SSX Tricky\\";
-                if (!Directory.Exists(workspacePath))
-                {
-                    Directory.CreateDirectory(workspacePath);
-                }
-            }
-            if (GameType.SelectedIndex == 2)
-            {
-                workspacePath = Application.StartupPath + "\\disk\\SSX 3\\";
-                if (!Directory.Exists(workspacePath))
-                {
-                    Directory.CreateDirectory(workspacePath);
-                }
-            }
-        }
-
-        private void SettingsIsoSet_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog
-            {
-                Filter = "iso File (*.iso)|*.iso|All files (*.*)|*.*",
-                FilterIndex = 1,
-                RestoreDirectory = false
-            };
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                settings.ISOPath = openFileDialog.FileName;
-                SettingsIsoPath.Text = settings.ISOPath;
-                settings.Save();
-            }
-        }
-
-        private void SettingsOverride_CheckedChanged(object sender, EventArgs e)
-        {
-            settings.Override = SettingsOverride.Checked;
-            settings.Save();
-        }
-
-        private void ToolBrighten_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog
-            {
-                InitialDirectory = workspacePath,
-                Filter = "png File (*.png)|*.png|All files (*.*)|*.*",
-                FilterIndex = 1,
-                RestoreDirectory = false
-            };
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                ImageUtil.Brighten(openFileDialog.FileName);
-            }
-        }
-
-        private void ToolDarken_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog
-            {
-                InitialDirectory = workspacePath,
-                Filter = "png File (*.png)|*.png|All files (*.*)|*.*",
-                FilterIndex = 1,
-                RestoreDirectory = false
-            };
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                ImageUtil.Darken(openFileDialog.FileName);
-            }
-        }
-
-        private void ToolBrightenFolder_Click(object sender, EventArgs e)
-        {
-            CommonOpenFileDialog openFileDialog = new CommonOpenFileDialog
-            {
-                InitialDirectory = workspacePath,
-                IsFolderPicker = true,
-            };
-            if (openFileDialog.ShowDialog() == CommonFileDialogResult.Ok)
-            {
-                ImageUtil.BrightenFolder(openFileDialog.FileName);
-            }
-        }
-
-        private void ToolDarkenFolder_Click(object sender, EventArgs e)
-        {
-            CommonOpenFileDialog openFileDialog = new CommonOpenFileDialog
-            {
-                InitialDirectory = workspacePath,
-                IsFolderPicker = true,
-            };
-            if (openFileDialog.ShowDialog() == CommonFileDialogResult.Ok)
-            {
-                ImageUtil.DarkenFolder(openFileDialog.FileName);
-            }
-        }
     }
 }

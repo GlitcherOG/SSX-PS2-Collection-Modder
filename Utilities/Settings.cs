@@ -17,7 +17,7 @@ namespace SSX_Modder.Utilities
         public string Pcsx2Path = "";
         public string ISOPath = "";
         public bool Override = false;
-
+        public int Game;
         public void Save()
         {
             var serializer = new XmlSerializer(typeof(Settings));
