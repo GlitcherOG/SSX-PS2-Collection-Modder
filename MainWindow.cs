@@ -117,7 +117,7 @@ namespace SSX_Modder
                     }
                     else if (settings.ISOPath.ToLower().Contains(".elf"))
                     {
-                        startInfo.Arguments = "--elf \"" + settings.ISOPath + "\"";
+                        startInfo.Arguments = "-elf \"" + settings.ISOPath + "\"";
                     }
                 }
                 Process.Start(startInfo);
@@ -644,8 +644,8 @@ namespace SSX_Modder
             };
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
+                Enum.TryParse(BigFType.Text, out bigfHandler.bigType);
                 bigfHandler.BuildBig(openFileDialog.FileName);
-                bigfHandler.bigType = (BigType)Enum.Parse(typeof(BigType), BigFType.Text);
                 MessageBox.Show("Building Done");
                 GC.Collect();
             }
@@ -1049,6 +1049,36 @@ namespace SSX_Modder
         {
             settings.Override = SettingsOverride.Checked;
             settings.Save();
+        }
+
+        private void ToolBrighten_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                InitialDirectory = workspacePath,
+                Filter = "png File (*.png)|*.png|All files (*.*)|*.*",
+                FilterIndex = 1,
+                RestoreDirectory = false
+            };
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                ImageUtil.Brighten(openFileDialog.FileName);
+            }
+        }
+
+        private void ToolDarken_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                InitialDirectory = workspacePath,
+                Filter = "png File (*.png)|*.png|All files (*.*)|*.*",
+                FilterIndex = 1,
+                RestoreDirectory = false
+            };
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                ImageUtil.Darken(openFileDialog.FileName);
+            }
         }
     }
 }

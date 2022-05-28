@@ -25,10 +25,9 @@ This is a modding tool i came up and started making when i caught covid as a way
 
 ### Current Todo
 - Mod File Making
-- Add COFB Making (.Big)
 - Backups
-- Extracted Colour Fix (Colours to Dark, Tricky)
 - Extraction .Bin (SSX)
+- Iso Path Per Game
 
 ### Mod File System Todo
 - About File (ModSystemV, Name, Author, Description, Image(?), List of Files Replaced)

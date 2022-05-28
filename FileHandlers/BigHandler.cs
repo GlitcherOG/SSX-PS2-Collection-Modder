@@ -92,7 +92,7 @@ namespace SSX_Modder.FileHandlers
 
         public void ReadBigC0FB(Stream stream)
         {
-            bigType = BigType.c0FB;
+            bigType = BigType.C0FB;
 
             bigHeader.startOffset = StreamUtil.ReadInt16Big(stream);
 
@@ -192,9 +192,38 @@ namespace SSX_Modder.FileHandlers
             {
                 BuildBigF(stream);
             }
-            else if (bigType == BigType.c0FB)
+            else if (bigType == BigType.C0FB)
             {
-                MessageBox.Show("C0FB Currently Not Supported");
+                bigHeader = new BIGFHeader();
+                bigFiles = new List<BIGFFiles>();
+                string[] paths = Directory.GetFiles(bigPath, "*.*", SearchOption.AllDirectories);
+                bigHeader.ammount = paths.Length;
+                int FileOffset = 6;
+                for (int i = 0; i < paths.Length; i++)
+                {
+                    BIGFFiles tempFile = new BIGFFiles();
+                    tempFile.path = paths[i].Remove(0, bigPath.Length + 1).Replace("//", @"\");
+                    FileOffset += tempFile.path.Length + 7;
+                    Stream stream1 = File.OpenRead(paths[i]);
+                    tempFile.size = (int)stream1.Length;
+                    stream1.Dispose();
+                    stream1.Close();
+                    bigFiles.Add(tempFile);
+                }
+                //FileOffset += 6;
+                for (int i = 0; i < bigFiles.Count; i++)
+                {
+                    BIGFFiles tempFile1 = bigFiles[i];
+                    tempFile1.offset = FileOffset;
+                    FileOffset += bigFiles[i].size;
+                    bigFiles[i] = tempFile1;
+                }
+
+                BuildBigC0FB(stream);
+            }
+            else
+            {
+                MessageBox.Show("Unkown format");
             }
 
             if (File.Exists(path))
@@ -266,6 +295,50 @@ namespace SSX_Modder.FileHandlers
 
             StreamUtil.WriteInt32Big(stream, (int)stream.Length);
         }
+
+        public void BuildBigC0FB(Stream stream)
+        {
+            byte[] tempByte = new byte[2] {0xC0,0xFB};
+            stream.Write(tempByte, 0, tempByte.Length);
+
+            //Set Blank Start of file offset
+            tempByte = new byte[2];
+            stream.Write(tempByte, 0, tempByte.Length);
+
+            //Set Ammount
+            StreamUtil.WriteInt16Big(stream, bigHeader.ammount);
+
+            for (int i = 0; i < bigFiles.Count; i++)
+            {
+                //Write offset
+                StreamUtil.WriteInt24Big(stream, bigFiles[i].offset);
+
+                //Write size
+                StreamUtil.WriteInt24Big(stream, bigFiles[i].size);
+
+                //Write Path
+                StreamUtil.WriteNullString(stream, bigFiles[i].path);
+            }
+
+            //Set File start offset
+            long pos = stream.Position;
+            stream.Position = 2;
+
+            StreamUtil.WriteInt16Big(stream, (int)pos);
+
+            stream.Position = stream.Length;
+
+            //Write Files
+            for (int i = 0; i < bigFiles.Count; i++)
+            {
+                using (Stream stream1 = File.Open(bigPath + "\\" + bigFiles[i].path, FileMode.Open))
+                {
+                    tempByte = new byte[stream1.Length];
+                    stream1.Read(tempByte, 0, tempByte.Length);
+                    stream.Write(tempByte, 0, tempByte.Length);
+                }
+            }
+        }
     }
 
 //00-03 - Magic Word
@@ -299,6 +372,6 @@ namespace SSX_Modder.FileHandlers
     enum BigType
     {
         BIGF,
-        c0FB
+        C0FB
     }
 }

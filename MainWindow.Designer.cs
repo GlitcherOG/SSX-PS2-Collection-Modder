@@ -180,6 +180,9 @@ namespace SSX_Modder
             this.label9 = new System.Windows.Forms.Label();
             this.musiclistBox1 = new System.Windows.Forms.ListBox();
             this.tabTools = new System.Windows.Forms.TabPage();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.ToolDarken = new System.Windows.Forms.Button();
+            this.ToolBrighten = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.ToolsPadding = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -239,6 +242,7 @@ namespace SSX_Modder
             ((System.ComponentModel.ISupportInitialize)(this.MusINFnumericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MusINFnumericUpDown1)).BeginInit();
             this.tabTools.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NumToolsColour)).BeginInit();
@@ -1994,6 +1998,7 @@ namespace SSX_Modder
             // 
             // tabTools
             // 
+            this.tabTools.Controls.Add(this.groupBox6);
             this.tabTools.Controls.Add(this.groupBox5);
             this.tabTools.Controls.Add(this.groupBox4);
             this.tabTools.Location = new System.Drawing.Point(4, 22);
@@ -2003,12 +2008,43 @@ namespace SSX_Modder
             this.tabTools.Text = "Tools";
             this.tabTools.UseVisualStyleBackColor = true;
             // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.ToolDarken);
+            this.groupBox6.Controls.Add(this.ToolBrighten);
+            this.groupBox6.Location = new System.Drawing.Point(4, 83);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(247, 66);
+            this.groupBox6.TabIndex = 5;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Dark Image (WIP)";
+            // 
+            // ToolDarken
+            // 
+            this.ToolDarken.Location = new System.Drawing.Point(130, 20);
+            this.ToolDarken.Name = "ToolDarken";
+            this.ToolDarken.Size = new System.Drawing.Size(111, 40);
+            this.ToolDarken.TabIndex = 1;
+            this.ToolDarken.Text = "Darken";
+            this.ToolDarken.UseVisualStyleBackColor = true;
+            this.ToolDarken.Click += new System.EventHandler(this.ToolDarken_Click);
+            // 
+            // ToolBrighten
+            // 
+            this.ToolBrighten.Location = new System.Drawing.Point(7, 20);
+            this.ToolBrighten.Name = "ToolBrighten";
+            this.ToolBrighten.Size = new System.Drawing.Size(117, 40);
+            this.ToolBrighten.TabIndex = 0;
+            this.ToolBrighten.Text = "Brighten";
+            this.ToolBrighten.UseVisualStyleBackColor = true;
+            this.ToolBrighten.Click += new System.EventHandler(this.ToolBrighten_Click);
+            // 
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.ToolsPadding);
             this.groupBox5.Location = new System.Drawing.Point(257, 4);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(200, 100);
+            this.groupBox5.Size = new System.Drawing.Size(200, 50);
             this.groupBox5.TabIndex = 4;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Other";
@@ -2340,6 +2376,7 @@ namespace SSX_Modder
             ((System.ComponentModel.ISupportInitialize)(this.MusINFnumericUpDown2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.MusINFnumericUpDown1)).EndInit();
             this.tabTools.ResumeLayout(false);
+            this.groupBox6.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.NumToolsColour)).EndInit();
@@ -2533,6 +2570,9 @@ namespace SSX_Modder
         private System.Windows.Forms.Button SettingsIsoSet;
         private System.Windows.Forms.CheckBox SettingsOverride;
         private System.Windows.Forms.Label label49;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.Button ToolDarken;
+        private System.Windows.Forms.Button ToolBrighten;
     }
 }
 
