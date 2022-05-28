@@ -210,6 +210,8 @@ namespace SSX_Modder
             this.GameType = new System.Windows.Forms.ToolStripComboBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.ToolBrightenFolder = new System.Windows.Forms.Button();
+            this.ToolDarkenFolder = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabBig.SuspendLayout();
             this.tabSSH.SuspendLayout();
@@ -2010,20 +2012,22 @@ namespace SSX_Modder
             // 
             // groupBox6
             // 
+            this.groupBox6.Controls.Add(this.ToolDarkenFolder);
+            this.groupBox6.Controls.Add(this.ToolBrightenFolder);
             this.groupBox6.Controls.Add(this.ToolDarken);
             this.groupBox6.Controls.Add(this.ToolBrighten);
             this.groupBox6.Location = new System.Drawing.Point(4, 83);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(247, 66);
+            this.groupBox6.Size = new System.Drawing.Size(247, 110);
             this.groupBox6.TabIndex = 5;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Dark Image (WIP)";
             // 
             // ToolDarken
             // 
-            this.ToolDarken.Location = new System.Drawing.Point(130, 20);
+            this.ToolDarken.Location = new System.Drawing.Point(122, 20);
             this.ToolDarken.Name = "ToolDarken";
-            this.ToolDarken.Size = new System.Drawing.Size(111, 40);
+            this.ToolDarken.Size = new System.Drawing.Size(119, 40);
             this.ToolDarken.TabIndex = 1;
             this.ToolDarken.Text = "Darken";
             this.ToolDarken.UseVisualStyleBackColor = true;
@@ -2033,7 +2037,7 @@ namespace SSX_Modder
             // 
             this.ToolBrighten.Location = new System.Drawing.Point(7, 20);
             this.ToolBrighten.Name = "ToolBrighten";
-            this.ToolBrighten.Size = new System.Drawing.Size(117, 40);
+            this.ToolBrighten.Size = new System.Drawing.Size(109, 40);
             this.ToolBrighten.TabIndex = 0;
             this.ToolBrighten.Text = "Brighten";
             this.ToolBrighten.UseVisualStyleBackColor = true;
@@ -2323,6 +2327,26 @@ namespace SSX_Modder
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
             // 
+            // ToolBrightenFolder
+            // 
+            this.ToolBrightenFolder.Location = new System.Drawing.Point(6, 64);
+            this.ToolBrightenFolder.Name = "ToolBrightenFolder";
+            this.ToolBrightenFolder.Size = new System.Drawing.Size(109, 40);
+            this.ToolBrightenFolder.TabIndex = 2;
+            this.ToolBrightenFolder.Text = "Brighten Folder";
+            this.ToolBrightenFolder.UseVisualStyleBackColor = true;
+            this.ToolBrightenFolder.Click += new System.EventHandler(this.ToolBrightenFolder_Click);
+            // 
+            // ToolDarkenFolder
+            // 
+            this.ToolDarkenFolder.Location = new System.Drawing.Point(121, 64);
+            this.ToolDarkenFolder.Name = "ToolDarkenFolder";
+            this.ToolDarkenFolder.Size = new System.Drawing.Size(119, 40);
+            this.ToolDarkenFolder.TabIndex = 3;
+            this.ToolDarkenFolder.Text = "Darken Folder";
+            this.ToolDarkenFolder.UseVisualStyleBackColor = true;
+            this.ToolDarkenFolder.Click += new System.EventHandler(this.ToolDarkenFolder_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2573,6 +2597,8 @@ namespace SSX_Modder
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.Button ToolDarken;
         private System.Windows.Forms.Button ToolBrighten;
+        private System.Windows.Forms.Button ToolDarkenFolder;
+        private System.Windows.Forms.Button ToolBrightenFolder;
     }
 }
 

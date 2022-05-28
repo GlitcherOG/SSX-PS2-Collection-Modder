@@ -28,6 +28,7 @@ This is a modding tool i came up and started making when i caught covid as a way
 - Backups
 - Extraction .Bin (SSX)
 - Iso Path Per Game
+- Fix Offset Grab BigF
 
 ### Mod File System Todo
 - About File (ModSystemV, Name, Author, Description, Image(?), List of Files Replaced)

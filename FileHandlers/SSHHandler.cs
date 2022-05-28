@@ -557,13 +557,14 @@ namespace SSX_Modder.FileHandlers
                     {
                         for (int x = 0; x < tempImage.bitmap.Width; x++)
                         {
-                            Color color = sshImages[i].bitmap.GetPixel(x, y);
+                            Color color = tempImage.bitmap.GetPixel(x, y);
                             if (!colourTable.colorTable.Contains(color))
                             {
                                 colourTable.colorTable.Add(color);
                             }
                         }
                     }
+                    tempImage.metalBitmap = new Bitmap(tempImage.bitmap.Width, tempImage.bitmap.Height);
                     tempImage.sshTable = colourTable;
                     tempImage.sshHeader = imageHeader;
                     sshImages.Add(tempImage);
@@ -604,7 +605,7 @@ namespace SSX_Modder.FileHandlers
             byte[] tempByte = new byte[4];
             Stream stream = new MemoryStream();
 
-            StreamUtil.WriteString(stream, MagicWord);
+            StreamUtil.WriteString(stream, "SHPS");
 
             long SizePos = stream.Position;
             tempByte = new byte[4];
@@ -695,13 +696,16 @@ namespace SSX_Modder.FileHandlers
                     stream.Write(tempByte, 0, tempByte.Length);
                 }
 
-                //ending
-                tempByte = new byte[4] { 0x70, 0x00, 0x00, 0x00 };
-                stream.Write(tempByte, 0, tempByte.Length);
+                if (sshImages[i].longname != "")
+                {
+                    //ending
+                    tempByte = new byte[4] { 0x70, 0x00, 0x00, 0x00 };
+                    stream.Write(tempByte, 0, tempByte.Length);
 
-                StreamUtil.WriteNullString(stream, sshImages[i].longname);
+                    StreamUtil.WriteNullString(stream, sshImages[i].longname);
 
-                StreamUtil.WriteString(stream, "Buy ERTS", 9);
+                    StreamUtil.WriteString(stream, "Buy ERTS", 9);
+                }
             }
 
             stream.Position = SizePos;

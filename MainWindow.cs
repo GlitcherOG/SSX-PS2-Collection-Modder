@@ -1080,5 +1080,31 @@ namespace SSX_Modder
                 ImageUtil.Darken(openFileDialog.FileName);
             }
         }
+
+        private void ToolBrightenFolder_Click(object sender, EventArgs e)
+        {
+            CommonOpenFileDialog openFileDialog = new CommonOpenFileDialog
+            {
+                InitialDirectory = workspacePath,
+                IsFolderPicker = true,
+            };
+            if (openFileDialog.ShowDialog() == CommonFileDialogResult.Ok)
+            {
+                ImageUtil.BrightenFolder(openFileDialog.FileName);
+            }
+        }
+
+        private void ToolDarkenFolder_Click(object sender, EventArgs e)
+        {
+            CommonOpenFileDialog openFileDialog = new CommonOpenFileDialog
+            {
+                InitialDirectory = workspacePath,
+                IsFolderPicker = true,
+            };
+            if (openFileDialog.ShowDialog() == CommonFileDialogResult.Ok)
+            {
+                ImageUtil.DarkenFolder(openFileDialog.FileName);
+            }
+        }
     }
 }
