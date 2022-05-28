@@ -202,7 +202,7 @@ namespace SSX_Modder.FileHandlers
                 for (int i = 0; i < paths.Length; i++)
                 {
                     BIGFFiles tempFile = new BIGFFiles();
-                    tempFile.path = paths[i].Remove(0, bigPath.Length + 1).Replace("//", @"\");
+                    tempFile.path = paths[i].Remove(0, bigPath.Length + 1).Replace("//", @"/");
                     FileOffset += tempFile.path.Length + 7;
                     Stream stream1 = File.OpenRead(paths[i]);
                     tempFile.size = (int)stream1.Length;
@@ -317,7 +317,7 @@ namespace SSX_Modder.FileHandlers
                 StreamUtil.WriteInt24Big(stream, bigFiles[i].size);
 
                 //Write Path
-                StreamUtil.WriteNullString(stream, bigFiles[i].path);
+                StreamUtil.WriteNullString(stream, bigFiles[i].path.Replace(@"\",@"/"));
             }
 
             //Set File start offset
