@@ -75,14 +75,10 @@ namespace SSX_Modder
                 SaveFileDialog openFileDialog = new SaveFileDialog
                 {
                     InitialDirectory = Application.StartupPath,
-                    Filter = "Iso Image (*.iso)|*.iso|Bin Image (*.bin)|*.bin|All files (*.*)|*.*",
+                    Filter = "Iso Image (*.iso)|*.iso|All files (*.*)|*.*",
                     FilterIndex = 1,
                     RestoreDirectory = false
                 };
-                if(GameType.SelectedIndex==0)
-                {
-                    openFileDialog.FilterIndex = 2;
-                }
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     ProcessStartInfo startInfo = new ProcessStartInfo();
@@ -791,7 +787,7 @@ namespace SSX_Modder
         }
         #endregion
 
-        #region BIGF
+        #region BIG
         BigHandler bigfHandler = new BigHandler();
         private void BigLoad_Click(object sender, EventArgs e)
         {
@@ -873,6 +869,7 @@ namespace SSX_Modder
                 BigExtract.Enabled = false;
                 BuildBigButton.Enabled = true;
                 BigCompressed.Text = "Null";
+                BigFType.SelectedIndex = 0;
                 bigfHandler.LoadFolder(openFileDialog.FileName);
                 for (int i = 0; i < bigfHandler.bigFiles.Count; i++)
                 {

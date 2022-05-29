@@ -186,7 +186,9 @@ namespace SSX_Modder.FileHandlers
 
         public void BuildBig(string path)
         {
+            var temp1 = bigType;
             LoadFolder(bigPath);
+            bigType = temp1;
             Stream stream = new MemoryStream();
 
             if (bigType == BigType.BIGF)

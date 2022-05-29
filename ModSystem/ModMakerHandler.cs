@@ -26,16 +26,15 @@ namespace SSX_Modder.ModSystem
         public string Author;
 
         //Region Compatablity
-        public bool USA1;
-        public bool PAL1;
-        public bool NTSCJ1;
-        public bool PALNTSCJ;
-        //SSX ONLY
-        public bool USAGreatestHits;
-        //SSX 3 Only
-        public bool JAMPACK;
-        public bool OPSM2;
-        public bool KRDemo;
+        public bool PAL;
+        public bool NTSC;
+        public bool NTSCJ;
+        public bool NTSCK;
+
+        public bool PALDemo;
+        public bool NTSCDemo;
+        public bool NTSCJDemo;
+        public bool NTSCKDemo;
 
         public void Save(string path)
         {
