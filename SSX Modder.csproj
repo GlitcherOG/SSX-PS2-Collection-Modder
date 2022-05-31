@@ -258,7 +258,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FileHandlers\RefpackHandler.cs" />
+    <Compile Include="ModSystem\ModApplication.cs" />
+    <Compile Include="ModSystem\ModInfo.cs" />
     <Compile Include="ModSystem\ModMakerHandler.cs" />
+    <Compile Include="ModSystem\ModMakingInstructions.cs" />
     <Compile Include="Utilities\ByteUtil.cs" />
     <Compile Include="FileHandlers\BigHandler.cs" />
     <Compile Include="FileHandlers\CHARDBLHandler.cs" />

@@ -34,46 +34,57 @@ namespace SSX_Modder
             this.tabModPacks = new System.Windows.Forms.TabPage();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabModInfo = new System.Windows.Forms.TabPage();
+            this.ModApply = new System.Windows.Forms.Button();
+            this.ModLoad = new System.Windows.Forms.Button();
+            this.ModDescription = new System.Windows.Forms.Label();
+            this.ModGame = new System.Windows.Forms.Label();
+            this.ModAuthor = new System.Windows.Forms.Label();
+            this.ModVersion = new System.Windows.Forms.Label();
+            this.ModLabel = new System.Windows.Forms.Label();
             this.label63 = new System.Windows.Forms.Label();
+            this.label64 = new System.Windows.Forms.Label();
+            this.label65 = new System.Windows.Forms.Label();
+            this.label66 = new System.Windows.Forms.Label();
+            this.label67 = new System.Windows.Forms.Label();
+            this.ModPicture = new System.Windows.Forms.PictureBox();
+            this.label68 = new System.Windows.Forms.Label();
+            this.tabModInfo = new System.Windows.Forms.TabPage();
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.label62 = new System.Windows.Forms.Label();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.ModMakerVersion = new System.Windows.Forms.TextBox();
+            this.ModMakerDescription = new System.Windows.Forms.RichTextBox();
+            this.ModMakerAuthor = new System.Windows.Forms.TextBox();
+            this.ModMakerGame = new System.Windows.Forms.ComboBox();
+            this.ModMakerName = new System.Windows.Forms.TextBox();
             this.label54 = new System.Windows.Forms.Label();
             this.label53 = new System.Windows.Forms.Label();
             this.label52 = new System.Windows.Forms.Label();
             this.label51 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.ModMakerIcon = new System.Windows.Forms.PictureBox();
             this.label50 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.ModMakerSave = new System.Windows.Forms.Button();
+            this.ModMakerPack = new System.Windows.Forms.Button();
+            this.ModMakerLoad = new System.Windows.Forms.Button();
             this.tabModInstructions = new System.Windows.Forms.TabPage();
-            this.button10 = new System.Windows.Forms.Button();
+            this.ModInstructionLoad = new System.Windows.Forms.Button();
             this.label61 = new System.Windows.Forms.Label();
             this.label60 = new System.Windows.Forms.Label();
             this.treeView2 = new System.Windows.Forms.TreeView();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.label59 = new System.Windows.Forms.Label();
             this.label58 = new System.Windows.Forms.Label();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
+            this.ModInstructionMoveDown = new System.Windows.Forms.Button();
+            this.ModInstructionRemove = new System.Windows.Forms.Button();
+            this.ModInstructionMoveUp = new System.Windows.Forms.Button();
+            this.ModInstructionAdd = new System.Windows.Forms.Button();
             this.label57 = new System.Windows.Forms.Label();
             this.label56 = new System.Windows.Forms.Label();
             this.label55 = new System.Windows.Forms.Label();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.ModInstructionSave = new System.Windows.Forms.Button();
+            this.ModInstructionListbox = new System.Windows.Forms.ListBox();
+            this.ModInstructionOutput = new System.Windows.Forms.TextBox();
+            this.ModInstructionSource = new System.Windows.Forms.TextBox();
+            this.ModInstructionType = new System.Windows.Forms.ComboBox();
             this.tabBig = new System.Windows.Forms.TabPage();
             this.label47 = new System.Windows.Forms.Label();
             this.BigFType = new System.Windows.Forms.ComboBox();
@@ -262,11 +273,14 @@ namespace SSX_Modder
             this.GameType = new System.Windows.Forms.ToolStripComboBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.tabControl1.SuspendLayout();
             this.tabModPacks.SuspendLayout();
             this.tabControl2.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ModPicture)).BeginInit();
             this.tabModInfo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ModMakerIcon)).BeginInit();
             this.tabModInstructions.SuspendLayout();
             this.tabBig.SuspendLayout();
             this.tabSSH.SuspendLayout();
@@ -351,6 +365,21 @@ namespace SSX_Modder
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.listBox1);
+            this.tabPage1.Controls.Add(this.ModApply);
+            this.tabPage1.Controls.Add(this.ModLoad);
+            this.tabPage1.Controls.Add(this.ModDescription);
+            this.tabPage1.Controls.Add(this.ModGame);
+            this.tabPage1.Controls.Add(this.ModAuthor);
+            this.tabPage1.Controls.Add(this.ModVersion);
+            this.tabPage1.Controls.Add(this.ModLabel);
+            this.tabPage1.Controls.Add(this.label63);
+            this.tabPage1.Controls.Add(this.label64);
+            this.tabPage1.Controls.Add(this.label65);
+            this.tabPage1.Controls.Add(this.label66);
+            this.tabPage1.Controls.Add(this.label67);
+            this.tabPage1.Controls.Add(this.ModPicture);
+            this.tabPage1.Controls.Add(this.label68);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Size = new System.Drawing.Size(1176, 494);
@@ -358,26 +387,152 @@ namespace SSX_Modder
             this.tabPage1.Text = "Mod";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // ModApply
+            // 
+            this.ModApply.Location = new System.Drawing.Point(1088, 465);
+            this.ModApply.Name = "ModApply";
+            this.ModApply.Size = new System.Drawing.Size(75, 23);
+            this.ModApply.TabIndex = 30;
+            this.ModApply.Text = "Apply Mod";
+            this.ModApply.UseVisualStyleBackColor = true;
+            this.ModApply.Click += new System.EventHandler(this.ModApply_Click);
+            // 
+            // ModLoad
+            // 
+            this.ModLoad.Location = new System.Drawing.Point(12, 465);
+            this.ModLoad.Name = "ModLoad";
+            this.ModLoad.Size = new System.Drawing.Size(75, 23);
+            this.ModLoad.TabIndex = 29;
+            this.ModLoad.Text = "Load Mod";
+            this.ModLoad.UseVisualStyleBackColor = true;
+            this.ModLoad.Click += new System.EventHandler(this.ModLoad_Click);
+            // 
+            // ModDescription
+            // 
+            this.ModDescription.Location = new System.Drawing.Point(9, 138);
+            this.ModDescription.Name = "ModDescription";
+            this.ModDescription.Size = new System.Drawing.Size(706, 105);
+            this.ModDescription.TabIndex = 27;
+            this.ModDescription.Text = "Null";
+            // 
+            // ModGame
+            // 
+            this.ModGame.AutoSize = true;
+            this.ModGame.Location = new System.Drawing.Point(9, 94);
+            this.ModGame.Name = "ModGame";
+            this.ModGame.Size = new System.Drawing.Size(25, 13);
+            this.ModGame.TabIndex = 26;
+            this.ModGame.Text = "Null";
+            // 
+            // ModAuthor
+            // 
+            this.ModAuthor.AutoSize = true;
+            this.ModAuthor.Location = new System.Drawing.Point(9, 55);
+            this.ModAuthor.Name = "ModAuthor";
+            this.ModAuthor.Size = new System.Drawing.Size(25, 13);
+            this.ModAuthor.TabIndex = 25;
+            this.ModAuthor.Text = "Null";
+            // 
+            // ModVersion
+            // 
+            this.ModVersion.AutoSize = true;
+            this.ModVersion.Location = new System.Drawing.Point(293, 16);
+            this.ModVersion.Name = "ModVersion";
+            this.ModVersion.Size = new System.Drawing.Size(25, 13);
+            this.ModVersion.TabIndex = 24;
+            this.ModVersion.Text = "Null";
+            // 
+            // ModLabel
+            // 
+            this.ModLabel.AutoSize = true;
+            this.ModLabel.Location = new System.Drawing.Point(9, 16);
+            this.ModLabel.Name = "ModLabel";
+            this.ModLabel.Size = new System.Drawing.Size(25, 13);
+            this.ModLabel.TabIndex = 23;
+            this.ModLabel.Text = "Null";
+            // 
+            // label63
+            // 
+            this.label63.AutoSize = true;
+            this.label63.Location = new System.Drawing.Point(9, 243);
+            this.label63.Name = "label63";
+            this.label63.Size = new System.Drawing.Size(61, 13);
+            this.label63.TabIndex = 22;
+            this.label63.Text = "Instructions";
+            // 
+            // label64
+            // 
+            this.label64.AutoSize = true;
+            this.label64.Location = new System.Drawing.Point(9, 42);
+            this.label64.Name = "label64";
+            this.label64.Size = new System.Drawing.Size(38, 13);
+            this.label64.TabIndex = 21;
+            this.label64.Text = "Author";
+            // 
+            // label65
+            // 
+            this.label65.AutoSize = true;
+            this.label65.Location = new System.Drawing.Point(292, 3);
+            this.label65.Name = "label65";
+            this.label65.Size = new System.Drawing.Size(42, 13);
+            this.label65.TabIndex = 20;
+            this.label65.Text = "Version";
+            // 
+            // label66
+            // 
+            this.label66.AutoSize = true;
+            this.label66.Location = new System.Drawing.Point(9, 125);
+            this.label66.Name = "label66";
+            this.label66.Size = new System.Drawing.Size(60, 13);
+            this.label66.TabIndex = 19;
+            this.label66.Text = "Description";
+            // 
+            // label67
+            // 
+            this.label67.AutoSize = true;
+            this.label67.Location = new System.Drawing.Point(9, 81);
+            this.label67.Name = "label67";
+            this.label67.Size = new System.Drawing.Size(35, 13);
+            this.label67.TabIndex = 18;
+            this.label67.Text = "Game";
+            // 
+            // ModPicture
+            // 
+            this.ModPicture.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ModPicture.Location = new System.Drawing.Point(721, 3);
+            this.ModPicture.Name = "ModPicture";
+            this.ModPicture.Size = new System.Drawing.Size(442, 442);
+            this.ModPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ModPicture.TabIndex = 17;
+            this.ModPicture.TabStop = false;
+            // 
+            // label68
+            // 
+            this.label68.AutoSize = true;
+            this.label68.Location = new System.Drawing.Point(9, 3);
+            this.label68.Name = "label68";
+            this.label68.Size = new System.Drawing.Size(35, 13);
+            this.label68.TabIndex = 16;
+            this.label68.Text = "Name";
+            // 
             // tabModInfo
             // 
-            this.tabModInfo.Controls.Add(this.label63);
             this.tabModInfo.Controls.Add(this.listBox2);
             this.tabModInfo.Controls.Add(this.label62);
-            this.tabModInfo.Controls.Add(this.checkedListBox1);
-            this.tabModInfo.Controls.Add(this.textBox3);
-            this.tabModInfo.Controls.Add(this.richTextBox1);
-            this.tabModInfo.Controls.Add(this.textBox2);
-            this.tabModInfo.Controls.Add(this.comboBox1);
-            this.tabModInfo.Controls.Add(this.textBox1);
+            this.tabModInfo.Controls.Add(this.ModMakerVersion);
+            this.tabModInfo.Controls.Add(this.ModMakerDescription);
+            this.tabModInfo.Controls.Add(this.ModMakerAuthor);
+            this.tabModInfo.Controls.Add(this.ModMakerGame);
+            this.tabModInfo.Controls.Add(this.ModMakerName);
             this.tabModInfo.Controls.Add(this.label54);
             this.tabModInfo.Controls.Add(this.label53);
             this.tabModInfo.Controls.Add(this.label52);
             this.tabModInfo.Controls.Add(this.label51);
-            this.tabModInfo.Controls.Add(this.pictureBox1);
+            this.tabModInfo.Controls.Add(this.ModMakerIcon);
             this.tabModInfo.Controls.Add(this.label50);
-            this.tabModInfo.Controls.Add(this.button3);
-            this.tabModInfo.Controls.Add(this.button2);
-            this.tabModInfo.Controls.Add(this.button1);
+            this.tabModInfo.Controls.Add(this.ModMakerSave);
+            this.tabModInfo.Controls.Add(this.ModMakerPack);
+            this.tabModInfo.Controls.Add(this.ModMakerLoad);
             this.tabModInfo.Location = new System.Drawing.Point(4, 22);
             this.tabModInfo.Name = "tabModInfo";
             this.tabModInfo.Padding = new System.Windows.Forms.Padding(3);
@@ -385,15 +540,6 @@ namespace SSX_Modder
             this.tabModInfo.TabIndex = 0;
             this.tabModInfo.Text = "Mod Maker";
             this.tabModInfo.UseVisualStyleBackColor = true;
-            // 
-            // label63
-            // 
-            this.label63.AutoSize = true;
-            this.label63.Location = new System.Drawing.Point(550, 4);
-            this.label63.Name = "label63";
-            this.label63.Size = new System.Drawing.Size(54, 13);
-            this.label63.TabIndex = 17;
-            this.label63.Text = "CheckList";
             // 
             // listBox2
             // 
@@ -412,61 +558,47 @@ namespace SSX_Modder
             this.label62.TabIndex = 15;
             this.label62.Text = "Instructions";
             // 
-            // checkedListBox1
+            // ModMakerVersion
             // 
-            this.checkedListBox1.Enabled = false;
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.checkedListBox1.Items.AddRange(new object[] {
-            "Icon",
-            "Mod Info",
-            "Instructions"});
-            this.checkedListBox1.Location = new System.Drawing.Point(550, 21);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(163, 109);
-            this.checkedListBox1.TabIndex = 14;
+            this.ModMakerVersion.Location = new System.Drawing.Point(292, 22);
+            this.ModMakerVersion.Name = "ModMakerVersion";
+            this.ModMakerVersion.Size = new System.Drawing.Size(100, 20);
+            this.ModMakerVersion.TabIndex = 13;
             // 
-            // textBox3
+            // ModMakerDescription
             // 
-            this.textBox3.Location = new System.Drawing.Point(292, 22);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 20);
-            this.textBox3.TabIndex = 13;
+            this.ModMakerDescription.Location = new System.Drawing.Point(9, 145);
+            this.ModMakerDescription.Name = "ModMakerDescription";
+            this.ModMakerDescription.Size = new System.Drawing.Size(704, 106);
+            this.ModMakerDescription.TabIndex = 12;
+            this.ModMakerDescription.Text = "";
             // 
-            // richTextBox1
+            // ModMakerAuthor
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(9, 145);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(704, 106);
-            this.richTextBox1.TabIndex = 12;
-            this.richTextBox1.Text = "";
+            this.ModMakerAuthor.Location = new System.Drawing.Point(9, 61);
+            this.ModMakerAuthor.Name = "ModMakerAuthor";
+            this.ModMakerAuthor.Size = new System.Drawing.Size(277, 20);
+            this.ModMakerAuthor.TabIndex = 11;
             // 
-            // textBox2
+            // ModMakerGame
             // 
-            this.textBox2.Location = new System.Drawing.Point(9, 61);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(277, 20);
-            this.textBox2.TabIndex = 11;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.ModMakerGame.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ModMakerGame.FormattingEnabled = true;
+            this.ModMakerGame.Items.AddRange(new object[] {
             "SSX",
             "SSX Tricky",
             "SSX 3"});
-            this.comboBox1.Location = new System.Drawing.Point(9, 101);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 10;
+            this.ModMakerGame.Location = new System.Drawing.Point(9, 101);
+            this.ModMakerGame.Name = "ModMakerGame";
+            this.ModMakerGame.Size = new System.Drawing.Size(121, 21);
+            this.ModMakerGame.TabIndex = 10;
             // 
-            // textBox1
+            // ModMakerName
             // 
-            this.textBox1.Location = new System.Drawing.Point(9, 22);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(277, 20);
-            this.textBox1.TabIndex = 9;
+            this.ModMakerName.Location = new System.Drawing.Point(9, 22);
+            this.ModMakerName.Name = "ModMakerName";
+            this.ModMakerName.Size = new System.Drawing.Size(277, 20);
+            this.ModMakerName.TabIndex = 9;
             // 
             // label54
             // 
@@ -504,14 +636,15 @@ namespace SSX_Modder
             this.label51.TabIndex = 5;
             this.label51.Text = "Game";
             // 
-            // pictureBox1
+            // ModMakerIcon
             // 
-            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox1.Location = new System.Drawing.Point(728, 6);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(442, 442);
-            this.pictureBox1.TabIndex = 4;
-            this.pictureBox1.TabStop = false;
+            this.ModMakerIcon.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ModMakerIcon.Location = new System.Drawing.Point(728, 6);
+            this.ModMakerIcon.Name = "ModMakerIcon";
+            this.ModMakerIcon.Size = new System.Drawing.Size(442, 442);
+            this.ModMakerIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ModMakerIcon.TabIndex = 4;
+            this.ModMakerIcon.TabStop = false;
             // 
             // label50
             // 
@@ -522,55 +655,57 @@ namespace SSX_Modder
             this.label50.TabIndex = 3;
             this.label50.Text = "Name";
             // 
-            // button3
+            // ModMakerSave
             // 
-            this.button3.Location = new System.Drawing.Point(952, 465);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(106, 23);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Save Mod Info";
-            this.button3.UseVisualStyleBackColor = true;
+            this.ModMakerSave.Location = new System.Drawing.Point(952, 465);
+            this.ModMakerSave.Name = "ModMakerSave";
+            this.ModMakerSave.Size = new System.Drawing.Size(106, 23);
+            this.ModMakerSave.TabIndex = 2;
+            this.ModMakerSave.Text = "Save Mod Info";
+            this.ModMakerSave.UseVisualStyleBackColor = true;
+            this.ModMakerSave.Click += new System.EventHandler(this.ModMakerSave_Click);
             // 
-            // button2
+            // ModMakerPack
             // 
-            this.button2.Location = new System.Drawing.Point(1064, 465);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(106, 23);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Pack Mod";
-            this.button2.UseVisualStyleBackColor = true;
+            this.ModMakerPack.Location = new System.Drawing.Point(1064, 465);
+            this.ModMakerPack.Name = "ModMakerPack";
+            this.ModMakerPack.Size = new System.Drawing.Size(106, 23);
+            this.ModMakerPack.TabIndex = 1;
+            this.ModMakerPack.Text = "Pack Mod";
+            this.ModMakerPack.UseVisualStyleBackColor = true;
+            this.ModMakerPack.Click += new System.EventHandler(this.ModMakerPack_Click);
             // 
-            // button1
+            // ModMakerLoad
             // 
-            this.button1.Location = new System.Drawing.Point(6, 465);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(106, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Load Mod Folder";
-            this.button1.UseVisualStyleBackColor = true;
+            this.ModMakerLoad.Location = new System.Drawing.Point(6, 465);
+            this.ModMakerLoad.Name = "ModMakerLoad";
+            this.ModMakerLoad.Size = new System.Drawing.Size(106, 23);
+            this.ModMakerLoad.TabIndex = 0;
+            this.ModMakerLoad.Text = "Load Mod Folder";
+            this.ModMakerLoad.UseVisualStyleBackColor = true;
+            this.ModMakerLoad.Click += new System.EventHandler(this.ModMakerLoad_Click);
             // 
             // tabModInstructions
             // 
-            this.tabModInstructions.Controls.Add(this.button10);
+            this.tabModInstructions.Controls.Add(this.ModInstructionLoad);
             this.tabModInstructions.Controls.Add(this.label61);
             this.tabModInstructions.Controls.Add(this.label60);
             this.tabModInstructions.Controls.Add(this.treeView2);
             this.tabModInstructions.Controls.Add(this.treeView1);
             this.tabModInstructions.Controls.Add(this.label59);
             this.tabModInstructions.Controls.Add(this.label58);
-            this.tabModInstructions.Controls.Add(this.button8);
-            this.tabModInstructions.Controls.Add(this.button9);
-            this.tabModInstructions.Controls.Add(this.button7);
-            this.tabModInstructions.Controls.Add(this.button6);
+            this.tabModInstructions.Controls.Add(this.ModInstructionMoveDown);
+            this.tabModInstructions.Controls.Add(this.ModInstructionRemove);
+            this.tabModInstructions.Controls.Add(this.ModInstructionMoveUp);
+            this.tabModInstructions.Controls.Add(this.ModInstructionAdd);
             this.tabModInstructions.Controls.Add(this.label57);
             this.tabModInstructions.Controls.Add(this.label56);
             this.tabModInstructions.Controls.Add(this.label55);
-            this.tabModInstructions.Controls.Add(this.button5);
-            this.tabModInstructions.Controls.Add(this.button4);
-            this.tabModInstructions.Controls.Add(this.listBox1);
-            this.tabModInstructions.Controls.Add(this.textBox5);
-            this.tabModInstructions.Controls.Add(this.textBox4);
-            this.tabModInstructions.Controls.Add(this.comboBox2);
+            this.tabModInstructions.Controls.Add(this.ModInstructionSave);
+            this.tabModInstructions.Controls.Add(this.ModInstructionListbox);
+            this.tabModInstructions.Controls.Add(this.ModInstructionOutput);
+            this.tabModInstructions.Controls.Add(this.ModInstructionSource);
+            this.tabModInstructions.Controls.Add(this.ModInstructionType);
             this.tabModInstructions.Location = new System.Drawing.Point(4, 22);
             this.tabModInstructions.Name = "tabModInstructions";
             this.tabModInstructions.Padding = new System.Windows.Forms.Padding(3);
@@ -579,19 +714,20 @@ namespace SSX_Modder
             this.tabModInstructions.Text = "Mod Instructions";
             this.tabModInstructions.UseVisualStyleBackColor = true;
             // 
-            // button10
+            // ModInstructionLoad
             // 
-            this.button10.Location = new System.Drawing.Point(240, 457);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(107, 23);
-            this.button10.TabIndex = 19;
-            this.button10.Text = "Load Mod Folder";
-            this.button10.UseVisualStyleBackColor = true;
+            this.ModInstructionLoad.Location = new System.Drawing.Point(240, 457);
+            this.ModInstructionLoad.Name = "ModInstructionLoad";
+            this.ModInstructionLoad.Size = new System.Drawing.Size(107, 23);
+            this.ModInstructionLoad.TabIndex = 19;
+            this.ModInstructionLoad.Text = "Load Mod Folder";
+            this.ModInstructionLoad.UseVisualStyleBackColor = true;
+            this.ModInstructionLoad.Click += new System.EventHandler(this.ModInstructionLoad_Click);
             // 
             // label61
             // 
             this.label61.AutoSize = true;
-            this.label61.Location = new System.Drawing.Point(680, 154);
+            this.label61.Location = new System.Drawing.Point(822, 154);
             this.label61.Name = "label61";
             this.label61.Size = new System.Drawing.Size(73, 13);
             this.label61.TabIndex = 18;
@@ -600,7 +736,7 @@ namespace SSX_Modder
             // label60
             // 
             this.label60.AutoSize = true;
-            this.label60.Location = new System.Drawing.Point(240, 154);
+            this.label60.Location = new System.Drawing.Point(506, 154);
             this.label60.Name = "label60";
             this.label60.Size = new System.Drawing.Size(80, 13);
             this.label60.TabIndex = 17;
@@ -608,76 +744,80 @@ namespace SSX_Modder
             // 
             // treeView2
             // 
-            this.treeView2.Location = new System.Drawing.Point(683, 173);
+            this.treeView2.Location = new System.Drawing.Point(825, 172);
             this.treeView2.Name = "treeView2";
-            this.treeView2.Size = new System.Drawing.Size(487, 279);
+            this.treeView2.Size = new System.Drawing.Size(345, 279);
             this.treeView2.TabIndex = 16;
             // 
             // treeView1
             // 
-            this.treeView1.Location = new System.Drawing.Point(240, 173);
+            this.treeView1.Location = new System.Drawing.Point(509, 173);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(437, 278);
+            this.treeView1.Size = new System.Drawing.Size(307, 278);
             this.treeView1.TabIndex = 15;
             // 
             // label59
             // 
             this.label59.AutoSize = true;
-            this.label59.Location = new System.Drawing.Point(240, 20);
+            this.label59.Location = new System.Drawing.Point(377, 20);
             this.label59.Name = "label59";
             this.label59.Size = new System.Drawing.Size(119, 39);
             this.label59.TabIndex = 14;
-            this.label59.Text = "Game Directory: Game/\r\nMod Directory: Mod/\r\n\r\n";
+            this.label59.Text = "Game Directory: Game\\\r\nMod Directory: Mod\\\r\n\r\n";
             // 
             // label58
             // 
             this.label58.AutoSize = true;
-            this.label58.Location = new System.Drawing.Point(240, 7);
+            this.label58.Location = new System.Drawing.Point(377, 7);
             this.label58.Name = "label58";
             this.label58.Size = new System.Drawing.Size(25, 13);
             this.label58.TabIndex = 13;
             this.label58.Text = "Info";
             // 
-            // button8
+            // ModInstructionMoveDown
             // 
-            this.button8.Location = new System.Drawing.Point(120, 458);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(114, 23);
-            this.button8.TabIndex = 12;
-            this.button8.Text = "\\/";
-            this.button8.UseVisualStyleBackColor = true;
+            this.ModInstructionMoveDown.Location = new System.Drawing.Point(120, 458);
+            this.ModInstructionMoveDown.Name = "ModInstructionMoveDown";
+            this.ModInstructionMoveDown.Size = new System.Drawing.Size(114, 23);
+            this.ModInstructionMoveDown.TabIndex = 12;
+            this.ModInstructionMoveDown.Text = "\\/";
+            this.ModInstructionMoveDown.UseVisualStyleBackColor = true;
+            this.ModInstructionMoveDown.Click += new System.EventHandler(this.ModInstructionMoveDown_Click);
             // 
-            // button9
+            // ModInstructionRemove
             // 
-            this.button9.Location = new System.Drawing.Point(120, 433);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(114, 23);
-            this.button9.TabIndex = 11;
-            this.button9.Text = "Remove";
-            this.button9.UseVisualStyleBackColor = true;
+            this.ModInstructionRemove.Location = new System.Drawing.Point(120, 433);
+            this.ModInstructionRemove.Name = "ModInstructionRemove";
+            this.ModInstructionRemove.Size = new System.Drawing.Size(114, 23);
+            this.ModInstructionRemove.TabIndex = 11;
+            this.ModInstructionRemove.Text = "Remove";
+            this.ModInstructionRemove.UseVisualStyleBackColor = true;
+            this.ModInstructionRemove.Click += new System.EventHandler(this.ModInstructionRemove_Click);
             // 
-            // button7
+            // ModInstructionMoveUp
             // 
-            this.button7.Location = new System.Drawing.Point(7, 458);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(107, 23);
-            this.button7.TabIndex = 10;
-            this.button7.Text = "/\\";
-            this.button7.UseVisualStyleBackColor = true;
+            this.ModInstructionMoveUp.Location = new System.Drawing.Point(7, 458);
+            this.ModInstructionMoveUp.Name = "ModInstructionMoveUp";
+            this.ModInstructionMoveUp.Size = new System.Drawing.Size(107, 23);
+            this.ModInstructionMoveUp.TabIndex = 10;
+            this.ModInstructionMoveUp.Text = "/\\";
+            this.ModInstructionMoveUp.UseVisualStyleBackColor = true;
+            this.ModInstructionMoveUp.Click += new System.EventHandler(this.ModInstructionMoveUp_Click);
             // 
-            // button6
+            // ModInstructionAdd
             // 
-            this.button6.Location = new System.Drawing.Point(7, 433);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(107, 23);
-            this.button6.TabIndex = 9;
-            this.button6.Text = "Add";
-            this.button6.UseVisualStyleBackColor = true;
+            this.ModInstructionAdd.Location = new System.Drawing.Point(7, 433);
+            this.ModInstructionAdd.Name = "ModInstructionAdd";
+            this.ModInstructionAdd.Size = new System.Drawing.Size(107, 23);
+            this.ModInstructionAdd.TabIndex = 9;
+            this.ModInstructionAdd.Text = "Add";
+            this.ModInstructionAdd.UseVisualStyleBackColor = true;
+            this.ModInstructionAdd.Click += new System.EventHandler(this.ModInstructionAdd_Click);
             // 
             // label57
             // 
             this.label57.AutoSize = true;
-            this.label57.Location = new System.Drawing.Point(756, 77);
+            this.label57.Location = new System.Drawing.Point(822, 77);
             this.label57.Name = "label57";
             this.label57.Size = new System.Drawing.Size(39, 13);
             this.label57.TabIndex = 8;
@@ -686,7 +826,7 @@ namespace SSX_Modder
             // label56
             // 
             this.label56.AutoSize = true;
-            this.label56.Location = new System.Drawing.Point(364, 77);
+            this.label56.Location = new System.Drawing.Point(506, 77);
             this.label56.Name = "label56";
             this.label56.Size = new System.Drawing.Size(41, 13);
             this.label56.TabIndex = 7;
@@ -695,66 +835,63 @@ namespace SSX_Modder
             // label55
             // 
             this.label55.AutoSize = true;
-            this.label55.Location = new System.Drawing.Point(237, 77);
+            this.label55.Location = new System.Drawing.Point(377, 77);
             this.label55.Name = "label55";
             this.label55.Size = new System.Drawing.Size(31, 13);
             this.label55.TabIndex = 6;
             this.label55.Text = "Type";
             // 
-            // button5
+            // ModInstructionSave
             // 
-            this.button5.Location = new System.Drawing.Point(1066, 457);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(107, 23);
-            this.button5.TabIndex = 5;
-            this.button5.Text = "Save Instructions";
-            this.button5.UseVisualStyleBackColor = true;
+            this.ModInstructionSave.Location = new System.Drawing.Point(1066, 457);
+            this.ModInstructionSave.Name = "ModInstructionSave";
+            this.ModInstructionSave.Size = new System.Drawing.Size(107, 23);
+            this.ModInstructionSave.TabIndex = 5;
+            this.ModInstructionSave.Text = "Save Instructions";
+            this.ModInstructionSave.UseVisualStyleBackColor = true;
+            this.ModInstructionSave.Click += new System.EventHandler(this.ModInstructionSave_Click);
             // 
-            // button4
+            // ModInstructionListbox
             // 
-            this.button4.Location = new System.Drawing.Point(353, 457);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(107, 23);
-            this.button4.TabIndex = 4;
-            this.button4.Text = "Load Instructions";
-            this.button4.UseVisualStyleBackColor = true;
+            this.ModInstructionListbox.FormattingEnabled = true;
+            this.ModInstructionListbox.Location = new System.Drawing.Point(7, 7);
+            this.ModInstructionListbox.Name = "ModInstructionListbox";
+            this.ModInstructionListbox.Size = new System.Drawing.Size(340, 420);
+            this.ModInstructionListbox.TabIndex = 3;
+            this.ModInstructionListbox.SelectedIndexChanged += new System.EventHandler(this.ModInstructionListbox_SelectedIndexChanged);
             // 
-            // listBox1
+            // ModInstructionOutput
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(7, 7);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(227, 420);
-            this.listBox1.TabIndex = 3;
+            this.ModInstructionOutput.Location = new System.Drawing.Point(825, 96);
+            this.ModInstructionOutput.Name = "ModInstructionOutput";
+            this.ModInstructionOutput.Size = new System.Drawing.Size(345, 20);
+            this.ModInstructionOutput.TabIndex = 2;
+            this.ModInstructionOutput.TextChanged += new System.EventHandler(this.ModInstructionChange);
             // 
-            // textBox5
+            // ModInstructionSource
             // 
-            this.textBox5.Location = new System.Drawing.Point(759, 96);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(411, 20);
-            this.textBox5.TabIndex = 2;
+            this.ModInstructionSource.Location = new System.Drawing.Point(509, 96);
+            this.ModInstructionSource.Name = "ModInstructionSource";
+            this.ModInstructionSource.Size = new System.Drawing.Size(310, 20);
+            this.ModInstructionSource.TabIndex = 1;
+            this.ModInstructionSource.TextChanged += new System.EventHandler(this.ModInstructionChange);
             // 
-            // textBox4
+            // ModInstructionType
             // 
-            this.textBox4.Location = new System.Drawing.Point(367, 96);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(386, 20);
-            this.textBox4.TabIndex = 1;
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
+            this.ModInstructionType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ModInstructionType.FormattingEnabled = true;
+            this.ModInstructionType.Items.AddRange(new object[] {
             "Copy",
             "Delete",
-            "BigExtract",
-            "BigFMake",
-            "BigC0FBMake"});
-            this.comboBox2.Location = new System.Drawing.Point(240, 96);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 21);
-            this.comboBox2.TabIndex = 0;
+            "Big Extract",
+            "BigF Make",
+            "BigC0FB Make",
+            "Config Insert"});
+            this.ModInstructionType.Location = new System.Drawing.Point(380, 96);
+            this.ModInstructionType.Name = "ModInstructionType";
+            this.ModInstructionType.Size = new System.Drawing.Size(121, 21);
+            this.ModInstructionType.TabIndex = 0;
+            this.ModInstructionType.SelectedIndexChanged += new System.EventHandler(this.ModInstructionChange);
             // 
             // tabBig
             // 
@@ -2908,6 +3045,14 @@ namespace SSX_Modder
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
             // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(12, 259);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(703, 186);
+            this.listBox1.TabIndex = 31;
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2924,9 +3069,12 @@ namespace SSX_Modder
             this.tabControl1.ResumeLayout(false);
             this.tabModPacks.ResumeLayout(false);
             this.tabControl2.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ModPicture)).EndInit();
             this.tabModInfo.ResumeLayout(false);
             this.tabModInfo.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ModMakerIcon)).EndInit();
             this.tabModInstructions.ResumeLayout(false);
             this.tabModInstructions.PerformLayout();
             this.tabBig.ResumeLayout(false);
@@ -3179,45 +3327,57 @@ namespace SSX_Modder
         private System.Windows.Forms.TabControl tabControl2;
         private System.Windows.Forms.TabPage tabModInfo;
         private System.Windows.Forms.Label label51;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox ModMakerIcon;
         private System.Windows.Forms.Label label50;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button ModMakerSave;
+        private System.Windows.Forms.Button ModMakerPack;
+        private System.Windows.Forms.Button ModMakerLoad;
         private System.Windows.Forms.TabPage tabModInstructions;
-        private System.Windows.Forms.CheckedListBox checkedListBox1;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox ModMakerVersion;
+        private System.Windows.Forms.RichTextBox ModMakerDescription;
+        private System.Windows.Forms.TextBox ModMakerAuthor;
+        private System.Windows.Forms.ComboBox ModMakerGame;
+        private System.Windows.Forms.TextBox ModMakerName;
         private System.Windows.Forms.Label label54;
         private System.Windows.Forms.Label label53;
         private System.Windows.Forms.Label label52;
-        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button ModInstructionLoad;
         private System.Windows.Forms.Label label61;
         private System.Windows.Forms.Label label60;
         private System.Windows.Forms.TreeView treeView2;
         private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.Label label59;
         private System.Windows.Forms.Label label58;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button ModInstructionMoveDown;
+        private System.Windows.Forms.Button ModInstructionRemove;
+        private System.Windows.Forms.Button ModInstructionMoveUp;
+        private System.Windows.Forms.Button ModInstructionAdd;
         private System.Windows.Forms.Label label57;
         private System.Windows.Forms.Label label56;
         private System.Windows.Forms.Label label55;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Button ModInstructionSave;
+        private System.Windows.Forms.ListBox ModInstructionListbox;
+        private System.Windows.Forms.TextBox ModInstructionOutput;
+        private System.Windows.Forms.TextBox ModInstructionSource;
+        private System.Windows.Forms.ComboBox ModInstructionType;
         private System.Windows.Forms.ListBox listBox2;
         private System.Windows.Forms.Label label62;
         private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.Label ModDescription;
+        private System.Windows.Forms.Label ModGame;
+        private System.Windows.Forms.Label ModAuthor;
+        private System.Windows.Forms.Label ModVersion;
+        private System.Windows.Forms.Label ModLabel;
         private System.Windows.Forms.Label label63;
+        private System.Windows.Forms.Label label64;
+        private System.Windows.Forms.Label label65;
+        private System.Windows.Forms.Label label66;
+        private System.Windows.Forms.Label label67;
+        private System.Windows.Forms.PictureBox ModPicture;
+        private System.Windows.Forms.Label label68;
+        private System.Windows.Forms.Button ModApply;
+        private System.Windows.Forms.Button ModLoad;
+        private System.Windows.Forms.ListBox listBox1;
     }
 }
 

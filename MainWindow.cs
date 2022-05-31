@@ -7,13 +7,14 @@ using Microsoft.WindowsAPICodePack.Dialogs;
 using System.Drawing;
 using System.Drawing.Imaging;
 using SSX_Modder.Utilities;
+using SSX_Modder.ModSystem;
 
 namespace SSX_Modder
 {
     public partial class MainWindow : Form
     {
-        Settings settings = new Settings();
-        string workspacePath = Application.StartupPath + "\\disk\\SSX 3\\";
+        public static Settings settings = new Settings();
+        public static string workspacePath = Application.StartupPath + "\\disk\\SSX 3\\";
         public MainWindow()
         {
             InitializeComponent();
@@ -1240,5 +1241,197 @@ namespace SSX_Modder
         }
         #endregion
 
+        #region ModMaker Info
+        ModMakerHandler modMaker = new ModMakerHandler();
+        private void ModMakerLoad_Click(object sender, EventArgs e)
+        {
+            CommonOpenFileDialog openFileDialog = new CommonOpenFileDialog
+            {
+                InitialDirectory = workspacePath,
+                IsFolderPicker = true,
+            };
+            if (openFileDialog.ShowDialog() == CommonFileDialogResult.Ok)
+            {
+                modMaker.ModFolder = openFileDialog.FileName;
+                modMaker.ModInfo = ModInfo.Load(openFileDialog.FileName);
+
+                if (File.Exists(openFileDialog.FileName + "//Icon.png"))
+                {
+                    modMaker.Icon = Image.FromFile(openFileDialog.FileName + "//Icon.png");
+                    ModMakerIcon.Image = modMaker.Icon;
+                }
+                else
+                {
+                    ModMakerIcon.Image = null;
+                }
+
+                ModMakerName.Text = modMaker.ModInfo.Name;
+                ModMakerVersion.Text = modMaker.ModInfo.Version;
+                ModMakerAuthor.Text = modMaker.ModInfo.Author;
+                ModMakerDescription.Text = modMaker.ModInfo.Description;
+                ModMakerGame.Text   = modMaker.ModInfo.Game;
+            }
+        }
+
+        private void ModMakerSave_Click(object sender, EventArgs e)
+        {
+            if(modMaker.ModFolder!="")
+            {
+                modMaker.ModInfo.Name = ModMakerName.Text;
+                modMaker.ModInfo.Version = ModMakerVersion.Text;
+                modMaker.ModInfo.Author = ModMakerAuthor.Text;
+                modMaker.ModInfo.Description = ModMakerDescription.Text;
+                modMaker.ModInfo.Game = ModMakerGame.Text;
+                modMaker.ModInfo.ModPackVersion = 1;
+                modMaker.ModInfo.Save(modMaker.ModFolder);
+            }
+        }
+
+        private void ModMakerPack_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog openFileDialog = new SaveFileDialog
+            {
+                InitialDirectory = workspacePath,
+                Filter = "SSX Mod File (*.ssx)|*.ssx|All files (*.*)|*.*",
+                FilterIndex = 1,
+                RestoreDirectory = false
+            };
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                modMaker.PackMod(openFileDialog.FileName);
+            }
+        }
+        #endregion
+
+        #region Instructions
+        ModMakingInstructions makingInstructions = new ModMakingInstructions();
+
+        public void UpdateInstructionList()
+        {
+            ModInstructionListbox.Items.Clear();
+            for (int i = 0; i < makingInstructions.Instructions.Count; i++)
+            {
+                ModInstructionListbox.Items.Add(makingInstructions.Instructions[i].Type + " , "+ makingInstructions.Instructions[i].Source + " , " + makingInstructions.Instructions[i].Ouput);
+            }
+        }
+        private void ModInstructionAdd_Click(object sender, EventArgs e)
+        {
+            if (makingInstructions.ModPath != "")
+            {
+                makingInstructions.Instructions.Add(new Instruction() { Type = "Copy" });
+                UpdateInstructionList();
+            }
+        }
+
+        private void ModInstructionRemove_Click(object sender, EventArgs e)
+        {
+            if (ModInstructionListbox.SelectedIndex != -1)
+            {
+                makingInstructions.Instructions.RemoveAt(ModInstructionListbox.SelectedIndex);
+            }
+            UpdateInstructionList();
+        }
+
+        private void ModInstructionMoveUp_Click(object sender, EventArgs e)
+        {
+            if(ModInstructionListbox.SelectedIndex>0)
+            {
+                var temp = makingInstructions.Instructions[ModInstructionListbox.SelectedIndex - 1];
+                makingInstructions.Instructions[ModInstructionListbox.SelectedIndex - 1] = makingInstructions.Instructions[ModInstructionListbox.SelectedIndex];
+                makingInstructions.Instructions[ModInstructionListbox.SelectedIndex] = temp;
+            }
+            UpdateInstructionList();
+        }
+
+        private void ModInstructionMoveDown_Click(object sender, EventArgs e)
+        {
+            if (ModInstructionListbox.SelectedIndex != makingInstructions.Instructions.Count-1)
+            {
+                var temp = makingInstructions.Instructions[ModInstructionListbox.SelectedIndex + 1];
+                makingInstructions.Instructions[ModInstructionListbox.SelectedIndex + 1] = makingInstructions.Instructions[ModInstructionListbox.SelectedIndex];
+                makingInstructions.Instructions[ModInstructionListbox.SelectedIndex] = temp;
+            }
+            UpdateInstructionList();
+        }
+
+        private void ModInstructionLoad_Click(object sender, EventArgs e)
+        {
+            CommonOpenFileDialog openFileDialog = new CommonOpenFileDialog
+            {
+                InitialDirectory = workspacePath,
+                IsFolderPicker = true,
+            };
+            if (openFileDialog.ShowDialog() == CommonFileDialogResult.Ok)
+            {
+                makingInstructions.Load(openFileDialog.FileName);
+            }
+            UpdateInstructionList();
+        }
+
+        private void ModInstructionSave_Click(object sender, EventArgs e)
+        {
+            if (makingInstructions.ModPath != "")
+            {
+                makingInstructions.Save();
+            }
+        }
+        bool modHold;
+        private void ModInstructionListbox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ModInstructionListbox.SelectedIndex != -1 && !modHold)
+            {
+                modHold = true;
+                ModInstructionType.Text = makingInstructions.Instructions[ModInstructionListbox.SelectedIndex].Type;
+                ModInstructionSource.Text = makingInstructions.Instructions[ModInstructionListbox.SelectedIndex].Source;
+                ModInstructionOutput.Text = makingInstructions.Instructions[ModInstructionListbox.SelectedIndex].Ouput;
+                modHold = false;
+            }
+        }
+
+        private void ModInstructionChange(object sender, EventArgs e)
+        {
+            if (ModInstructionListbox.SelectedIndex != -1 && !modHold)
+            {
+                int temp1 = ModInstructionListbox.SelectedIndex;
+                modHold = true;
+                var temp = makingInstructions.Instructions[ModInstructionListbox.SelectedIndex];
+                temp.Source = ModInstructionSource.Text;
+                temp.Ouput = ModInstructionOutput.Text;
+                temp.Type = ModInstructionType.Text;
+                makingInstructions.Instructions[ModInstructionListbox.SelectedIndex] = temp;
+                UpdateInstructionList();
+                ModInstructionListbox.SelectedIndex = temp1;
+                modHold = false;
+            }
+        }
+
+        #endregion
+
+        ModApplication modApplication = new ModApplication();
+        private void ModLoad_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                InitialDirectory = workspacePath,
+                Filter = "SSX Mod File (*.ssx)|*.ssx|All files (*.*)|*.*",
+                FilterIndex = 1,
+                RestoreDirectory = false
+            };
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                modApplication.LoadMod(openFileDialog.FileName);
+                ModAuthor.Text = modApplication.modInfo.Author;
+                ModLabel.Text = modApplication.modInfo.Name;
+                ModVersion.Text = modApplication.modInfo.Version;
+                ModDescription.Text = modApplication.modInfo.Description;
+                ModGame.Text = modApplication.modInfo.Game;
+                ModPicture.Image = modApplication.image;
+            }
+        }
+
+        private void ModApply_Click(object sender, EventArgs e)
+        {
+            modApplication.ApplyMod();
+        }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,54 +14,16 @@ namespace SSX_Modder.ModSystem
     public class ModMakerHandler
     {
         public string ModFolder;
+        public Image Icon;
         public ModInfo ModInfo;
-    }
 
-    [XmlRoot("ModInfo")]
-    public class ModInfo
-    {
-        public int ModPackVersion;
-        public string Name;
-        public string Game;
-        public string Description;
-        public string Version;
-        public string Author;
-
-        //Region Compatablity
-        public bool PAL;
-        public bool NTSC;
-        public bool NTSCJ;
-        public bool NTSCK;
-
-        public bool PALDemo;
-        public bool NTSCDemo;
-        public bool NTSCJDemo;
-        public bool NTSCKDemo;
-
-        public void Save(string path)
+        public void PackMod(string ModLocation)
         {
-            var serializer = new XmlSerializer(typeof(ModInfo));
-            string paths = path + "/ModInfo.XML";
-            var stream = new FileStream(paths, FileMode.Create);
-            serializer.Serialize(stream, this);
-            stream.Close();
-        }
-
-        public static ModInfo Load(string path)
-        {
-            string paths = path + "/ModInfo.XML";
-            if (File.Exists(paths))
+            if(File.Exists(ModLocation))
             {
-                var serializer = new XmlSerializer(typeof(ModInfo));
-                var stream = new FileStream(paths, FileMode.Open);
-                var container = serializer.Deserialize(stream) as ModInfo;
-                stream.Close();
-                return container;
+                File.Delete(ModLocation);
             }
-            else
-            {
-                return new ModInfo();
-            }
+            ZipFile.CreateFromDirectory(ModFolder, ModLocation);
         }
     }
 }
