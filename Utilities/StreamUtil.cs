@@ -118,9 +118,12 @@ namespace SSX_Modder.Utilities
 
         public static void WriteNullString(Stream stream, string String)
         {
-            byte[] tempByte = new byte[String.Length + 1];
-            Encoding.ASCII.GetBytes(String).CopyTo(tempByte, 0);
-            stream.Write(tempByte, 0, tempByte.Length);
+            if (String != null)
+            {
+                byte[] tempByte = new byte[String.Length + 1];
+                Encoding.ASCII.GetBytes(String).CopyTo(tempByte, 0);
+                stream.Write(tempByte, 0, tempByte.Length);
+            }
         }
 
         public static void WriteString(Stream stream, string String, int Length = 0)

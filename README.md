@@ -14,7 +14,7 @@ This is a modding tool i came up and started making when i caught covid as a way
 
 ## WIP Features
 - Easy Mod Support
-- SSX Trick, SSX (2000), SSX On Tour Support
+- SSX Trick, SSX (2000), SSX On Tour Limited Support
 - SSX-ElfLdr Support For Launching Game
 
 ## Requirements
@@ -29,15 +29,11 @@ This is a modding tool i came up and started making when i caught covid as a way
 ## Todo
 
 ### Current Todo
-- Mod File Making
-- SSX-ElfLdr Support For Launching Game
+- Bright and Dark in SSH Maker
 - Iso Path Per Game
 
-### Mod File System Todo
-- Test All Functions
-- Test for SSX Tricky Lighting
-
 ### Todo Later
+- Fix Alpha Bug (SSX 1,2)
 - Big4 Big Archive Making and Extracting
 - Mod System Loc Txt Insert, Big Insert
 - Modding Guide
@@ -50,7 +46,6 @@ This is a modding tool i came up and started making when i caught covid as a way
 - Control Editor Menu
 - MUS Extractor
 - Redo Loc and Music INF (Support Other Games)
-- 
 
 ### If i ever find the correct code or work it out
 - Refpack Compressor

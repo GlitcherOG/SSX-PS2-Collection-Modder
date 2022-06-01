@@ -1335,6 +1335,8 @@ namespace SSX_Modder
                 ModMakerNTSCJDemo.Checked = modMaker.ModInfo.NTSCJDemo;
                 ModMakerNTSCKDemo.Checked = modMaker.ModInfo.NTSCKDemo;
 
+                modMakerSSXElfLdr.Checked = modMaker.ModInfo.SSXElfLdr;
+
                 ModMakerList.Items.Clear();
                 if (File.Exists(openFileDialog.FileName + "//ModInstructions.txt"))
                 {
@@ -1367,6 +1369,8 @@ namespace SSX_Modder
                 modMaker.ModInfo.NTSCDemo = ModMakerNTSCDemo.Checked;
                 modMaker.ModInfo.NTSCJDemo = ModMakerNTSCJDemo.Checked;
                 modMaker.ModInfo.NTSCKDemo = ModMakerNTSCKDemo.Checked;
+
+                modMaker.ModInfo.SSXElfLdr = modMakerSSXElfLdr.Checked;
 
                 modMaker.ModInfo.Save(modMaker.ModFolder);
             }
@@ -1537,6 +1541,7 @@ namespace SSX_Modder
 
         #endregion
 
+        #region Mod
         ModApplication modApplication = new ModApplication();
         private void ModLoad_Click(object sender, EventArgs e)
         {
@@ -1566,6 +1571,8 @@ namespace SSX_Modder
                 ModNTSCDemo.Checked = modApplication.modInfo.NTSCDemo;
                 ModNTSCJDemo.Checked = modApplication.modInfo.NTSCJDemo;
                 ModNTSCKDemo.Checked = modApplication.modInfo.NTSCKDemo;
+
+                modSSXElfLdr.Checked = modApplication.modInfo.SSXElfLdr;
 
                 ModList.Items.Clear();
                 for (int i = 0; i < modApplication.modInstructions.Instructions.Count; i++)
@@ -1604,5 +1611,6 @@ namespace SSX_Modder
                 MessageBox.Show("Wrong Game Selected");
             }
         }
+        #endregion
     }
 }

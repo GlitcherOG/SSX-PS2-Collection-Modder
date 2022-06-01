@@ -696,7 +696,7 @@ namespace SSX_Modder.FileHandlers
                     stream.Write(tempByte, 0, tempByte.Length);
                 }
 
-                if (sshImages[i].longname != "")
+                if (sshImages[i].longname != "" && sshImages[i].longname !=null)
                 {
                     //ending
                     tempByte = new byte[4] { 0x70, 0x00, 0x00, 0x00 };

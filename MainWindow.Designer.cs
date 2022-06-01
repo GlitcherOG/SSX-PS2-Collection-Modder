@@ -296,6 +296,10 @@ namespace SSX_Modder
             this.GameType = new System.Windows.Forms.ToolStripComboBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.label72 = new System.Windows.Forms.Label();
+            this.modMakerSSXElfLdr = new System.Windows.Forms.CheckBox();
+            this.label73 = new System.Windows.Forms.Label();
+            this.modSSXElfLdr = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabModPacks.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -390,6 +394,8 @@ namespace SSX_Modder
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.label73);
+            this.tabPage1.Controls.Add(this.modSSXElfLdr);
             this.tabPage1.Controls.Add(this.label70);
             this.tabPage1.Controls.Add(this.ModNTSCKDemo);
             this.tabPage1.Controls.Add(this.ModNTSCJDemo);
@@ -656,6 +662,8 @@ namespace SSX_Modder
             // 
             // tabModInfo
             // 
+            this.tabModInfo.Controls.Add(this.label72);
+            this.tabModInfo.Controls.Add(this.modMakerSSXElfLdr);
             this.tabModInfo.Controls.Add(this.label69);
             this.tabModInfo.Controls.Add(this.ModMakerNTSCKDemo);
             this.tabModInfo.Controls.Add(this.ModMakerNTSCJDemo);
@@ -3334,6 +3342,45 @@ namespace SSX_Modder
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
             // 
+            // label72
+            // 
+            this.label72.AutoSize = true;
+            this.label72.Location = new System.Drawing.Point(449, 111);
+            this.label72.Name = "label72";
+            this.label72.Size = new System.Drawing.Size(49, 13);
+            this.label72.TabIndex = 26;
+            this.label72.Text = "Requires";
+            // 
+            // modMakerSSXElfLdr
+            // 
+            this.modMakerSSXElfLdr.AutoSize = true;
+            this.modMakerSSXElfLdr.Location = new System.Drawing.Point(452, 127);
+            this.modMakerSSXElfLdr.Name = "modMakerSSXElfLdr";
+            this.modMakerSSXElfLdr.Size = new System.Drawing.Size(77, 17);
+            this.modMakerSSXElfLdr.TabIndex = 25;
+            this.modMakerSSXElfLdr.Text = "SSX-ElfLdr";
+            this.modMakerSSXElfLdr.UseVisualStyleBackColor = true;
+            // 
+            // label73
+            // 
+            this.label73.AutoSize = true;
+            this.label73.Location = new System.Drawing.Point(458, 108);
+            this.label73.Name = "label73";
+            this.label73.Size = new System.Drawing.Size(49, 13);
+            this.label73.TabIndex = 42;
+            this.label73.Text = "Requires";
+            // 
+            // modSSXElfLdr
+            // 
+            this.modSSXElfLdr.AutoSize = true;
+            this.modSSXElfLdr.Enabled = false;
+            this.modSSXElfLdr.Location = new System.Drawing.Point(461, 124);
+            this.modSSXElfLdr.Name = "modSSXElfLdr";
+            this.modSSXElfLdr.Size = new System.Drawing.Size(77, 17);
+            this.modSSXElfLdr.TabIndex = 41;
+            this.modSSXElfLdr.Text = "SSX-ElfLdr";
+            this.modSSXElfLdr.UseVisualStyleBackColor = true;
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3681,6 +3728,10 @@ namespace SSX_Modder
         private System.Windows.Forms.Button ToolsBackupSSXOnTour;
         private System.Windows.Forms.Label label71;
         private System.Windows.Forms.LinkLabel linkGithub;
+        private System.Windows.Forms.Label label72;
+        private System.Windows.Forms.CheckBox modMakerSSXElfLdr;
+        private System.Windows.Forms.Label label73;
+        private System.Windows.Forms.CheckBox modSSXElfLdr;
     }
 }
 

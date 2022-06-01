@@ -28,6 +28,8 @@ namespace SSX_Modder.ModSystem
         public bool NTSCJDemo;
         public bool NTSCKDemo;
 
+        public bool SSXElfLdr;
+
         public void Save(string path)
         {
             var serializer = JsonConvert.SerializeObject(this);
