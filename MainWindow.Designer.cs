@@ -294,6 +294,8 @@ namespace SSX_Modder
             this.ModPal = new System.Windows.Forms.CheckBox();
             this.ToolsRestoreSSXOnTour = new System.Windows.Forms.Button();
             this.ToolsBackupSSXOnTour = new System.Windows.Forms.Button();
+            this.linkGithub = new System.Windows.Forms.LinkLabel();
+            this.label71 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabModPacks.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -2861,6 +2863,8 @@ namespace SSX_Modder
             // 
             // tabSettings
             // 
+            this.tabSettings.Controls.Add(this.label71);
+            this.tabSettings.Controls.Add(this.linkGithub);
             this.tabSettings.Controls.Add(this.SettingsIsoPath);
             this.tabSettings.Controls.Add(this.SettingsIsoSet);
             this.tabSettings.Controls.Add(this.SettingsOverride);
@@ -3310,6 +3314,26 @@ namespace SSX_Modder
             this.ToolsBackupSSXOnTour.UseVisualStyleBackColor = true;
             this.ToolsBackupSSXOnTour.Click += new System.EventHandler(this.ToolsBackupSSXOnTour_Click);
             // 
+            // linkGithub
+            // 
+            this.linkGithub.AutoSize = true;
+            this.linkGithub.Location = new System.Drawing.Point(16, 253);
+            this.linkGithub.Name = "linkGithub";
+            this.linkGithub.Size = new System.Drawing.Size(40, 13);
+            this.linkGithub.TabIndex = 13;
+            this.linkGithub.TabStop = true;
+            this.linkGithub.Text = "GitHub";
+            this.linkGithub.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkGithub_LinkClicked);
+            // 
+            // label71
+            // 
+            this.label71.AutoSize = true;
+            this.label71.Location = new System.Drawing.Point(16, 266);
+            this.label71.Name = "label71";
+            this.label71.Size = new System.Drawing.Size(114, 13);
+            this.label71.TabIndex = 14;
+            this.label71.Text = "Created By GlitcherOG";
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3321,7 +3345,7 @@ namespace SSX_Modder
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(829, 449);
             this.Name = "MainWindow";
-            this.Text = "SSX Modder";
+            this.Text = "SSX PS2 Collection Modder";
             this.Load += new System.EventHandler(this.MainWindow_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabModPacks.ResumeLayout(false);
@@ -3655,6 +3679,8 @@ namespace SSX_Modder
         private System.Windows.Forms.CheckBox ModPal;
         private System.Windows.Forms.Button ToolsRestoreSSXOnTour;
         private System.Windows.Forms.Button ToolsBackupSSXOnTour;
+        private System.Windows.Forms.Label label71;
+        private System.Windows.Forms.LinkLabel linkGithub;
     }
 }
 

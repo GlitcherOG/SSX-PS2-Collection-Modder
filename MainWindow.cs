@@ -481,6 +481,11 @@ namespace SSX_Modder
             }
         }
 
+        private void linkGithub_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://github.com/GlitcherOG/SSX-PS2-Collection-Modder");
+        }
+
         #endregion
 
         #region Loc File

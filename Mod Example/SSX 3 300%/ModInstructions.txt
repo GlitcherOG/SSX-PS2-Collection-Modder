@@ -1,0 +1,1 @@
+Copy,Mod\DATA,Game\DATA
