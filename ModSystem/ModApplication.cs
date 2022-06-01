@@ -172,7 +172,7 @@ namespace SSX_Modder.ModSystem
                     if(File.Exists(MainWindow.workspacePath + "//ModList.txt"))
                     {
                         var String = File.ReadAllText(MainWindow.workspacePath + "//ModList.txt");
-                        String += "\n" + modInfo.Name + "(" + modInfo.Version + ")";
+                        String += "\n" + modInfo.Name + " (" + modInfo.Version + ")";
                         File.WriteAllText(MainWindow.workspacePath + "//ModList.txt", String);
                     }
                     else

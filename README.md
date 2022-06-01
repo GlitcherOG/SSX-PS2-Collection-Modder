@@ -35,7 +35,6 @@ This is a modding tool i came up and started making when i caught covid as a way
 
 ### Mod File System Todo
 - Test All Functions
-- Test for SSX 3 300%
 - Test for SSX Tricky Lighting
 - Test for SSX-ElfLdr Setup Mod
 
