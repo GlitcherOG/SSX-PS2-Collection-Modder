@@ -154,6 +154,7 @@ namespace SSX_Modder
                 {
                     Directory.CreateDirectory(workspacePath);
                 }
+                MessageBox.Show("Warning Unable To Build Iso Of Game (Elf Mod Recommended)");
             }
             if (GameType.SelectedIndex == 1)
             {
@@ -1512,12 +1513,53 @@ namespace SSX_Modder
                 ModDescription.Text = modApplication.modInfo.Description;
                 ModGame.Text = modApplication.modInfo.Game;
                 ModPicture.Image = modApplication.image;
+
+                ModPal.Checked = modApplication.modInfo.PAL;
+                ModNTSC.Checked = modApplication.modInfo.NTSC;
+                ModNTSCJ.Checked = modApplication.modInfo.NTSCJ;
+                ModNTSCK.Checked = modApplication.modInfo.NTSCK;
+
+                ModPalDemo.Checked = modApplication.modInfo.PALDemo;
+                ModNTSCDemo.Checked = modApplication.modInfo.NTSCDemo;
+                ModNTSCJDemo.Checked = modApplication.modInfo.NTSCJDemo;
+                ModNTSCKDemo.Checked = modApplication.modInfo.NTSCKDemo;
+
+                ModList.Items.Clear();
+                for (int i = 0; i < modApplication.modInstructions.Instructions.Count; i++)
+                {
+                    ModList.Items.Add(modApplication.modInstructions.Instructions[i].Type + ", " + modApplication.modInstructions.Instructions[i].Source + ", " + modApplication.modInstructions.Instructions[i].Ouput);
+                }
             }
         }
 
         private void ModApply_Click(object sender, EventArgs e)
         {
-            modApplication.ApplyMod();
+            bool Valid = false;
+            if(modApplication.modInfo.Game== "SSX(2000)" && settings.Game == 0)
+            {
+                Valid = true;
+            }
+            if (modApplication.modInfo.Game == "SSX Tricky" && settings.Game == 1)
+            {
+                Valid = true;
+            }
+            if (modApplication.modInfo.Game == "SSX 3" && settings.Game == 2)
+            {
+                Valid = true;
+            }
+            if (modApplication.modInfo.Game == "SSX On Tour" && settings.Game == 3)
+            {
+                Valid = true;
+            }
+
+            if (Valid)
+            {
+                modApplication.ApplyMod();
+            }
+            else
+            {
+                MessageBox.Show("Wrong Game Selected");
+            }
         }
     }
 }

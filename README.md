@@ -29,25 +29,17 @@ This is a modding tool i came up and started making when i caught covid as a way
 ## Todo
 
 ### Current Todo
-- Add SSX Warning Message
 - Mod File Making
 - SSX-ElfLdr Support For Launching Game
 - Iso Path Per Game
 
 ### Mod File System Todo
 - Add Double Click add to Source and Output
-- Check Correct Game is Loaded
-- Check Mod Pack System Version
-- Check Files Exist
-- Add Check so that when making instructions you can test them before hand in some way
 - Make Mod Info Json Instead Of XML
 - Test All Functions
-- Fix UI Elements
-- Add Text File Adding
 - Test for SSX 3 300%
 - Test for SSX Tricky Lighting
 - Test for SSX-ElfLdr Setup Mod
-- Add ModList File to ISO
 
 ### Todo Later
 - Modding Guide

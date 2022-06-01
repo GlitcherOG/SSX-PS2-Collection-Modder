@@ -34,7 +34,7 @@ namespace SSX_Modder
             this.tabModPacks = new System.Windows.Forms.TabPage();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.ModList = new System.Windows.Forms.ListBox();
             this.ModApply = new System.Windows.Forms.Button();
             this.ModLoad = new System.Windows.Forms.Button();
             this.ModDescription = new System.Windows.Forms.Label();
@@ -284,14 +284,14 @@ namespace SSX_Modder
             this.ModMakerNTSCKDemo = new System.Windows.Forms.CheckBox();
             this.label69 = new System.Windows.Forms.Label();
             this.label70 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.checkBox5 = new System.Windows.Forms.CheckBox();
-            this.checkBox6 = new System.Windows.Forms.CheckBox();
-            this.checkBox7 = new System.Windows.Forms.CheckBox();
-            this.checkBox8 = new System.Windows.Forms.CheckBox();
+            this.ModNTSCKDemo = new System.Windows.Forms.CheckBox();
+            this.ModNTSCJDemo = new System.Windows.Forms.CheckBox();
+            this.ModPalDemo = new System.Windows.Forms.CheckBox();
+            this.ModNTSCK = new System.Windows.Forms.CheckBox();
+            this.ModNTSCDemo = new System.Windows.Forms.CheckBox();
+            this.ModNTSCJ = new System.Windows.Forms.CheckBox();
+            this.ModNTSC = new System.Windows.Forms.CheckBox();
+            this.ModPal = new System.Windows.Forms.CheckBox();
             this.ToolsRestoreSSXOnTour = new System.Windows.Forms.Button();
             this.ToolsBackupSSXOnTour = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
@@ -389,15 +389,15 @@ namespace SSX_Modder
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.label70);
-            this.tabPage1.Controls.Add(this.checkBox1);
-            this.tabPage1.Controls.Add(this.checkBox2);
-            this.tabPage1.Controls.Add(this.checkBox3);
-            this.tabPage1.Controls.Add(this.checkBox4);
-            this.tabPage1.Controls.Add(this.checkBox5);
-            this.tabPage1.Controls.Add(this.checkBox6);
-            this.tabPage1.Controls.Add(this.checkBox7);
-            this.tabPage1.Controls.Add(this.checkBox8);
-            this.tabPage1.Controls.Add(this.listBox1);
+            this.tabPage1.Controls.Add(this.ModNTSCKDemo);
+            this.tabPage1.Controls.Add(this.ModNTSCJDemo);
+            this.tabPage1.Controls.Add(this.ModPalDemo);
+            this.tabPage1.Controls.Add(this.ModNTSCK);
+            this.tabPage1.Controls.Add(this.ModNTSCDemo);
+            this.tabPage1.Controls.Add(this.ModNTSCJ);
+            this.tabPage1.Controls.Add(this.ModNTSC);
+            this.tabPage1.Controls.Add(this.ModPal);
+            this.tabPage1.Controls.Add(this.ModList);
             this.tabPage1.Controls.Add(this.ModApply);
             this.tabPage1.Controls.Add(this.ModLoad);
             this.tabPage1.Controls.Add(this.ModDescription);
@@ -419,13 +419,13 @@ namespace SSX_Modder
             this.tabPage1.Text = "Mod";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // listBox1
+            // ModList
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(12, 259);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(703, 186);
-            this.listBox1.TabIndex = 31;
+            this.ModList.FormattingEnabled = true;
+            this.ModList.Location = new System.Drawing.Point(12, 259);
+            this.ModList.Name = "ModList";
+            this.ModList.Size = new System.Drawing.Size(703, 186);
+            this.ModList.TabIndex = 31;
             // 
             // ModApply
             // 
@@ -3200,85 +3200,93 @@ namespace SSX_Modder
             this.label70.TabIndex = 40;
             this.label70.Text = "Known Compatabilty";
             // 
-            // checkBox1
+            // ModNTSCKDemo
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(566, 101);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(102, 17);
-            this.checkBox1.TabIndex = 39;
-            this.checkBox1.Text = "NTSC-K (Demo)";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.ModNTSCKDemo.AutoSize = true;
+            this.ModNTSCKDemo.Enabled = false;
+            this.ModNTSCKDemo.Location = new System.Drawing.Point(566, 101);
+            this.ModNTSCKDemo.Name = "ModNTSCKDemo";
+            this.ModNTSCKDemo.Size = new System.Drawing.Size(102, 17);
+            this.ModNTSCKDemo.TabIndex = 39;
+            this.ModNTSCKDemo.Text = "NTSC-K (Demo)";
+            this.ModNTSCKDemo.UseVisualStyleBackColor = true;
             // 
-            // checkBox2
+            // ModNTSCJDemo
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(566, 78);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(100, 17);
-            this.checkBox2.TabIndex = 38;
-            this.checkBox2.Text = "NTSC-J (Demo)";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.ModNTSCJDemo.AutoSize = true;
+            this.ModNTSCJDemo.Enabled = false;
+            this.ModNTSCJDemo.Location = new System.Drawing.Point(566, 78);
+            this.ModNTSCJDemo.Name = "ModNTSCJDemo";
+            this.ModNTSCJDemo.Size = new System.Drawing.Size(100, 17);
+            this.ModNTSCJDemo.TabIndex = 38;
+            this.ModNTSCJDemo.Text = "NTSC-J (Demo)";
+            this.ModNTSCJDemo.UseVisualStyleBackColor = true;
             // 
-            // checkBox3
+            // ModPalDemo
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(566, 32);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(83, 17);
-            this.checkBox3.TabIndex = 37;
-            this.checkBox3.Text = "PAL (Demo)";
-            this.checkBox3.UseVisualStyleBackColor = true;
+            this.ModPalDemo.AutoSize = true;
+            this.ModPalDemo.Enabled = false;
+            this.ModPalDemo.Location = new System.Drawing.Point(566, 32);
+            this.ModPalDemo.Name = "ModPalDemo";
+            this.ModPalDemo.Size = new System.Drawing.Size(83, 17);
+            this.ModPalDemo.TabIndex = 37;
+            this.ModPalDemo.Text = "PAL (Demo)";
+            this.ModPalDemo.UseVisualStyleBackColor = true;
             // 
-            // checkBox4
+            // ModNTSCK
             // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(480, 101);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(65, 17);
-            this.checkBox4.TabIndex = 35;
-            this.checkBox4.Text = "NTSC-K";
-            this.checkBox4.UseVisualStyleBackColor = true;
+            this.ModNTSCK.AutoSize = true;
+            this.ModNTSCK.Enabled = false;
+            this.ModNTSCK.Location = new System.Drawing.Point(480, 101);
+            this.ModNTSCK.Name = "ModNTSCK";
+            this.ModNTSCK.Size = new System.Drawing.Size(65, 17);
+            this.ModNTSCK.TabIndex = 35;
+            this.ModNTSCK.Text = "NTSC-K";
+            this.ModNTSCK.UseVisualStyleBackColor = true;
             // 
-            // checkBox5
+            // ModNTSCDemo
             // 
-            this.checkBox5.AutoSize = true;
-            this.checkBox5.Location = new System.Drawing.Point(566, 55);
-            this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(92, 17);
-            this.checkBox5.TabIndex = 36;
-            this.checkBox5.Text = "NTSC (Demo)";
-            this.checkBox5.UseVisualStyleBackColor = true;
+            this.ModNTSCDemo.AutoSize = true;
+            this.ModNTSCDemo.Enabled = false;
+            this.ModNTSCDemo.Location = new System.Drawing.Point(566, 55);
+            this.ModNTSCDemo.Name = "ModNTSCDemo";
+            this.ModNTSCDemo.Size = new System.Drawing.Size(92, 17);
+            this.ModNTSCDemo.TabIndex = 36;
+            this.ModNTSCDemo.Text = "NTSC (Demo)";
+            this.ModNTSCDemo.UseVisualStyleBackColor = true;
             // 
-            // checkBox6
+            // ModNTSCJ
             // 
-            this.checkBox6.AutoSize = true;
-            this.checkBox6.Location = new System.Drawing.Point(480, 78);
-            this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(63, 17);
-            this.checkBox6.TabIndex = 34;
-            this.checkBox6.Text = "NTSC-J";
-            this.checkBox6.UseVisualStyleBackColor = true;
+            this.ModNTSCJ.AutoSize = true;
+            this.ModNTSCJ.Enabled = false;
+            this.ModNTSCJ.Location = new System.Drawing.Point(480, 78);
+            this.ModNTSCJ.Name = "ModNTSCJ";
+            this.ModNTSCJ.Size = new System.Drawing.Size(63, 17);
+            this.ModNTSCJ.TabIndex = 34;
+            this.ModNTSCJ.Text = "NTSC-J";
+            this.ModNTSCJ.UseVisualStyleBackColor = true;
             // 
-            // checkBox7
+            // ModNTSC
             // 
-            this.checkBox7.AutoSize = true;
-            this.checkBox7.Location = new System.Drawing.Point(480, 55);
-            this.checkBox7.Name = "checkBox7";
-            this.checkBox7.Size = new System.Drawing.Size(55, 17);
-            this.checkBox7.TabIndex = 33;
-            this.checkBox7.Text = "NTSC";
-            this.checkBox7.UseVisualStyleBackColor = true;
+            this.ModNTSC.AutoSize = true;
+            this.ModNTSC.Enabled = false;
+            this.ModNTSC.Location = new System.Drawing.Point(480, 55);
+            this.ModNTSC.Name = "ModNTSC";
+            this.ModNTSC.Size = new System.Drawing.Size(55, 17);
+            this.ModNTSC.TabIndex = 33;
+            this.ModNTSC.Text = "NTSC";
+            this.ModNTSC.UseVisualStyleBackColor = true;
             // 
-            // checkBox8
+            // ModPal
             // 
-            this.checkBox8.AutoSize = true;
-            this.checkBox8.Location = new System.Drawing.Point(480, 32);
-            this.checkBox8.Name = "checkBox8";
-            this.checkBox8.Size = new System.Drawing.Size(46, 17);
-            this.checkBox8.TabIndex = 32;
-            this.checkBox8.Text = "PAL";
-            this.checkBox8.UseVisualStyleBackColor = true;
+            this.ModPal.AutoSize = true;
+            this.ModPal.Enabled = false;
+            this.ModPal.Location = new System.Drawing.Point(480, 32);
+            this.ModPal.Name = "ModPal";
+            this.ModPal.Size = new System.Drawing.Size(46, 17);
+            this.ModPal.TabIndex = 32;
+            this.ModPal.Text = "PAL";
+            this.ModPal.UseVisualStyleBackColor = true;
             // 
             // ToolsRestoreSSXOnTour
             // 
@@ -3622,7 +3630,7 @@ namespace SSX_Modder
         private System.Windows.Forms.Label label68;
         private System.Windows.Forms.Button ModApply;
         private System.Windows.Forms.Button ModLoad;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox ModList;
         private System.Windows.Forms.ListBox ModInstructionMod;
         private System.Windows.Forms.ListBox ModInstructionGame;
         private System.Windows.Forms.CheckBox ModMakerNTSCKDemo;
@@ -3635,14 +3643,14 @@ namespace SSX_Modder
         private System.Windows.Forms.CheckBox ModMakerPal;
         private System.Windows.Forms.Label label69;
         private System.Windows.Forms.Label label70;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.CheckBox checkBox4;
-        private System.Windows.Forms.CheckBox checkBox5;
-        private System.Windows.Forms.CheckBox checkBox6;
-        private System.Windows.Forms.CheckBox checkBox7;
-        private System.Windows.Forms.CheckBox checkBox8;
+        private System.Windows.Forms.CheckBox ModNTSCKDemo;
+        private System.Windows.Forms.CheckBox ModNTSCJDemo;
+        private System.Windows.Forms.CheckBox ModPalDemo;
+        private System.Windows.Forms.CheckBox ModNTSCK;
+        private System.Windows.Forms.CheckBox ModNTSCDemo;
+        private System.Windows.Forms.CheckBox ModNTSCJ;
+        private System.Windows.Forms.CheckBox ModNTSC;
+        private System.Windows.Forms.CheckBox ModPal;
         private System.Windows.Forms.Button ToolsRestoreSSXOnTour;
         private System.Windows.Forms.Button ToolsBackupSSXOnTour;
     }

@@ -16,10 +16,14 @@ namespace SSX_Modder.ModSystem
         public ModInfo modInfo = new ModInfo();
         public Image image;
         public ModMakingInstructions modInstructions = new ModMakingInstructions();
-        
+
         public void LoadMod(string path)
         {
-            image = null;
+            if (image != null)
+            {
+                image.Dispose();
+            }
+
             if(Directory.Exists(Application.StartupPath + "//Temp"))
             {
                 Directory.Delete(Application.StartupPath + "//Temp", true);
@@ -29,20 +33,27 @@ namespace SSX_Modder.ModSystem
 
             modInfo = ModInfo.Load(Application.StartupPath + "//Temp");
 
-            modInstructions.Load(Application.StartupPath + "//Temp");
-
-            if (File.Exists(Application.StartupPath + "//Temp//Icon.png"))
+            if (modInfo.ModPackVersion <= 1)
             {
-                image = Image.FromFile(Application.StartupPath + "//Temp//Icon.png");
+                modInstructions.Load(Application.StartupPath + "//Temp");
+
+                if (File.Exists(Application.StartupPath + "//Temp//Icon.png"))
+                {
+                    image = Image.FromFile(Application.StartupPath + "//Temp//Icon.png");
+                }
+                else
+                {
+                    image = null;
+                }
             }
             else
             {
-                image = null;
+                MessageBox.Show("Error Mod is using Newer Version Of Modpack System.");
             }
         }
 
-//        Copy
-//        Delete
+//Copy
+//Delete
 //Big Extract
 //BigF Make
 //BigC0FB Make
@@ -52,8 +63,10 @@ namespace SSX_Modder.ModSystem
             if(modInfo!=new ModInfo())
             {
                 var Instructions = modInstructions.Instructions;
+                bool Valid = false;
                 for (int i = 0; i < Instructions.Count; i++)
                 {
+                    //Load Source and Output
                     string Source = Instructions[i].Source;
                     string Output = Instructions[i].Ouput;
 
@@ -77,9 +90,29 @@ namespace SSX_Modder.ModSystem
                         Output = Output.Replace("Mod\\", Application.StartupPath + "//Temp//");
                     }
 
-                    Output=Path.GetFullPath(Output);
+                    if (Output != "")
+                    {
+                        Output = Path.GetFullPath(Output);
+                    }
+
                     Source = Path.GetFullPath(Source);
 
+                    //Check Source Is Valid
+                    if (File.Exists(Source))
+                    {
+                        Valid = true;
+                    }
+                    else if (Directory.Exists(Source))
+                    {
+                        Valid = true;
+                    }
+
+                    if(!Valid)
+                    {
+                        break;
+                    }
+
+                    //Working
                     if (Instructions[i].Type=="Copy")
                     {
                         if (File.Exists(Source))
@@ -91,10 +124,19 @@ namespace SSX_Modder.ModSystem
                             CopyDirectory(Source, Output,true);
                         }
                     }
+                    //Working
                     else if(Instructions[i].Type == "Delete")
                     {
-                        File.Delete(Source);
+                        if (File.Exists(Source))
+                        {
+                            File.Delete(Source);
+                        }
+                        else if (Directory.Exists(Source))
+                        {
+                            Directory.Delete(Source, true);
+                        }
                     }
+                    //Working
                     else if (Instructions[i].Type == "Big Extract")
                     {
                         BigHandler tempHeader = new BigHandler();
@@ -108,6 +150,7 @@ namespace SSX_Modder.ModSystem
                         tempHeader.bigType = BigType.BIGF;
                         tempHeader.BuildBig(Output);
                     }
+                    //Working
                     else if (Instructions[i].Type == "BigC0FB Make")
                     {
                         BigHandler tempHeader = new BigHandler();
@@ -115,13 +158,33 @@ namespace SSX_Modder.ModSystem
                         tempHeader.bigType = BigType.C0FB;
                         tempHeader.BuildBig(Output);
                     }
-                    else if (Instructions[i].Type == "Config Insert")
+                    else if (Instructions[i].Type == "Txt Insert")
                     {
-                        
+                        var String = File.ReadAllText(Source);
+                        var String1 = File.ReadAllText(Output);
+                        String = String + "\n" + String1;
+                        File.WriteAllText(Output, String);
                     }
                 }
 
-                MessageBox.Show("Mod Applied");
+                if (Valid)
+                {
+                    if(File.Exists(MainWindow.workspacePath + "//ModList.txt"))
+                    {
+                        var String = File.ReadAllText(MainWindow.workspacePath + "//ModList.txt");
+                        String += "\n" + modInfo.Name + "(" + modInfo.Version + ")";
+                        File.WriteAllText(MainWindow.workspacePath + "//ModList.txt", String);
+                    }
+                    else
+                    {
+                        File.WriteAllText(MainWindow.workspacePath + "//ModList.txt", modInfo.Name + " (" + modInfo.Version + ")");
+                    }
+                    MessageBox.Show("Mod Applied");
+                }
+                else
+                {
+                    MessageBox.Show("Instructions Source Path Invalid. Are you using the correct game?");
+                }
             }
             else
             {

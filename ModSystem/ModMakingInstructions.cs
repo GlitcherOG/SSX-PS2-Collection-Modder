@@ -33,6 +33,7 @@ namespace SSX_Modder.ModSystem
             string paths = path + "//ModInstructions.txt";
             if (File.Exists(paths))
             {
+                Instructions = new List<Instruction>();
                 string[] Array = File.ReadAllLines(paths);
                 for (int i = 0; i < Array.Length; i++)
                 {
