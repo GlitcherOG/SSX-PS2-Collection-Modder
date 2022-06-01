@@ -292,6 +292,8 @@ namespace SSX_Modder
             this.checkBox6 = new System.Windows.Forms.CheckBox();
             this.checkBox7 = new System.Windows.Forms.CheckBox();
             this.checkBox8 = new System.Windows.Forms.CheckBox();
+            this.ToolsRestoreSSXOnTour = new System.Windows.Forms.Button();
+            this.ToolsBackupSSXOnTour = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabModPacks.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -372,6 +374,9 @@ namespace SSX_Modder
             // 
             // tabControl2
             // 
+            this.tabControl2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl2.Controls.Add(this.tabPage1);
             this.tabControl2.Controls.Add(this.tabModInfo);
             this.tabControl2.Controls.Add(this.tabModInstructions);
@@ -2098,6 +2103,7 @@ namespace SSX_Modder
             // 
             // MusRemove
             // 
+            this.MusRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.MusRemove.Location = new System.Drawing.Point(100, 499);
             this.MusRemove.Name = "MusRemove";
             this.MusRemove.Size = new System.Drawing.Size(75, 23);
@@ -2108,6 +2114,7 @@ namespace SSX_Modder
             // 
             // MusAdd
             // 
+            this.MusAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.MusAdd.Location = new System.Drawing.Point(7, 499);
             this.MusAdd.Name = "MusAdd";
             this.MusAdd.Size = new System.Drawing.Size(75, 23);
@@ -2666,18 +2673,20 @@ namespace SSX_Modder
             // 
             // groupBox7
             // 
+            this.groupBox7.Controls.Add(this.ToolsRestoreSSXOnTour);
+            this.groupBox7.Controls.Add(this.ToolsBackupSSXOnTour);
             this.groupBox7.Controls.Add(this.ToolsRestoreSSX3);
             this.groupBox7.Controls.Add(this.ToolsRestoreSSXTricky);
             this.groupBox7.Controls.Add(this.ToolsRestoreSSX);
             this.groupBox7.Controls.Add(this.ToolsBackupSSX3);
             this.groupBox7.Controls.Add(this.ToolsBackupSSXTricky);
             this.groupBox7.Controls.Add(this.ToolsBackupSSX);
-            this.groupBox7.Location = new System.Drawing.Point(941, 338);
+            this.groupBox7.Location = new System.Drawing.Point(4, 199);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(247, 186);
+            this.groupBox7.Size = new System.Drawing.Size(247, 244);
             this.groupBox7.TabIndex = 6;
             this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "Workspace Backup (WIP)";
+            this.groupBox7.Text = "Workspace Backup (Freezes Application)";
             // 
             // ToolsRestoreSSX3
             // 
@@ -3271,6 +3280,26 @@ namespace SSX_Modder
             this.checkBox8.Text = "PAL";
             this.checkBox8.UseVisualStyleBackColor = true;
             // 
+            // ToolsRestoreSSXOnTour
+            // 
+            this.ToolsRestoreSSXOnTour.Location = new System.Drawing.Point(126, 185);
+            this.ToolsRestoreSSXOnTour.Name = "ToolsRestoreSSXOnTour";
+            this.ToolsRestoreSSXOnTour.Size = new System.Drawing.Size(114, 50);
+            this.ToolsRestoreSSXOnTour.TabIndex = 13;
+            this.ToolsRestoreSSXOnTour.Text = "Restore SSX On Tour";
+            this.ToolsRestoreSSXOnTour.UseVisualStyleBackColor = true;
+            this.ToolsRestoreSSXOnTour.Click += new System.EventHandler(this.ToolsRestoreSSXOnTour_Click);
+            // 
+            // ToolsBackupSSXOnTour
+            // 
+            this.ToolsBackupSSXOnTour.Location = new System.Drawing.Point(6, 185);
+            this.ToolsBackupSSXOnTour.Name = "ToolsBackupSSXOnTour";
+            this.ToolsBackupSSXOnTour.Size = new System.Drawing.Size(114, 50);
+            this.ToolsBackupSSXOnTour.TabIndex = 12;
+            this.ToolsBackupSSXOnTour.Text = "Backup SSX On Tour";
+            this.ToolsBackupSSXOnTour.UseVisualStyleBackColor = true;
+            this.ToolsBackupSSXOnTour.Click += new System.EventHandler(this.ToolsBackupSSXOnTour_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3614,6 +3643,8 @@ namespace SSX_Modder
         private System.Windows.Forms.CheckBox checkBox6;
         private System.Windows.Forms.CheckBox checkBox7;
         private System.Windows.Forms.CheckBox checkBox8;
+        private System.Windows.Forms.Button ToolsRestoreSSXOnTour;
+        private System.Windows.Forms.Button ToolsBackupSSXOnTour;
     }
 }
 

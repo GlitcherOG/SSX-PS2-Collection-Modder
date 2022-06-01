@@ -171,7 +171,7 @@ namespace SSX_Modder
                     Directory.CreateDirectory(workspacePath);
                 }
             }
-            if (GameType.SelectedIndex == 4)
+            if (GameType.SelectedIndex == 3)
             {
                 workspacePath = Application.StartupPath + "\\disk\\SSX On Tour\\";
                 if (!Directory.Exists(workspacePath))
@@ -349,6 +349,40 @@ namespace SSX_Modder
         {
             string Path2 = Application.StartupPath + "\\disk\\SSX 3\\";
             string Path = Application.StartupPath + "\\backup\\SSX 3\\";
+            if (!Directory.Exists(Path2))
+            {
+                Directory.CreateDirectory(Path2);
+            }
+            else
+            {
+                Directory.Delete(Path2, true);
+                Directory.CreateDirectory(Path2);
+            }
+            CopyDirectory(Path, Path2, true);
+            MessageBox.Show("Workspace backed up");
+        }
+
+        private void ToolsBackupSSXOnTour_Click(object sender, EventArgs e)
+        {
+            string Path = Application.StartupPath + "\\disk\\SSX On Tour\\";
+            string Path2 = Application.StartupPath + "\\backup\\SSX On Tour\\";
+            if (!Directory.Exists(Path2))
+            {
+                Directory.CreateDirectory(Path2);
+            }
+            else
+            {
+                Directory.Delete(Path2, true);
+                Directory.CreateDirectory(Path2);
+            }
+            CopyDirectory(Path, Path2, true);
+            MessageBox.Show("Workspace backed up");
+        }
+
+        private void ToolsRestoreSSXOnTour_Click(object sender, EventArgs e)
+        {
+            string Path2 = Application.StartupPath + "\\disk\\SSX On Tour\\";
+            string Path = Application.StartupPath + "\\backup\\SSX On Tour\\";
             if (!Directory.Exists(Path2))
             {
                 Directory.CreateDirectory(Path2);
