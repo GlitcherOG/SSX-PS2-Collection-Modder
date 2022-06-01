@@ -171,6 +171,14 @@ namespace SSX_Modder
                     Directory.CreateDirectory(workspacePath);
                 }
             }
+            if (GameType.SelectedIndex == 4)
+            {
+                workspacePath = Application.StartupPath + "\\disk\\SSX On Tour\\";
+                if (!Directory.Exists(workspacePath))
+                {
+                    Directory.CreateDirectory(workspacePath);
+                }
+            }
             settings.Game = GameType.SelectedIndex;
             settings.Save();
         }
@@ -1270,6 +1278,27 @@ namespace SSX_Modder
                 ModMakerAuthor.Text = modMaker.ModInfo.Author;
                 ModMakerDescription.Text = modMaker.ModInfo.Description;
                 ModMakerGame.Text   = modMaker.ModInfo.Game;
+
+                ModMakerPal.Checked = modMaker.ModInfo.PAL;
+                ModMakerNTSC.Checked = modMaker.ModInfo.NTSC;
+                ModMakerNTSCJ.Checked = modMaker.ModInfo.NTSCJ;
+                ModMakerNTSCK.Checked = modMaker.ModInfo.NTSCK;
+
+                ModMakerPalDemo.Checked = modMaker.ModInfo.PALDemo;
+                ModMakerNTSCDemo.Checked = modMaker.ModInfo.NTSCDemo;
+                ModMakerNTSCJDemo.Checked = modMaker.ModInfo.NTSCJDemo;
+                ModMakerNTSCKDemo.Checked = modMaker.ModInfo.NTSCKDemo;
+
+                ModMakerList.Items.Clear();
+                if (File.Exists(openFileDialog.FileName + "//ModInstructions.txt"))
+                {
+                    var tempString = File.ReadAllLines(openFileDialog.FileName + "//ModInstructions.txt");
+
+                    for (int i = 0; i < tempString.Length; i++)
+                    {
+                        ModMakerList.Items.Add(tempString[i]);
+                    }
+                }
             }
         }
 
@@ -1283,6 +1312,16 @@ namespace SSX_Modder
                 modMaker.ModInfo.Description = ModMakerDescription.Text;
                 modMaker.ModInfo.Game = ModMakerGame.Text;
                 modMaker.ModInfo.ModPackVersion = 1;
+
+                modMaker.ModInfo.PAL = ModMakerPal.Checked;
+                modMaker.ModInfo.NTSC = ModMakerNTSC.Checked;
+                modMaker.ModInfo.NTSCJ = ModMakerNTSCJ.Checked;
+                modMaker.ModInfo.NTSCK = ModMakerNTSCK.Checked;
+                modMaker.ModInfo.PALDemo = ModMakerPalDemo.Checked;
+                modMaker.ModInfo.NTSCDemo = ModMakerNTSCDemo.Checked;
+                modMaker.ModInfo.NTSCJDemo = ModMakerNTSCJDemo.Checked;
+                modMaker.ModInfo.NTSCKDemo = ModMakerNTSCKDemo.Checked;
+
                 modMaker.ModInfo.Save(modMaker.ModFolder);
             }
         }
@@ -1311,14 +1350,14 @@ namespace SSX_Modder
             ModInstructionListbox.Items.Clear();
             for (int i = 0; i < makingInstructions.Instructions.Count; i++)
             {
-                ModInstructionListbox.Items.Add(makingInstructions.Instructions[i].Type + " , "+ makingInstructions.Instructions[i].Source + " , " + makingInstructions.Instructions[i].Ouput);
+                ModInstructionListbox.Items.Add(makingInstructions.Instructions[i].Type + ", "+ makingInstructions.Instructions[i].Source + ", " + makingInstructions.Instructions[i].Ouput);
             }
         }
         private void ModInstructionAdd_Click(object sender, EventArgs e)
         {
             if (makingInstructions.ModPath != "")
             {
-                makingInstructions.Instructions.Add(new Instruction() { Type = "Copy" });
+                makingInstructions.Instructions.Add(new Instruction() { Type = "Copy" , Source= "Mod\\", Ouput = "Game\\" });
                 UpdateInstructionList();
             }
         }
@@ -1364,6 +1403,19 @@ namespace SSX_Modder
             if (openFileDialog.ShowDialog() == CommonFileDialogResult.Ok)
             {
                 makingInstructions.Load(openFileDialog.FileName);
+                ModInstructionGame.Items.Clear();
+                var tempGamePaths = Directory.GetFileSystemEntries(workspacePath, "*", SearchOption.AllDirectories);
+                for (int i = 0; i < tempGamePaths.Length; i++)
+                {
+                    ModInstructionGame.Items.Add("Game\\"+tempGamePaths[i].Substring(workspacePath.Length));
+                }
+
+                ModInstructionMod.Items.Clear();
+                var tempModPaths = Directory.GetFileSystemEntries(openFileDialog.FileName, "*", SearchOption.AllDirectories);
+                for (int i = 0; i < tempModPaths.Length; i++)
+                {
+                    ModInstructionMod.Items.Add("Mod" + tempModPaths[i].Substring(openFileDialog.FileName.Length));
+                }
             }
             UpdateInstructionList();
         }

@@ -34,6 +34,7 @@ namespace SSX_Modder
             this.tabModPacks = new System.Windows.Forms.TabPage();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.ModApply = new System.Windows.Forms.Button();
             this.ModLoad = new System.Windows.Forms.Button();
             this.ModDescription = new System.Windows.Forms.Label();
@@ -49,7 +50,7 @@ namespace SSX_Modder
             this.ModPicture = new System.Windows.Forms.PictureBox();
             this.label68 = new System.Windows.Forms.Label();
             this.tabModInfo = new System.Windows.Forms.TabPage();
-            this.listBox2 = new System.Windows.Forms.ListBox();
+            this.ModMakerList = new System.Windows.Forms.ListBox();
             this.label62 = new System.Windows.Forms.Label();
             this.ModMakerVersion = new System.Windows.Forms.TextBox();
             this.ModMakerDescription = new System.Windows.Forms.RichTextBox();
@@ -69,8 +70,6 @@ namespace SSX_Modder
             this.ModInstructionLoad = new System.Windows.Forms.Button();
             this.label61 = new System.Windows.Forms.Label();
             this.label60 = new System.Windows.Forms.Label();
-            this.treeView2 = new System.Windows.Forms.TreeView();
-            this.treeView1 = new System.Windows.Forms.TreeView();
             this.label59 = new System.Windows.Forms.Label();
             this.label58 = new System.Windows.Forms.Label();
             this.ModInstructionMoveDown = new System.Windows.Forms.Button();
@@ -273,7 +272,26 @@ namespace SSX_Modder
             this.GameType = new System.Windows.Forms.ToolStripComboBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.ModInstructionGame = new System.Windows.Forms.ListBox();
+            this.ModInstructionMod = new System.Windows.Forms.ListBox();
+            this.ModMakerPal = new System.Windows.Forms.CheckBox();
+            this.ModMakerNTSC = new System.Windows.Forms.CheckBox();
+            this.ModMakerNTSCJ = new System.Windows.Forms.CheckBox();
+            this.ModMakerNTSCDemo = new System.Windows.Forms.CheckBox();
+            this.ModMakerNTSCK = new System.Windows.Forms.CheckBox();
+            this.ModMakerPalDemo = new System.Windows.Forms.CheckBox();
+            this.ModMakerNTSCJDemo = new System.Windows.Forms.CheckBox();
+            this.ModMakerNTSCKDemo = new System.Windows.Forms.CheckBox();
+            this.label69 = new System.Windows.Forms.Label();
+            this.label70 = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.checkBox4 = new System.Windows.Forms.CheckBox();
+            this.checkBox5 = new System.Windows.Forms.CheckBox();
+            this.checkBox6 = new System.Windows.Forms.CheckBox();
+            this.checkBox7 = new System.Windows.Forms.CheckBox();
+            this.checkBox8 = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabModPacks.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -365,6 +383,15 @@ namespace SSX_Modder
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.label70);
+            this.tabPage1.Controls.Add(this.checkBox1);
+            this.tabPage1.Controls.Add(this.checkBox2);
+            this.tabPage1.Controls.Add(this.checkBox3);
+            this.tabPage1.Controls.Add(this.checkBox4);
+            this.tabPage1.Controls.Add(this.checkBox5);
+            this.tabPage1.Controls.Add(this.checkBox6);
+            this.tabPage1.Controls.Add(this.checkBox7);
+            this.tabPage1.Controls.Add(this.checkBox8);
             this.tabPage1.Controls.Add(this.listBox1);
             this.tabPage1.Controls.Add(this.ModApply);
             this.tabPage1.Controls.Add(this.ModLoad);
@@ -386,6 +413,14 @@ namespace SSX_Modder
             this.tabPage1.TabIndex = 2;
             this.tabPage1.Text = "Mod";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(12, 259);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(703, 186);
+            this.listBox1.TabIndex = 31;
             // 
             // ModApply
             // 
@@ -517,7 +552,16 @@ namespace SSX_Modder
             // 
             // tabModInfo
             // 
-            this.tabModInfo.Controls.Add(this.listBox2);
+            this.tabModInfo.Controls.Add(this.label69);
+            this.tabModInfo.Controls.Add(this.ModMakerNTSCKDemo);
+            this.tabModInfo.Controls.Add(this.ModMakerNTSCJDemo);
+            this.tabModInfo.Controls.Add(this.ModMakerPalDemo);
+            this.tabModInfo.Controls.Add(this.ModMakerNTSCK);
+            this.tabModInfo.Controls.Add(this.ModMakerNTSCDemo);
+            this.tabModInfo.Controls.Add(this.ModMakerNTSCJ);
+            this.tabModInfo.Controls.Add(this.ModMakerNTSC);
+            this.tabModInfo.Controls.Add(this.ModMakerPal);
+            this.tabModInfo.Controls.Add(this.ModMakerList);
             this.tabModInfo.Controls.Add(this.label62);
             this.tabModInfo.Controls.Add(this.ModMakerVersion);
             this.tabModInfo.Controls.Add(this.ModMakerDescription);
@@ -541,13 +585,13 @@ namespace SSX_Modder
             this.tabModInfo.Text = "Mod Maker";
             this.tabModInfo.UseVisualStyleBackColor = true;
             // 
-            // listBox2
+            // ModMakerList
             // 
-            this.listBox2.FormattingEnabled = true;
-            this.listBox2.Location = new System.Drawing.Point(9, 275);
-            this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(704, 173);
-            this.listBox2.TabIndex = 16;
+            this.ModMakerList.FormattingEnabled = true;
+            this.ModMakerList.Location = new System.Drawing.Point(9, 275);
+            this.ModMakerList.Name = "ModMakerList";
+            this.ModMakerList.Size = new System.Drawing.Size(704, 173);
+            this.ModMakerList.TabIndex = 16;
             // 
             // label62
             // 
@@ -585,9 +629,10 @@ namespace SSX_Modder
             this.ModMakerGame.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ModMakerGame.FormattingEnabled = true;
             this.ModMakerGame.Items.AddRange(new object[] {
-            "SSX",
+            "SSX (2000)",
             "SSX Tricky",
-            "SSX 3"});
+            "SSX 3",
+            "SSX On Tour"});
             this.ModMakerGame.Location = new System.Drawing.Point(9, 101);
             this.ModMakerGame.Name = "ModMakerGame";
             this.ModMakerGame.Size = new System.Drawing.Size(121, 21);
@@ -687,11 +732,11 @@ namespace SSX_Modder
             // 
             // tabModInstructions
             // 
+            this.tabModInstructions.Controls.Add(this.ModInstructionMod);
+            this.tabModInstructions.Controls.Add(this.ModInstructionGame);
             this.tabModInstructions.Controls.Add(this.ModInstructionLoad);
             this.tabModInstructions.Controls.Add(this.label61);
             this.tabModInstructions.Controls.Add(this.label60);
-            this.tabModInstructions.Controls.Add(this.treeView2);
-            this.tabModInstructions.Controls.Add(this.treeView1);
             this.tabModInstructions.Controls.Add(this.label59);
             this.tabModInstructions.Controls.Add(this.label58);
             this.tabModInstructions.Controls.Add(this.ModInstructionMoveDown);
@@ -727,7 +772,7 @@ namespace SSX_Modder
             // label61
             // 
             this.label61.AutoSize = true;
-            this.label61.Location = new System.Drawing.Point(822, 154);
+            this.label61.Location = new System.Drawing.Point(746, 154);
             this.label61.Name = "label61";
             this.label61.Size = new System.Drawing.Size(73, 13);
             this.label61.TabIndex = 18;
@@ -736,25 +781,11 @@ namespace SSX_Modder
             // label60
             // 
             this.label60.AutoSize = true;
-            this.label60.Location = new System.Drawing.Point(506, 154);
+            this.label60.Location = new System.Drawing.Point(375, 154);
             this.label60.Name = "label60";
             this.label60.Size = new System.Drawing.Size(80, 13);
             this.label60.TabIndex = 17;
             this.label60.Text = "Game Directory";
-            // 
-            // treeView2
-            // 
-            this.treeView2.Location = new System.Drawing.Point(825, 172);
-            this.treeView2.Name = "treeView2";
-            this.treeView2.Size = new System.Drawing.Size(345, 279);
-            this.treeView2.TabIndex = 16;
-            // 
-            // treeView1
-            // 
-            this.treeView1.Location = new System.Drawing.Point(509, 173);
-            this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(307, 278);
-            this.treeView1.TabIndex = 15;
             // 
             // label59
             // 
@@ -817,7 +848,7 @@ namespace SSX_Modder
             // label57
             // 
             this.label57.AutoSize = true;
-            this.label57.Location = new System.Drawing.Point(822, 77);
+            this.label57.Location = new System.Drawing.Point(822, 76);
             this.label57.Name = "label57";
             this.label57.Size = new System.Drawing.Size(39, 13);
             this.label57.TabIndex = 8;
@@ -826,7 +857,7 @@ namespace SSX_Modder
             // label56
             // 
             this.label56.AutoSize = true;
-            this.label56.Location = new System.Drawing.Point(506, 77);
+            this.label56.Location = new System.Drawing.Point(502, 76);
             this.label56.Name = "label56";
             this.label56.Size = new System.Drawing.Size(41, 13);
             this.label56.TabIndex = 7;
@@ -856,13 +887,13 @@ namespace SSX_Modder
             this.ModInstructionListbox.FormattingEnabled = true;
             this.ModInstructionListbox.Location = new System.Drawing.Point(7, 7);
             this.ModInstructionListbox.Name = "ModInstructionListbox";
-            this.ModInstructionListbox.Size = new System.Drawing.Size(340, 420);
+            this.ModInstructionListbox.Size = new System.Drawing.Size(364, 420);
             this.ModInstructionListbox.TabIndex = 3;
             this.ModInstructionListbox.SelectedIndexChanged += new System.EventHandler(this.ModInstructionListbox_SelectedIndexChanged);
             // 
             // ModInstructionOutput
             // 
-            this.ModInstructionOutput.Location = new System.Drawing.Point(825, 96);
+            this.ModInstructionOutput.Location = new System.Drawing.Point(825, 95);
             this.ModInstructionOutput.Name = "ModInstructionOutput";
             this.ModInstructionOutput.Size = new System.Drawing.Size(345, 20);
             this.ModInstructionOutput.TabIndex = 2;
@@ -870,7 +901,7 @@ namespace SSX_Modder
             // 
             // ModInstructionSource
             // 
-            this.ModInstructionSource.Location = new System.Drawing.Point(509, 96);
+            this.ModInstructionSource.Location = new System.Drawing.Point(505, 95);
             this.ModInstructionSource.Name = "ModInstructionSource";
             this.ModInstructionSource.Size = new System.Drawing.Size(310, 20);
             this.ModInstructionSource.TabIndex = 1;
@@ -887,7 +918,7 @@ namespace SSX_Modder
             "BigF Make",
             "BigC0FB Make",
             "Config Insert"});
-            this.ModInstructionType.Location = new System.Drawing.Point(380, 96);
+            this.ModInstructionType.Location = new System.Drawing.Point(378, 95);
             this.ModInstructionType.Name = "ModInstructionType";
             this.ModInstructionType.Size = new System.Drawing.Size(121, 21);
             this.ModInstructionType.TabIndex = 0;
@@ -3024,7 +3055,8 @@ namespace SSX_Modder
             this.GameType.Items.AddRange(new object[] {
             "SSX (2000)",
             "SSX Tricky",
-            "SSX 3"});
+            "SSX 3",
+            "SSX On Tour"});
             this.GameType.Name = "GameType";
             this.GameType.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.GameType.Size = new System.Drawing.Size(121, 25);
@@ -3045,13 +3077,199 @@ namespace SSX_Modder
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
             // 
-            // listBox1
+            // ModInstructionGame
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(12, 259);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(703, 186);
-            this.listBox1.TabIndex = 31;
+            this.ModInstructionGame.FormattingEnabled = true;
+            this.ModInstructionGame.Location = new System.Drawing.Point(377, 170);
+            this.ModInstructionGame.Name = "ModInstructionGame";
+            this.ModInstructionGame.Size = new System.Drawing.Size(360, 277);
+            this.ModInstructionGame.TabIndex = 20;
+            // 
+            // ModInstructionMod
+            // 
+            this.ModInstructionMod.FormattingEnabled = true;
+            this.ModInstructionMod.Location = new System.Drawing.Point(749, 170);
+            this.ModInstructionMod.Name = "ModInstructionMod";
+            this.ModInstructionMod.Size = new System.Drawing.Size(421, 277);
+            this.ModInstructionMod.TabIndex = 21;
+            // 
+            // ModMakerPal
+            // 
+            this.ModMakerPal.AutoSize = true;
+            this.ModMakerPal.Location = new System.Drawing.Point(477, 32);
+            this.ModMakerPal.Name = "ModMakerPal";
+            this.ModMakerPal.Size = new System.Drawing.Size(46, 17);
+            this.ModMakerPal.TabIndex = 17;
+            this.ModMakerPal.Text = "PAL";
+            this.ModMakerPal.UseVisualStyleBackColor = true;
+            // 
+            // ModMakerNTSC
+            // 
+            this.ModMakerNTSC.AutoSize = true;
+            this.ModMakerNTSC.Location = new System.Drawing.Point(477, 55);
+            this.ModMakerNTSC.Name = "ModMakerNTSC";
+            this.ModMakerNTSC.Size = new System.Drawing.Size(55, 17);
+            this.ModMakerNTSC.TabIndex = 18;
+            this.ModMakerNTSC.Text = "NTSC";
+            this.ModMakerNTSC.UseVisualStyleBackColor = true;
+            // 
+            // ModMakerNTSCJ
+            // 
+            this.ModMakerNTSCJ.AutoSize = true;
+            this.ModMakerNTSCJ.Location = new System.Drawing.Point(477, 78);
+            this.ModMakerNTSCJ.Name = "ModMakerNTSCJ";
+            this.ModMakerNTSCJ.Size = new System.Drawing.Size(63, 17);
+            this.ModMakerNTSCJ.TabIndex = 19;
+            this.ModMakerNTSCJ.Text = "NTSC-J";
+            this.ModMakerNTSCJ.UseVisualStyleBackColor = true;
+            // 
+            // ModMakerNTSCDemo
+            // 
+            this.ModMakerNTSCDemo.AutoSize = true;
+            this.ModMakerNTSCDemo.Location = new System.Drawing.Point(563, 55);
+            this.ModMakerNTSCDemo.Name = "ModMakerNTSCDemo";
+            this.ModMakerNTSCDemo.Size = new System.Drawing.Size(92, 17);
+            this.ModMakerNTSCDemo.TabIndex = 20;
+            this.ModMakerNTSCDemo.Text = "NTSC (Demo)";
+            this.ModMakerNTSCDemo.UseVisualStyleBackColor = true;
+            // 
+            // ModMakerNTSCK
+            // 
+            this.ModMakerNTSCK.AutoSize = true;
+            this.ModMakerNTSCK.Location = new System.Drawing.Point(477, 101);
+            this.ModMakerNTSCK.Name = "ModMakerNTSCK";
+            this.ModMakerNTSCK.Size = new System.Drawing.Size(65, 17);
+            this.ModMakerNTSCK.TabIndex = 20;
+            this.ModMakerNTSCK.Text = "NTSC-K";
+            this.ModMakerNTSCK.UseVisualStyleBackColor = true;
+            // 
+            // ModMakerPalDemo
+            // 
+            this.ModMakerPalDemo.AutoSize = true;
+            this.ModMakerPalDemo.Location = new System.Drawing.Point(563, 32);
+            this.ModMakerPalDemo.Name = "ModMakerPalDemo";
+            this.ModMakerPalDemo.Size = new System.Drawing.Size(83, 17);
+            this.ModMakerPalDemo.TabIndex = 21;
+            this.ModMakerPalDemo.Text = "PAL (Demo)";
+            this.ModMakerPalDemo.UseVisualStyleBackColor = true;
+            // 
+            // ModMakerNTSCJDemo
+            // 
+            this.ModMakerNTSCJDemo.AutoSize = true;
+            this.ModMakerNTSCJDemo.Location = new System.Drawing.Point(563, 78);
+            this.ModMakerNTSCJDemo.Name = "ModMakerNTSCJDemo";
+            this.ModMakerNTSCJDemo.Size = new System.Drawing.Size(100, 17);
+            this.ModMakerNTSCJDemo.TabIndex = 22;
+            this.ModMakerNTSCJDemo.Text = "NTSC-J (Demo)";
+            this.ModMakerNTSCJDemo.UseVisualStyleBackColor = true;
+            // 
+            // ModMakerNTSCKDemo
+            // 
+            this.ModMakerNTSCKDemo.AutoSize = true;
+            this.ModMakerNTSCKDemo.Location = new System.Drawing.Point(563, 101);
+            this.ModMakerNTSCKDemo.Name = "ModMakerNTSCKDemo";
+            this.ModMakerNTSCKDemo.Size = new System.Drawing.Size(102, 17);
+            this.ModMakerNTSCKDemo.TabIndex = 23;
+            this.ModMakerNTSCKDemo.Text = "NTSC-K (Demo)";
+            this.ModMakerNTSCKDemo.UseVisualStyleBackColor = true;
+            // 
+            // label69
+            // 
+            this.label69.AutoSize = true;
+            this.label69.Location = new System.Drawing.Point(474, 16);
+            this.label69.Name = "label69";
+            this.label69.Size = new System.Drawing.Size(103, 13);
+            this.label69.TabIndex = 24;
+            this.label69.Text = "Known Compatabilty";
+            // 
+            // label70
+            // 
+            this.label70.AutoSize = true;
+            this.label70.Location = new System.Drawing.Point(477, 16);
+            this.label70.Name = "label70";
+            this.label70.Size = new System.Drawing.Size(103, 13);
+            this.label70.TabIndex = 40;
+            this.label70.Text = "Known Compatabilty";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(566, 101);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(102, 17);
+            this.checkBox1.TabIndex = 39;
+            this.checkBox1.Text = "NTSC-K (Demo)";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(566, 78);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(100, 17);
+            this.checkBox2.TabIndex = 38;
+            this.checkBox2.Text = "NTSC-J (Demo)";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // checkBox3
+            // 
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.Location = new System.Drawing.Point(566, 32);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(83, 17);
+            this.checkBox3.TabIndex = 37;
+            this.checkBox3.Text = "PAL (Demo)";
+            this.checkBox3.UseVisualStyleBackColor = true;
+            // 
+            // checkBox4
+            // 
+            this.checkBox4.AutoSize = true;
+            this.checkBox4.Location = new System.Drawing.Point(480, 101);
+            this.checkBox4.Name = "checkBox4";
+            this.checkBox4.Size = new System.Drawing.Size(65, 17);
+            this.checkBox4.TabIndex = 35;
+            this.checkBox4.Text = "NTSC-K";
+            this.checkBox4.UseVisualStyleBackColor = true;
+            // 
+            // checkBox5
+            // 
+            this.checkBox5.AutoSize = true;
+            this.checkBox5.Location = new System.Drawing.Point(566, 55);
+            this.checkBox5.Name = "checkBox5";
+            this.checkBox5.Size = new System.Drawing.Size(92, 17);
+            this.checkBox5.TabIndex = 36;
+            this.checkBox5.Text = "NTSC (Demo)";
+            this.checkBox5.UseVisualStyleBackColor = true;
+            // 
+            // checkBox6
+            // 
+            this.checkBox6.AutoSize = true;
+            this.checkBox6.Location = new System.Drawing.Point(480, 78);
+            this.checkBox6.Name = "checkBox6";
+            this.checkBox6.Size = new System.Drawing.Size(63, 17);
+            this.checkBox6.TabIndex = 34;
+            this.checkBox6.Text = "NTSC-J";
+            this.checkBox6.UseVisualStyleBackColor = true;
+            // 
+            // checkBox7
+            // 
+            this.checkBox7.AutoSize = true;
+            this.checkBox7.Location = new System.Drawing.Point(480, 55);
+            this.checkBox7.Name = "checkBox7";
+            this.checkBox7.Size = new System.Drawing.Size(55, 17);
+            this.checkBox7.TabIndex = 33;
+            this.checkBox7.Text = "NTSC";
+            this.checkBox7.UseVisualStyleBackColor = true;
+            // 
+            // checkBox8
+            // 
+            this.checkBox8.AutoSize = true;
+            this.checkBox8.Location = new System.Drawing.Point(480, 32);
+            this.checkBox8.Name = "checkBox8";
+            this.checkBox8.Size = new System.Drawing.Size(46, 17);
+            this.checkBox8.TabIndex = 32;
+            this.checkBox8.Text = "PAL";
+            this.checkBox8.UseVisualStyleBackColor = true;
             // 
             // MainWindow
             // 
@@ -3344,8 +3562,6 @@ namespace SSX_Modder
         private System.Windows.Forms.Button ModInstructionLoad;
         private System.Windows.Forms.Label label61;
         private System.Windows.Forms.Label label60;
-        private System.Windows.Forms.TreeView treeView2;
-        private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.Label label59;
         private System.Windows.Forms.Label label58;
         private System.Windows.Forms.Button ModInstructionMoveDown;
@@ -3360,7 +3576,7 @@ namespace SSX_Modder
         private System.Windows.Forms.TextBox ModInstructionOutput;
         private System.Windows.Forms.TextBox ModInstructionSource;
         private System.Windows.Forms.ComboBox ModInstructionType;
-        private System.Windows.Forms.ListBox listBox2;
+        private System.Windows.Forms.ListBox ModMakerList;
         private System.Windows.Forms.Label label62;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.Label ModDescription;
@@ -3378,6 +3594,26 @@ namespace SSX_Modder
         private System.Windows.Forms.Button ModApply;
         private System.Windows.Forms.Button ModLoad;
         private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox ModInstructionMod;
+        private System.Windows.Forms.ListBox ModInstructionGame;
+        private System.Windows.Forms.CheckBox ModMakerNTSCKDemo;
+        private System.Windows.Forms.CheckBox ModMakerNTSCJDemo;
+        private System.Windows.Forms.CheckBox ModMakerPalDemo;
+        private System.Windows.Forms.CheckBox ModMakerNTSCK;
+        private System.Windows.Forms.CheckBox ModMakerNTSCDemo;
+        private System.Windows.Forms.CheckBox ModMakerNTSCJ;
+        private System.Windows.Forms.CheckBox ModMakerNTSC;
+        private System.Windows.Forms.CheckBox ModMakerPal;
+        private System.Windows.Forms.Label label69;
+        private System.Windows.Forms.Label label70;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox checkBox3;
+        private System.Windows.Forms.CheckBox checkBox4;
+        private System.Windows.Forms.CheckBox checkBox5;
+        private System.Windows.Forms.CheckBox checkBox6;
+        private System.Windows.Forms.CheckBox checkBox7;
+        private System.Windows.Forms.CheckBox checkBox8;
     }
 }
 
