@@ -36,9 +36,9 @@ This is a modding tool i came up and started making when i caught covid as a way
 ### Mod File System Todo
 - Test All Functions
 - Test for SSX Tricky Lighting
-- Test for SSX-ElfLdr Setup Mod
 
 ### Todo Later
+- Big4 Big Archive Making and Extracting
 - Mod System Loc Txt Insert, Big Insert
 - Modding Guide
 - Add SSX On Tour Support
@@ -50,6 +50,7 @@ This is a modding tool i came up and started making when i caught covid as a way
 - Control Editor Menu
 - MUS Extractor
 - Redo Loc and Music INF (Support Other Games)
+- 
 
 ### If i ever find the correct code or work it out
 - Refpack Compressor

@@ -1,0 +1,19 @@
+Copy,Mod\elfldr.elf,Game\elfldr.elf
+Big Extract,Game\DATA\MODELS\ALOHA.BIG,Game\
+Delete,Game\DATA\MODELS\ALOHA.BIG,
+Big Extract,Game\DATA\MODELS\ELYSIUM.BIG,Game\
+Delete,Game\DATA\MODELS\ELYSIUM.BIG,
+Big Extract,Game\DATA\MODELS\MEGAPLEX.BIG,Game\
+Delete,Game\DATA\MODELS\MEGAPLEX.BIG,
+Big Extract,Game\DATA\MODELS\MERQUERY.BIG,Game\
+Delete,Game\DATA\MODELS\MERQUERY.BIG,
+Big Extract,Game\DATA\MODELS\MESA.BIG,Game\
+Delete,Game\DATA\MODELS\MESA.BIG,
+Big Extract,Game\DATA\MODELS\PIPE.BIG,Game\
+Delete,Game\DATA\MODELS\PIPE.BIG,
+Big Extract,Game\DATA\MODELS\SNOW.BIG,Game\
+Delete,Game\DATA\MODELS\SNOW.BIG,
+Big Extract,Game\DATA\MODELS\UNTRACK.BIG,Game\
+Delete,Game\DATA\MODELS\UNTRACK.BIG,
+Big Extract,Game\DATA\MODELS\WARMUP.BIG,Game\
+Delete,Game\DATA\MODELS\WARMUP.BIG,

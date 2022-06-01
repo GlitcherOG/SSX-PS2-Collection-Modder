@@ -1,0 +1,25 @@
+Copy,Mod\elfldr.elf,Game\elfldr.elf
+Big Extract,Game\DATA\MODELS\ALASKA.BIG,Game\
+Delete,Game\DATA\MODELS\ALASKA.BIG,
+Big Extract,Game\DATA\MODELS\ALOHA.BIG,Game\
+Delete,Game\DATA\MODELS\ALOHA.BIG,
+Big Extract,Game\DATA\MODELS\ELYSIUM.BIG,Game\
+Delete,Game\DATA\MODELS\ELYSIUM.BIG,
+Big Extract,Game\DATA\MODELS\GARI.BIG,Game\
+Delete,Game\DATA\MODELS\GARI.BIG,
+Big Extract,Game\DATA\MODELS\MEGAPLE.BIG,Game\
+Delete,Game\DATA\MODELS\MEGAPLE.BIG,
+Big Extract,Game\DATA\MODELS\MERQUER.BIG,Game\
+Delete,Game\DATA\MODELS\MERQUER.BIG,
+Big Extract,Game\DATA\MODELS\MESA.BIG,Game\
+Delete,Game\DATA\MODELS\MESA.BIG,
+Big Extract,Game\DATA\MODELS\PIPE.BIG,Game\
+Delete,Game\DATA\MODELS\PIPE.BIG,
+Big Extract,Game\DATA\MODELS\SNOW.BIG,Game\
+Delete,Game\DATA\MODELS\SNOW.BIG,
+Big Extract,Game\DATA\MODELS\SSXFE.BIG,Game\
+Delete,Game\DATA\MODELS\SSXFE.BIG,
+Big Extract,Game\DATA\MODELS\TRICK.BIG,Game\
+Delete,Game\DATA\MODELS\TRICK.BIG,
+Big Extract,Game\DATA\MODELS\UNTRACK.BIG,
+Delete,Game\DATA\MODELS\UNTRACK.BIG,

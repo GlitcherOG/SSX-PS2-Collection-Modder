@@ -34,6 +34,15 @@ namespace SSX_Modder
             this.tabModPacks = new System.Windows.Forms.TabPage();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label70 = new System.Windows.Forms.Label();
+            this.ModNTSCKDemo = new System.Windows.Forms.CheckBox();
+            this.ModNTSCJDemo = new System.Windows.Forms.CheckBox();
+            this.ModPalDemo = new System.Windows.Forms.CheckBox();
+            this.ModNTSCK = new System.Windows.Forms.CheckBox();
+            this.ModNTSCDemo = new System.Windows.Forms.CheckBox();
+            this.ModNTSCJ = new System.Windows.Forms.CheckBox();
+            this.ModNTSC = new System.Windows.Forms.CheckBox();
+            this.ModPal = new System.Windows.Forms.CheckBox();
             this.ModList = new System.Windows.Forms.ListBox();
             this.ModApply = new System.Windows.Forms.Button();
             this.ModLoad = new System.Windows.Forms.Button();
@@ -50,6 +59,15 @@ namespace SSX_Modder
             this.ModPicture = new System.Windows.Forms.PictureBox();
             this.label68 = new System.Windows.Forms.Label();
             this.tabModInfo = new System.Windows.Forms.TabPage();
+            this.label69 = new System.Windows.Forms.Label();
+            this.ModMakerNTSCKDemo = new System.Windows.Forms.CheckBox();
+            this.ModMakerNTSCJDemo = new System.Windows.Forms.CheckBox();
+            this.ModMakerPalDemo = new System.Windows.Forms.CheckBox();
+            this.ModMakerNTSCK = new System.Windows.Forms.CheckBox();
+            this.ModMakerNTSCDemo = new System.Windows.Forms.CheckBox();
+            this.ModMakerNTSCJ = new System.Windows.Forms.CheckBox();
+            this.ModMakerNTSC = new System.Windows.Forms.CheckBox();
+            this.ModMakerPal = new System.Windows.Forms.CheckBox();
             this.ModMakerList = new System.Windows.Forms.ListBox();
             this.label62 = new System.Windows.Forms.Label();
             this.ModMakerVersion = new System.Windows.Forms.TextBox();
@@ -67,6 +85,8 @@ namespace SSX_Modder
             this.ModMakerPack = new System.Windows.Forms.Button();
             this.ModMakerLoad = new System.Windows.Forms.Button();
             this.tabModInstructions = new System.Windows.Forms.TabPage();
+            this.ModInstructionMod = new System.Windows.Forms.ListBox();
+            this.ModInstructionGame = new System.Windows.Forms.ListBox();
             this.ModInstructionLoad = new System.Windows.Forms.Button();
             this.label61 = new System.Windows.Forms.Label();
             this.label60 = new System.Windows.Forms.Label();
@@ -234,6 +254,8 @@ namespace SSX_Modder
             this.musiclistBox1 = new System.Windows.Forms.ListBox();
             this.tabTools = new System.Windows.Forms.TabPage();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.ToolsRestoreSSXOnTour = new System.Windows.Forms.Button();
+            this.ToolsBackupSSXOnTour = new System.Windows.Forms.Button();
             this.ToolsRestoreSSX3 = new System.Windows.Forms.Button();
             this.ToolsRestoreSSXTricky = new System.Windows.Forms.Button();
             this.ToolsRestoreSSX = new System.Windows.Forms.Button();
@@ -251,6 +273,8 @@ namespace SSX_Modder
             this.ToolsColours = new System.Windows.Forms.Button();
             this.NumToolsColour = new System.Windows.Forms.NumericUpDown();
             this.tabSettings = new System.Windows.Forms.TabPage();
+            this.label71 = new System.Windows.Forms.Label();
+            this.linkGithub = new System.Windows.Forms.LinkLabel();
             this.SettingsIsoPath = new System.Windows.Forms.Label();
             this.SettingsIsoSet = new System.Windows.Forms.Button();
             this.SettingsOverride = new System.Windows.Forms.CheckBox();
@@ -272,30 +296,6 @@ namespace SSX_Modder
             this.GameType = new System.Windows.Forms.ToolStripComboBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.ModInstructionGame = new System.Windows.Forms.ListBox();
-            this.ModInstructionMod = new System.Windows.Forms.ListBox();
-            this.ModMakerPal = new System.Windows.Forms.CheckBox();
-            this.ModMakerNTSC = new System.Windows.Forms.CheckBox();
-            this.ModMakerNTSCJ = new System.Windows.Forms.CheckBox();
-            this.ModMakerNTSCDemo = new System.Windows.Forms.CheckBox();
-            this.ModMakerNTSCK = new System.Windows.Forms.CheckBox();
-            this.ModMakerPalDemo = new System.Windows.Forms.CheckBox();
-            this.ModMakerNTSCJDemo = new System.Windows.Forms.CheckBox();
-            this.ModMakerNTSCKDemo = new System.Windows.Forms.CheckBox();
-            this.label69 = new System.Windows.Forms.Label();
-            this.label70 = new System.Windows.Forms.Label();
-            this.ModNTSCKDemo = new System.Windows.Forms.CheckBox();
-            this.ModNTSCJDemo = new System.Windows.Forms.CheckBox();
-            this.ModPalDemo = new System.Windows.Forms.CheckBox();
-            this.ModNTSCK = new System.Windows.Forms.CheckBox();
-            this.ModNTSCDemo = new System.Windows.Forms.CheckBox();
-            this.ModNTSCJ = new System.Windows.Forms.CheckBox();
-            this.ModNTSC = new System.Windows.Forms.CheckBox();
-            this.ModPal = new System.Windows.Forms.CheckBox();
-            this.ToolsRestoreSSXOnTour = new System.Windows.Forms.Button();
-            this.ToolsBackupSSXOnTour = new System.Windows.Forms.Button();
-            this.linkGithub = new System.Windows.Forms.LinkLabel();
-            this.label71 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabModPacks.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -420,6 +420,103 @@ namespace SSX_Modder
             this.tabPage1.TabIndex = 2;
             this.tabPage1.Text = "Mod";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // label70
+            // 
+            this.label70.AutoSize = true;
+            this.label70.Location = new System.Drawing.Point(458, 3);
+            this.label70.Name = "label70";
+            this.label70.Size = new System.Drawing.Size(103, 13);
+            this.label70.TabIndex = 40;
+            this.label70.Text = "Known Compatabilty";
+            // 
+            // ModNTSCKDemo
+            // 
+            this.ModNTSCKDemo.AutoSize = true;
+            this.ModNTSCKDemo.Enabled = false;
+            this.ModNTSCKDemo.Location = new System.Drawing.Point(547, 88);
+            this.ModNTSCKDemo.Name = "ModNTSCKDemo";
+            this.ModNTSCKDemo.Size = new System.Drawing.Size(102, 17);
+            this.ModNTSCKDemo.TabIndex = 39;
+            this.ModNTSCKDemo.Text = "NTSC-K (Demo)";
+            this.ModNTSCKDemo.UseVisualStyleBackColor = true;
+            // 
+            // ModNTSCJDemo
+            // 
+            this.ModNTSCJDemo.AutoSize = true;
+            this.ModNTSCJDemo.Enabled = false;
+            this.ModNTSCJDemo.Location = new System.Drawing.Point(547, 65);
+            this.ModNTSCJDemo.Name = "ModNTSCJDemo";
+            this.ModNTSCJDemo.Size = new System.Drawing.Size(100, 17);
+            this.ModNTSCJDemo.TabIndex = 38;
+            this.ModNTSCJDemo.Text = "NTSC-J (Demo)";
+            this.ModNTSCJDemo.UseVisualStyleBackColor = true;
+            // 
+            // ModPalDemo
+            // 
+            this.ModPalDemo.AutoSize = true;
+            this.ModPalDemo.Enabled = false;
+            this.ModPalDemo.Location = new System.Drawing.Point(547, 19);
+            this.ModPalDemo.Name = "ModPalDemo";
+            this.ModPalDemo.Size = new System.Drawing.Size(83, 17);
+            this.ModPalDemo.TabIndex = 37;
+            this.ModPalDemo.Text = "PAL (Demo)";
+            this.ModPalDemo.UseVisualStyleBackColor = true;
+            // 
+            // ModNTSCK
+            // 
+            this.ModNTSCK.AutoSize = true;
+            this.ModNTSCK.Enabled = false;
+            this.ModNTSCK.Location = new System.Drawing.Point(461, 88);
+            this.ModNTSCK.Name = "ModNTSCK";
+            this.ModNTSCK.Size = new System.Drawing.Size(65, 17);
+            this.ModNTSCK.TabIndex = 35;
+            this.ModNTSCK.Text = "NTSC-K";
+            this.ModNTSCK.UseVisualStyleBackColor = true;
+            // 
+            // ModNTSCDemo
+            // 
+            this.ModNTSCDemo.AutoSize = true;
+            this.ModNTSCDemo.Enabled = false;
+            this.ModNTSCDemo.Location = new System.Drawing.Point(547, 42);
+            this.ModNTSCDemo.Name = "ModNTSCDemo";
+            this.ModNTSCDemo.Size = new System.Drawing.Size(92, 17);
+            this.ModNTSCDemo.TabIndex = 36;
+            this.ModNTSCDemo.Text = "NTSC (Demo)";
+            this.ModNTSCDemo.UseVisualStyleBackColor = true;
+            // 
+            // ModNTSCJ
+            // 
+            this.ModNTSCJ.AutoSize = true;
+            this.ModNTSCJ.Enabled = false;
+            this.ModNTSCJ.Location = new System.Drawing.Point(461, 65);
+            this.ModNTSCJ.Name = "ModNTSCJ";
+            this.ModNTSCJ.Size = new System.Drawing.Size(63, 17);
+            this.ModNTSCJ.TabIndex = 34;
+            this.ModNTSCJ.Text = "NTSC-J";
+            this.ModNTSCJ.UseVisualStyleBackColor = true;
+            // 
+            // ModNTSC
+            // 
+            this.ModNTSC.AutoSize = true;
+            this.ModNTSC.Enabled = false;
+            this.ModNTSC.Location = new System.Drawing.Point(461, 42);
+            this.ModNTSC.Name = "ModNTSC";
+            this.ModNTSC.Size = new System.Drawing.Size(55, 17);
+            this.ModNTSC.TabIndex = 33;
+            this.ModNTSC.Text = "NTSC";
+            this.ModNTSC.UseVisualStyleBackColor = true;
+            // 
+            // ModPal
+            // 
+            this.ModPal.AutoSize = true;
+            this.ModPal.Enabled = false;
+            this.ModPal.Location = new System.Drawing.Point(461, 19);
+            this.ModPal.Name = "ModPal";
+            this.ModPal.Size = new System.Drawing.Size(46, 17);
+            this.ModPal.TabIndex = 32;
+            this.ModPal.Text = "PAL";
+            this.ModPal.UseVisualStyleBackColor = true;
             // 
             // ModList
             // 
@@ -591,6 +688,95 @@ namespace SSX_Modder
             this.tabModInfo.TabIndex = 0;
             this.tabModInfo.Text = "Mod Maker";
             this.tabModInfo.UseVisualStyleBackColor = true;
+            // 
+            // label69
+            // 
+            this.label69.AutoSize = true;
+            this.label69.Location = new System.Drawing.Point(449, 6);
+            this.label69.Name = "label69";
+            this.label69.Size = new System.Drawing.Size(103, 13);
+            this.label69.TabIndex = 24;
+            this.label69.Text = "Known Compatabilty";
+            // 
+            // ModMakerNTSCKDemo
+            // 
+            this.ModMakerNTSCKDemo.AutoSize = true;
+            this.ModMakerNTSCKDemo.Location = new System.Drawing.Point(538, 91);
+            this.ModMakerNTSCKDemo.Name = "ModMakerNTSCKDemo";
+            this.ModMakerNTSCKDemo.Size = new System.Drawing.Size(102, 17);
+            this.ModMakerNTSCKDemo.TabIndex = 23;
+            this.ModMakerNTSCKDemo.Text = "NTSC-K (Demo)";
+            this.ModMakerNTSCKDemo.UseVisualStyleBackColor = true;
+            // 
+            // ModMakerNTSCJDemo
+            // 
+            this.ModMakerNTSCJDemo.AutoSize = true;
+            this.ModMakerNTSCJDemo.Location = new System.Drawing.Point(538, 68);
+            this.ModMakerNTSCJDemo.Name = "ModMakerNTSCJDemo";
+            this.ModMakerNTSCJDemo.Size = new System.Drawing.Size(100, 17);
+            this.ModMakerNTSCJDemo.TabIndex = 22;
+            this.ModMakerNTSCJDemo.Text = "NTSC-J (Demo)";
+            this.ModMakerNTSCJDemo.UseVisualStyleBackColor = true;
+            // 
+            // ModMakerPalDemo
+            // 
+            this.ModMakerPalDemo.AutoSize = true;
+            this.ModMakerPalDemo.Location = new System.Drawing.Point(538, 22);
+            this.ModMakerPalDemo.Name = "ModMakerPalDemo";
+            this.ModMakerPalDemo.Size = new System.Drawing.Size(83, 17);
+            this.ModMakerPalDemo.TabIndex = 21;
+            this.ModMakerPalDemo.Text = "PAL (Demo)";
+            this.ModMakerPalDemo.UseVisualStyleBackColor = true;
+            // 
+            // ModMakerNTSCK
+            // 
+            this.ModMakerNTSCK.AutoSize = true;
+            this.ModMakerNTSCK.Location = new System.Drawing.Point(452, 91);
+            this.ModMakerNTSCK.Name = "ModMakerNTSCK";
+            this.ModMakerNTSCK.Size = new System.Drawing.Size(65, 17);
+            this.ModMakerNTSCK.TabIndex = 20;
+            this.ModMakerNTSCK.Text = "NTSC-K";
+            this.ModMakerNTSCK.UseVisualStyleBackColor = true;
+            // 
+            // ModMakerNTSCDemo
+            // 
+            this.ModMakerNTSCDemo.AutoSize = true;
+            this.ModMakerNTSCDemo.Location = new System.Drawing.Point(538, 45);
+            this.ModMakerNTSCDemo.Name = "ModMakerNTSCDemo";
+            this.ModMakerNTSCDemo.Size = new System.Drawing.Size(92, 17);
+            this.ModMakerNTSCDemo.TabIndex = 20;
+            this.ModMakerNTSCDemo.Text = "NTSC (Demo)";
+            this.ModMakerNTSCDemo.UseVisualStyleBackColor = true;
+            // 
+            // ModMakerNTSCJ
+            // 
+            this.ModMakerNTSCJ.AutoSize = true;
+            this.ModMakerNTSCJ.Location = new System.Drawing.Point(452, 68);
+            this.ModMakerNTSCJ.Name = "ModMakerNTSCJ";
+            this.ModMakerNTSCJ.Size = new System.Drawing.Size(63, 17);
+            this.ModMakerNTSCJ.TabIndex = 19;
+            this.ModMakerNTSCJ.Text = "NTSC-J";
+            this.ModMakerNTSCJ.UseVisualStyleBackColor = true;
+            // 
+            // ModMakerNTSC
+            // 
+            this.ModMakerNTSC.AutoSize = true;
+            this.ModMakerNTSC.Location = new System.Drawing.Point(452, 45);
+            this.ModMakerNTSC.Name = "ModMakerNTSC";
+            this.ModMakerNTSC.Size = new System.Drawing.Size(55, 17);
+            this.ModMakerNTSC.TabIndex = 18;
+            this.ModMakerNTSC.Text = "NTSC";
+            this.ModMakerNTSC.UseVisualStyleBackColor = true;
+            // 
+            // ModMakerPal
+            // 
+            this.ModMakerPal.AutoSize = true;
+            this.ModMakerPal.Location = new System.Drawing.Point(452, 22);
+            this.ModMakerPal.Name = "ModMakerPal";
+            this.ModMakerPal.Size = new System.Drawing.Size(46, 17);
+            this.ModMakerPal.TabIndex = 17;
+            this.ModMakerPal.Text = "PAL";
+            this.ModMakerPal.UseVisualStyleBackColor = true;
             // 
             // ModMakerList
             // 
@@ -765,6 +951,24 @@ namespace SSX_Modder
             this.tabModInstructions.TabIndex = 1;
             this.tabModInstructions.Text = "Mod Instructions";
             this.tabModInstructions.UseVisualStyleBackColor = true;
+            // 
+            // ModInstructionMod
+            // 
+            this.ModInstructionMod.FormattingEnabled = true;
+            this.ModInstructionMod.Location = new System.Drawing.Point(749, 170);
+            this.ModInstructionMod.Name = "ModInstructionMod";
+            this.ModInstructionMod.Size = new System.Drawing.Size(421, 277);
+            this.ModInstructionMod.TabIndex = 21;
+            this.ModInstructionMod.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ModInstructionMod_MouseDown);
+            // 
+            // ModInstructionGame
+            // 
+            this.ModInstructionGame.FormattingEnabled = true;
+            this.ModInstructionGame.Location = new System.Drawing.Point(377, 170);
+            this.ModInstructionGame.Name = "ModInstructionGame";
+            this.ModInstructionGame.Size = new System.Drawing.Size(360, 277);
+            this.ModInstructionGame.TabIndex = 20;
+            this.ModInstructionGame.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ModInstructionGame_MouseDown);
             // 
             // ModInstructionLoad
             // 
@@ -2690,6 +2894,26 @@ namespace SSX_Modder
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Workspace Backup (Freezes Application)";
             // 
+            // ToolsRestoreSSXOnTour
+            // 
+            this.ToolsRestoreSSXOnTour.Location = new System.Drawing.Point(126, 185);
+            this.ToolsRestoreSSXOnTour.Name = "ToolsRestoreSSXOnTour";
+            this.ToolsRestoreSSXOnTour.Size = new System.Drawing.Size(114, 50);
+            this.ToolsRestoreSSXOnTour.TabIndex = 13;
+            this.ToolsRestoreSSXOnTour.Text = "Restore SSX On Tour";
+            this.ToolsRestoreSSXOnTour.UseVisualStyleBackColor = true;
+            this.ToolsRestoreSSXOnTour.Click += new System.EventHandler(this.ToolsRestoreSSXOnTour_Click);
+            // 
+            // ToolsBackupSSXOnTour
+            // 
+            this.ToolsBackupSSXOnTour.Location = new System.Drawing.Point(6, 185);
+            this.ToolsBackupSSXOnTour.Name = "ToolsBackupSSXOnTour";
+            this.ToolsBackupSSXOnTour.Size = new System.Drawing.Size(114, 50);
+            this.ToolsBackupSSXOnTour.TabIndex = 12;
+            this.ToolsBackupSSXOnTour.Text = "Backup SSX On Tour";
+            this.ToolsBackupSSXOnTour.UseVisualStyleBackColor = true;
+            this.ToolsBackupSSXOnTour.Click += new System.EventHandler(this.ToolsBackupSSXOnTour_Click);
+            // 
             // ToolsRestoreSSX3
             // 
             this.ToolsRestoreSSX3.Location = new System.Drawing.Point(126, 129);
@@ -2884,6 +3108,26 @@ namespace SSX_Modder
             this.tabSettings.TabIndex = 10;
             this.tabSettings.Text = "Settings";
             this.tabSettings.UseVisualStyleBackColor = true;
+            // 
+            // label71
+            // 
+            this.label71.AutoSize = true;
+            this.label71.Location = new System.Drawing.Point(16, 266);
+            this.label71.Name = "label71";
+            this.label71.Size = new System.Drawing.Size(114, 13);
+            this.label71.TabIndex = 14;
+            this.label71.Text = "Created By GlitcherOG";
+            // 
+            // linkGithub
+            // 
+            this.linkGithub.AutoSize = true;
+            this.linkGithub.Location = new System.Drawing.Point(16, 253);
+            this.linkGithub.Name = "linkGithub";
+            this.linkGithub.Size = new System.Drawing.Size(40, 13);
+            this.linkGithub.TabIndex = 13;
+            this.linkGithub.TabStop = true;
+            this.linkGithub.Text = "GitHub";
+            this.linkGithub.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkGithub_LinkClicked);
             // 
             // SettingsIsoPath
             // 
@@ -3089,250 +3333,6 @@ namespace SSX_Modder
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
-            // 
-            // ModInstructionGame
-            // 
-            this.ModInstructionGame.FormattingEnabled = true;
-            this.ModInstructionGame.Location = new System.Drawing.Point(377, 170);
-            this.ModInstructionGame.Name = "ModInstructionGame";
-            this.ModInstructionGame.Size = new System.Drawing.Size(360, 277);
-            this.ModInstructionGame.TabIndex = 20;
-            this.ModInstructionGame.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ModInstructionGame_MouseDown);
-            // 
-            // ModInstructionMod
-            // 
-            this.ModInstructionMod.FormattingEnabled = true;
-            this.ModInstructionMod.Location = new System.Drawing.Point(749, 170);
-            this.ModInstructionMod.Name = "ModInstructionMod";
-            this.ModInstructionMod.Size = new System.Drawing.Size(421, 277);
-            this.ModInstructionMod.TabIndex = 21;
-            this.ModInstructionMod.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ModInstructionMod_MouseDown);
-            // 
-            // ModMakerPal
-            // 
-            this.ModMakerPal.AutoSize = true;
-            this.ModMakerPal.Location = new System.Drawing.Point(477, 32);
-            this.ModMakerPal.Name = "ModMakerPal";
-            this.ModMakerPal.Size = new System.Drawing.Size(46, 17);
-            this.ModMakerPal.TabIndex = 17;
-            this.ModMakerPal.Text = "PAL";
-            this.ModMakerPal.UseVisualStyleBackColor = true;
-            // 
-            // ModMakerNTSC
-            // 
-            this.ModMakerNTSC.AutoSize = true;
-            this.ModMakerNTSC.Location = new System.Drawing.Point(477, 55);
-            this.ModMakerNTSC.Name = "ModMakerNTSC";
-            this.ModMakerNTSC.Size = new System.Drawing.Size(55, 17);
-            this.ModMakerNTSC.TabIndex = 18;
-            this.ModMakerNTSC.Text = "NTSC";
-            this.ModMakerNTSC.UseVisualStyleBackColor = true;
-            // 
-            // ModMakerNTSCJ
-            // 
-            this.ModMakerNTSCJ.AutoSize = true;
-            this.ModMakerNTSCJ.Location = new System.Drawing.Point(477, 78);
-            this.ModMakerNTSCJ.Name = "ModMakerNTSCJ";
-            this.ModMakerNTSCJ.Size = new System.Drawing.Size(63, 17);
-            this.ModMakerNTSCJ.TabIndex = 19;
-            this.ModMakerNTSCJ.Text = "NTSC-J";
-            this.ModMakerNTSCJ.UseVisualStyleBackColor = true;
-            // 
-            // ModMakerNTSCDemo
-            // 
-            this.ModMakerNTSCDemo.AutoSize = true;
-            this.ModMakerNTSCDemo.Location = new System.Drawing.Point(563, 55);
-            this.ModMakerNTSCDemo.Name = "ModMakerNTSCDemo";
-            this.ModMakerNTSCDemo.Size = new System.Drawing.Size(92, 17);
-            this.ModMakerNTSCDemo.TabIndex = 20;
-            this.ModMakerNTSCDemo.Text = "NTSC (Demo)";
-            this.ModMakerNTSCDemo.UseVisualStyleBackColor = true;
-            // 
-            // ModMakerNTSCK
-            // 
-            this.ModMakerNTSCK.AutoSize = true;
-            this.ModMakerNTSCK.Location = new System.Drawing.Point(477, 101);
-            this.ModMakerNTSCK.Name = "ModMakerNTSCK";
-            this.ModMakerNTSCK.Size = new System.Drawing.Size(65, 17);
-            this.ModMakerNTSCK.TabIndex = 20;
-            this.ModMakerNTSCK.Text = "NTSC-K";
-            this.ModMakerNTSCK.UseVisualStyleBackColor = true;
-            // 
-            // ModMakerPalDemo
-            // 
-            this.ModMakerPalDemo.AutoSize = true;
-            this.ModMakerPalDemo.Location = new System.Drawing.Point(563, 32);
-            this.ModMakerPalDemo.Name = "ModMakerPalDemo";
-            this.ModMakerPalDemo.Size = new System.Drawing.Size(83, 17);
-            this.ModMakerPalDemo.TabIndex = 21;
-            this.ModMakerPalDemo.Text = "PAL (Demo)";
-            this.ModMakerPalDemo.UseVisualStyleBackColor = true;
-            // 
-            // ModMakerNTSCJDemo
-            // 
-            this.ModMakerNTSCJDemo.AutoSize = true;
-            this.ModMakerNTSCJDemo.Location = new System.Drawing.Point(563, 78);
-            this.ModMakerNTSCJDemo.Name = "ModMakerNTSCJDemo";
-            this.ModMakerNTSCJDemo.Size = new System.Drawing.Size(100, 17);
-            this.ModMakerNTSCJDemo.TabIndex = 22;
-            this.ModMakerNTSCJDemo.Text = "NTSC-J (Demo)";
-            this.ModMakerNTSCJDemo.UseVisualStyleBackColor = true;
-            // 
-            // ModMakerNTSCKDemo
-            // 
-            this.ModMakerNTSCKDemo.AutoSize = true;
-            this.ModMakerNTSCKDemo.Location = new System.Drawing.Point(563, 101);
-            this.ModMakerNTSCKDemo.Name = "ModMakerNTSCKDemo";
-            this.ModMakerNTSCKDemo.Size = new System.Drawing.Size(102, 17);
-            this.ModMakerNTSCKDemo.TabIndex = 23;
-            this.ModMakerNTSCKDemo.Text = "NTSC-K (Demo)";
-            this.ModMakerNTSCKDemo.UseVisualStyleBackColor = true;
-            // 
-            // label69
-            // 
-            this.label69.AutoSize = true;
-            this.label69.Location = new System.Drawing.Point(474, 16);
-            this.label69.Name = "label69";
-            this.label69.Size = new System.Drawing.Size(103, 13);
-            this.label69.TabIndex = 24;
-            this.label69.Text = "Known Compatabilty";
-            // 
-            // label70
-            // 
-            this.label70.AutoSize = true;
-            this.label70.Location = new System.Drawing.Point(477, 16);
-            this.label70.Name = "label70";
-            this.label70.Size = new System.Drawing.Size(103, 13);
-            this.label70.TabIndex = 40;
-            this.label70.Text = "Known Compatabilty";
-            // 
-            // ModNTSCKDemo
-            // 
-            this.ModNTSCKDemo.AutoSize = true;
-            this.ModNTSCKDemo.Enabled = false;
-            this.ModNTSCKDemo.Location = new System.Drawing.Point(566, 101);
-            this.ModNTSCKDemo.Name = "ModNTSCKDemo";
-            this.ModNTSCKDemo.Size = new System.Drawing.Size(102, 17);
-            this.ModNTSCKDemo.TabIndex = 39;
-            this.ModNTSCKDemo.Text = "NTSC-K (Demo)";
-            this.ModNTSCKDemo.UseVisualStyleBackColor = true;
-            // 
-            // ModNTSCJDemo
-            // 
-            this.ModNTSCJDemo.AutoSize = true;
-            this.ModNTSCJDemo.Enabled = false;
-            this.ModNTSCJDemo.Location = new System.Drawing.Point(566, 78);
-            this.ModNTSCJDemo.Name = "ModNTSCJDemo";
-            this.ModNTSCJDemo.Size = new System.Drawing.Size(100, 17);
-            this.ModNTSCJDemo.TabIndex = 38;
-            this.ModNTSCJDemo.Text = "NTSC-J (Demo)";
-            this.ModNTSCJDemo.UseVisualStyleBackColor = true;
-            // 
-            // ModPalDemo
-            // 
-            this.ModPalDemo.AutoSize = true;
-            this.ModPalDemo.Enabled = false;
-            this.ModPalDemo.Location = new System.Drawing.Point(566, 32);
-            this.ModPalDemo.Name = "ModPalDemo";
-            this.ModPalDemo.Size = new System.Drawing.Size(83, 17);
-            this.ModPalDemo.TabIndex = 37;
-            this.ModPalDemo.Text = "PAL (Demo)";
-            this.ModPalDemo.UseVisualStyleBackColor = true;
-            // 
-            // ModNTSCK
-            // 
-            this.ModNTSCK.AutoSize = true;
-            this.ModNTSCK.Enabled = false;
-            this.ModNTSCK.Location = new System.Drawing.Point(480, 101);
-            this.ModNTSCK.Name = "ModNTSCK";
-            this.ModNTSCK.Size = new System.Drawing.Size(65, 17);
-            this.ModNTSCK.TabIndex = 35;
-            this.ModNTSCK.Text = "NTSC-K";
-            this.ModNTSCK.UseVisualStyleBackColor = true;
-            // 
-            // ModNTSCDemo
-            // 
-            this.ModNTSCDemo.AutoSize = true;
-            this.ModNTSCDemo.Enabled = false;
-            this.ModNTSCDemo.Location = new System.Drawing.Point(566, 55);
-            this.ModNTSCDemo.Name = "ModNTSCDemo";
-            this.ModNTSCDemo.Size = new System.Drawing.Size(92, 17);
-            this.ModNTSCDemo.TabIndex = 36;
-            this.ModNTSCDemo.Text = "NTSC (Demo)";
-            this.ModNTSCDemo.UseVisualStyleBackColor = true;
-            // 
-            // ModNTSCJ
-            // 
-            this.ModNTSCJ.AutoSize = true;
-            this.ModNTSCJ.Enabled = false;
-            this.ModNTSCJ.Location = new System.Drawing.Point(480, 78);
-            this.ModNTSCJ.Name = "ModNTSCJ";
-            this.ModNTSCJ.Size = new System.Drawing.Size(63, 17);
-            this.ModNTSCJ.TabIndex = 34;
-            this.ModNTSCJ.Text = "NTSC-J";
-            this.ModNTSCJ.UseVisualStyleBackColor = true;
-            // 
-            // ModNTSC
-            // 
-            this.ModNTSC.AutoSize = true;
-            this.ModNTSC.Enabled = false;
-            this.ModNTSC.Location = new System.Drawing.Point(480, 55);
-            this.ModNTSC.Name = "ModNTSC";
-            this.ModNTSC.Size = new System.Drawing.Size(55, 17);
-            this.ModNTSC.TabIndex = 33;
-            this.ModNTSC.Text = "NTSC";
-            this.ModNTSC.UseVisualStyleBackColor = true;
-            // 
-            // ModPal
-            // 
-            this.ModPal.AutoSize = true;
-            this.ModPal.Enabled = false;
-            this.ModPal.Location = new System.Drawing.Point(480, 32);
-            this.ModPal.Name = "ModPal";
-            this.ModPal.Size = new System.Drawing.Size(46, 17);
-            this.ModPal.TabIndex = 32;
-            this.ModPal.Text = "PAL";
-            this.ModPal.UseVisualStyleBackColor = true;
-            // 
-            // ToolsRestoreSSXOnTour
-            // 
-            this.ToolsRestoreSSXOnTour.Location = new System.Drawing.Point(126, 185);
-            this.ToolsRestoreSSXOnTour.Name = "ToolsRestoreSSXOnTour";
-            this.ToolsRestoreSSXOnTour.Size = new System.Drawing.Size(114, 50);
-            this.ToolsRestoreSSXOnTour.TabIndex = 13;
-            this.ToolsRestoreSSXOnTour.Text = "Restore SSX On Tour";
-            this.ToolsRestoreSSXOnTour.UseVisualStyleBackColor = true;
-            this.ToolsRestoreSSXOnTour.Click += new System.EventHandler(this.ToolsRestoreSSXOnTour_Click);
-            // 
-            // ToolsBackupSSXOnTour
-            // 
-            this.ToolsBackupSSXOnTour.Location = new System.Drawing.Point(6, 185);
-            this.ToolsBackupSSXOnTour.Name = "ToolsBackupSSXOnTour";
-            this.ToolsBackupSSXOnTour.Size = new System.Drawing.Size(114, 50);
-            this.ToolsBackupSSXOnTour.TabIndex = 12;
-            this.ToolsBackupSSXOnTour.Text = "Backup SSX On Tour";
-            this.ToolsBackupSSXOnTour.UseVisualStyleBackColor = true;
-            this.ToolsBackupSSXOnTour.Click += new System.EventHandler(this.ToolsBackupSSXOnTour_Click);
-            // 
-            // linkGithub
-            // 
-            this.linkGithub.AutoSize = true;
-            this.linkGithub.Location = new System.Drawing.Point(16, 253);
-            this.linkGithub.Name = "linkGithub";
-            this.linkGithub.Size = new System.Drawing.Size(40, 13);
-            this.linkGithub.TabIndex = 13;
-            this.linkGithub.TabStop = true;
-            this.linkGithub.Text = "GitHub";
-            this.linkGithub.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkGithub_LinkClicked);
-            // 
-            // label71
-            // 
-            this.label71.AutoSize = true;
-            this.label71.Location = new System.Drawing.Point(16, 266);
-            this.label71.Name = "label71";
-            this.label71.Size = new System.Drawing.Size(114, 13);
-            this.label71.TabIndex = 14;
-            this.label71.Text = "Created By GlitcherOG";
             // 
             // MainWindow
             // 

@@ -73,25 +73,32 @@ namespace SSX_Modder
         {
             if (File.Exists(settings.ImgBurnPath))
             {
-                SaveFileDialog openFileDialog = new SaveFileDialog
+                if (settings.Game != 0)
                 {
-                    InitialDirectory = Application.StartupPath,
-                    Filter = "Iso Image (*.iso)|*.iso|All files (*.*)|*.*",
-                    FilterIndex = 1,
-                    RestoreDirectory = false
-                };
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    ProcessStartInfo startInfo = new ProcessStartInfo();
-                    startInfo.FileName = settings.ImgBurnPath;
-                    string test = Path.Combine(workspacePath, "");
-                    if (!SettingsOverride.Checked)
+                    SaveFileDialog openFileDialog = new SaveFileDialog
                     {
-                        settings.ISOPath = openFileDialog.FileName;
-                        settings.Save();
+                        InitialDirectory = Application.StartupPath,
+                        Filter = "Iso Image (*.iso)|*.iso|All files (*.*)|*.*",
+                        FilterIndex = 1,
+                        RestoreDirectory = false
+                    };
+                    if (openFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        ProcessStartInfo startInfo = new ProcessStartInfo();
+                        startInfo.FileName = settings.ImgBurnPath;
+                        string test = Path.Combine(workspacePath, "");
+                        if (!SettingsOverride.Checked)
+                        {
+                            settings.ISOPath = openFileDialog.FileName;
+                            settings.Save();
+                        }
+                        startInfo.Arguments = "/MODE BUILD /BUILDINPUTMODE IMAGEFILE /SRC \"" + test + "\" /DEST \"" + openFileDialog.FileName + "\" /FILESYSTEM \"ISO9660 + UDF\" /UDFREVISION \"1.02\" /VOLUMELABEL \"SSX3\" /ERASE /OVERWITE YES /START /NOIMAGEDETAILS /ROOTFOLDER";
+                        Process.Start(startInfo);
                     }
-                    startInfo.Arguments = "/MODE BUILD /BUILDINPUTMODE IMAGEFILE /SRC \"" + test + "\" /DEST \"" + openFileDialog.FileName + "\" /FILESYSTEM \"ISO9660 + UDF\" /UDFREVISION \"1.02\" /VOLUMELABEL \"SSX3\" /ERASE /OVERWITE YES /START /NOIMAGEDETAILS /ROOTFOLDER";
-                    Process.Start(startInfo);
+                }
+                else
+                {
+                    MessageBox.Show("Warning Unable To Build Iso Of Game (SSX - ElfLdr Recommended)");
                 }
             }
         }
@@ -154,7 +161,6 @@ namespace SSX_Modder
                 {
                     Directory.CreateDirectory(workspacePath);
                 }
-                MessageBox.Show("Warning Unable To Build Iso Of Game (Elf Mod Recommended)");
             }
             if (GameType.SelectedIndex == 1)
             {
@@ -188,7 +194,7 @@ namespace SSX_Modder
         {
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
-                Filter = "iso File (*.iso)|*.iso|All files (*.*)|*.*",
+                Filter = "Iso File (*.iso)|*.iso|Elf File (*.elf)|*.elf|All files (*.*)|*.*",
                 FilterIndex = 1,
                 RestoreDirectory = false
             };
@@ -1572,7 +1578,7 @@ namespace SSX_Modder
         private void ModApply_Click(object sender, EventArgs e)
         {
             bool Valid = false;
-            if(modApplication.modInfo.Game== "SSX(2000)" && settings.Game == 0)
+            if(modApplication.modInfo.Game== "SSX (2000)" && settings.Game == 0)
             {
                 Valid = true;
             }
