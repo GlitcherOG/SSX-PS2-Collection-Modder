@@ -4,11 +4,10 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Xml.Serialization;
+using Newtonsoft.Json;
 
 namespace SSX_Modder.ModSystem
 {
-    [XmlRoot("ModInfo")]
     public class ModInfo
     {
         public int ModPackVersion;
@@ -31,22 +30,18 @@ namespace SSX_Modder.ModSystem
 
         public void Save(string path)
         {
-            var serializer = new XmlSerializer(typeof(ModInfo));
-            string paths = path + "/ModInfo.XML";
-            var stream = new FileStream(paths, FileMode.Create);
-            serializer.Serialize(stream, this);
-            stream.Close();
+            var serializer = JsonConvert.SerializeObject(this);
+            string paths = path + "/ModInfo.json";
+            File.WriteAllText(paths, serializer);
         }
 
         public static ModInfo Load(string path)
         {
-            string paths = path + "/ModInfo.XML";
+            string paths = path + "/ModInfo.json";
             if (File.Exists(paths))
             {
-                var serializer = new XmlSerializer(typeof(ModInfo));
-                var stream = new FileStream(paths, FileMode.Open);
-                var container = serializer.Deserialize(stream) as ModInfo;
-                stream.Close();
+                var stream = File.ReadAllText(paths);
+                var container = JsonConvert.DeserializeObject<ModInfo>(stream);
                 return container;
             }
             else

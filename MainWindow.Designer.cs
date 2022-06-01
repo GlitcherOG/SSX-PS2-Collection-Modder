@@ -3093,6 +3093,7 @@ namespace SSX_Modder
             this.ModInstructionGame.Name = "ModInstructionGame";
             this.ModInstructionGame.Size = new System.Drawing.Size(360, 277);
             this.ModInstructionGame.TabIndex = 20;
+            this.ModInstructionGame.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ModInstructionGame_MouseDown);
             // 
             // ModInstructionMod
             // 
@@ -3101,6 +3102,7 @@ namespace SSX_Modder
             this.ModInstructionMod.Name = "ModInstructionMod";
             this.ModInstructionMod.Size = new System.Drawing.Size(421, 277);
             this.ModInstructionMod.TabIndex = 21;
+            this.ModInstructionMod.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ModInstructionMod_MouseDown);
             // 
             // ModMakerPal
             // 

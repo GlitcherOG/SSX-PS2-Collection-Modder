@@ -1492,6 +1492,38 @@ namespace SSX_Modder
             }
         }
 
+        private void ModInstructionGame_MouseDown(object sender, MouseEventArgs e)
+        {
+            ModInstructionGame.SelectedIndex = ModInstructionGame.IndexFromPoint(e.X, e.Y);
+            if (ModInstructionGame.SelectedIndex != -1)
+            {
+                if (e.Button == MouseButtons.Left)
+                {
+                    ModInstructionSource.Text = ModInstructionGame.Items[ModInstructionGame.SelectedIndex].ToString();
+                }
+                if (e.Button == MouseButtons.Right)
+                {
+                    ModInstructionOutput.Text = ModInstructionGame.Items[ModInstructionGame.SelectedIndex].ToString();
+                }
+            }
+        }
+
+        private void ModInstructionMod_MouseDown(object sender, MouseEventArgs e)
+        {
+            ModInstructionMod.SelectedIndex = ModInstructionMod.IndexFromPoint(e.X, e.Y);
+            if (ModInstructionMod.SelectedIndex != -1)
+            {
+                if (e.Button == MouseButtons.Left)
+                {
+                    ModInstructionSource.Text = ModInstructionMod.Items[ModInstructionMod.SelectedIndex].ToString();
+                }
+                if (e.Button == MouseButtons.Right)
+                {
+                    ModInstructionOutput.Text = ModInstructionMod.Items[ModInstructionMod.SelectedIndex].ToString();
+                }
+            }
+        }
+
         #endregion
 
         ModApplication modApplication = new ModApplication();
