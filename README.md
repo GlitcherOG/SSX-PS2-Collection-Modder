@@ -33,12 +33,14 @@ This is a modding tool I came up and started making when I caught COVID as a way
 - Custom Arguments For ISO Extraction and Making (To allow the use of other programs)
 - Auto Apply SSH Fixes (Either Using Gimx Codes or By Guessing)
 - Fix Backup Workspace Messages
+- Fix Double Alpha Making Colours too bright
+- Fix Swizzle in Matrix 2
+- Big4 Big Archive Making and Extracting (Just BigF)
+- Fix Big Folder Grabbing
 
 ### Todo Later
-- Big4 Big Archive Making and Extracting
 - Mod System Loc Txt Insert, Big Insert
 - Modding Guide
-- Fix Offset Grab BigF
 - Progress Bar
 - Threading
 - Make Better Workflow interface

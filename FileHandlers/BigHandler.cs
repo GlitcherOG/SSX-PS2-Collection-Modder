@@ -132,26 +132,29 @@ namespace SSX_Modder.FileHandlers
             {
                 for (int i = 0; i < bigFiles.Count; i++)
                 {
-                    Stream stream1 = new MemoryStream();
-                    byte[] temp = new byte[bigFiles[i].size];
-                    stream.Position = bigFiles[i].offset;
-                    stream.Read(temp, 0, temp.Length);
-                    if (bigFiles[i].Compressed)
+                    if (!bigFiles[i].path.Contains("*"))
                     {
-                        RefpackHandler refpackHandler = new RefpackHandler();
-                        temp = refpackHandler.Decompress(temp);
-                    }
-                    stream1.Write(temp, 0, temp.Length);
+                        Stream stream1 = new MemoryStream();
+                        byte[] temp = new byte[bigFiles[i].size];
+                        stream.Position = bigFiles[i].offset;
+                        stream.Read(temp, 0, temp.Length);
+                        if (bigFiles[i].Compressed)
+                        {
+                            RefpackHandler refpackHandler = new RefpackHandler();
+                            temp = refpackHandler.Decompress(temp);
+                        }
+                        stream1.Write(temp, 0, temp.Length);
 
-                    if (!Directory.Exists(Path.GetDirectoryName(path + "//" + bigFiles[i].path)))
-                    {
-                        Directory.CreateDirectory(Path.GetDirectoryName(path + "//" + bigFiles[i].path));
+                        if (!Directory.Exists(Path.GetDirectoryName(path + "//" + bigFiles[i].path)))
+                        {
+                            Directory.CreateDirectory(Path.GetDirectoryName(path + "//" + bigFiles[i].path));
+                        }
+                        var file = File.Create(path + "//" + bigFiles[i].path);
+                        stream1.Position = 0;
+                        stream1.CopyTo(file);
+                        file.Close();
+                        stream1.Dispose();
                     }
-                    var file = File.Create(path + "//" + bigFiles[i].path);
-                    stream1.Position = 0;
-                    stream1.CopyTo(file);
-                    file.Close();
-                    stream1.Dispose();
                 }
                 stream.Dispose();
             }

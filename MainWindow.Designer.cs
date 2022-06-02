@@ -281,6 +281,7 @@ namespace SSX_Modder
             this.ToolsColours = new System.Windows.Forms.Button();
             this.NumToolsColour = new System.Windows.Forms.NumericUpDown();
             this.tabSettings = new System.Windows.Forms.TabPage();
+            this.label74 = new System.Windows.Forms.Label();
             this.label71 = new System.Windows.Forms.Label();
             this.linkGithub = new System.Windows.Forms.LinkLabel();
             this.SettingsIsoPath = new System.Windows.Forms.Label();
@@ -303,7 +304,7 @@ namespace SSX_Modder
             this.GameType = new System.Windows.Forms.ToolStripComboBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.label74 = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabModPacks.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -355,9 +356,9 @@ namespace SSX_Modder
             // 
             // tabControl1
             // 
-            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                  | System.Windows.Forms.AnchorStyles.Left)
-                  | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabModPacks);
             this.tabControl1.Controls.Add(this.tabBig);
             this.tabControl1.Controls.Add(this.tabSSH);
@@ -384,9 +385,9 @@ namespace SSX_Modder
             // 
             // tabControl2
             // 
-            this.tabControl2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                  | System.Windows.Forms.AnchorStyles.Left)
-                  | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl2.Controls.Add(this.tabPage1);
             this.tabControl2.Controls.Add(this.tabModInfo);
             this.tabControl2.Controls.Add(this.tabModInstructions);
@@ -1382,8 +1383,8 @@ namespace SSX_Modder
             // 
             // BigBox1
             // 
-            this.BigBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                  | System.Windows.Forms.AnchorStyles.Left)));
+            this.BigBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.BigBox1.FormattingEnabled = true;
             this.BigBox1.Location = new System.Drawing.Point(4, 4);
             this.BigBox1.Name = "BigBox1";
@@ -1393,6 +1394,7 @@ namespace SSX_Modder
             // 
             // tabSSH
             // 
+            this.tabSSH.Controls.Add(this.checkBox1);
             this.tabSSH.Controls.Add(this.groupBox3);
             this.tabSSH.Controls.Add(this.groupBox2);
             this.tabSSH.Controls.Add(this.groupBox1);
@@ -1853,8 +1855,8 @@ namespace SSX_Modder
             // 
             // SSHlistBox1
             // 
-            this.SSHlistBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                  | System.Windows.Forms.AnchorStyles.Left)));
+            this.SSHlistBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.SSHlistBox1.FormattingEnabled = true;
             this.SSHlistBox1.Location = new System.Drawing.Point(4, 4);
             this.SSHlistBox1.Name = "SSHlistBox1";
@@ -1864,9 +1866,9 @@ namespace SSX_Modder
             // 
             // SSHpictureBox1
             // 
-            this.SSHpictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                  | System.Windows.Forms.AnchorStyles.Left)
-                  | System.Windows.Forms.AnchorStyles.Right)));
+            this.SSHpictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.SSHpictureBox1.BackColor = System.Drawing.Color.Black;
             this.SSHpictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.SSHpictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -1939,9 +1941,9 @@ namespace SSX_Modder
             // 
             // LocrichTextBox2
             // 
-            this.LocrichTextBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                  | System.Windows.Forms.AnchorStyles.Left)
-                  | System.Windows.Forms.AnchorStyles.Right)));
+            this.LocrichTextBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.LocrichTextBox2.Location = new System.Drawing.Point(339, 277);
             this.LocrichTextBox2.Name = "LocrichTextBox2";
             this.LocrichTextBox2.ReadOnly = true;
@@ -1951,8 +1953,8 @@ namespace SSX_Modder
             // 
             // LocrichTextBox1
             // 
-            this.LocrichTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                  | System.Windows.Forms.AnchorStyles.Right)));
+            this.LocrichTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.LocrichTextBox1.Location = new System.Drawing.Point(339, 3);
             this.LocrichTextBox1.Name = "LocrichTextBox1";
             this.LocrichTextBox1.Size = new System.Drawing.Size(849, 268);
@@ -1986,8 +1988,8 @@ namespace SSX_Modder
             // 
             // LocBox1
             // 
-            this.LocBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                  | System.Windows.Forms.AnchorStyles.Left)));
+            this.LocBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.LocBox1.FormattingEnabled = true;
             this.LocBox1.Location = new System.Drawing.Point(4, 4);
             this.LocBox1.Name = "LocBox1";
@@ -2113,8 +2115,8 @@ namespace SSX_Modder
             // 
             // chartextBox6
             // 
-            this.chartextBox6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                  | System.Windows.Forms.AnchorStyles.Right)));
+            this.chartextBox6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.chartextBox6.Location = new System.Drawing.Point(271, 259);
             this.chartextBox6.MaxLength = 15;
             this.chartextBox6.Name = "chartextBox6";
@@ -2124,8 +2126,8 @@ namespace SSX_Modder
             // 
             // chartextBox5
             // 
-            this.chartextBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                  | System.Windows.Forms.AnchorStyles.Right)));
+            this.chartextBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.chartextBox5.Location = new System.Drawing.Point(271, 219);
             this.chartextBox5.MaxLength = 15;
             this.chartextBox5.Name = "chartextBox5";
@@ -2135,8 +2137,8 @@ namespace SSX_Modder
             // 
             // chartextBox4
             // 
-            this.chartextBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                  | System.Windows.Forms.AnchorStyles.Right)));
+            this.chartextBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.chartextBox4.Location = new System.Drawing.Point(272, 179);
             this.chartextBox4.MaxLength = 15;
             this.chartextBox4.Name = "chartextBox4";
@@ -2146,8 +2148,8 @@ namespace SSX_Modder
             // 
             // chartextBox3
             // 
-            this.chartextBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                  | System.Windows.Forms.AnchorStyles.Right)));
+            this.chartextBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.chartextBox3.Location = new System.Drawing.Point(272, 99);
             this.chartextBox3.MaxLength = 15;
             this.chartextBox3.Name = "chartextBox3";
@@ -2157,8 +2159,8 @@ namespace SSX_Modder
             // 
             // chartextBox2
             // 
-            this.chartextBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                  | System.Windows.Forms.AnchorStyles.Right)));
+            this.chartextBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.chartextBox2.Location = new System.Drawing.Point(271, 60);
             this.chartextBox2.MaxLength = 15;
             this.chartextBox2.Name = "chartextBox2";
@@ -2168,8 +2170,8 @@ namespace SSX_Modder
             // 
             // chartextBox1
             // 
-            this.chartextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                  | System.Windows.Forms.AnchorStyles.Right)));
+            this.chartextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.chartextBox1.Location = new System.Drawing.Point(271, 21);
             this.chartextBox1.MaxLength = 31;
             this.chartextBox1.Name = "chartextBox1";
@@ -2296,8 +2298,8 @@ namespace SSX_Modder
             // 
             // charBox1
             // 
-            this.charBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                  | System.Windows.Forms.AnchorStyles.Left)));
+            this.charBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.charBox1.FormattingEnabled = true;
             this.charBox1.Location = new System.Drawing.Point(4, 4);
             this.charBox1.MinimumSize = new System.Drawing.Size(258, 316);
@@ -2950,8 +2952,8 @@ namespace SSX_Modder
             // 
             // musiclistBox1
             // 
-            this.musiclistBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                  | System.Windows.Forms.AnchorStyles.Left)));
+            this.musiclistBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.musiclistBox1.FormattingEnabled = true;
             this.musiclistBox1.Location = new System.Drawing.Point(7, 7);
             this.musiclistBox1.Name = "musiclistBox1";
@@ -3204,6 +3206,16 @@ namespace SSX_Modder
             this.tabSettings.Text = "Settings";
             this.tabSettings.UseVisualStyleBackColor = true;
             // 
+            // label74
+            // 
+            this.label74.AutoSize = true;
+            this.label74.ForeColor = System.Drawing.Color.Transparent;
+            this.label74.Location = new System.Drawing.Point(16, 279);
+            this.label74.Name = "label74";
+            this.label74.Size = new System.Drawing.Size(89, 13);
+            this.label74.TabIndex = 15;
+            this.label74.Text = "Modified by Bane";
+            // 
             // label71
             // 
             this.label71.AutoSize = true;
@@ -3418,15 +3430,15 @@ namespace SSX_Modder
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
             // 
-            // label74
+            // checkBox1
             // 
-            this.label74.AutoSize = true;
-            this.label74.ForeColor = System.Drawing.Color.Transparent;
-            this.label74.Location = new System.Drawing.Point(16, 279);
-            this.label74.Name = "label74";
-            this.label74.Size = new System.Drawing.Size(89, 13);
-            this.label74.TabIndex = 15;
-            this.label74.Text = "Modified by Bane";
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(199, 469);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(305, 17);
+            this.checkBox1.TabIndex = 30;
+            this.checkBox1.Text = "Attempt Game Based Auto Correction Of Colours and Alpha";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // MainWindow
             // 
@@ -3783,5 +3795,6 @@ namespace SSX_Modder
         private System.Windows.Forms.Button sshHColour;
         private System.Windows.Forms.Button sshDColour;
         private System.Windows.Forms.Label label74;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }

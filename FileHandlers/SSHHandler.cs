@@ -202,33 +202,9 @@ namespace SSX_Modder.FileHandlers
                         Color tempColor = sshTable.colorTable[c];
                         MetalColours.Add(Color.FromArgb(255, tempColor.A, tempColor.A, tempColor.A));
                         int A = 255;
-                        int R = tempColor.R * 2 - 1;
-                        if (R < 0)
-                        {
-                            R = 0;
-                        }
-                        else if (R > 255)
-                        {
-                            R = 255;
-                        }
-                        int G = tempColor.G * 2 - 1;
-                        if (G < 0)
-                        {
-                            G = 0;
-                        }
-                        else if (G > 255)
-                        {
-                            G = 255;
-                        }
-                        int B = tempColor.B * 2 - 1;
-                        if (B < 0)
-                        {
-                            B = 0;
-                        }
-                        else if (B > 255)
-                        {
-                            B = 255;
-                        }
+                        int R = tempColor.R;
+                        int G = tempColor.G;
+                        int B = tempColor.B;
                         sshTable.colorTable[c] = Color.FromArgb(A, R, G, B);
                     }
                     tempImage.sshTable = sshTable;
@@ -260,11 +236,12 @@ namespace SSX_Modder.FileHandlers
                         for (int x = 0; x < tempImageHeader.Width; x++)
                         {
                             int colorPos = tempImage.Matrix[post];
-                            if (tempImage.sshTable.Format != 0)
-                            {
-                                //colorPos = simulateSwitching4th5thBit(colorPos);
-                            }
                             tempImage.bitmap.SetPixel(x, y, tempImage.sshTable.colorTable[colorPos]);
+
+                            if (tempImage.MetalBin)
+                            {
+                                tempImage.metalBitmap.SetPixel(x, y, MetalColours[colorPos]);
+                            }
                             post++;
                         }
                     }
