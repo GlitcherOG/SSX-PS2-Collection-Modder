@@ -64,7 +64,7 @@ namespace SSX_Modder.ModSystem
             {
                 var Instructions = modInstructions.Instructions;
                 bool Valid = false;
-                for (int i = 0; i < Instructions.Count; i++)
+                for (int i = 0; i < Instructions.Count(); i++)
                 {
                     //Load Source and Output
                     string Source = Instructions[i].Source;

@@ -1,7 +1,7 @@
 
 # SSX PS2 Collection MODDER
 
-This is a modding tool i came up and started making when i caught covid as a way to keep busy and kept working on it to support the main 3 SSX Games on the Ps2.
+This is a modding tool I came up and started making when I caught COVID as a way to keep busy, and kept working on it to support the main 3 SSX Games on the PS2.
 
 ## Current Features
 - SSH Texture Extractor/Maker
@@ -9,8 +9,8 @@ This is a modding tool i came up and started making when i caught covid as a way
 - Character DB Editor (SSX 3)
 - Music Inf Editor (SSX 3)
 - Loc (Language) Files Editor
-- Easy Iso Extraction and Making (Using External Programs) (SSX 3, Tricky)
-- Auto Boot PCSX2 Emulator With Iso
+- Easy ISO Extraction and Making (Using External Programs) (SSX 3, Tricky)
+- Auto Boot PCSX2 Emulator With ISO
 
 ## WIP Features
 - Easy Mod Support
@@ -30,7 +30,7 @@ This is a modding tool i came up and started making when i caught covid as a way
 
 ### Current Todo
 - Test Modding Functions
-- Custom Arguments For Iso Extraction and Making (To allow the use of other programs)
+- Custom Arguments For ISO Extraction and Making (To allow the use of other programs)
 
 ### Todo Later
 - Big4 Big Archive Making and Extracting
@@ -44,7 +44,7 @@ This is a modding tool i came up and started making when i caught covid as a way
 - MUS Extractor
 - Redo Loc and Music INF (Support Other Games)
 
-### If i ever find the correct code or work it out
+### If I ever find the correct code or work it out
 - Refpack Compressor
 - Big Refpack Compress
 - SSH Refpack Compress
