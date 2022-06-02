@@ -642,7 +642,7 @@ namespace SSX_Modder
             {
                 a = 0;
             }
-            else if (a != LocBox1.Items.Count-1)
+            else if (a != LocBox1.Items.Count - 1)
             {
                 a++;
             }
@@ -891,7 +891,7 @@ namespace SSX_Modder
 
         private void MusRemove_Click(object sender, EventArgs e)
         {
-            if(musiclistBox1.SelectedIndex!=-1)
+            if (musiclistBox1.SelectedIndex != -1)
             {
                 musicINFHandler.musFileSongs.RemoveAt(musiclistBox1.SelectedIndex);
                 musiclistBox1.Items.Clear();
@@ -921,7 +921,7 @@ namespace SSX_Modder
                 BigExtract.Enabled = true;
                 BuildBigButton.Enabled = false;
                 BigFType.Text = bigfHandler.bigType.ToString();
-                if(bigfHandler.bigHeader.compression)
+                if (bigfHandler.bigHeader.compression)
                 {
                     BigCompressed.Text = "Yes";
                 }
@@ -1038,7 +1038,7 @@ namespace SSX_Modder
                 sshHandler.LoadSSH(openFileDialog.FileName);
                 for (int i = 0; i < sshHandler.sshImages.Count; i++)
                 {
-                    SSHlistBox1.Items.Add(sshHandler.sshImages[i].shortname+ "."+sshHandler.sshImages[i].longname);
+                    SSHlistBox1.Items.Add(sshHandler.sshImages[i].shortname + "." + sshHandler.sshImages[i].longname);
                     SSHFileFormat.Text = sshHandler.format;
                     SSHFileNameLabel.Text = openFileDialog.SafeFileName;
                 }
@@ -1138,7 +1138,7 @@ namespace SSX_Modder
                     temp.sshTable.Format = 0;
                 }
 
-                if(SSHImageByteSwapped.Checked)
+                if (SSHImageByteSwapped.Checked)
                 {
                     tempHeader.LXPos = 2;
                 }
@@ -1434,7 +1434,7 @@ namespace SSX_Modder
                 ModMakerVersion.Text = modMaker.ModInfo.Version;
                 ModMakerAuthor.Text = modMaker.ModInfo.Author;
                 ModMakerDescription.Text = modMaker.ModInfo.Description;
-                ModMakerGame.Text   = modMaker.ModInfo.Game;
+                ModMakerGame.Text = modMaker.ModInfo.Game;
 
                 ModMakerPal.Checked = modMaker.ModInfo.PAL;
                 ModMakerNTSC.Checked = modMaker.ModInfo.NTSC;
@@ -1463,7 +1463,7 @@ namespace SSX_Modder
 
         private void ModMakerSave_Click(object sender, EventArgs e)
         {
-            if(modMaker.ModFolder!="")
+            if (modMaker.ModFolder != "")
             {
                 modMaker.ModInfo.Name = ModMakerName.Text;
                 modMaker.ModInfo.Version = ModMakerVersion.Text;
@@ -1511,14 +1511,14 @@ namespace SSX_Modder
             ModInstructionListbox.Items.Clear();
             for (int i = 0; i < makingInstructions.Instructions.Count; i++)
             {
-                ModInstructionListbox.Items.Add(makingInstructions.Instructions[i].Type + ", "+ makingInstructions.Instructions[i].Source + ", " + makingInstructions.Instructions[i].Ouput);
+                ModInstructionListbox.Items.Add(makingInstructions.Instructions[i].Type + ", " + makingInstructions.Instructions[i].Source + ", " + makingInstructions.Instructions[i].Ouput);
             }
         }
         private void ModInstructionAdd_Click(object sender, EventArgs e)
         {
             if (makingInstructions.ModPath != "")
             {
-                makingInstructions.Instructions.Add(new Instruction() { Type = "Copy" , Source= "Mod\\", Ouput = "Game\\" });
+                makingInstructions.Instructions.Add(new Instruction() { Type = "Copy", Source = "Mod\\", Ouput = "Game\\" });
                 UpdateInstructionList();
             }
         }
@@ -1534,7 +1534,7 @@ namespace SSX_Modder
 
         private void ModInstructionMoveUp_Click(object sender, EventArgs e)
         {
-            if(ModInstructionListbox.SelectedIndex>0)
+            if (ModInstructionListbox.SelectedIndex > 0)
             {
                 var temp = makingInstructions.Instructions[ModInstructionListbox.SelectedIndex - 1];
                 makingInstructions.Instructions[ModInstructionListbox.SelectedIndex - 1] = makingInstructions.Instructions[ModInstructionListbox.SelectedIndex];
@@ -1545,7 +1545,7 @@ namespace SSX_Modder
 
         private void ModInstructionMoveDown_Click(object sender, EventArgs e)
         {
-            if (ModInstructionListbox.SelectedIndex != makingInstructions.Instructions.Count-1)
+            if (ModInstructionListbox.SelectedIndex != makingInstructions.Instructions.Count - 1)
             {
                 var temp = makingInstructions.Instructions[ModInstructionListbox.SelectedIndex + 1];
                 makingInstructions.Instructions[ModInstructionListbox.SelectedIndex + 1] = makingInstructions.Instructions[ModInstructionListbox.SelectedIndex];
@@ -1568,7 +1568,7 @@ namespace SSX_Modder
                 var tempGamePaths = Directory.GetFileSystemEntries(workspacePath, "*", SearchOption.AllDirectories);
                 for (int i = 0; i < tempGamePaths.Length; i++)
                 {
-                    ModInstructionGame.Items.Add("Game\\"+tempGamePaths[i].Substring(workspacePath.Length));
+                    ModInstructionGame.Items.Add("Game\\" + tempGamePaths[i].Substring(workspacePath.Length));
                 }
 
                 ModInstructionMod.Items.Clear();
@@ -1696,7 +1696,7 @@ namespace SSX_Modder
         private void ModApply_Click(object sender, EventArgs e)
         {
             bool Valid = false;
-            if(modApplication.modInfo.Game== "SSX (2000)" && settings.Game == 0)
+            if (modApplication.modInfo.Game == "SSX (2000)" && settings.Game == 0)
             {
                 Valid = true;
             }
