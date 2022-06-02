@@ -104,15 +104,7 @@ namespace SSX_Modder.Utilities
             int R = stream.ReadByte();
             int G = stream.ReadByte();
             int B = stream.ReadByte();
-            int A = stream.ReadByte() * 2 - 1;
-            if (A < 0)
-            {
-                A = 0;
-            }
-            else if (A > 255)
-            {
-                A = 255;
-            }
+            int A = stream.ReadByte();
             return Color.FromArgb(A, R, G, B);
         }
 

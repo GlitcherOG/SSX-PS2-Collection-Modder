@@ -117,6 +117,10 @@ namespace SSX_Modder.ModSystem
                     {
                         if (File.Exists(Source))
                         {
+                            if(File.Exists(Output))
+                            {
+                                File.Delete(Output);
+                            }
                             File.Copy(Source, Output);
                         }
                         else if(Directory.Exists(Source))
@@ -139,31 +143,43 @@ namespace SSX_Modder.ModSystem
                     //Working
                     else if (Instructions[i].Type == "Big Extract")
                     {
-                        BigHandler tempHeader = new BigHandler();
-                        tempHeader.LoadBig(Source);
-                        tempHeader.ExtractBig(Output);
+                        if (File.Exists(Source))
+                        {
+                            BigHandler tempHeader = new BigHandler();
+                            tempHeader.LoadBig(Source);
+                            tempHeader.ExtractBig(Output);
+                        }
                     }
                     else if (Instructions[i].Type == "BigF Make")
                     {
-                        BigHandler tempHeader = new BigHandler();
-                        tempHeader.LoadFolder(Source);
-                        tempHeader.bigType = BigType.BIGF;
-                        tempHeader.BuildBig(Output);
+                        if (Directory.Exists(Source))
+                        {
+                            BigHandler tempHeader = new BigHandler();
+                            tempHeader.LoadFolder(Source);
+                            tempHeader.bigType = BigType.BIGF;
+                            tempHeader.BuildBig(Output);
+                        }
                     }
                     //Working
                     else if (Instructions[i].Type == "BigC0FB Make")
                     {
-                        BigHandler tempHeader = new BigHandler();
-                        tempHeader.LoadFolder(Source);
-                        tempHeader.bigType = BigType.C0FB;
-                        tempHeader.BuildBig(Output);
+                        if (Directory.Exists(Source))
+                        {
+                            BigHandler tempHeader = new BigHandler();
+                            tempHeader.LoadFolder(Source);
+                            tempHeader.bigType = BigType.C0FB;
+                            tempHeader.BuildBig(Output);
+                        }
                     }
                     else if (Instructions[i].Type == "Txt Insert")
                     {
-                        var String = File.ReadAllText(Source);
-                        var String1 = File.ReadAllText(Output);
-                        String = String + "\n" + String1;
-                        File.WriteAllText(Output, String);
+                        if (File.Exists(Source))
+                        {
+                            var String = File.ReadAllText(Source);
+                            var String1 = File.ReadAllText(Output);
+                            String = String + "\n" + String1;
+                            File.WriteAllText(Output, String);
+                        }
                     }
                 }
 

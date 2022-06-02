@@ -29,19 +29,16 @@ This is a modding tool i came up and started making when i caught covid as a way
 ## Todo
 
 ### Current Todo
-- Bright and Dark in SSH Maker
-- Iso Path Per Game
+- Test Modding Functions
+- Custom Arguments For Iso Extraction and Making (To allow the use of other programs)
 
 ### Todo Later
-- Fix Alpha Bug (SSX 1,2)
 - Big4 Big Archive Making and Extracting
 - Mod System Loc Txt Insert, Big Insert
 - Modding Guide
-- Add SSX On Tour Support
 - Fix Offset Grab BigF
 - Progress Bar
 - Threading
-- Custom Arguments For Iso Extraction and Making (To allow the use of other programs)
 - Make Better Workflow interface
 - Control Editor Menu
 - MUS Extractor

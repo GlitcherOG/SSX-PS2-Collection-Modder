@@ -236,7 +236,6 @@ namespace SSX_Modder.FileHandlers
                     stream.Position -= 1;
                 }
 
-
                 //Get LongName
                 endPos = ByteUtil.FindPosition(stream, new byte[1] { 0x70 }, stream.Position - 1, endPos);
                 if (endPos != -1)
@@ -332,16 +331,8 @@ namespace SSX_Modder.FileHandlers
                             post++;
                             int B = tempImage.Matrix[post];
                             post++;
-                            int A = tempImage.Matrix[post]*2-1;
+                            int A = tempImage.Matrix[post];
                             post++;
-                            if (A < 0)
-                            {
-                                A = 0;
-                            }
-                            else if (A > 255)
-                            {
-                                A = 255;
-                            }
                             tempImage.bitmap.SetPixel(x, y, Color.FromArgb(A, R, G, B));
                             if (!colourTable.colorTable.Contains(Color.FromArgb(A, R, G, B)))
                             {
@@ -576,6 +567,116 @@ namespace SSX_Modder.FileHandlers
             }
         }
 
+        public void BrightenBitmap(int i)
+        {
+            for (int y = 0; y < sshImages[i].bitmap.Height; y++)
+            {
+                for (int x = 0; x < sshImages[i].bitmap.Width; x++)
+                {
+                    Color color = sshImages[i].bitmap.GetPixel(x, y);
+                    int A = color.A;
+                    int R = color.R * 2 - 1;
+                    if (R < 0)
+                    {
+                        R = 0;
+                    }
+                    else if (R > 255)
+                    {
+                        R = 255;
+                    }
+                    int G = color.G * 2 - 1;
+                    if (G < 0)
+                    {
+                        G = 0;
+                    }
+                    else if (G > 255)
+                    {
+                        G = 255;
+                    }
+                    int B = color.B * 2 - 1;
+                    if (B < 0)
+                    {
+                        B = 0;
+                    }
+                    else if (B > 255)
+                    {
+                        B = 255;
+                    }
+
+                    color = Color.FromArgb(A, R, G, B);
+                    sshImages[i].bitmap.SetPixel(x, y, color);
+                }
+            }
+        }
+
+        public void DarkenImage(int i)
+        {
+            for (int y = 0; y < sshImages[i].bitmap.Height; y++)
+            {
+                for (int x = 0; x < sshImages[i].bitmap.Width; x++)
+                {
+                    Color color = sshImages[i].bitmap.GetPixel(x, y);
+                    int A = color.A;
+                    int R = color.R;
+                    int G = color.G;
+                    int B = color.B;
+
+                    R = (R + 1) / 2;
+                    G = (G + 1) / 2;
+                    B = (B + 1) / 2;
+
+                    color = Color.FromArgb(A, R, G, B);
+                    sshImages[i].bitmap.SetPixel(x, y, color);
+                }
+            }
+        }
+
+        public void HalfAlphaImage(int i)
+        {
+            for (int y = 0; y < sshImages[i].bitmap.Height; y++)
+            {
+                for (int x = 0; x < sshImages[i].bitmap.Width; x++)
+                {
+                    Color color = sshImages[i].bitmap.GetPixel(x, y);
+                    int A = color.A;
+                    int R = color.R;
+                    int G = color.G;
+                    int B = color.B;
+
+                    A = (A + 1) / 2;
+
+                    color = Color.FromArgb(A, R, G, B);
+                    sshImages[i].bitmap.SetPixel(x, y, color);
+                }
+            }
+        }
+
+        public void DoubleAlphaImage(int i)
+        {
+            for (int y = 0; y < sshImages[i].bitmap.Height; y++)
+            {
+                for (int x = 0; x < sshImages[i].bitmap.Width; x++)
+                {
+                    Color color = sshImages[i].bitmap.GetPixel(x, y);
+                    int A = color.A * 2 - 1;
+                    if (A < 0)
+                    {
+                        A = 0;
+                    }
+                    else if (A > 255)
+                    {
+                        A = 255;
+                    }
+                    int R = color.R;
+                    int G = color.G;
+                    int B = color.B;
+
+                    color = Color.FromArgb(A, R, G, B);
+                    sshImages[i].bitmap.SetPixel(x, y, color);
+                }
+            }
+        }
+
         public void SaveSSH(string path)
         {
             bool check = false;
@@ -797,7 +898,7 @@ namespace SSX_Modder.FileHandlers
                 int R = colourTable.colorTable[a].R;
                 int G = colourTable.colorTable[a].G;
                 int B = colourTable.colorTable[a].B;
-                int A = (colourTable.colorTable[a].A + 1) / 2;
+                int A = colourTable.colorTable[a].A;
                 BitConverter.GetBytes(R).CopyTo(tempByte, 0);
                 stream.Write(tempByte, 0, 1);
                 tempByte = new byte[4];
@@ -905,7 +1006,7 @@ namespace SSX_Modder.FileHandlers
                 int R = colourTable.colorTable[a].R;
                 int G = colourTable.colorTable[a].G;
                 int B = colourTable.colorTable[a].B;
-                int A = (colourTable.colorTable[a].A + 1) / 2;
+                int A = colourTable.colorTable[a].A;
 
                 if (sshImages[i].MetalBin)
                 {
@@ -943,7 +1044,7 @@ namespace SSX_Modder.FileHandlers
                     int R = color.R;
                     int G = color.G;
                     int B = color.B;
-                    int A = (color.A + 1) / 2;
+                    int A = color.A;
                     BitConverter.GetBytes(R).CopyTo(tempByte, 0);
                     stream.Write(tempByte, 0, 1);
                     tempByte = new byte[4];

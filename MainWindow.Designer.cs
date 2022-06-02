@@ -34,6 +34,8 @@ namespace SSX_Modder
             this.tabModPacks = new System.Windows.Forms.TabPage();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label73 = new System.Windows.Forms.Label();
+            this.modSSXElfLdr = new System.Windows.Forms.CheckBox();
             this.label70 = new System.Windows.Forms.Label();
             this.ModNTSCKDemo = new System.Windows.Forms.CheckBox();
             this.ModNTSCJDemo = new System.Windows.Forms.CheckBox();
@@ -59,6 +61,8 @@ namespace SSX_Modder
             this.ModPicture = new System.Windows.Forms.PictureBox();
             this.label68 = new System.Windows.Forms.Label();
             this.tabModInfo = new System.Windows.Forms.TabPage();
+            this.label72 = new System.Windows.Forms.Label();
+            this.modMakerSSXElfLdr = new System.Windows.Forms.CheckBox();
             this.label69 = new System.Windows.Forms.Label();
             this.ModMakerNTSCKDemo = new System.Windows.Forms.CheckBox();
             this.ModMakerNTSCJDemo = new System.Windows.Forms.CheckBox();
@@ -125,6 +129,10 @@ namespace SSX_Modder
             this.BigBox1 = new System.Windows.Forms.ListBox();
             this.tabSSH = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.sshHAlpha = new System.Windows.Forms.Button();
+            this.sshDAlpha = new System.Windows.Forms.Button();
+            this.sshHColour = new System.Windows.Forms.Button();
+            this.sshDColour = new System.Windows.Forms.Button();
             this.SSHRefreshColor = new System.Windows.Forms.Button();
             this.SSHColourByteSwapped = new System.Windows.Forms.CheckBox();
             this.SSHBothImport = new System.Windows.Forms.Button();
@@ -277,7 +285,6 @@ namespace SSX_Modder
             this.linkGithub = new System.Windows.Forms.LinkLabel();
             this.SettingsIsoPath = new System.Windows.Forms.Label();
             this.SettingsIsoSet = new System.Windows.Forms.Button();
-            this.SettingsOverride = new System.Windows.Forms.CheckBox();
             this.label49 = new System.Windows.Forms.Label();
             this.SettingsPCSX2Button = new System.Windows.Forms.Button();
             this.SettingsPCSX2Path = new System.Windows.Forms.Label();
@@ -296,10 +303,6 @@ namespace SSX_Modder
             this.GameType = new System.Windows.Forms.ToolStripComboBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.label72 = new System.Windows.Forms.Label();
-            this.modMakerSSXElfLdr = new System.Windows.Forms.CheckBox();
-            this.label73 = new System.Windows.Forms.Label();
-            this.modSSXElfLdr = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabModPacks.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -426,6 +429,26 @@ namespace SSX_Modder
             this.tabPage1.TabIndex = 2;
             this.tabPage1.Text = "Mod";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // label73
+            // 
+            this.label73.AutoSize = true;
+            this.label73.Location = new System.Drawing.Point(458, 108);
+            this.label73.Name = "label73";
+            this.label73.Size = new System.Drawing.Size(49, 13);
+            this.label73.TabIndex = 42;
+            this.label73.Text = "Requires";
+            // 
+            // modSSXElfLdr
+            // 
+            this.modSSXElfLdr.AutoSize = true;
+            this.modSSXElfLdr.Enabled = false;
+            this.modSSXElfLdr.Location = new System.Drawing.Point(461, 124);
+            this.modSSXElfLdr.Name = "modSSXElfLdr";
+            this.modSSXElfLdr.Size = new System.Drawing.Size(77, 17);
+            this.modSSXElfLdr.TabIndex = 41;
+            this.modSSXElfLdr.Text = "SSX-ElfLdr";
+            this.modSSXElfLdr.UseVisualStyleBackColor = true;
             // 
             // label70
             // 
@@ -696,6 +719,25 @@ namespace SSX_Modder
             this.tabModInfo.TabIndex = 0;
             this.tabModInfo.Text = "Mod Maker";
             this.tabModInfo.UseVisualStyleBackColor = true;
+            // 
+            // label72
+            // 
+            this.label72.AutoSize = true;
+            this.label72.Location = new System.Drawing.Point(449, 111);
+            this.label72.Name = "label72";
+            this.label72.Size = new System.Drawing.Size(49, 13);
+            this.label72.TabIndex = 26;
+            this.label72.Text = "Requires";
+            // 
+            // modMakerSSXElfLdr
+            // 
+            this.modMakerSSXElfLdr.AutoSize = true;
+            this.modMakerSSXElfLdr.Location = new System.Drawing.Point(452, 127);
+            this.modMakerSSXElfLdr.Name = "modMakerSSXElfLdr";
+            this.modMakerSSXElfLdr.Size = new System.Drawing.Size(77, 17);
+            this.modMakerSSXElfLdr.TabIndex = 25;
+            this.modMakerSSXElfLdr.Text = "SSX-ElfLdr";
+            this.modMakerSSXElfLdr.UseVisualStyleBackColor = true;
             // 
             // label69
             // 
@@ -1371,6 +1413,10 @@ namespace SSX_Modder
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.sshHAlpha);
+            this.groupBox3.Controls.Add(this.sshDAlpha);
+            this.groupBox3.Controls.Add(this.sshHColour);
+            this.groupBox3.Controls.Add(this.sshDColour);
             this.groupBox3.Controls.Add(this.SSHRefreshColor);
             this.groupBox3.Controls.Add(this.SSHColourByteSwapped);
             this.groupBox3.Controls.Add(this.SSHBothImport);
@@ -1386,6 +1432,46 @@ namespace SSX_Modder
             this.groupBox3.TabIndex = 29;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Colour Table Info";
+            // 
+            // sshHAlpha
+            // 
+            this.sshHAlpha.Location = new System.Drawing.Point(305, 106);
+            this.sshHAlpha.Name = "sshHAlpha";
+            this.sshHAlpha.Size = new System.Drawing.Size(92, 23);
+            this.sshHAlpha.TabIndex = 31;
+            this.sshHAlpha.Text = "Half Alpha";
+            this.sshHAlpha.UseVisualStyleBackColor = true;
+            this.sshHAlpha.Click += new System.EventHandler(this.sshHAlpha_Click);
+            // 
+            // sshDAlpha
+            // 
+            this.sshDAlpha.Location = new System.Drawing.Point(207, 106);
+            this.sshDAlpha.Name = "sshDAlpha";
+            this.sshDAlpha.Size = new System.Drawing.Size(92, 23);
+            this.sshDAlpha.TabIndex = 30;
+            this.sshDAlpha.Text = "Double Alpha";
+            this.sshDAlpha.UseVisualStyleBackColor = true;
+            this.sshDAlpha.Click += new System.EventHandler(this.sshDAlpha_Click);
+            // 
+            // sshHColour
+            // 
+            this.sshHColour.Location = new System.Drawing.Point(109, 106);
+            this.sshHColour.Name = "sshHColour";
+            this.sshHColour.Size = new System.Drawing.Size(92, 23);
+            this.sshHColour.TabIndex = 29;
+            this.sshHColour.Text = "Half Colours";
+            this.sshHColour.UseVisualStyleBackColor = true;
+            this.sshHColour.Click += new System.EventHandler(this.sshHColour_Click);
+            // 
+            // sshDColour
+            // 
+            this.sshDColour.Location = new System.Drawing.Point(11, 106);
+            this.sshDColour.Name = "sshDColour";
+            this.sshDColour.Size = new System.Drawing.Size(92, 23);
+            this.sshDColour.TabIndex = 28;
+            this.sshDColour.Text = "Double Colours";
+            this.sshDColour.UseVisualStyleBackColor = true;
+            this.sshDColour.Click += new System.EventHandler(this.sshDColour_Click);
             // 
             // SSHRefreshColor
             // 
@@ -3099,7 +3185,6 @@ namespace SSX_Modder
             this.tabSettings.Controls.Add(this.linkGithub);
             this.tabSettings.Controls.Add(this.SettingsIsoPath);
             this.tabSettings.Controls.Add(this.SettingsIsoSet);
-            this.tabSettings.Controls.Add(this.SettingsOverride);
             this.tabSettings.Controls.Add(this.label49);
             this.tabSettings.Controls.Add(this.SettingsPCSX2Button);
             this.tabSettings.Controls.Add(this.SettingsPCSX2Path);
@@ -3156,25 +3241,14 @@ namespace SSX_Modder
             this.SettingsIsoSet.UseVisualStyleBackColor = true;
             this.SettingsIsoSet.Click += new System.EventHandler(this.SettingsIsoSet_Click);
             // 
-            // SettingsOverride
-            // 
-            this.SettingsOverride.AutoSize = true;
-            this.SettingsOverride.Location = new System.Drawing.Point(100, 219);
-            this.SettingsOverride.Name = "SettingsOverride";
-            this.SettingsOverride.Size = new System.Drawing.Size(96, 17);
-            this.SettingsOverride.TabIndex = 10;
-            this.SettingsOverride.Text = "Force Override";
-            this.SettingsOverride.UseVisualStyleBackColor = true;
-            this.SettingsOverride.CheckedChanged += new System.EventHandler(this.SettingsOverride_CheckedChanged);
-            // 
             // label49
             // 
             this.label49.AutoSize = true;
             this.label49.Location = new System.Drawing.Point(16, 186);
             this.label49.Name = "label49";
-            this.label49.Size = new System.Drawing.Size(67, 13);
+            this.label49.Size = new System.Drawing.Size(62, 13);
             this.label49.TabIndex = 9;
-            this.label49.Text = "Last Built Iso";
+            this.label49.Text = "Launch File";
             // 
             // SettingsPCSX2Button
             // 
@@ -3341,45 +3415,6 @@ namespace SSX_Modder
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
-            // 
-            // label72
-            // 
-            this.label72.AutoSize = true;
-            this.label72.Location = new System.Drawing.Point(449, 111);
-            this.label72.Name = "label72";
-            this.label72.Size = new System.Drawing.Size(49, 13);
-            this.label72.TabIndex = 26;
-            this.label72.Text = "Requires";
-            // 
-            // modMakerSSXElfLdr
-            // 
-            this.modMakerSSXElfLdr.AutoSize = true;
-            this.modMakerSSXElfLdr.Location = new System.Drawing.Point(452, 127);
-            this.modMakerSSXElfLdr.Name = "modMakerSSXElfLdr";
-            this.modMakerSSXElfLdr.Size = new System.Drawing.Size(77, 17);
-            this.modMakerSSXElfLdr.TabIndex = 25;
-            this.modMakerSSXElfLdr.Text = "SSX-ElfLdr";
-            this.modMakerSSXElfLdr.UseVisualStyleBackColor = true;
-            // 
-            // label73
-            // 
-            this.label73.AutoSize = true;
-            this.label73.Location = new System.Drawing.Point(458, 108);
-            this.label73.Name = "label73";
-            this.label73.Size = new System.Drawing.Size(49, 13);
-            this.label73.TabIndex = 42;
-            this.label73.Text = "Requires";
-            // 
-            // modSSXElfLdr
-            // 
-            this.modSSXElfLdr.AutoSize = true;
-            this.modSSXElfLdr.Enabled = false;
-            this.modSSXElfLdr.Location = new System.Drawing.Point(461, 124);
-            this.modSSXElfLdr.Name = "modSSXElfLdr";
-            this.modSSXElfLdr.Size = new System.Drawing.Size(77, 17);
-            this.modSSXElfLdr.TabIndex = 41;
-            this.modSSXElfLdr.Text = "SSX-ElfLdr";
-            this.modSSXElfLdr.UseVisualStyleBackColor = true;
             // 
             // MainWindow
             // 
@@ -3637,7 +3672,6 @@ namespace SSX_Modder
         private System.Windows.Forms.Label label47;
         private System.Windows.Forms.Label SettingsIsoPath;
         private System.Windows.Forms.Button SettingsIsoSet;
-        private System.Windows.Forms.CheckBox SettingsOverride;
         private System.Windows.Forms.Label label49;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.Button ToolDarken;
@@ -3732,6 +3766,10 @@ namespace SSX_Modder
         private System.Windows.Forms.CheckBox modMakerSSXElfLdr;
         private System.Windows.Forms.Label label73;
         private System.Windows.Forms.CheckBox modSSXElfLdr;
+        private System.Windows.Forms.Button sshHAlpha;
+        private System.Windows.Forms.Button sshDAlpha;
+        private System.Windows.Forms.Button sshHColour;
+        private System.Windows.Forms.Button sshDColour;
     }
 }
 

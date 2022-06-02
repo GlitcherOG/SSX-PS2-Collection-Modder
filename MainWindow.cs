@@ -22,9 +22,23 @@ namespace SSX_Modder
             Settings7ZipPath.Text = settings.ZipPath;
             SettingsImgBurn.Text = settings.ImgBurnPath;
             SettingsPCSX2Path.Text = settings.Pcsx2Path;
-            SettingsIsoPath.Text = settings.ISOPath;
-            SettingsOverride.Checked = settings.Override;
             GameType.SelectedIndex = settings.Game;
+            if (GameType.SelectedIndex == 0)
+            {
+                SettingsIsoPath.Text = settings.SSXISOPath;
+            }
+            if (GameType.SelectedIndex == 1)
+            {
+                SettingsIsoPath.Text = settings.SSX2ISOPath;
+            }
+            if (GameType.SelectedIndex == 2)
+            {
+                SettingsIsoPath.Text = settings.SSX3ISOPath;
+            }
+            if (GameType.SelectedIndex == 3)
+            {
+                SettingsIsoPath.Text = settings.SSX4ISOPath;
+            }
         }
         private void ResetStatus(object sender, EventArgs e)
         {
@@ -87,11 +101,23 @@ namespace SSX_Modder
                         ProcessStartInfo startInfo = new ProcessStartInfo();
                         startInfo.FileName = settings.ImgBurnPath;
                         string test = Path.Combine(workspacePath, "");
-                        if (!SettingsOverride.Checked)
+                        if (settings.Game == 0)
                         {
-                            settings.ISOPath = openFileDialog.FileName;
-                            settings.Save();
+                            settings.SSXISOPath = openFileDialog.FileName;
                         }
+                        else if (settings.Game == 1)
+                        {
+                            settings.SSX2ISOPath = openFileDialog.FileName;
+                        }
+                        else if (settings.Game == 2)
+                        {
+                            settings.SSX3ISOPath = openFileDialog.FileName;
+                        }
+                        else if (settings.Game == 3)
+                        {
+                            settings.SSX4ISOPath = openFileDialog.FileName;
+                        }
+                        settings.Save();
                         startInfo.Arguments = "/MODE BUILD /BUILDINPUTMODE IMAGEFILE /SRC \"" + test + "\" /DEST \"" + openFileDialog.FileName + "\" /FILESYSTEM \"ISO9660 + UDF\" /UDFREVISION \"1.02\" /VOLUMELABEL \"SSX3\" /ERASE /OVERWITE YES /START /NOIMAGEDETAILS /ROOTFOLDER";
                         Process.Start(startInfo);
                     }
@@ -112,16 +138,35 @@ namespace SSX_Modder
             {
                 ProcessStartInfo startInfo = new ProcessStartInfo();
                 startInfo.FileName = settings.Pcsx2Path;
-                string test = Path.Combine(workspacePath, "");
-                if (File.Exists(settings.ISOPath))
+
+                string path = "";
+                if (settings.Game == 0)
                 {
-                    if (settings.ISOPath.ToLower().Contains(".iso"))
+                    path = settings.SSXISOPath;
+                }
+                else if (settings.Game == 1)
+                {
+                    path = settings.SSX2ISOPath;
+                }
+                else if (settings.Game == 2)
+                {
+                    path = settings.SSX3ISOPath;
+                }
+                else if (settings.Game == 3)
+                {
+                    path = settings.SSX4ISOPath;
+                }
+
+
+                if (File.Exists(path))
+                {
+                    if (path.ToLower().Contains(".iso"))
                     {
-                        startInfo.Arguments = "\"" + settings.ISOPath + "\"";
+                        startInfo.Arguments = "\"" + path + "\"";
                     }
-                    else if (settings.ISOPath.ToLower().Contains(".elf"))
+                    else if (path.ToLower().Contains(".elf"))
                     {
-                        startInfo.Arguments = "-elf \"" + settings.ISOPath + "\"";
+                        startInfo.Arguments = "-elf \"" + path + "\"";
                     }
                 }
                 Process.Start(startInfo);
@@ -156,6 +201,7 @@ namespace SSX_Modder
         {
             if (GameType.SelectedIndex == 0)
             {
+                SettingsIsoPath.Text = settings.SSXISOPath;
                 workspacePath = Application.StartupPath + "\\disk\\SSX\\";
                 if (!Directory.Exists(workspacePath))
                 {
@@ -164,6 +210,7 @@ namespace SSX_Modder
             }
             if (GameType.SelectedIndex == 1)
             {
+                SettingsIsoPath.Text = settings.SSX2ISOPath;
                 workspacePath = Application.StartupPath + "\\disk\\SSX Tricky\\";
                 if (!Directory.Exists(workspacePath))
                 {
@@ -172,6 +219,7 @@ namespace SSX_Modder
             }
             if (GameType.SelectedIndex == 2)
             {
+                SettingsIsoPath.Text = settings.SSX3ISOPath;
                 workspacePath = Application.StartupPath + "\\disk\\SSX 3\\";
                 if (!Directory.Exists(workspacePath))
                 {
@@ -180,6 +228,7 @@ namespace SSX_Modder
             }
             if (GameType.SelectedIndex == 3)
             {
+                SettingsIsoPath.Text = settings.SSX4ISOPath;
                 workspacePath = Application.StartupPath + "\\disk\\SSX On Tour\\";
                 if (!Directory.Exists(workspacePath))
                 {
@@ -194,22 +243,34 @@ namespace SSX_Modder
         {
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
-                Filter = "Iso File (*.iso)|*.iso|Elf File (*.elf)|*.elf|All files (*.*)|*.*",
+                Filter = "Boot File (*.iso, *.elf)|*.iso;*.elf|All files (*.*)|*.*",
                 FilterIndex = 1,
                 RestoreDirectory = false
             };
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                settings.ISOPath = openFileDialog.FileName;
-                SettingsIsoPath.Text = settings.ISOPath;
+                string path = openFileDialog.FileName;
+                SettingsIsoPath.Text = path;
+
+                if (settings.Game == 0)
+                {
+                    settings.SSXISOPath = openFileDialog.FileName;
+                }
+                else if (settings.Game == 1)
+                {
+                    settings.SSX2ISOPath = openFileDialog.FileName;
+                }
+                else if (settings.Game == 2)
+                {
+                    settings.SSX3ISOPath = openFileDialog.FileName;
+                }
+                else if (settings.Game == 3)
+                {
+                    settings.SSX4ISOPath = openFileDialog.FileName;
+                }
+
                 settings.Save();
             }
-        }
-
-        private void SettingsOverride_CheckedChanged(object sender, EventArgs e)
-        {
-            settings.Override = SettingsOverride.Checked;
-            settings.Save();
         }
 
         private void ToolBrighten_Click(object sender, EventArgs e)
@@ -886,6 +947,14 @@ namespace SSX_Modder
                 int i = BigBox1.SelectedIndex;
                 BigPathLabel.Text = bigfHandler.bigFiles[i].path;
                 byte[] temp = BitConverter.GetBytes(bigfHandler.bigFiles[i].offset);
+                if (bigfHandler.bigFiles[i].Compressed)
+                {
+                    BigCompressed.Text = "Yes";
+                }
+                else
+                {
+                    BigCompressed.Text = "No";
+                }
                 if (BitConverter.IsLittleEndian)
                     Array.Reverse(temp);
                 BigOffsetLabel.Text = "0x" + BitConverter.ToString(temp).Replace("-", "");
@@ -1291,6 +1360,48 @@ namespace SSX_Modder
             if (SSHlistBox1.SelectedIndex != -1)
             {
                 sshHandler.SSHColorCalculate(SSHlistBox1.SelectedIndex);
+                SSHlistBox1.SelectedIndex = SSHlistBox1.SelectedIndex - 1;
+                SSHlistBox1.SelectedIndex = SSHlistBox1.SelectedIndex + 1;
+            }
+        }
+
+        private void sshDColour_Click(object sender, EventArgs e)
+        {
+            if (SSHlistBox1.SelectedIndex != -1)
+            {
+                sshHandler.BrightenBitmap(SSHlistBox1.SelectedIndex);
+                SSHlistBox1.SelectedIndex = SSHlistBox1.SelectedIndex - 1;
+                SSHlistBox1.SelectedIndex = SSHlistBox1.SelectedIndex + 1;
+            }
+        }
+
+        private void sshHColour_Click(object sender, EventArgs e)
+        {
+            if (SSHlistBox1.SelectedIndex != -1)
+            {
+                sshHandler.DarkenImage(SSHlistBox1.SelectedIndex);
+                SSHlistBox1.SelectedIndex = SSHlistBox1.SelectedIndex - 1;
+                SSHlistBox1.SelectedIndex = SSHlistBox1.SelectedIndex + 1;
+            }
+        }
+
+        private void sshDAlpha_Click(object sender, EventArgs e)
+        {
+            if (SSHlistBox1.SelectedIndex != -1)
+            {
+                sshHandler.DoubleAlphaImage(SSHlistBox1.SelectedIndex);
+                SSHlistBox1.SelectedIndex = SSHlistBox1.SelectedIndex - 1;
+                SSHlistBox1.SelectedIndex = SSHlistBox1.SelectedIndex + 1;
+            }
+        }
+
+        private void sshHAlpha_Click(object sender, EventArgs e)
+        {
+            if (SSHlistBox1.SelectedIndex != -1)
+            {
+                sshHandler.HalfAlphaImage(SSHlistBox1.SelectedIndex);
+                SSHlistBox1.SelectedIndex = SSHlistBox1.SelectedIndex - 1;
+                SSHlistBox1.SelectedIndex = SSHlistBox1.SelectedIndex + 1;
             }
         }
         #endregion

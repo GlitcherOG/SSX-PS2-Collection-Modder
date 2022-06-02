@@ -15,8 +15,10 @@ namespace SSX_Modder.Utilities
         public string ImgBurnPath = @"C:\Program Files (x86)\ImgBurn\ImgBurn.exe";
         public string ZipPath = @"C:\Program Files\7-Zip\7z.exe";
         public string Pcsx2Path = "";
-        public string ISOPath = "";
-        public bool Override = false;
+        public string SSXISOPath = "";
+        public string SSX2ISOPath = "";
+        public string SSX3ISOPath = "";
+        public string SSX4ISOPath = "";
         public int Game = 2;
         public void Save()
         {

@@ -119,7 +119,7 @@ namespace SSX_Modder.FileHandlers
                 stream.Read(bytes, 0, bytes.Length);
                 if (bytes[1] == 0xFB)
                 {
-                    bigHeader.compression = true;
+                    tempFile.Compressed = true;
                     tempFile.UncompressedSize = StreamUtil.ReadInt24Big(stream);
                     bigFiles[i] = tempFile;
                 }
@@ -136,14 +136,17 @@ namespace SSX_Modder.FileHandlers
                     byte[] temp = new byte[bigFiles[i].size];
                     stream.Position = bigFiles[i].offset;
                     stream.Read(temp, 0, temp.Length);
-                    if (bigHeader.compression)
+                    if (bigFiles[i].Compressed)
                     {
                         RefpackHandler refpackHandler = new RefpackHandler();
                         temp = refpackHandler.Decompress(temp);
                     }
                     stream1.Write(temp, 0, temp.Length);
 
-                    Directory.CreateDirectory(Path.GetDirectoryName(path + "//" + bigFiles[i].path));
+                    if (!Directory.Exists(Path.GetDirectoryName(path + "//" + bigFiles[i].path)))
+                    {
+                        Directory.CreateDirectory(Path.GetDirectoryName(path + "//" + bigFiles[i].path));
+                    }
                     var file = File.Create(path + "//" + bigFiles[i].path);
                     stream1.Position = 0;
                     stream1.CopyTo(file);
@@ -367,6 +370,7 @@ namespace SSX_Modder.FileHandlers
     struct BIGFFiles
     {
         public string path;
+        public bool Compressed;
         public int size;
         public int offset;
         public int UncompressedSize;
