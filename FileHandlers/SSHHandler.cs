@@ -17,6 +17,8 @@ namespace SSX_Modder.FileHandlers
         public string format;
         public string group;
         public string endingstring;
+        public bool AlphaFix;
+        public bool RGBFix;
         public List<SSHImage> sshImages = new List<SSHImage>();
         public void LoadSSH(string path)
         {

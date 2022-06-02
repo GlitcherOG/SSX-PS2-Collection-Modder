@@ -29,6 +29,7 @@ namespace SSX_Modder
         /// </summary>
         private void InitializeComponent()
         {
+<<<<<<< Updated upstream
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
       this.tabControl1 = new System.Windows.Forms.TabControl();
       this.tabModPacks = new System.Windows.Forms.TabPage();
@@ -356,6 +357,335 @@ namespace SSX_Modder
       // tabControl1
       // 
       this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+=======
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabModPacks = new System.Windows.Forms.TabPage();
+            this.tabControl2 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label73 = new System.Windows.Forms.Label();
+            this.modSSXElfLdr = new System.Windows.Forms.CheckBox();
+            this.label70 = new System.Windows.Forms.Label();
+            this.ModNTSCKDemo = new System.Windows.Forms.CheckBox();
+            this.ModNTSCJDemo = new System.Windows.Forms.CheckBox();
+            this.ModPalDemo = new System.Windows.Forms.CheckBox();
+            this.ModNTSCK = new System.Windows.Forms.CheckBox();
+            this.ModNTSCDemo = new System.Windows.Forms.CheckBox();
+            this.ModNTSCJ = new System.Windows.Forms.CheckBox();
+            this.ModNTSC = new System.Windows.Forms.CheckBox();
+            this.ModPal = new System.Windows.Forms.CheckBox();
+            this.ModList = new System.Windows.Forms.ListBox();
+            this.ModApply = new System.Windows.Forms.Button();
+            this.ModLoad = new System.Windows.Forms.Button();
+            this.ModDescription = new System.Windows.Forms.Label();
+            this.ModGame = new System.Windows.Forms.Label();
+            this.ModAuthor = new System.Windows.Forms.Label();
+            this.ModVersion = new System.Windows.Forms.Label();
+            this.ModLabel = new System.Windows.Forms.Label();
+            this.label63 = new System.Windows.Forms.Label();
+            this.label64 = new System.Windows.Forms.Label();
+            this.label65 = new System.Windows.Forms.Label();
+            this.label66 = new System.Windows.Forms.Label();
+            this.label67 = new System.Windows.Forms.Label();
+            this.ModPicture = new System.Windows.Forms.PictureBox();
+            this.label68 = new System.Windows.Forms.Label();
+            this.tabModInfo = new System.Windows.Forms.TabPage();
+            this.label72 = new System.Windows.Forms.Label();
+            this.modMakerSSXElfLdr = new System.Windows.Forms.CheckBox();
+            this.label69 = new System.Windows.Forms.Label();
+            this.ModMakerNTSCKDemo = new System.Windows.Forms.CheckBox();
+            this.ModMakerNTSCJDemo = new System.Windows.Forms.CheckBox();
+            this.ModMakerPalDemo = new System.Windows.Forms.CheckBox();
+            this.ModMakerNTSCK = new System.Windows.Forms.CheckBox();
+            this.ModMakerNTSCDemo = new System.Windows.Forms.CheckBox();
+            this.ModMakerNTSCJ = new System.Windows.Forms.CheckBox();
+            this.ModMakerNTSC = new System.Windows.Forms.CheckBox();
+            this.ModMakerPal = new System.Windows.Forms.CheckBox();
+            this.ModMakerList = new System.Windows.Forms.ListBox();
+            this.label62 = new System.Windows.Forms.Label();
+            this.ModMakerVersion = new System.Windows.Forms.TextBox();
+            this.ModMakerDescription = new System.Windows.Forms.RichTextBox();
+            this.ModMakerAuthor = new System.Windows.Forms.TextBox();
+            this.ModMakerGame = new System.Windows.Forms.ComboBox();
+            this.ModMakerName = new System.Windows.Forms.TextBox();
+            this.label54 = new System.Windows.Forms.Label();
+            this.label53 = new System.Windows.Forms.Label();
+            this.label52 = new System.Windows.Forms.Label();
+            this.label51 = new System.Windows.Forms.Label();
+            this.ModMakerIcon = new System.Windows.Forms.PictureBox();
+            this.label50 = new System.Windows.Forms.Label();
+            this.ModMakerSave = new System.Windows.Forms.Button();
+            this.ModMakerPack = new System.Windows.Forms.Button();
+            this.ModMakerLoad = new System.Windows.Forms.Button();
+            this.tabModInstructions = new System.Windows.Forms.TabPage();
+            this.ModInstructionMod = new System.Windows.Forms.ListBox();
+            this.ModInstructionGame = new System.Windows.Forms.ListBox();
+            this.ModInstructionLoad = new System.Windows.Forms.Button();
+            this.label61 = new System.Windows.Forms.Label();
+            this.label60 = new System.Windows.Forms.Label();
+            this.label59 = new System.Windows.Forms.Label();
+            this.label58 = new System.Windows.Forms.Label();
+            this.ModInstructionMoveDown = new System.Windows.Forms.Button();
+            this.ModInstructionRemove = new System.Windows.Forms.Button();
+            this.ModInstructionMoveUp = new System.Windows.Forms.Button();
+            this.ModInstructionAdd = new System.Windows.Forms.Button();
+            this.label57 = new System.Windows.Forms.Label();
+            this.label56 = new System.Windows.Forms.Label();
+            this.label55 = new System.Windows.Forms.Label();
+            this.ModInstructionSave = new System.Windows.Forms.Button();
+            this.ModInstructionListbox = new System.Windows.Forms.ListBox();
+            this.ModInstructionOutput = new System.Windows.Forms.TextBox();
+            this.ModInstructionSource = new System.Windows.Forms.TextBox();
+            this.ModInstructionType = new System.Windows.Forms.ComboBox();
+            this.tabBig = new System.Windows.Forms.TabPage();
+            this.label47 = new System.Windows.Forms.Label();
+            this.BigFType = new System.Windows.Forms.ComboBox();
+            this.bigUncompressed = new System.Windows.Forms.Label();
+            this.label44 = new System.Windows.Forms.Label();
+            this.BigCompressed = new System.Windows.Forms.Label();
+            this.label43 = new System.Windows.Forms.Label();
+            this.label40 = new System.Windows.Forms.Label();
+            this.BigSizeLabel = new System.Windows.Forms.Label();
+            this.BigLabel3 = new System.Windows.Forms.Label();
+            this.BigOffsetLabel = new System.Windows.Forms.Label();
+            this.BigLabel2 = new System.Windows.Forms.Label();
+            this.BigLoadFolder = new System.Windows.Forms.Button();
+            this.BuildBigButton = new System.Windows.Forms.Button();
+            this.BigExtract = new System.Windows.Forms.Button();
+            this.BigPathLabel = new System.Windows.Forms.Label();
+            this.BigLabel1 = new System.Windows.Forms.Label();
+            this.BigLoad = new System.Windows.Forms.Button();
+            this.BigBox1 = new System.Windows.Forms.ListBox();
+            this.tabSSH = new System.Windows.Forms.TabPage();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.sshHAlpha = new System.Windows.Forms.Button();
+            this.sshDAlpha = new System.Windows.Forms.Button();
+            this.sshHColour = new System.Windows.Forms.Button();
+            this.sshDColour = new System.Windows.Forms.Button();
+            this.SSHRefreshColor = new System.Windows.Forms.Button();
+            this.SSHColourByteSwapped = new System.Windows.Forms.CheckBox();
+            this.SSHBothImport = new System.Windows.Forms.Button();
+            this.SSHBothExtract = new System.Windows.Forms.Button();
+            this.SSHAlphaMetal = new System.Windows.Forms.CheckBox();
+            this.SSHMetalLoad = new System.Windows.Forms.Button();
+            this.SSHMetalExtract = new System.Windows.Forms.Button();
+            this.SSHColourAmmount = new System.Windows.Forms.Label();
+            this.label42 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.SSHImageSize = new System.Windows.Forms.Label();
+            this.label45 = new System.Windows.Forms.Label();
+            this.SSHImageByteSwapped = new System.Windows.Forms.CheckBox();
+            this.label35 = new System.Windows.Forms.Label();
+            this.label36 = new System.Windows.Forms.Label();
+            this.label37 = new System.Windows.Forms.Label();
+            this.SSHImageShortName = new System.Windows.Forms.TextBox();
+            this.SSHYAxis = new System.Windows.Forms.NumericUpDown();
+            this.SSHImageName = new System.Windows.Forms.TextBox();
+            this.SSHXAxis = new System.Windows.Forms.NumericUpDown();
+            this.SSHMatrixType = new System.Windows.Forms.ComboBox();
+            this.label39 = new System.Windows.Forms.Label();
+            this.label38 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label33 = new System.Windows.Forms.Label();
+            this.SSHFileNameLabel = new System.Windows.Forms.Label();
+            this.label34 = new System.Windows.Forms.Label();
+            this.SSHFileFormat = new System.Windows.Forms.TextBox();
+            this.SSHExportOne = new System.Windows.Forms.Button();
+            this.SSHReplace = new System.Windows.Forms.Button();
+            this.SSHLoadFolder = new System.Windows.Forms.Button();
+            this.SSHSave = new System.Windows.Forms.Button();
+            this.SSHDisplayMode = new System.Windows.Forms.CheckBox();
+            this.SSHbmpExport = new System.Windows.Forms.Button();
+            this.SSHLoad = new System.Windows.Forms.Button();
+            this.SSHlistBox1 = new System.Windows.Forms.ListBox();
+            this.SSHpictureBox1 = new System.Windows.Forms.PictureBox();
+            this.tabLoc = new System.Windows.Forms.TabPage();
+            this.LocSearchText = new System.Windows.Forms.TextBox();
+            this.LocSearchBack = new System.Windows.Forms.Button();
+            this.LocSearchNext = new System.Windows.Forms.Button();
+            this.Save = new System.Windows.Forms.Button();
+            this.LocrichTextBox2 = new System.Windows.Forms.RichTextBox();
+            this.LocrichTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.LocSaveAs = new System.Windows.Forms.Button();
+            this.LocLoad = new System.Windows.Forms.Button();
+            this.LocBox1 = new System.Windows.Forms.ListBox();
+            this.tabCharacters = new System.Windows.Forms.TabPage();
+            this.label32 = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.charnumericUpDown6 = new System.Windows.Forms.NumericUpDown();
+            this.charnumericUpDown5 = new System.Windows.Forms.NumericUpDown();
+            this.charnumericUpDown4 = new System.Windows.Forms.NumericUpDown();
+            this.chartextBox6 = new System.Windows.Forms.TextBox();
+            this.chartextBox5 = new System.Windows.Forms.TextBox();
+            this.chartextBox4 = new System.Windows.Forms.TextBox();
+            this.chartextBox3 = new System.Windows.Forms.TextBox();
+            this.chartextBox2 = new System.Windows.Forms.TextBox();
+            this.chartextBox1 = new System.Windows.Forms.TextBox();
+            this.charnumericUpDown3 = new System.Windows.Forms.NumericUpDown();
+            this.charnumericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.charnumericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.charBox1 = new System.Windows.Forms.ListBox();
+            this.charSave = new System.Windows.Forms.Button();
+            this.charSaveAs = new System.Windows.Forms.Button();
+            this.charLoad = new System.Windows.Forms.Button();
+            this.tabMusic = new System.Windows.Forms.TabPage();
+            this.MusRemove = new System.Windows.Forms.Button();
+            this.MusAdd = new System.Windows.Forms.Button();
+            this.MusSaveAs = new System.Windows.Forms.Button();
+            this.MusINFnumericUpDown12 = new System.Windows.Forms.NumericUpDown();
+            this.label30 = new System.Windows.Forms.Label();
+            this.MuscheckBox5 = new System.Windows.Forms.CheckBox();
+            this.MuscheckBox4 = new System.Windows.Forms.CheckBox();
+            this.MuscheckBox3 = new System.Windows.Forms.CheckBox();
+            this.MuscheckBox2 = new System.Windows.Forms.CheckBox();
+            this.MuscheckBox1 = new System.Windows.Forms.CheckBox();
+            this.MusicID = new System.Windows.Forms.TextBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.MusnumericUpDown0 = new System.Windows.Forms.NumericUpDown();
+            this.label28 = new System.Windows.Forms.Label();
+            this.MusicLoad = new System.Windows.Forms.Button();
+            this.MusINFnumericUpDown11 = new System.Windows.Forms.NumericUpDown();
+            this.MusINFnumericUpDown10 = new System.Windows.Forms.NumericUpDown();
+            this.MusINFnumericUpDown9 = new System.Windows.Forms.NumericUpDown();
+            this.MusINFnumericUpDown8 = new System.Windows.Forms.NumericUpDown();
+            this.MusINFnumericUpDown7 = new System.Windows.Forms.NumericUpDown();
+            this.MusINFnumericUpDown6 = new System.Windows.Forms.NumericUpDown();
+            this.label26 = new System.Windows.Forms.Label();
+            this.MusINFnumericUpDown5 = new System.Windows.Forms.NumericUpDown();
+            this.MusINFnumericUpDown4 = new System.Windows.Forms.NumericUpDown();
+            this.MusINFnumericUpDown3 = new System.Windows.Forms.NumericUpDown();
+            this.MusINFnumericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.MusicLoopData = new System.Windows.Forms.TextBox();
+            this.MusicDataBox = new System.Windows.Forms.TextBox();
+            this.MusicAlbumBox = new System.Windows.Forms.TextBox();
+            this.MusicPathDataBox = new System.Windows.Forms.TextBox();
+            this.MusicArtistBox = new System.Windows.Forms.TextBox();
+            this.MusicTitleBox = new System.Windows.Forms.TextBox();
+            this.MusINFnumericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.musiclistBox1 = new System.Windows.Forms.ListBox();
+            this.tabTools = new System.Windows.Forms.TabPage();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.ToolsRestoreSSXOnTour = new System.Windows.Forms.Button();
+            this.ToolsBackupSSXOnTour = new System.Windows.Forms.Button();
+            this.ToolsRestoreSSX3 = new System.Windows.Forms.Button();
+            this.ToolsRestoreSSXTricky = new System.Windows.Forms.Button();
+            this.ToolsRestoreSSX = new System.Windows.Forms.Button();
+            this.ToolsBackupSSX3 = new System.Windows.Forms.Button();
+            this.ToolsBackupSSXTricky = new System.Windows.Forms.Button();
+            this.ToolsBackupSSX = new System.Windows.Forms.Button();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.ToolDarkenFolder = new System.Windows.Forms.Button();
+            this.ToolBrightenFolder = new System.Windows.Forms.Button();
+            this.ToolDarken = new System.Windows.Forms.Button();
+            this.ToolBrighten = new System.Windows.Forms.Button();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.ToolsPadding = new System.Windows.Forms.Button();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.ToolsColours = new System.Windows.Forms.Button();
+            this.NumToolsColour = new System.Windows.Forms.NumericUpDown();
+            this.tabSettings = new System.Windows.Forms.TabPage();
+            this.label71 = new System.Windows.Forms.Label();
+            this.linkGithub = new System.Windows.Forms.LinkLabel();
+            this.SettingsIsoPath = new System.Windows.Forms.Label();
+            this.SettingsIsoSet = new System.Windows.Forms.Button();
+            this.label49 = new System.Windows.Forms.Label();
+            this.SettingsPCSX2Button = new System.Windows.Forms.Button();
+            this.SettingsPCSX2Path = new System.Windows.Forms.Label();
+            this.label48 = new System.Windows.Forms.Label();
+            this.SettingsImgBurnButton = new System.Windows.Forms.Button();
+            this.Settings7ZipButton = new System.Windows.Forms.Button();
+            this.SettingsImgBurn = new System.Windows.Forms.Label();
+            this.Settings7ZipPath = new System.Windows.Forms.Label();
+            this.label46 = new System.Windows.Forms.Label();
+            this.label41 = new System.Windows.Forms.Label();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
+            this.GameType = new System.Windows.Forms.ToolStripComboBox();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.tabControl1.SuspendLayout();
+            this.tabModPacks.SuspendLayout();
+            this.tabControl2.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ModPicture)).BeginInit();
+            this.tabModInfo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ModMakerIcon)).BeginInit();
+            this.tabModInstructions.SuspendLayout();
+            this.tabBig.SuspendLayout();
+            this.tabSSH.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SSHYAxis)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SSHXAxis)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SSHpictureBox1)).BeginInit();
+            this.tabLoc.SuspendLayout();
+            this.tabCharacters.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.charnumericUpDown6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.charnumericUpDown5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.charnumericUpDown4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.charnumericUpDown3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.charnumericUpDown2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.charnumericUpDown1)).BeginInit();
+            this.tabMusic.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.MusINFnumericUpDown12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MusnumericUpDown0)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MusINFnumericUpDown11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MusINFnumericUpDown10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MusINFnumericUpDown9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MusINFnumericUpDown8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MusINFnumericUpDown7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MusINFnumericUpDown6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MusINFnumericUpDown5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MusINFnumericUpDown4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MusINFnumericUpDown3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MusINFnumericUpDown2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MusINFnumericUpDown1)).BeginInit();
+            this.tabTools.SuspendLayout();
+            this.groupBox7.SuspendLayout();
+            this.groupBox6.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NumToolsColour)).BeginInit();
+            this.tabSettings.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+>>>>>>> Stashed changes
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.tabControl1.Controls.Add(this.tabModPacks);
@@ -1384,6 +1714,7 @@ namespace SSX_Modder
       // 
       this.BigBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+<<<<<<< Updated upstream
       this.BigBox1.FormattingEnabled = true;
       this.BigBox1.Location = new System.Drawing.Point(4, 4);
       this.BigBox1.Name = "BigBox1";
@@ -1659,6 +1990,284 @@ namespace SSX_Modder
       // 
       this.SSHYAxis.Location = new System.Drawing.Point(136, 72);
       this.SSHYAxis.Maximum = new decimal(new int[] {
+=======
+            this.BigBox1.FormattingEnabled = true;
+            this.BigBox1.Location = new System.Drawing.Point(4, 4);
+            this.BigBox1.Name = "BigBox1";
+            this.BigBox1.Size = new System.Drawing.Size(243, 511);
+            this.BigBox1.TabIndex = 0;
+            this.BigBox1.SelectedIndexChanged += new System.EventHandler(this.BigBox1_SelectedIndexChanged);
+            // 
+            // tabSSH
+            // 
+            this.tabSSH.Controls.Add(this.checkBox1);
+            this.tabSSH.Controls.Add(this.groupBox3);
+            this.tabSSH.Controls.Add(this.groupBox2);
+            this.tabSSH.Controls.Add(this.groupBox1);
+            this.tabSSH.Controls.Add(this.SSHExportOne);
+            this.tabSSH.Controls.Add(this.SSHReplace);
+            this.tabSSH.Controls.Add(this.SSHLoadFolder);
+            this.tabSSH.Controls.Add(this.SSHSave);
+            this.tabSSH.Controls.Add(this.SSHDisplayMode);
+            this.tabSSH.Controls.Add(this.SSHbmpExport);
+            this.tabSSH.Controls.Add(this.SSHLoad);
+            this.tabSSH.Controls.Add(this.SSHlistBox1);
+            this.tabSSH.Controls.Add(this.SSHpictureBox1);
+            this.tabSSH.Location = new System.Drawing.Point(4, 22);
+            this.tabSSH.Name = "tabSSH";
+            this.tabSSH.Size = new System.Drawing.Size(1191, 527);
+            this.tabSSH.TabIndex = 8;
+            this.tabSSH.Text = "SSH";
+            this.tabSSH.UseVisualStyleBackColor = true;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.sshHAlpha);
+            this.groupBox3.Controls.Add(this.sshDAlpha);
+            this.groupBox3.Controls.Add(this.sshHColour);
+            this.groupBox3.Controls.Add(this.sshDColour);
+            this.groupBox3.Controls.Add(this.SSHRefreshColor);
+            this.groupBox3.Controls.Add(this.SSHColourByteSwapped);
+            this.groupBox3.Controls.Add(this.SSHBothImport);
+            this.groupBox3.Controls.Add(this.SSHBothExtract);
+            this.groupBox3.Controls.Add(this.SSHAlphaMetal);
+            this.groupBox3.Controls.Add(this.SSHMetalLoad);
+            this.groupBox3.Controls.Add(this.SSHMetalExtract);
+            this.groupBox3.Controls.Add(this.SSHColourAmmount);
+            this.groupBox3.Controls.Add(this.label42);
+            this.groupBox3.Location = new System.Drawing.Point(202, 256);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(564, 135);
+            this.groupBox3.TabIndex = 29;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Colour Table Info";
+            // 
+            // sshHAlpha
+            // 
+            this.sshHAlpha.Location = new System.Drawing.Point(305, 106);
+            this.sshHAlpha.Name = "sshHAlpha";
+            this.sshHAlpha.Size = new System.Drawing.Size(92, 23);
+            this.sshHAlpha.TabIndex = 31;
+            this.sshHAlpha.Text = "Half Alpha";
+            this.sshHAlpha.UseVisualStyleBackColor = true;
+            this.sshHAlpha.Click += new System.EventHandler(this.sshHAlpha_Click);
+            // 
+            // sshDAlpha
+            // 
+            this.sshDAlpha.Location = new System.Drawing.Point(207, 106);
+            this.sshDAlpha.Name = "sshDAlpha";
+            this.sshDAlpha.Size = new System.Drawing.Size(92, 23);
+            this.sshDAlpha.TabIndex = 30;
+            this.sshDAlpha.Text = "Double Alpha";
+            this.sshDAlpha.UseVisualStyleBackColor = true;
+            this.sshDAlpha.Click += new System.EventHandler(this.sshDAlpha_Click);
+            // 
+            // sshHColour
+            // 
+            this.sshHColour.Location = new System.Drawing.Point(109, 106);
+            this.sshHColour.Name = "sshHColour";
+            this.sshHColour.Size = new System.Drawing.Size(92, 23);
+            this.sshHColour.TabIndex = 29;
+            this.sshHColour.Text = "Half Colours";
+            this.sshHColour.UseVisualStyleBackColor = true;
+            this.sshHColour.Click += new System.EventHandler(this.sshHColour_Click);
+            // 
+            // sshDColour
+            // 
+            this.sshDColour.Location = new System.Drawing.Point(11, 106);
+            this.sshDColour.Name = "sshDColour";
+            this.sshDColour.Size = new System.Drawing.Size(92, 23);
+            this.sshDColour.TabIndex = 28;
+            this.sshDColour.Text = "Double Colours";
+            this.sshDColour.UseVisualStyleBackColor = true;
+            this.sshDColour.Click += new System.EventHandler(this.sshDColour_Click);
+            // 
+            // SSHRefreshColor
+            // 
+            this.SSHRefreshColor.Location = new System.Drawing.Point(11, 49);
+            this.SSHRefreshColor.Name = "SSHRefreshColor";
+            this.SSHRefreshColor.Size = new System.Drawing.Size(75, 23);
+            this.SSHRefreshColor.TabIndex = 27;
+            this.SSHRefreshColor.Text = "Refresh";
+            this.SSHRefreshColor.UseVisualStyleBackColor = true;
+            this.SSHRefreshColor.Click += new System.EventHandler(this.SSHRefreshColor_Click);
+            // 
+            // SSHColourByteSwapped
+            // 
+            this.SSHColourByteSwapped.AutoSize = true;
+            this.SSHColourByteSwapped.Location = new System.Drawing.Point(463, 112);
+            this.SSHColourByteSwapped.Name = "SSHColourByteSwapped";
+            this.SSHColourByteSwapped.Size = new System.Drawing.Size(95, 17);
+            this.SSHColourByteSwapped.TabIndex = 26;
+            this.SSHColourByteSwapped.Text = "Byte Swapped";
+            this.SSHColourByteSwapped.UseVisualStyleBackColor = true;
+            this.SSHColourByteSwapped.CheckedChanged += new System.EventHandler(this.SSH_TextChanged);
+            // 
+            // SSHBothImport
+            // 
+            this.SSHBothImport.Enabled = false;
+            this.SSHBothImport.Location = new System.Drawing.Point(452, 62);
+            this.SSHBothImport.Name = "SSHBothImport";
+            this.SSHBothImport.Size = new System.Drawing.Size(86, 23);
+            this.SSHBothImport.TabIndex = 6;
+            this.SSHBothImport.Text = "Both Import";
+            this.SSHBothImport.UseVisualStyleBackColor = true;
+            this.SSHBothImport.Click += new System.EventHandler(this.SSHBothImport_Click);
+            // 
+            // SSHBothExtract
+            // 
+            this.SSHBothExtract.Enabled = false;
+            this.SSHBothExtract.Location = new System.Drawing.Point(360, 62);
+            this.SSHBothExtract.Name = "SSHBothExtract";
+            this.SSHBothExtract.Size = new System.Drawing.Size(86, 23);
+            this.SSHBothExtract.TabIndex = 5;
+            this.SSHBothExtract.Text = "Both Extract";
+            this.SSHBothExtract.UseVisualStyleBackColor = true;
+            this.SSHBothExtract.Click += new System.EventHandler(this.SSHBothExtract_Click);
+            // 
+            // SSHAlphaMetal
+            // 
+            this.SSHAlphaMetal.AutoSize = true;
+            this.SSHAlphaMetal.Location = new System.Drawing.Point(360, 16);
+            this.SSHAlphaMetal.Name = "SSHAlphaMetal";
+            this.SSHAlphaMetal.Size = new System.Drawing.Size(82, 17);
+            this.SSHAlphaMetal.TabIndex = 4;
+            this.SSHAlphaMetal.Text = "Metal Alpha";
+            this.SSHAlphaMetal.UseVisualStyleBackColor = true;
+            this.SSHAlphaMetal.CheckedChanged += new System.EventHandler(this.SSH_TextChanged);
+            // 
+            // SSHMetalLoad
+            // 
+            this.SSHMetalLoad.Enabled = false;
+            this.SSHMetalLoad.Location = new System.Drawing.Point(452, 33);
+            this.SSHMetalLoad.Name = "SSHMetalLoad";
+            this.SSHMetalLoad.Size = new System.Drawing.Size(86, 23);
+            this.SSHMetalLoad.TabIndex = 3;
+            this.SSHMetalLoad.Text = "Metal Import";
+            this.SSHMetalLoad.UseVisualStyleBackColor = true;
+            this.SSHMetalLoad.Click += new System.EventHandler(this.SSHMetalLoad_Click);
+            // 
+            // SSHMetalExtract
+            // 
+            this.SSHMetalExtract.Enabled = false;
+            this.SSHMetalExtract.Location = new System.Drawing.Point(360, 33);
+            this.SSHMetalExtract.Name = "SSHMetalExtract";
+            this.SSHMetalExtract.Size = new System.Drawing.Size(86, 23);
+            this.SSHMetalExtract.TabIndex = 2;
+            this.SSHMetalExtract.Text = "Metal Extract";
+            this.SSHMetalExtract.UseVisualStyleBackColor = true;
+            this.SSHMetalExtract.Click += new System.EventHandler(this.SSHMetalExtract_Click);
+            // 
+            // SSHColourAmmount
+            // 
+            this.SSHColourAmmount.AutoSize = true;
+            this.SSHColourAmmount.Location = new System.Drawing.Point(8, 33);
+            this.SSHColourAmmount.Name = "SSHColourAmmount";
+            this.SSHColourAmmount.Size = new System.Drawing.Size(13, 13);
+            this.SSHColourAmmount.TabIndex = 1;
+            this.SSHColourAmmount.Text = "0";
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.Location = new System.Drawing.Point(7, 20);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(103, 13);
+            this.label42.TabIndex = 0;
+            this.label42.Text = "Ammount Of Colours";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.SSHImageSize);
+            this.groupBox2.Controls.Add(this.label45);
+            this.groupBox2.Controls.Add(this.SSHImageByteSwapped);
+            this.groupBox2.Controls.Add(this.label35);
+            this.groupBox2.Controls.Add(this.label36);
+            this.groupBox2.Controls.Add(this.label37);
+            this.groupBox2.Controls.Add(this.SSHImageShortName);
+            this.groupBox2.Controls.Add(this.SSHYAxis);
+            this.groupBox2.Controls.Add(this.SSHImageName);
+            this.groupBox2.Controls.Add(this.SSHXAxis);
+            this.groupBox2.Controls.Add(this.SSHMatrixType);
+            this.groupBox2.Controls.Add(this.label39);
+            this.groupBox2.Controls.Add(this.label38);
+            this.groupBox2.Location = new System.Drawing.Point(202, 73);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(564, 177);
+            this.groupBox2.TabIndex = 28;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Image Details";
+            // 
+            // SSHImageSize
+            // 
+            this.SSHImageSize.AutoSize = true;
+            this.SSHImageSize.Location = new System.Drawing.Point(311, 72);
+            this.SSHImageSize.Name = "SSHImageSize";
+            this.SSHImageSize.Size = new System.Drawing.Size(30, 13);
+            this.SSHImageSize.TabIndex = 27;
+            this.SSHImageSize.Text = "0 x 0";
+            // 
+            // label45
+            // 
+            this.label45.AutoSize = true;
+            this.label45.Location = new System.Drawing.Point(311, 55);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(59, 13);
+            this.label45.TabIndex = 26;
+            this.label45.Text = "Image Size";
+            // 
+            // SSHImageByteSwapped
+            // 
+            this.SSHImageByteSwapped.AutoSize = true;
+            this.SSHImageByteSwapped.Location = new System.Drawing.Point(463, 154);
+            this.SSHImageByteSwapped.Name = "SSHImageByteSwapped";
+            this.SSHImageByteSwapped.Size = new System.Drawing.Size(95, 17);
+            this.SSHImageByteSwapped.TabIndex = 25;
+            this.SSHImageByteSwapped.Text = "Byte Swapped";
+            this.SSHImageByteSwapped.UseVisualStyleBackColor = true;
+            this.SSHImageByteSwapped.CheckedChanged += new System.EventHandler(this.SSH_TextChanged);
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(137, 16);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(67, 13);
+            this.label35.TabIndex = 8;
+            this.label35.Text = "Image Name";
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Location = new System.Drawing.Point(8, 16);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(95, 13);
+            this.label36.TabIndex = 9;
+            this.label36.Text = "Image Short Name";
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Location = new System.Drawing.Point(308, 17);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(62, 13);
+            this.label37.TabIndex = 12;
+            this.label37.Text = "Matrix Type";
+            // 
+            // SSHImageShortName
+            // 
+            this.SSHImageShortName.Location = new System.Drawing.Point(11, 32);
+            this.SSHImageShortName.MaxLength = 4;
+            this.SSHImageShortName.Name = "SSHImageShortName";
+            this.SSHImageShortName.Size = new System.Drawing.Size(121, 20);
+            this.SSHImageShortName.TabIndex = 18;
+            this.SSHImageShortName.TextChanged += new System.EventHandler(this.SSH_TextChanged);
+            // 
+            // SSHYAxis
+            // 
+            this.SSHYAxis.Location = new System.Drawing.Point(136, 72);
+            this.SSHYAxis.Maximum = new decimal(new int[] {
+>>>>>>> Stashed changes
             10000,
             0,
             0,
@@ -3407,6 +4016,7 @@ namespace SSX_Modder
       // 
       this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
+<<<<<<< Updated upstream
       this.statusStrip1.Location = new System.Drawing.Point(0, 584);
       this.statusStrip1.Name = "statusStrip1";
       this.statusStrip1.Size = new System.Drawing.Size(1224, 22);
@@ -3504,6 +4114,105 @@ namespace SSX_Modder
       this.statusStrip1.PerformLayout();
       this.ResumeLayout(false);
       this.PerformLayout();
+=======
+            this.statusStrip1.Location = new System.Drawing.Point(0, 584);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(1224, 22);
+            this.statusStrip1.TabIndex = 2;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(461, 496);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(219, 17);
+            this.checkBox1.TabIndex = 30;
+            this.checkBox1.Text = "Auto Fix Textures When Loading/Saving";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // MainWindow
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(1224, 606);
+            this.Controls.Add(this.statusStrip1);
+            this.Controls.Add(this.toolStrip1);
+            this.Controls.Add(this.tabControl1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(829, 449);
+            this.Name = "MainWindow";
+            this.Text = "SSX PS2 Collection Modder";
+            this.Load += new System.EventHandler(this.MainWindow_Load);
+            this.tabControl1.ResumeLayout(false);
+            this.tabModPacks.ResumeLayout(false);
+            this.tabControl2.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ModPicture)).EndInit();
+            this.tabModInfo.ResumeLayout(false);
+            this.tabModInfo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ModMakerIcon)).EndInit();
+            this.tabModInstructions.ResumeLayout(false);
+            this.tabModInstructions.PerformLayout();
+            this.tabBig.ResumeLayout(false);
+            this.tabBig.PerformLayout();
+            this.tabSSH.ResumeLayout(false);
+            this.tabSSH.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SSHYAxis)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SSHXAxis)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SSHpictureBox1)).EndInit();
+            this.tabLoc.ResumeLayout(false);
+            this.tabLoc.PerformLayout();
+            this.tabCharacters.ResumeLayout(false);
+            this.tabCharacters.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.charnumericUpDown6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.charnumericUpDown5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.charnumericUpDown4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.charnumericUpDown3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.charnumericUpDown2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.charnumericUpDown1)).EndInit();
+            this.tabMusic.ResumeLayout(false);
+            this.tabMusic.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.MusINFnumericUpDown12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MusnumericUpDown0)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MusINFnumericUpDown11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MusINFnumericUpDown10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MusINFnumericUpDown9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MusINFnumericUpDown8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MusINFnumericUpDown7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MusINFnumericUpDown6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MusINFnumericUpDown5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MusINFnumericUpDown4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MusINFnumericUpDown3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MusINFnumericUpDown2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MusINFnumericUpDown1)).EndInit();
+            this.tabTools.ResumeLayout(false);
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.NumToolsColour)).EndInit();
+            this.tabSettings.ResumeLayout(false);
+            this.tabSettings.PerformLayout();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+>>>>>>> Stashed changes
 
         }
 
@@ -3782,7 +4491,12 @@ namespace SSX_Modder
         private System.Windows.Forms.Button sshDAlpha;
         private System.Windows.Forms.Button sshHColour;
         private System.Windows.Forms.Button sshDColour;
+<<<<<<< Updated upstream
     private System.Windows.Forms.Label label74;
   }
+=======
+        private System.Windows.Forms.CheckBox checkBox1;
+    }
+>>>>>>> Stashed changes
 }
 

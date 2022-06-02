@@ -30,7 +30,13 @@ This is a modding tool I came up and started making when I caught COVID as a way
 
 ### Current Todo
 - Test Modding Functions
+<<<<<<< Updated upstream
 - Custom Arguments For ISO Extraction and Making (To allow the use of other programs)
+=======
+- Auto Apply SSH Fixes (Either Using Gimx Codes or By Guessing)
+- Custom Arguments For Iso Extraction and Making (To allow the use of other programs)
+- Fix Backup Workspace Messages
+>>>>>>> Stashed changes
 
 ### Todo Later
 - Big4 Big Archive Making and Extracting

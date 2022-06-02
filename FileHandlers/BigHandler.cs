@@ -82,7 +82,7 @@ namespace SSX_Modder.FileHandlers
                 stream.Read(bytes, 0, bytes.Length);
                 if (bytes[1] == 0xFB)
                 {
-                    bigHeader.compression = true;
+                    tempFile.Compressed = true;
                     tempFile.UncompressedSize = StreamUtil.ReadInt24Big(stream);
                     bigFiles[i] = tempFile;
                 }
