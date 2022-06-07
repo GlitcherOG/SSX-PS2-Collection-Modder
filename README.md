@@ -4,12 +4,12 @@
 This is a modding tool I came up and started making when I caught COVID as a way to keep busy, and kept working on it to support the main 3 SSX Games on the PS2.
 
 ## Current Features
-- SSH Texture Extractor/Maker
+- SSH Texture Extractor/Maker (SSX, Tricky, SSX 3)
 - Big (BigF) Decompressor/Extractor and Making (BigF)
 - Character DB Editor (SSX 3)
 - Music Inf Editor (SSX 3)
 - Loc (Language) Files Editor
-- Easy ISO Extraction and Making (Using External Programs) (SSX 3, Tricky)
+- Easy ISO Extraction and Making (Using External Programs) (Tricky, SSX 3, SSX On Tour)
 - Auto Boot PCSX2 Emulator With ISO
 
 ## WIP Features
@@ -18,6 +18,7 @@ This is a modding tool I came up and started making when I caught COVID as a way
 - SSX Trick, SSX (2000), SSX On Tour Limited Support
 - SSX-ElfLdr Support For Launching Game
 - SSX 3 Store/Item Editing (BoltPS2)
+- Workspace Backup/Restoring
 
 ## Requirements
 
