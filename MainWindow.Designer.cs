@@ -128,6 +128,7 @@ namespace SSX_Modder
             this.BigLoad = new System.Windows.Forms.Button();
             this.BigBox1 = new System.Windows.Forms.ListBox();
             this.tabSSH = new System.Windows.Forms.TabPage();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.sshHAlpha = new System.Windows.Forms.Button();
             this.sshDAlpha = new System.Windows.Forms.Button();
@@ -296,6 +297,61 @@ namespace SSX_Modder
             this.Settings7ZipPath = new System.Windows.Forms.Label();
             this.label46 = new System.Windows.Forms.Label();
             this.label41 = new System.Windows.Forms.Label();
+            this.tabBolt = new System.Windows.Forms.TabPage();
+            this.BoltCharacter = new System.Windows.Forms.ComboBox();
+            this.label100 = new System.Windows.Forms.Label();
+            this.label99 = new System.Windows.Forms.Label();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.label97 = new System.Windows.Forms.Label();
+            this.label96 = new System.Windows.Forms.Label();
+            this.label95 = new System.Windows.Forms.Label();
+            this.label94 = new System.Windows.Forms.Label();
+            this.label93 = new System.Windows.Forms.Label();
+            this.label92 = new System.Windows.Forms.Label();
+            this.label91 = new System.Windows.Forms.Label();
+            this.label90 = new System.Windows.Forms.Label();
+            this.label89 = new System.Windows.Forms.Label();
+            this.label88 = new System.Windows.Forms.Label();
+            this.label87 = new System.Windows.Forms.Label();
+            this.label86 = new System.Windows.Forms.Label();
+            this.label85 = new System.Windows.Forms.Label();
+            this.label84 = new System.Windows.Forms.Label();
+            this.label83 = new System.Windows.Forms.Label();
+            this.label82 = new System.Windows.Forms.Label();
+            this.label81 = new System.Windows.Forms.Label();
+            this.label80 = new System.Windows.Forms.Label();
+            this.label79 = new System.Windows.Forms.Label();
+            this.label78 = new System.Windows.Forms.Label();
+            this.label77 = new System.Windows.Forms.Label();
+            this.label76 = new System.Windows.Forms.Label();
+            this.BoltModelIDFour = new System.Windows.Forms.TextBox();
+            this.BoltModelIDTwo = new System.Windows.Forms.TextBox();
+            this.BoltModelID = new System.Windows.Forms.TextBox();
+            this.BoltName = new System.Windows.Forms.TextBox();
+            this.BoltIconPath = new System.Windows.Forms.TextBox();
+            this.BoltTexturePath = new System.Windows.Forms.TextBox();
+            this.BoltModelPath = new System.Windows.Forms.TextBox();
+            this.BoltCat = new System.Windows.Forms.NumericUpDown();
+            this.BoltBuy = new System.Windows.Forms.NumericUpDown();
+            this.BoltMenuOrder = new System.Windows.Forms.NumericUpDown();
+            this.BoltUnkown7 = new System.Windows.Forms.NumericUpDown();
+            this.BoltFillBar = new System.Windows.Forms.NumericUpDown();
+            this.BoltCost = new System.Windows.Forms.NumericUpDown();
+            this.BoltUnkown8 = new System.Windows.Forms.NumericUpDown();
+            this.BoltSpecialOne = new System.Windows.Forms.NumericUpDown();
+            this.BoltSpecialTwo = new System.Windows.Forms.NumericUpDown();
+            this.BoltSpecialThree = new System.Windows.Forms.NumericUpDown();
+            this.BoltUnkown9 = new System.Windows.Forms.NumericUpDown();
+            this.BoltUnkownFour = new System.Windows.Forms.NumericUpDown();
+            this.BoltUnkownThree = new System.Windows.Forms.NumericUpDown();
+            this.BoltUnkownTwo = new System.Windows.Forms.NumericUpDown();
+            this.BoltUnlock = new System.Windows.Forms.NumericUpDown();
+            this.BoltUnkownOne = new System.Windows.Forms.NumericUpDown();
+            this.BoltModelIDThree = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.BoltlistBox1 = new System.Windows.Forms.ListBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
@@ -304,7 +360,6 @@ namespace SSX_Modder
             this.GameType = new System.Windows.Forms.ToolStripComboBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabModPacks.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -350,6 +405,23 @@ namespace SSX_Modder
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NumToolsColour)).BeginInit();
             this.tabSettings.SuspendLayout();
+            this.tabBolt.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.BoltCat)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BoltBuy)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BoltMenuOrder)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BoltUnkown7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BoltFillBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BoltCost)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BoltUnkown8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BoltSpecialOne)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BoltSpecialTwo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BoltSpecialThree)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BoltUnkown9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BoltUnkownFour)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BoltUnkownThree)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BoltUnkownTwo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BoltUnlock)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BoltUnkownOne)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -365,6 +437,7 @@ namespace SSX_Modder
             this.tabControl1.Controls.Add(this.tabLoc);
             this.tabControl1.Controls.Add(this.tabCharacters);
             this.tabControl1.Controls.Add(this.tabMusic);
+            this.tabControl1.Controls.Add(this.tabBolt);
             this.tabControl1.Controls.Add(this.tabTools);
             this.tabControl1.Controls.Add(this.tabSettings);
             this.tabControl1.Location = new System.Drawing.Point(14, 29);
@@ -1413,6 +1486,16 @@ namespace SSX_Modder
             this.tabSSH.TabIndex = 8;
             this.tabSSH.Text = "SSH";
             this.tabSSH.UseVisualStyleBackColor = true;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(199, 469);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(305, 17);
+            this.checkBox1.TabIndex = 30;
+            this.checkBox1.Text = "Attempt Game Based Auto Correction Of Colours and Alpha";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // groupBox3
             // 
@@ -3348,6 +3431,638 @@ namespace SSX_Modder
             this.label41.TabIndex = 0;
             this.label41.Text = "7-Zip Path";
             // 
+            // tabBolt
+            // 
+            this.tabBolt.Controls.Add(this.BoltCharacter);
+            this.tabBolt.Controls.Add(this.label100);
+            this.tabBolt.Controls.Add(this.label99);
+            this.tabBolt.Controls.Add(this.button4);
+            this.tabBolt.Controls.Add(this.button3);
+            this.tabBolt.Controls.Add(this.button2);
+            this.tabBolt.Controls.Add(this.label97);
+            this.tabBolt.Controls.Add(this.label96);
+            this.tabBolt.Controls.Add(this.label95);
+            this.tabBolt.Controls.Add(this.label94);
+            this.tabBolt.Controls.Add(this.label93);
+            this.tabBolt.Controls.Add(this.label92);
+            this.tabBolt.Controls.Add(this.label91);
+            this.tabBolt.Controls.Add(this.label90);
+            this.tabBolt.Controls.Add(this.label89);
+            this.tabBolt.Controls.Add(this.label88);
+            this.tabBolt.Controls.Add(this.label87);
+            this.tabBolt.Controls.Add(this.label86);
+            this.tabBolt.Controls.Add(this.label85);
+            this.tabBolt.Controls.Add(this.label84);
+            this.tabBolt.Controls.Add(this.label83);
+            this.tabBolt.Controls.Add(this.label82);
+            this.tabBolt.Controls.Add(this.label81);
+            this.tabBolt.Controls.Add(this.label80);
+            this.tabBolt.Controls.Add(this.label79);
+            this.tabBolt.Controls.Add(this.label78);
+            this.tabBolt.Controls.Add(this.label77);
+            this.tabBolt.Controls.Add(this.label76);
+            this.tabBolt.Controls.Add(this.BoltModelIDFour);
+            this.tabBolt.Controls.Add(this.BoltModelIDTwo);
+            this.tabBolt.Controls.Add(this.BoltModelID);
+            this.tabBolt.Controls.Add(this.BoltName);
+            this.tabBolt.Controls.Add(this.BoltIconPath);
+            this.tabBolt.Controls.Add(this.BoltTexturePath);
+            this.tabBolt.Controls.Add(this.BoltModelPath);
+            this.tabBolt.Controls.Add(this.BoltCat);
+            this.tabBolt.Controls.Add(this.BoltBuy);
+            this.tabBolt.Controls.Add(this.BoltMenuOrder);
+            this.tabBolt.Controls.Add(this.BoltUnkown7);
+            this.tabBolt.Controls.Add(this.BoltFillBar);
+            this.tabBolt.Controls.Add(this.BoltCost);
+            this.tabBolt.Controls.Add(this.BoltUnkown8);
+            this.tabBolt.Controls.Add(this.BoltSpecialOne);
+            this.tabBolt.Controls.Add(this.BoltSpecialTwo);
+            this.tabBolt.Controls.Add(this.BoltSpecialThree);
+            this.tabBolt.Controls.Add(this.BoltUnkown9);
+            this.tabBolt.Controls.Add(this.BoltUnkownFour);
+            this.tabBolt.Controls.Add(this.BoltUnkownThree);
+            this.tabBolt.Controls.Add(this.BoltUnkownTwo);
+            this.tabBolt.Controls.Add(this.BoltUnlock);
+            this.tabBolt.Controls.Add(this.BoltUnkownOne);
+            this.tabBolt.Controls.Add(this.BoltModelIDThree);
+            this.tabBolt.Controls.Add(this.button1);
+            this.tabBolt.Controls.Add(this.BoltlistBox1);
+            this.tabBolt.Location = new System.Drawing.Point(4, 22);
+            this.tabBolt.Name = "tabBolt";
+            this.tabBolt.Size = new System.Drawing.Size(1191, 527);
+            this.tabBolt.TabIndex = 13;
+            this.tabBolt.Text = "BoltPS2 (SSX 3) (WIP)";
+            this.tabBolt.UseVisualStyleBackColor = true;
+            // 
+            // BoltCharacter
+            // 
+            this.BoltCharacter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.BoltCharacter.FormattingEnabled = true;
+            this.BoltCharacter.Items.AddRange(new object[] {
+            "0-Moby",
+            "1-Kaori",
+            "2-Arielle",
+            "3-Mac",
+            "4-Zoe",
+            "5-Grommet",
+            "6-Elise",
+            "7-Rocco",
+            "8-Psymon",
+            "9-Deiter",
+            "10-Brodi",
+            "11-Eddie",
+            "12-Jp",
+            "13-Luther",
+            "14-Marisol",
+            "15-Marty",
+            "16-Seeiah",
+            "17-Hiro",
+            "18-Jurgen",
+            "19-luthern",
+            "20-Stretch",
+            "21-Bessy",
+            "22-Bunny",
+            "23-Churchil",
+            "24-Skel",
+            "25-Snowman",
+            "26-Yeti",
+            "27-Unkown",
+            "28-Beaver",
+            "29-Abom"});
+            this.BoltCharacter.Location = new System.Drawing.Point(4, 4);
+            this.BoltCharacter.Name = "BoltCharacter";
+            this.BoltCharacter.Size = new System.Drawing.Size(270, 21);
+            this.BoltCharacter.TabIndex = 58;
+            this.BoltCharacter.SelectedIndexChanged += new System.EventHandler(this.BoltCharacter_SelectedIndexChanged);
+            // 
+            // label100
+            // 
+            this.label100.AutoSize = true;
+            this.label100.Location = new System.Drawing.Point(529, 61);
+            this.label100.Name = "label100";
+            this.label100.Size = new System.Drawing.Size(71, 13);
+            this.label100.TabIndex = 57;
+            this.label100.Text = "Unkown Int 4";
+            // 
+            // label99
+            // 
+            this.label99.AutoSize = true;
+            this.label99.Location = new System.Drawing.Point(403, 61);
+            this.label99.Name = "label99";
+            this.label99.Size = new System.Drawing.Size(41, 13);
+            this.label99.TabIndex = 56;
+            this.label99.Text = "Item ID";
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(564, 492);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 55;
+            this.button4.Text = "Apply";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(645, 492);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 54;
+            this.button3.Text = "Dupe";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(373, 492);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 52;
+            this.button2.Text = "Save";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // label97
+            // 
+            this.label97.AutoSize = true;
+            this.label97.Location = new System.Drawing.Point(277, 312);
+            this.label97.Name = "label97";
+            this.label97.Size = new System.Drawing.Size(61, 13);
+            this.label97.TabIndex = 51;
+            this.label97.Text = "Model Path";
+            // 
+            // label96
+            // 
+            this.label96.AutoSize = true;
+            this.label96.Location = new System.Drawing.Point(277, 356);
+            this.label96.Name = "label96";
+            this.label96.Size = new System.Drawing.Size(68, 13);
+            this.label96.TabIndex = 50;
+            this.label96.Text = "Texture Path";
+            // 
+            // label95
+            // 
+            this.label95.AutoSize = true;
+            this.label95.Location = new System.Drawing.Point(541, 356);
+            this.label95.Name = "label95";
+            this.label95.Size = new System.Drawing.Size(53, 13);
+            this.label95.TabIndex = 49;
+            this.label95.Text = "Icon Path";
+            // 
+            // label94
+            // 
+            this.label94.AutoSize = true;
+            this.label94.Location = new System.Drawing.Point(596, 273);
+            this.label94.Name = "label94";
+            this.label94.Size = new System.Drawing.Size(59, 13);
+            this.label94.TabIndex = 48;
+            this.label94.Text = "Model ID 4";
+            // 
+            // label93
+            // 
+            this.label93.AutoSize = true;
+            this.label93.Location = new System.Drawing.Point(383, 273);
+            this.label93.Name = "label93";
+            this.label93.Size = new System.Drawing.Size(59, 13);
+            this.label93.TabIndex = 47;
+            this.label93.Text = "Model ID 2";
+            // 
+            // label92
+            // 
+            this.label92.AutoSize = true;
+            this.label92.Location = new System.Drawing.Point(489, 273);
+            this.label92.Name = "label92";
+            this.label92.Size = new System.Drawing.Size(59, 13);
+            this.label92.TabIndex = 46;
+            this.label92.Text = "Model ID 3";
+            // 
+            // label91
+            // 
+            this.label91.AutoSize = true;
+            this.label91.Location = new System.Drawing.Point(277, 273);
+            this.label91.Name = "label91";
+            this.label91.Size = new System.Drawing.Size(50, 13);
+            this.label91.TabIndex = 45;
+            this.label91.Text = "Model ID";
+            // 
+            // label90
+            // 
+            this.label90.AutoSize = true;
+            this.label90.Location = new System.Drawing.Point(277, 237);
+            this.label90.Name = "label90";
+            this.label90.Size = new System.Drawing.Size(35, 13);
+            this.label90.TabIndex = 44;
+            this.label90.Text = "Name";
+            // 
+            // label89
+            // 
+            this.label89.AutoSize = true;
+            this.label89.Location = new System.Drawing.Point(278, 398);
+            this.label89.Name = "label89";
+            this.label89.Size = new System.Drawing.Size(68, 13);
+            this.label89.TabIndex = 43;
+            this.label89.Text = "Unkown Int6";
+            // 
+            // label88
+            // 
+            this.label88.AutoSize = true;
+            this.label88.Location = new System.Drawing.Point(655, 198);
+            this.label88.Name = "label88";
+            this.label88.Size = new System.Drawing.Size(65, 13);
+            this.label88.TabIndex = 42;
+            this.label88.Text = "Special ID 3";
+            // 
+            // label87
+            // 
+            this.label87.AutoSize = true;
+            this.label87.Location = new System.Drawing.Point(529, 198);
+            this.label87.Name = "label87";
+            this.label87.Size = new System.Drawing.Size(65, 13);
+            this.label87.TabIndex = 41;
+            this.label87.Text = "Special ID 2";
+            // 
+            // label86
+            // 
+            this.label86.AutoSize = true;
+            this.label86.Location = new System.Drawing.Point(403, 198);
+            this.label86.Name = "label86";
+            this.label86.Size = new System.Drawing.Size(65, 13);
+            this.label86.TabIndex = 40;
+            this.label86.Text = "Special ID 1";
+            // 
+            // label85
+            // 
+            this.label85.AutoSize = true;
+            this.label85.Location = new System.Drawing.Point(277, 198);
+            this.label85.Name = "label85";
+            this.label85.Size = new System.Drawing.Size(56, 13);
+            this.label85.TabIndex = 39;
+            this.label85.Text = "Unkown 8";
+            // 
+            // label84
+            // 
+            this.label84.AutoSize = true;
+            this.label84.Location = new System.Drawing.Point(529, 150);
+            this.label84.Name = "label84";
+            this.label84.Size = new System.Drawing.Size(28, 13);
+            this.label84.TabIndex = 38;
+            this.label84.Text = "Cost";
+            // 
+            // label83
+            // 
+            this.label83.AutoSize = true;
+            this.label83.Location = new System.Drawing.Point(403, 150);
+            this.label83.Name = "label83";
+            this.label83.Size = new System.Drawing.Size(34, 13);
+            this.label83.TabIndex = 37;
+            this.label83.Text = "Fillbar";
+            // 
+            // label82
+            // 
+            this.label82.AutoSize = true;
+            this.label82.Location = new System.Drawing.Point(278, 150);
+            this.label82.Name = "label82";
+            this.label82.Size = new System.Drawing.Size(67, 13);
+            this.label82.TabIndex = 36;
+            this.label82.Text = "Unkown int5";
+            // 
+            // label81
+            // 
+            this.label81.AutoSize = true;
+            this.label81.Location = new System.Drawing.Point(529, 109);
+            this.label81.Name = "label81";
+            this.label81.Size = new System.Drawing.Size(63, 13);
+            this.label81.TabIndex = 35;
+            this.label81.Text = "Menu Order";
+            // 
+            // label80
+            // 
+            this.label80.AutoSize = true;
+            this.label80.Location = new System.Drawing.Point(403, 109);
+            this.label80.Name = "label80";
+            this.label80.Size = new System.Drawing.Size(45, 13);
+            this.label80.TabIndex = 34;
+            this.label80.Text = "Buyable";
+            // 
+            // label79
+            // 
+            this.label79.AutoSize = true;
+            this.label79.Location = new System.Drawing.Point(277, 109);
+            this.label79.Name = "label79";
+            this.label79.Size = new System.Drawing.Size(49, 13);
+            this.label79.TabIndex = 33;
+            this.label79.Text = "Category";
+            // 
+            // label78
+            // 
+            this.label78.AutoSize = true;
+            this.label78.Location = new System.Drawing.Point(277, 61);
+            this.label78.Name = "label78";
+            this.label78.Size = new System.Drawing.Size(68, 13);
+            this.label78.TabIndex = 32;
+            this.label78.Text = "Unkown Int2";
+            // 
+            // label77
+            // 
+            this.label77.AutoSize = true;
+            this.label77.Location = new System.Drawing.Point(403, 14);
+            this.label77.Name = "label77";
+            this.label77.Size = new System.Drawing.Size(88, 13);
+            this.label77.TabIndex = 31;
+            this.label77.Text = "Unlock Condition";
+            // 
+            // label76
+            // 
+            this.label76.AutoSize = true;
+            this.label76.Location = new System.Drawing.Point(277, 14);
+            this.label76.Name = "label76";
+            this.label76.Size = new System.Drawing.Size(68, 13);
+            this.label76.TabIndex = 30;
+            this.label76.Text = "Unkown Int1";
+            // 
+            // BoltModelIDFour
+            // 
+            this.BoltModelIDFour.Location = new System.Drawing.Point(598, 289);
+            this.BoltModelIDFour.Name = "BoltModelIDFour";
+            this.BoltModelIDFour.Size = new System.Drawing.Size(100, 20);
+            this.BoltModelIDFour.TabIndex = 28;
+            // 
+            // BoltModelIDTwo
+            // 
+            this.BoltModelIDTwo.Location = new System.Drawing.Point(386, 289);
+            this.BoltModelIDTwo.Name = "BoltModelIDTwo";
+            this.BoltModelIDTwo.Size = new System.Drawing.Size(100, 20);
+            this.BoltModelIDTwo.TabIndex = 27;
+            // 
+            // BoltModelID
+            // 
+            this.BoltModelID.Location = new System.Drawing.Point(280, 289);
+            this.BoltModelID.Name = "BoltModelID";
+            this.BoltModelID.Size = new System.Drawing.Size(100, 20);
+            this.BoltModelID.TabIndex = 26;
+            // 
+            // BoltName
+            // 
+            this.BoltName.Location = new System.Drawing.Point(280, 250);
+            this.BoltName.Name = "BoltName";
+            this.BoltName.Size = new System.Drawing.Size(211, 20);
+            this.BoltName.TabIndex = 25;
+            // 
+            // BoltIconPath
+            // 
+            this.BoltIconPath.Location = new System.Drawing.Point(544, 372);
+            this.BoltIconPath.Name = "BoltIconPath";
+            this.BoltIconPath.Size = new System.Drawing.Size(206, 20);
+            this.BoltIconPath.TabIndex = 24;
+            // 
+            // BoltTexturePath
+            // 
+            this.BoltTexturePath.Location = new System.Drawing.Point(280, 372);
+            this.BoltTexturePath.Name = "BoltTexturePath";
+            this.BoltTexturePath.Size = new System.Drawing.Size(258, 20);
+            this.BoltTexturePath.TabIndex = 23;
+            // 
+            // BoltModelPath
+            // 
+            this.BoltModelPath.Location = new System.Drawing.Point(280, 328);
+            this.BoltModelPath.Name = "BoltModelPath";
+            this.BoltModelPath.Size = new System.Drawing.Size(423, 20);
+            this.BoltModelPath.TabIndex = 22;
+            // 
+            // BoltCat
+            // 
+            this.BoltCat.Location = new System.Drawing.Point(280, 125);
+            this.BoltCat.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.BoltCat.Name = "BoltCat";
+            this.BoltCat.Size = new System.Drawing.Size(120, 20);
+            this.BoltCat.TabIndex = 19;
+            // 
+            // BoltBuy
+            // 
+            this.BoltBuy.Location = new System.Drawing.Point(406, 125);
+            this.BoltBuy.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.BoltBuy.Name = "BoltBuy";
+            this.BoltBuy.Size = new System.Drawing.Size(120, 20);
+            this.BoltBuy.TabIndex = 18;
+            // 
+            // BoltMenuOrder
+            // 
+            this.BoltMenuOrder.Location = new System.Drawing.Point(532, 125);
+            this.BoltMenuOrder.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.BoltMenuOrder.Name = "BoltMenuOrder";
+            this.BoltMenuOrder.Size = new System.Drawing.Size(120, 20);
+            this.BoltMenuOrder.TabIndex = 17;
+            // 
+            // BoltUnkown7
+            // 
+            this.BoltUnkown7.Location = new System.Drawing.Point(280, 166);
+            this.BoltUnkown7.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.BoltUnkown7.Name = "BoltUnkown7";
+            this.BoltUnkown7.Size = new System.Drawing.Size(120, 20);
+            this.BoltUnkown7.TabIndex = 16;
+            // 
+            // BoltFillBar
+            // 
+            this.BoltFillBar.Location = new System.Drawing.Point(406, 166);
+            this.BoltFillBar.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.BoltFillBar.Name = "BoltFillBar";
+            this.BoltFillBar.Size = new System.Drawing.Size(120, 20);
+            this.BoltFillBar.TabIndex = 15;
+            // 
+            // BoltCost
+            // 
+            this.BoltCost.Location = new System.Drawing.Point(532, 166);
+            this.BoltCost.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.BoltCost.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            -2147483648});
+            this.BoltCost.Name = "BoltCost";
+            this.BoltCost.Size = new System.Drawing.Size(120, 20);
+            this.BoltCost.TabIndex = 14;
+            // 
+            // BoltUnkown8
+            // 
+            this.BoltUnkown8.Location = new System.Drawing.Point(280, 214);
+            this.BoltUnkown8.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.BoltUnkown8.Name = "BoltUnkown8";
+            this.BoltUnkown8.Size = new System.Drawing.Size(120, 20);
+            this.BoltUnkown8.TabIndex = 13;
+            // 
+            // BoltSpecialOne
+            // 
+            this.BoltSpecialOne.Location = new System.Drawing.Point(406, 214);
+            this.BoltSpecialOne.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.BoltSpecialOne.Name = "BoltSpecialOne";
+            this.BoltSpecialOne.Size = new System.Drawing.Size(120, 20);
+            this.BoltSpecialOne.TabIndex = 12;
+            // 
+            // BoltSpecialTwo
+            // 
+            this.BoltSpecialTwo.Location = new System.Drawing.Point(532, 214);
+            this.BoltSpecialTwo.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.BoltSpecialTwo.Name = "BoltSpecialTwo";
+            this.BoltSpecialTwo.Size = new System.Drawing.Size(120, 20);
+            this.BoltSpecialTwo.TabIndex = 11;
+            // 
+            // BoltSpecialThree
+            // 
+            this.BoltSpecialThree.Location = new System.Drawing.Point(658, 214);
+            this.BoltSpecialThree.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.BoltSpecialThree.Name = "BoltSpecialThree";
+            this.BoltSpecialThree.Size = new System.Drawing.Size(120, 20);
+            this.BoltSpecialThree.TabIndex = 10;
+            // 
+            // BoltUnkown9
+            // 
+            this.BoltUnkown9.Location = new System.Drawing.Point(280, 414);
+            this.BoltUnkown9.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.BoltUnkown9.Name = "BoltUnkown9";
+            this.BoltUnkown9.Size = new System.Drawing.Size(120, 20);
+            this.BoltUnkown9.TabIndex = 9;
+            // 
+            // BoltUnkownFour
+            // 
+            this.BoltUnkownFour.Location = new System.Drawing.Point(532, 77);
+            this.BoltUnkownFour.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.BoltUnkownFour.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            -2147483648});
+            this.BoltUnkownFour.Name = "BoltUnkownFour";
+            this.BoltUnkownFour.Size = new System.Drawing.Size(120, 20);
+            this.BoltUnkownFour.TabIndex = 8;
+            // 
+            // BoltUnkownThree
+            // 
+            this.BoltUnkownThree.Location = new System.Drawing.Point(406, 77);
+            this.BoltUnkownThree.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.BoltUnkownThree.Name = "BoltUnkownThree";
+            this.BoltUnkownThree.Size = new System.Drawing.Size(120, 20);
+            this.BoltUnkownThree.TabIndex = 7;
+            // 
+            // BoltUnkownTwo
+            // 
+            this.BoltUnkownTwo.Location = new System.Drawing.Point(280, 77);
+            this.BoltUnkownTwo.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.BoltUnkownTwo.Name = "BoltUnkownTwo";
+            this.BoltUnkownTwo.Size = new System.Drawing.Size(120, 20);
+            this.BoltUnkownTwo.TabIndex = 6;
+            // 
+            // BoltUnlock
+            // 
+            this.BoltUnlock.Location = new System.Drawing.Point(406, 31);
+            this.BoltUnlock.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.BoltUnlock.Name = "BoltUnlock";
+            this.BoltUnlock.Size = new System.Drawing.Size(120, 20);
+            this.BoltUnlock.TabIndex = 5;
+            // 
+            // BoltUnkownOne
+            // 
+            this.BoltUnkownOne.Location = new System.Drawing.Point(280, 30);
+            this.BoltUnkownOne.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.BoltUnkownOne.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            -2147483648});
+            this.BoltUnkownOne.Name = "BoltUnkownOne";
+            this.BoltUnkownOne.Size = new System.Drawing.Size(120, 20);
+            this.BoltUnkownOne.TabIndex = 4;
+            // 
+            // BoltModelIDThree
+            // 
+            this.BoltModelIDThree.Location = new System.Drawing.Point(492, 289);
+            this.BoltModelIDThree.Name = "BoltModelIDThree";
+            this.BoltModelIDThree.Size = new System.Drawing.Size(100, 20);
+            this.BoltModelIDThree.TabIndex = 3;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(280, 492);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "Load";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // BoltlistBox1
+            // 
+            this.BoltlistBox1.FormattingEnabled = true;
+            this.BoltlistBox1.Location = new System.Drawing.Point(4, 30);
+            this.BoltlistBox1.Name = "BoltlistBox1";
+            this.BoltlistBox1.Size = new System.Drawing.Size(270, 485);
+            this.BoltlistBox1.TabIndex = 0;
+            this.BoltlistBox1.SelectedIndexChanged += new System.EventHandler(this.BoltlistBox1_SelectedIndexChanged);
+            // 
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -3430,16 +4145,6 @@ namespace SSX_Modder
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
             // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(199, 469);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(305, 17);
-            this.checkBox1.TabIndex = 30;
-            this.checkBox1.Text = "Attempt Game Based Auto Correction Of Colours and Alpha";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3510,6 +4215,24 @@ namespace SSX_Modder
             ((System.ComponentModel.ISupportInitialize)(this.NumToolsColour)).EndInit();
             this.tabSettings.ResumeLayout(false);
             this.tabSettings.PerformLayout();
+            this.tabBolt.ResumeLayout(false);
+            this.tabBolt.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.BoltCat)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BoltBuy)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BoltMenuOrder)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BoltUnkown7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BoltFillBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BoltCost)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BoltUnkown8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BoltSpecialOne)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BoltSpecialTwo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BoltSpecialThree)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BoltUnkown9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BoltUnkownFour)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BoltUnkownThree)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BoltUnkownTwo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BoltUnlock)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BoltUnkownOne)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
@@ -3796,5 +4519,60 @@ namespace SSX_Modder
         private System.Windows.Forms.Button sshDColour;
         private System.Windows.Forms.Label label74;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.TabPage tabBolt;
+        private System.Windows.Forms.ListBox BoltlistBox1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox BoltModelIDFour;
+        private System.Windows.Forms.TextBox BoltModelIDTwo;
+        private System.Windows.Forms.TextBox BoltModelID;
+        private System.Windows.Forms.TextBox BoltName;
+        private System.Windows.Forms.TextBox BoltIconPath;
+        private System.Windows.Forms.TextBox BoltTexturePath;
+        private System.Windows.Forms.TextBox BoltModelPath;
+        private System.Windows.Forms.NumericUpDown BoltCat;
+        private System.Windows.Forms.NumericUpDown BoltBuy;
+        private System.Windows.Forms.NumericUpDown BoltMenuOrder;
+        private System.Windows.Forms.NumericUpDown BoltUnkown7;
+        private System.Windows.Forms.NumericUpDown BoltFillBar;
+        private System.Windows.Forms.NumericUpDown BoltCost;
+        private System.Windows.Forms.NumericUpDown BoltUnkown8;
+        private System.Windows.Forms.NumericUpDown BoltSpecialOne;
+        private System.Windows.Forms.NumericUpDown BoltSpecialTwo;
+        private System.Windows.Forms.NumericUpDown BoltSpecialThree;
+        private System.Windows.Forms.NumericUpDown BoltUnkown9;
+        private System.Windows.Forms.NumericUpDown BoltUnkownFour;
+        private System.Windows.Forms.NumericUpDown BoltUnkownThree;
+        private System.Windows.Forms.NumericUpDown BoltUnkownTwo;
+        private System.Windows.Forms.NumericUpDown BoltUnlock;
+        private System.Windows.Forms.NumericUpDown BoltUnkownOne;
+        private System.Windows.Forms.TextBox BoltModelIDThree;
+        private System.Windows.Forms.Label label97;
+        private System.Windows.Forms.Label label96;
+        private System.Windows.Forms.Label label95;
+        private System.Windows.Forms.Label label94;
+        private System.Windows.Forms.Label label93;
+        private System.Windows.Forms.Label label92;
+        private System.Windows.Forms.Label label91;
+        private System.Windows.Forms.Label label90;
+        private System.Windows.Forms.Label label89;
+        private System.Windows.Forms.Label label88;
+        private System.Windows.Forms.Label label87;
+        private System.Windows.Forms.Label label86;
+        private System.Windows.Forms.Label label85;
+        private System.Windows.Forms.Label label84;
+        private System.Windows.Forms.Label label83;
+        private System.Windows.Forms.Label label82;
+        private System.Windows.Forms.Label label81;
+        private System.Windows.Forms.Label label80;
+        private System.Windows.Forms.Label label79;
+        private System.Windows.Forms.Label label78;
+        private System.Windows.Forms.Label label77;
+        private System.Windows.Forms.Label label76;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Label label100;
+        private System.Windows.Forms.Label label99;
+        private System.Windows.Forms.ComboBox BoltCharacter;
     }
 }

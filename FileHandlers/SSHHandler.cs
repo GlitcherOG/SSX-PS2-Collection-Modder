@@ -18,7 +18,6 @@ namespace SSX_Modder.FileHandlers
         public string group;
         public string endingstring;
         public bool AlphaFix;
-        public bool RGBFix;
         public List<SSHImage> sshImages = new List<SSHImage>();
         public void LoadSSH(string path)
         {
@@ -987,12 +986,12 @@ namespace SSX_Modder.FileHandlers
                 int B = colourTable.colorTable[a].B;
                 int A = colourTable.colorTable[a].A;
 
-                if (sshImages[i].MetalBin)
-                {
-                    R = (R + 1) / 2;
-                    G = (G + 1) / 2;
-                    B = (B + 1) / 2;
-                }
+                //if (sshImages[i].MetalBin)
+                //{
+                //    R = (R + 1) / 2;
+                //    G = (G + 1) / 2;
+                //    B = (B + 1) / 2;
+                //}
 
                 BitConverter.GetBytes(R).CopyTo(tempByte, 0);
                 stream.Write(tempByte, 0, 1);

@@ -118,8 +118,10 @@ namespace SSX_Modder
                             settings.SSX4ISOPath = openFileDialog.FileName;
                         }
                         settings.Save();
-                        startInfo.Arguments = "/MODE BUILD /BUILDINPUTMODE IMAGEFILE /SRC \"" + test + "\" /DEST \"" + openFileDialog.FileName + "\" /FILESYSTEM \"ISO9660 + UDF\" /UDFREVISION \"1.02\" /VOLUMELABEL \"SSX3\" /ERASE /OVERWITE YES /START /NOIMAGEDETAILS /ROOTFOLDER";
-                        Process.Start(startInfo);
+                        startInfo.Arguments = "/MODE BUILD /BUILDINPUTMODE IMAGEFILE /SRC \"" + test + "\" /DEST \"" + openFileDialog.FileName + "\" /FILESYSTEM \"ISO9660 + UDF\" /UDFREVISION \"1.02\" /VOLUMELABEL \"SSX3\" /ERASE /OVERWITE YES /START /NOIMAGEDETAILS /ROOTFOLDER /CLOSE";
+                        var temp = Process.Start(startInfo);
+                        temp.WaitForExit();
+                        MessageBox.Show("Iso Build Completed");
                     }
                 }
                 else
@@ -128,6 +130,7 @@ namespace SSX_Modder
                 }
             }
         }
+
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
             Process.Start(workspacePath);
@@ -342,7 +345,7 @@ namespace SSX_Modder
                 Directory.CreateDirectory(Path2);
             }
             CopyDirectory(Path, Path2, true);
-            MessageBox.Show("Workspace backed up");
+            MessageBox.Show("SSX backed up");
         }
 
         private void ToolsBackupSSXTricky_Click(object sender, EventArgs e)
@@ -359,7 +362,7 @@ namespace SSX_Modder
                 Directory.CreateDirectory(Path2);
             }
             CopyDirectory(Path, Path2, true);
-            MessageBox.Show("Workspace backed up");
+            MessageBox.Show("SSX Tricky backed up");
         }
 
         private void ToolsBackupSSX3_Click(object sender, EventArgs e)
@@ -376,7 +379,7 @@ namespace SSX_Modder
                 Directory.CreateDirectory(Path2);
             }
             CopyDirectory(Path, Path2, true);
-            MessageBox.Show("Workspace backed up");
+            MessageBox.Show("SSX 3 backed up");
         }
 
         private void ToolsRestoreSSX_Click(object sender, EventArgs e)
@@ -393,7 +396,7 @@ namespace SSX_Modder
                 Directory.CreateDirectory(Path2);
             }
             CopyDirectory(Path, Path2, true);
-            MessageBox.Show("Workspace backed up");
+            MessageBox.Show("SSX Workspace Restored");
         }
 
         private void ToolsRestoreSSXTricky_Click(object sender, EventArgs e)
@@ -410,7 +413,7 @@ namespace SSX_Modder
                 Directory.CreateDirectory(Path2);
             }
             CopyDirectory(Path, Path2, true);
-            MessageBox.Show("Workspace backed up");
+            MessageBox.Show("SSX Tricky Workspace Restored");
         }
 
         private void ToolsRestoreSSX3_Click(object sender, EventArgs e)
@@ -427,7 +430,7 @@ namespace SSX_Modder
                 Directory.CreateDirectory(Path2);
             }
             CopyDirectory(Path, Path2, true);
-            MessageBox.Show("Workspace backed up");
+            MessageBox.Show("SSX 3 Workspace Restored");
         }
 
         private void ToolsBackupSSXOnTour_Click(object sender, EventArgs e)
@@ -444,7 +447,7 @@ namespace SSX_Modder
                 Directory.CreateDirectory(Path2);
             }
             CopyDirectory(Path, Path2, true);
-            MessageBox.Show("Workspace backed up");
+            MessageBox.Show("SSX On Tour Backed up");
         }
 
         private void ToolsRestoreSSXOnTour_Click(object sender, EventArgs e)
@@ -461,7 +464,7 @@ namespace SSX_Modder
                 Directory.CreateDirectory(Path2);
             }
             CopyDirectory(Path, Path2, true);
-            MessageBox.Show("Workspace backed up");
+            MessageBox.Show("SSX On Tour Workspace Restored");
         }
 
         static void CopyDirectory(string sourceDir, string destinationDir, bool recursive)
@@ -1722,6 +1725,170 @@ namespace SSX_Modder
                 MessageBox.Show("Wrong Game Selected");
             }
         }
+        #endregion
+
+        #region BoltPS2 Items
+        BoltPS2 boltPS2 = new BoltPS2();
+        bool loaded = false;
+        private void button1_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                InitialDirectory = workspacePath,
+                Filter = "BIG File (*.dat)|*.dat|All files (*.*)|*.*",
+                FilterIndex = 1,
+                RestoreDirectory = false
+            };
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                boltPS2 = new BoltPS2();
+                boltPS2.load(openFileDialog.FileName);
+                BoltlistBox1.Items.Clear();
+                //BoltCharacter.Items.Clear();
+                //for (int i = 0; i < boltPS2.characters.Count; i++)
+                //{
+                //    BoltCharacter.Items.Add(i);
+                //}
+                loaded = true;
+                BoltCharacter.SelectedIndex = 0;
+                //int Index = BoltCharacter.SelectedIndex;
+                //for (int i = 0; i < boltPS2.characters[Index].entries.Count; i++)
+                //{
+                //    BoltlistBox1.Items.Add(boltPS2.characters[Index].entries[i].CharacterID + " - " + boltPS2.characters[Index].entries[i].itemName + " - " + boltPS2.characters[Index].entries[i].nameOffset);
+                //}
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog openFileDialog = new SaveFileDialog
+            {
+                InitialDirectory = workspacePath,
+                Filter = "BIG File (*.dat)|*.dat|All files (*.*)|*.*",
+                FilterIndex = 1,
+                RestoreDirectory = false
+            };
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                boltPS2.Save(openFileDialog.FileName);
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            //if (BoltlistBox1.SelectedIndex != -1)
+            //{
+            //    int Index = BoltlistBox1.SelectedIndex;
+            //    var temp = boltPS2.ItemEntryList[Index];
+            //    while (temp.CharacterID == boltPS2.ItemEntryList[Index].CharacterID)
+            //    {
+            //        Index++;
+            //    }
+            //    boltPS2.ItemEntryList.Insert(Index, temp);
+
+            //    BoltlistBox1.Items.Clear();
+            //    for (int i = 0; i < boltPS2.ItemEntryList.Count; i++)
+            //    {
+            //        BoltlistBox1.Items.Add(boltPS2.ItemEntryList[i].CharacterID + " - " + boltPS2.ItemEntryList[i].itemName + " - " + boltPS2.ItemEntryList[i].nameOffset);
+            //    }
+
+            //    BoltlistBox1.SelectedIndex = Index;
+            //}
+        }
+
+        private void BoltlistBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(BoltlistBox1.SelectedIndex!=-1 && loaded)
+            {
+                int Index1 = BoltCharacter.SelectedIndex;
+                int Index = BoltlistBox1.SelectedIndex;
+                BoltUnkownOne.Value = boltPS2.characters[Index1].entries[Index].unkownInt1;
+                BoltUnlock.Value = boltPS2.characters[Index1].entries[Index].Unlock;
+                BoltUnkownTwo.Value = boltPS2.characters[Index1].entries[Index].unkownInt2;
+                BoltUnkownThree.Value = boltPS2.characters[Index1].entries[Index].ItemID;
+                BoltUnkownFour.Value = boltPS2.characters[Index1].entries[Index].unkownInt4;
+                BoltCat.Value = boltPS2.characters[Index1].entries[Index].category;
+                BoltBuy.Value = boltPS2.characters[Index1].entries[Index].buyable;
+                BoltMenuOrder.Value = boltPS2.characters[Index1].entries[Index].menuOrder;
+                BoltUnkown7.Value = boltPS2.characters[Index1].entries[Index].unkownInt5;
+                BoltFillBar.Value = boltPS2.characters[Index1].entries[Index].fillbar;
+                BoltCost.Value = boltPS2.characters[Index1].entries[Index].cost;
+                BoltUnkown8.Value = boltPS2.characters[Index1].entries[Index].unkownInt8;
+
+                BoltSpecialOne.Value = boltPS2.characters[Index1].entries[Index].SpecialID;
+                BoltSpecialTwo.Value = boltPS2.characters[Index1].entries[Index].SpecialID2;
+                BoltSpecialThree.Value = boltPS2.characters[Index1].entries[Index].SpecialID3;
+
+                BoltName.Text = boltPS2.characters[Index1].entries[Index].itemName;
+                BoltModelID.Text = boltPS2.characters[Index1].entries[Index].ModelID;
+                BoltModelIDTwo.Text = boltPS2.characters[Index1].entries[Index].ModelID2;
+                BoltModelIDThree.Text = boltPS2.characters[Index1].entries[Index].ModelID3;
+                BoltModelIDFour.Text = boltPS2.characters[Index1].entries[Index].ModelID4;
+                BoltModelPath.Text = boltPS2.characters[Index1].entries[Index].ModelPath;
+                BoltTexturePath.Text = boltPS2.characters[Index1].entries[Index].TexturePath;
+                BoltIconPath.Text = boltPS2.characters[Index1].entries[Index].SmallIcon;
+
+                BoltUnkown9.Value = boltPS2.characters[Index1].entries[Index].unkownInt6;
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (BoltlistBox1.SelectedIndex != -1 && loaded)
+            {
+                int Index1 = BoltCharacter.SelectedIndex;
+                int Index = BoltlistBox1.SelectedIndex;
+                var Char = boltPS2.characters[Index1];
+                var tempEntry = Char.entries[Index];
+
+                tempEntry.unkownInt1 = (int)BoltUnkownOne.Value;
+                tempEntry.Unlock = (int)BoltUnlock.Value;
+                tempEntry.unkownInt2 = (int)BoltUnkownTwo.Value;
+                tempEntry.ItemID = (int)BoltUnkownThree.Value;
+                tempEntry.unkownInt4= (int)BoltUnkownFour.Value;
+                tempEntry.category= (int)BoltCat.Value;
+                tempEntry.buyable = (int)BoltBuy.Value;
+                tempEntry.menuOrder = (int)BoltMenuOrder.Value;
+                tempEntry.unkownInt5 = (int)BoltUnkown7.Value;
+                tempEntry.fillbar = (int)BoltFillBar.Value;
+                tempEntry.cost = (int)BoltCost.Value;
+                tempEntry.unkownInt8 = (int)BoltUnkown8.Value;
+
+                tempEntry.SpecialID = (int)BoltSpecialOne.Value;
+                tempEntry.SpecialID2 = (int)BoltSpecialTwo.Value;
+                tempEntry.SpecialID3 = (int)BoltSpecialThree.Value;
+
+                tempEntry.itemName = BoltName.Text;
+                tempEntry.ModelID = BoltModelID.Text;
+                tempEntry.ModelID2 = BoltModelIDTwo.Text;
+                tempEntry.ModelID3 = BoltModelIDThree.Text;
+                tempEntry.ModelID4 = BoltModelIDFour.Text;
+                tempEntry.ModelPath = BoltModelPath.Text;
+                tempEntry.TexturePath = BoltTexturePath.Text;
+                tempEntry.SmallIcon = BoltIconPath.Text;
+
+                tempEntry.unkownInt6 = (int)BoltUnkown9.Value;
+
+
+                Char.entries[Index] = tempEntry;
+                boltPS2.characters[Index1] = Char;
+            }
+        }
+
+        private void BoltCharacter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(BoltCharacter.SelectedIndex!=-1 && loaded)
+            {
+                BoltlistBox1.SelectedIndex = -1;
+                BoltlistBox1.Items.Clear();
+                int Index = BoltCharacter.SelectedIndex;
+                for (int i = 0; i < boltPS2.characters[Index].entries.Count; i++)
+                {
+                    BoltlistBox1.Items.Add(boltPS2.characters[Index].entries[i].ItemID + " - " + boltPS2.characters[Index].entries[i].itemName);
+                }
+            }
+        }
+
         #endregion
     }
 }

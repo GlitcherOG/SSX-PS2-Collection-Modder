@@ -39,6 +39,13 @@ namespace SSX_Modder.Utilities
             return Encoding.ASCII.GetString(tempByte);
         }
 
+        public static byte[] ReadBytes(Stream stream, int Length)
+        {
+            byte[] tempByte = new byte[Length];
+            stream.Read(tempByte, 0, tempByte.Length);
+            return tempByte;
+        }
+
         public static int ReadInt12(Stream stream)
         {
             byte[] tempByte = new byte[2];
@@ -87,7 +94,7 @@ namespace SSX_Modder.Utilities
         {
             byte[] tempByte = new byte[4];
             stream.Read(tempByte, 0, tempByte.Length);
-            return BitConverter.ToInt32(tempByte, 0);
+            return (int)BitConverter.ToUInt32(tempByte, 0);
         }
 
         public static int ReadInt32Big(Stream stream)
@@ -128,6 +135,11 @@ namespace SSX_Modder.Utilities
             byte[] tempByte = new byte[tempLength];
             Encoding.ASCII.GetBytes(String).CopyTo(tempByte, 0);
             stream.Write(tempByte, 0, tempByte.Length);
+        }
+
+        public static void WriteBytes(Stream stream, byte[] bytes)
+        {
+            stream.Write(bytes, 0, bytes.Length);
         }
 
         public static void WriteInt8(Stream stream, int Int)

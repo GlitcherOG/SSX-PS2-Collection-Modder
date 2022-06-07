@@ -1,0 +1,50 @@
+Unkown 1 56 bytes // Possibly textures?
+
+//Known
+1 - Mass changing causes crash? (Character?)
+2 - Effects How it appears in equipmenu (Probably model?)
+3 - Buy Location (00 - None?, 01 - Peak 1)
+
+//Unknown
+4 - Causes Crash, Also causes inf loading screen (Possibly Texture or Model Id)
+5 - Causes Instacrash on loading Character (Possibly item id?)
+6 - Breaks Model loading in regular menu and crashs if you try to start and access buy menu
+7 - (if 00 crashes on load) Breaks Equipbar to zero when selecting new stuff (Crashes unless you start conqure the moutian.... still crashes when starting event)
+8 - Breaks Equipbar to Byond full when selecting new stuff
+
+9 - Breaks Category (Possibly categories itself)
+10 - 00 Buyable, FF Not buyable?
+11 - Effects Order in Menu (Menu Proity?)
+
+12 - Unknown - Does Nothing in game it seems
+
+//Known
+13-14 - Effects Equipbar fill ammount
+14 - ^
+15-16 - Effects Cost
+16 - ^
+
+//Unknown
+17 - Breaks in menu Appearance
+18 - Unknown - Does Nothing in game it seems
+19 - ^
+20 - ^
+
+//Known
+21-24 - NAME BYTE OFFSET (Setting to 0 breaks menus)
+22 - ^
+23 - ^
+24 - ^
+
+//Unknown
+25 - Crashes Game when loading models
+26 - Effects Model Loading or LOD? (Game seems to still work at 01, 00, FF Crashes Game)
+
+Retest Something gone wrong while testing
+//27 - ^ (Crashes with every change)
+//28 - Effects Loading of model (my guess is 25-28 is model offset)
+
+
+//55-56 Both Blank
+
+SmallIconsBroken

@@ -5,7 +5,7 @@ This is a modding tool I came up and started making when I caught COVID as a way
 
 ## Current Features
 - SSH Texture Extractor/Maker
-- Big (BigF And C0FB) Decompressor/Extractor and Making (BigF)
+- Big (BigF) Decompressor/Extractor and Making (BigF)
 - Character DB Editor (SSX 3)
 - Music Inf Editor (SSX 3)
 - Loc (Language) Files Editor
@@ -14,8 +14,10 @@ This is a modding tool I came up and started making when I caught COVID as a way
 
 ## WIP Features
 - Easy Mod Support
+- Big (Big7 And C0FB) Decompressor/Extractor and Making (Big7 And C0FB)
 - SSX Trick, SSX (2000), SSX On Tour Limited Support
 - SSX-ElfLdr Support For Launching Game
+- SSX 3 Store/Item Editing (BoltPS2)
 
 ## Requirements
 
@@ -30,13 +32,13 @@ This is a modding tool I came up and started making when I caught COVID as a way
 
 ### Current Todo
 - Test Modding Functions
+- Fix Bolt Buttons Internal Names
 - Custom Arguments For ISO Extraction and Making (To allow the use of other programs)
 - Auto Apply SSH Fixes (Either Using Gimx Codes or By Guessing)
-- Fix Backup Workspace Messages
-- Fix Double Alpha Making Colours too bright
 - Fix Swizzle in Matrix 2
 - Big4 Big Archive Making and Extracting (Just BigF)
 - Fix Big Folder Grabbing
+- Build and Run (Build without needing path)
 
 ### Todo Later
 - Mod System Loc Txt Insert, Big Insert
@@ -46,6 +48,7 @@ This is a modding tool I came up and started making when I caught COVID as a way
 - Make Better Workflow interface
 - Control Editor Menu
 - MUS Extractor
+- MPC Extractor
 - Redo Loc and Music INF (Support Other Games)
 
 ### If I ever find the correct code or work it out
