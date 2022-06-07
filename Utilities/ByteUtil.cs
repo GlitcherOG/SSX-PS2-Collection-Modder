@@ -145,7 +145,7 @@ namespace SSX_Modder.Utilities
             return Number;
         }
 
-        public static byte[,] ByteArraySwap(byte[] Bytes, SSHImageHeader tempImageHeader)
+        public static byte[] ByteArraySwap(byte[] Bytes, SSHImageHeader tempImageHeader)
         {
             int x = 0;
             int oldx = 0;
@@ -307,8 +307,19 @@ namespace SSX_Modder.Utilities
                     flip = !flip;
                 }
             }
+            byte[] Buffer = new byte[MatrixRedo.Length];
+            int pos = 0;
+            for (int a = 0; a < tempImageHeader.Height; a++)
+            {
+                for (int b = 0; b < tempImageHeader.Width; b++)
+                {
+                    Buffer[pos] = MatrixRedo[a, b];
+                    pos++;
+                }
+            }
 
-            return MatrixRedo;
+
+            return Buffer;
         }
 
         public static byte[] ByteArrayReswap(byte[] Bytes, SSHImageHeader tempImageHeader)

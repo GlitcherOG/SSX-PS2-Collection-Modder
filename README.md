@@ -14,7 +14,7 @@ This is a modding tool I came up and started making when I caught COVID as a way
 
 ## WIP Features
 - Easy Mod Support
-- Big (Big7 And C0FB) Decompressor/Extractor and Making (Big7 And C0FB)
+- Big (Big4 And C0FB) Decompressor/Extractor and Making (Big4 And C0FB)
 - SSX Trick, SSX (2000), SSX On Tour Limited Support
 - SSX-ElfLdr Support For Launching Game
 - SSX 3 Store/Item Editing (BoltPS2)
@@ -32,13 +32,11 @@ This is a modding tool I came up and started making when I caught COVID as a way
 
 ### Current Todo
 - Test Modding Functions
-- Fix Bolt Buttons Internal Names
+- Fix Menu Buttons Internal Names
 - Custom Arguments For ISO Extraction and Making (To allow the use of other programs)
-- Auto Apply SSH Fixes (Either Using Gimx Codes or By Guessing)
-- Fix Swizzle in Matrix 2
-- Big4 Big Archive Making and Extracting (Just BigF)
-- Fix Big Folder Grabbing
+- Auto Apply SSH Alpha Fixes
 - Build and Run (Build without needing path)
+- Redo Iso Handling
 
 ### Todo Later
 - Mod System Loc Txt Insert, Big Insert
@@ -50,6 +48,7 @@ This is a modding tool I came up and started making when I caught COVID as a way
 - MUS Extractor
 - MPC Extractor
 - Redo Loc and Music INF (Support Other Games)
+- SSX On Tour SSH Support
 
 ### If I ever find the correct code or work it out
 - Refpack Compressor

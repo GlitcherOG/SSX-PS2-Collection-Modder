@@ -8,7 +8,7 @@ using SSX_Modder.Utilities;
 
 namespace SSX_Modder.FileHandlers
 {
-    public class BoltPS2
+    public class BoltPS2Handler
     {
         int unknown; //Store items?
         int ItemEntryAmmount; //Possibly Textures?

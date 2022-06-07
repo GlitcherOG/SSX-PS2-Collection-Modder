@@ -59,7 +59,7 @@ namespace SSX_Modder
         }
 
         #region ToolStrip
-        private void toolStripButton1_Click(object sender, EventArgs e)
+        private void toolStripExtract_Click(object sender, EventArgs e)
         {
             if (File.Exists(settings.ZipPath))
             {
@@ -83,7 +83,7 @@ namespace SSX_Modder
             }
         }
 
-        private void toolStripButton2_Click(object sender, EventArgs e)
+        private void toolStripBuild_Click(object sender, EventArgs e)
         {
             if (File.Exists(settings.ImgBurnPath))
             {
@@ -131,11 +131,11 @@ namespace SSX_Modder
             }
         }
 
-        private void toolStripButton3_Click(object sender, EventArgs e)
+        private void toolStripWorkspace_Click(object sender, EventArgs e)
         {
             Process.Start(workspacePath);
         }
-        private void toolStripButton4_Click(object sender, EventArgs e)
+        private void toolStripGameStart_Click(object sender, EventArgs e)
         {
             if (File.Exists(settings.Pcsx2Path))
             {
@@ -275,7 +275,7 @@ namespace SSX_Modder
                 settings.Save();
             }
         }
-
+        #region Image Tools
         private void ToolBrighten_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog
@@ -331,6 +331,9 @@ namespace SSX_Modder
                 ImageUtil.DarkenFolder(openFileDialog.FileName);
             }
         }
+        #endregion
+
+        #region Backup Tools
         private void ToolsBackupSSX_Click(object sender, EventArgs e)
         {
             string Path = Application.StartupPath + "\\disk\\SSX\\";
@@ -466,6 +469,7 @@ namespace SSX_Modder
             CopyDirectory(Path, Path2, true);
             MessageBox.Show("SSX On Tour Workspace Restored");
         }
+        #endregion
 
         static void CopyDirectory(string sourceDir, string destinationDir, bool recursive)
         {
@@ -975,9 +979,7 @@ namespace SSX_Modder
             };
             if (openFileDialog.ShowDialog() == CommonFileDialogResult.Ok)
             {
-                SetStatus("Extracting Please Wait....");
                 bigfHandler.ExtractBig(openFileDialog.FileName);
-                SetStatus("");
                 GC.Collect();
                 Process.Start(openFileDialog.FileName);
             }
@@ -996,7 +998,7 @@ namespace SSX_Modder
                 BigExtract.Enabled = false;
                 BuildBigButton.Enabled = true;
                 BigCompressed.Text = "Null";
-                BigFType.SelectedIndex = 0;
+                BigFType.SelectedIndex = ((int)bigfHandler.bigType);
                 bigfHandler.LoadFolder(openFileDialog.FileName);
                 for (int i = 0; i < bigfHandler.bigFiles.Count; i++)
                 {
@@ -1075,6 +1077,7 @@ namespace SSX_Modder
                 SSHMetalLoad.Enabled = tempBool;
                 SSHBothExtract.Enabled = tempBool;
                 SSHBothImport.Enabled = tempBool;
+                SSHAlphaFix.Checked = sshHandler.sshImages[SSHlistBox1.SelectedIndex].AlphaFix;
 
                 if (sshHandler.sshImages[SSHlistBox1.SelectedIndex].sshHeader.LXPos == 0)
                 {
@@ -1131,6 +1134,7 @@ namespace SSX_Modder
                 int indexInt = Int32.Parse(tempString);
                 tempHeader.MatrixFormat = (byte)indexInt;
                 SSHlistBox1.Items[SSHlistBox1.SelectedIndex] = temp.shortname + "." + temp.longname;
+                temp.AlphaFix = SSHAlphaFix.Checked;
 
                 if (SSHColourByteSwapped.Checked)
                 {
@@ -1728,7 +1732,7 @@ namespace SSX_Modder
         #endregion
 
         #region BoltPS2 Items
-        BoltPS2 boltPS2 = new BoltPS2();
+        BoltPS2Handler boltPS2 = new BoltPS2Handler();
         bool loaded = false;
         private void button1_Click(object sender, EventArgs e)
         {
@@ -1741,7 +1745,7 @@ namespace SSX_Modder
             };
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                boltPS2 = new BoltPS2();
+                boltPS2 = new BoltPS2Handler();
                 boltPS2.load(openFileDialog.FileName);
                 BoltlistBox1.Items.Clear();
                 //BoltCharacter.Items.Clear();

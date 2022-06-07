@@ -30,6 +30,10 @@ namespace SSX_Modder.FileHandlers
                 {
                     ReadBigF(stream);
                 }
+                else if(bigHeader.MagicWords == "BIG4")
+                {
+                    ReadBigF(stream);
+                }
                 else
                 {
                     stream.Position = 0;
@@ -190,44 +194,51 @@ namespace SSX_Modder.FileHandlers
             }
         }
 
+        public void LoadFolderC0FB(string path)
+        {
+            bigHeader = new BIGFHeader();
+            bigFiles = new List<BIGFFiles>();
+            string[] paths = Directory.GetFiles(bigPath, "*.*", SearchOption.AllDirectories);
+            bigHeader.ammount = paths.Length;
+            int FileOffset = 6;
+            for (int i = 0; i < paths.Length; i++)
+            {
+                BIGFFiles tempFile = new BIGFFiles();
+                tempFile.path = paths[i].Remove(0, bigPath.Length + 1).Replace("//", @"\");
+                FileOffset += tempFile.path.Length + 7;
+                Stream stream1 = File.OpenRead(paths[i]);
+                tempFile.size = (int)stream1.Length;
+                stream1.Dispose();
+                stream1.Close();
+                bigFiles.Add(tempFile);
+            }
+            //FileOffset += 6;
+            for (int i = 0; i < bigFiles.Count; i++)
+            {
+                BIGFFiles tempFile1 = bigFiles[i];
+                tempFile1.offset = FileOffset;
+                FileOffset += bigFiles[i].size;
+                bigFiles[i] = tempFile1;
+            }
+        }
+
         public void BuildBig(string path)
         {
-            var temp1 = bigType;
-            LoadFolder(bigPath);
-            bigType = temp1;
             Stream stream = new MemoryStream();
 
-            if (bigType == BigType.BIGF)
+            if (bigType == BigType.BIGF || bigType == BigType.BIG4)
             {
+                var temp = bigType;
+                LoadFolder(bigPath);
+                if(temp == BigType.BIG4)
+                {
+                    bigType = BigType.BIG4;
+                }
                 BuildBigF(stream);
             }
             else if (bigType == BigType.C0FB)
             {
-                bigHeader = new BIGFHeader();
-                bigFiles = new List<BIGFFiles>();
-                string[] paths = Directory.GetFiles(bigPath, "*.*", SearchOption.AllDirectories);
-                bigHeader.ammount = paths.Length;
-                int FileOffset = 6;
-                for (int i = 0; i < paths.Length; i++)
-                {
-                    BIGFFiles tempFile = new BIGFFiles();
-                    tempFile.path = paths[i].Remove(0, bigPath.Length + 1).Replace("//", @"\");
-                    FileOffset += tempFile.path.Length + 7;
-                    Stream stream1 = File.OpenRead(paths[i]);
-                    tempFile.size = (int)stream1.Length;
-                    stream1.Dispose();
-                    stream1.Close();
-                    bigFiles.Add(tempFile);
-                }
-                //FileOffset += 6;
-                for (int i = 0; i < bigFiles.Count; i++)
-                {
-                    BIGFFiles tempFile1 = bigFiles[i];
-                    tempFile1.offset = FileOffset;
-                    FileOffset += bigFiles[i].size;
-                    bigFiles[i] = tempFile1;
-                }
-
+                LoadFolderC0FB(bigPath);
                 BuildBigC0FB(stream);
             }
             else
@@ -249,7 +260,7 @@ namespace SSX_Modder.FileHandlers
 
         public void BuildBigF(Stream stream)
         {
-            bigHeader.MagicWords = "BIGF";
+            bigHeader.MagicWords = bigType.ToString();
             byte[] tempByte = new byte[4];
             StreamUtil.WriteString(stream, bigHeader.MagicWords);
 
@@ -382,6 +393,7 @@ namespace SSX_Modder.FileHandlers
     enum BigType
     {
         BIGF,
-        C0FB
+        C0FB,
+        BIG4
     }
 }

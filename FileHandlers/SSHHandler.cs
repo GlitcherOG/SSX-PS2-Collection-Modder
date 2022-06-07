@@ -17,7 +17,6 @@ namespace SSX_Modder.FileHandlers
         public string format;
         public string group;
         public string endingstring;
-        public bool AlphaFix;
         public List<SSHImage> sshImages = new List<SSHImage>();
         public void LoadSSH(string path)
         {
@@ -43,6 +42,10 @@ namespace SSX_Modder.FileHandlers
                         sshImages = new List<SSHImage>();
                         MessageBox.Show("Error reading File " + MagicWord + " " + format);
                     }
+                }
+                else
+                {
+                    MessageBox.Show(MagicWord + " Unsupported format");
                 }
                 stream.Dispose();
                 stream.Close();
@@ -250,47 +253,25 @@ namespace SSX_Modder.FileHandlers
                 {
                     if (tempImageHeader.LXPos == 2)
                     {
-                        byte[,] MatrixRedo = ByteUtil.ByteArraySwap(tempImage.Matrix, tempImageHeader);
-
-                        for (int a = 0; a < tempImageHeader.Height; a++)
-                        {
-                            for (int b = 0; b < tempImageHeader.Width; b++)
-                            {
-                                int colorPos = MatrixRedo[a, b];
-                                if (tempImage.sshTable.Format != 0)
-                                {
-                                    colorPos = ByteUtil.ByteBitSwitch(colorPos);
-                                }
-
-                                if (tempImage.MetalBin)
-                                {
-                                    tempImage.metalBitmap.SetPixel(b, a, MetalColours[colorPos]);
-                                }
-
-                                tempImage.bitmap.SetPixel(b, a, tempImage.sshTable.colorTable[colorPos]);
-                            }
-                        }
+                        tempImage.Matrix = ByteUtil.ByteArraySwap(tempImage.Matrix, tempImageHeader);
                     }
-                    else
+                    for (int y = 0; y < tempImageHeader.Height; y++)
                     {
-                        for (int y = 0; y < tempImageHeader.Height; y++)
+                        for (int x = 0; x < tempImageHeader.Width; x++)
                         {
-                            for (int x = 0; x < tempImageHeader.Width; x++)
+                            int colorPos = tempImage.Matrix[post];
+                            if (tempImage.sshTable.Format != 0)
                             {
-                                int colorPos = tempImage.Matrix[post];
-                                if (tempImage.sshTable.Format != 0)
-                                {
-                                    colorPos = ByteUtil.ByteBitSwitch(colorPos);
-                                }
-
-                                if (tempImage.MetalBin)
-                                {
-                                    tempImage.metalBitmap.SetPixel(x, y, MetalColours[colorPos]);
-                                }
-
-                                tempImage.bitmap.SetPixel(x, y, tempImage.sshTable.colorTable[colorPos]);
-                                post++;
+                                colorPos = ByteUtil.ByteBitSwitch(colorPos);
                             }
+
+                            if (tempImage.MetalBin)
+                            {
+                                tempImage.metalBitmap.SetPixel(x, y, MetalColours[colorPos]);
+                            }
+
+                            tempImage.bitmap.SetPixel(x, y, tempImage.sshTable.colorTable[colorPos]);
+                            post++;
                         }
                     }
                 }
@@ -1049,6 +1030,7 @@ namespace SSX_Modder.FileHandlers
         public SSHImageHeader sshHeader;
         public byte[] Matrix;
         public SSHColourTable sshTable;
+        public bool AlphaFix;
         public bool MetalBin;
         public Bitmap metalBitmap;
         public Bitmap bitmap;
