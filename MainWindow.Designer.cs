@@ -3301,9 +3301,9 @@ namespace SSX_Modder
             this.label86.AutoSize = true;
             this.label86.Location = new System.Drawing.Point(403, 198);
             this.label86.Name = "label86";
-            this.label86.Size = new System.Drawing.Size(65, 13);
+            this.label86.Size = new System.Drawing.Size(72, 13);
             this.label86.TabIndex = 40;
-            this.label86.Text = "Special ID 1";
+            this.label86.Text = "Special FX ID";
             // 
             // label85
             // 
@@ -3798,7 +3798,7 @@ namespace SSX_Modder
             this.groupBox6.Size = new System.Drawing.Size(247, 110);
             this.groupBox6.TabIndex = 5;
             this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Dark Image (Tricky)";
+            this.groupBox6.Text = "Image Fixes";
             // 
             // ToolDarkenFolder
             // 
