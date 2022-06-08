@@ -74,12 +74,12 @@ namespace SSX_Modder
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    ProcessStartInfo startInfo = new ProcessStartInfo();
-                    startInfo.FileName = settings.ZipPath;
-                    string test = Path.Combine(workspacePath, "");
-                    startInfo.Arguments = "x \"" + openFileDialog.FileName + "\" *.* -o\"" + test + "\" -r -y";
-                    Process.Start(startInfo);
+                    ISOHandler.Extract(openFileDialog.FileName);
                 }
+            }
+            else
+            {
+                MessageBox.Show("Extractor Not Detected");
             }
         }
 
@@ -98,29 +98,15 @@ namespace SSX_Modder
                     };
                     if (openFileDialog.ShowDialog() == DialogResult.OK)
                     {
-                        ProcessStartInfo startInfo = new ProcessStartInfo();
-                        startInfo.FileName = settings.ImgBurnPath;
-                        string test = Path.Combine(workspacePath, "");
-                        if (settings.Game == 0)
+                        if(File.Exists(openFileDialog.FileName))
                         {
-                            settings.SSXISOPath = openFileDialog.FileName;
+                            File.Delete(openFileDialog.FileName);
+                            while(File.Exists(openFileDialog.FileName))
+                            {
+                                //Waits for file to be gone
+                            }
                         }
-                        else if (settings.Game == 1)
-                        {
-                            settings.SSX2ISOPath = openFileDialog.FileName;
-                        }
-                        else if (settings.Game == 2)
-                        {
-                            settings.SSX3ISOPath = openFileDialog.FileName;
-                        }
-                        else if (settings.Game == 3)
-                        {
-                            settings.SSX4ISOPath = openFileDialog.FileName;
-                        }
-                        settings.Save();
-                        startInfo.Arguments = "/MODE BUILD /BUILDINPUTMODE IMAGEFILE /SRC \"" + test + "\" /DEST \"" + openFileDialog.FileName + "\" /FILESYSTEM \"ISO9660 + UDF\" /UDFREVISION \"1.02\" /VOLUMELABEL \"SSX3\" /ERASE /OVERWITE YES /START /NOIMAGEDETAILS /ROOTFOLDER /CLOSE";
-                        var temp = Process.Start(startInfo);
-                        temp.WaitForExit();
+                        ISOHandler.Build(openFileDialog.FileName, true);
                         MessageBox.Show("Iso Build Completed");
                     }
                 }
@@ -128,6 +114,60 @@ namespace SSX_Modder
                 {
                     MessageBox.Show("Warning Unable To Build Iso Of Game (SSX - ElfLdr Recommended)");
                 }
+            }
+            else
+            {
+                MessageBox.Show("Iso Builder Not Detected");
+            }
+        }
+
+        private void toolStripBuildRun_Click(object sender, EventArgs e)
+        {
+            if (File.Exists(settings.ImgBurnPath))
+            {
+                string path = "";
+                if (MainWindow.settings.Game == 0)
+                {
+                    path = MainWindow.settings.SSXISOPath;
+                }
+                else if (MainWindow.settings.Game == 1)
+                {
+                    path = MainWindow.settings.SSX2ISOPath;
+                }
+                else if (MainWindow.settings.Game == 2)
+                {
+                    path = MainWindow.settings.SSX3ISOPath;
+                }
+                else if (MainWindow.settings.Game == 3)
+                {
+                    path = MainWindow.settings.SSX4ISOPath;
+                }
+
+                if(path!=""&&path!=null)
+                {
+                    File.Delete(path);
+                    while (File.Exists(path))
+                    {
+                        //Waits for file to be gone
+                    }
+                    ISOHandler.Build(path, true);
+                    if (File.Exists(settings.Pcsx2Path))
+                    {
+                        ISOHandler.Run();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Emulator Path Not Detected");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Iso build path not set. Do this in settings or by building normally once");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Iso Builder Not Detected");
             }
         }
 
@@ -139,40 +179,11 @@ namespace SSX_Modder
         {
             if (File.Exists(settings.Pcsx2Path))
             {
-                ProcessStartInfo startInfo = new ProcessStartInfo();
-                startInfo.FileName = settings.Pcsx2Path;
-
-                string path = "";
-                if (settings.Game == 0)
-                {
-                    path = settings.SSXISOPath;
-                }
-                else if (settings.Game == 1)
-                {
-                    path = settings.SSX2ISOPath;
-                }
-                else if (settings.Game == 2)
-                {
-                    path = settings.SSX3ISOPath;
-                }
-                else if (settings.Game == 3)
-                {
-                    path = settings.SSX4ISOPath;
-                }
-
-
-                if (File.Exists(path))
-                {
-                    if (path.ToLower().Contains(".iso"))
-                    {
-                        startInfo.Arguments = "\"" + path + "\"";
-                    }
-                    else if (path.ToLower().Contains(".elf"))
-                    {
-                        startInfo.Arguments = "-elf \"" + path + "\"";
-                    }
-                }
-                Process.Start(startInfo);
+                ISOHandler.Run();
+            }
+            else
+            {
+                MessageBox.Show("Emulator Not Detected");
             }
         }
         #endregion

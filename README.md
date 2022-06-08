@@ -17,7 +17,7 @@ This is a modding tool I came up and started making when I caught COVID as a way
 - Big (Big4 And C0FB) Decompressor/Extractor and Making (Big4 And C0FB)
 - SSX Trick, SSX (2000), SSX On Tour Limited Support
 - SSX-ElfLdr Support For Launching Game
-- SSX 3 Store/Item Editing (BoltPS2)
+- SSX 3 Store/Item Editing (BoltPS2.Dat)
 - Workspace Backup/Restoring
 
 ## Requirements
@@ -36,8 +36,6 @@ This is a modding tool I came up and started making when I caught COVID as a way
 - Fix Menu Buttons Internal Names
 - Custom Arguments For ISO Extraction and Making (To allow the use of other programs)
 - Auto Apply SSH Alpha Fixes
-- Build and Run (Build without needing path)
-- Redo Iso Handling
 
 ### Todo Later
 - Mod System Loc Txt Insert, Big Insert

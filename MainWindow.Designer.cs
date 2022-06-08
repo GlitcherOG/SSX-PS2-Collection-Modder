@@ -360,6 +360,7 @@ namespace SSX_Modder
             this.GameType = new System.Windows.Forms.ToolStripComboBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripBuildRun = new System.Windows.Forms.ToolStripButton();
             this.tabControl1.SuspendLayout();
             this.tabModPacks.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -4071,7 +4072,8 @@ namespace SSX_Modder
             this.toolStripBuild,
             this.toolStripWorkspace,
             this.toolStripGameStart,
-            this.GameType});
+            this.GameType,
+            this.toolStripBuildRun});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1224, 25);
@@ -4145,6 +4147,16 @@ namespace SSX_Modder
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
+            // 
+            // toolStripBuildRun
+            // 
+            this.toolStripBuildRun.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripBuildRun.Image = ((System.Drawing.Image)(resources.GetObject("toolStripBuildRun.Image")));
+            this.toolStripBuildRun.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripBuildRun.Name = "toolStripBuildRun";
+            this.toolStripBuildRun.Size = new System.Drawing.Size(85, 22);
+            this.toolStripBuildRun.Text = "Build and Run";
+            this.toolStripBuildRun.Click += new System.EventHandler(this.toolStripBuildRun_Click);
             // 
             // MainWindow
             // 
@@ -4575,5 +4587,6 @@ namespace SSX_Modder
         private System.Windows.Forms.Label label100;
         private System.Windows.Forms.Label label99;
         private System.Windows.Forms.ComboBox BoltCharacter;
+        private System.Windows.Forms.ToolStripButton toolStripBuildRun;
     }
 }
