@@ -28,10 +28,12 @@ namespace SSX_Modder.FileHandlers
                 //Figure out what any of these mean
                 if (bigHeader.MagicWords == "BIGF")
                 {
+                    bigType = BigType.BIGF;
                     ReadBigF(stream);
                 }
                 else if(bigHeader.MagicWords == "BIG4")
                 {
+                    bigType = BigType.BIG4;
                     ReadBigF(stream);
                 }
                 else
@@ -54,7 +56,6 @@ namespace SSX_Modder.FileHandlers
 
         public void ReadBigF(Stream stream)
         {
-            bigType = BigType.BIGF;
 
             bigHeader.fileSize = StreamUtil.ReadInt32(stream);
 

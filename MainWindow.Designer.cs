@@ -1250,6 +1250,8 @@ namespace SSX_Modder
             // 
             // ModInstructionListbox
             // 
+            this.ModInstructionListbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.ModInstructionListbox.FormattingEnabled = true;
             this.ModInstructionListbox.Location = new System.Drawing.Point(7, 7);
             this.ModInstructionListbox.Name = "ModInstructionListbox";
