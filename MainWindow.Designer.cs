@@ -3214,6 +3214,7 @@ namespace SSX_Modder
             // BoltDupe
             // 
             this.BoltDupe.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.BoltDupe.Enabled = false;
             this.BoltDupe.Location = new System.Drawing.Point(645, 492);
             this.BoltDupe.Name = "BoltDupe";
             this.BoltDupe.Size = new System.Drawing.Size(75, 23);
