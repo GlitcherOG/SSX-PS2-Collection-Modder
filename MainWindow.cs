@@ -23,6 +23,8 @@ namespace SSX_Modder
             SettingsImgBurn.Text = settings.ImgBurnPath;
             SettingsPCSX2Path.Text = settings.Pcsx2Path;
             GameType.SelectedIndex = settings.Game;
+            SettingsExtractorArg.Text = settings.ExtractorArg;
+            SettingsIsoBuilderArg.Text = settings.IsoArg;
             if (GameType.SelectedIndex == 0)
             {
                 SettingsIsoPath.Text = settings.SSXISOPath;
@@ -569,6 +571,13 @@ namespace SSX_Modder
         private void linkGithub_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start("https://github.com/GlitcherOG/SSX-PS2-Collection-Modder");
+        }
+
+        private void SettingsSave_Click(object sender, EventArgs e)
+        {
+            settings.ExtractorArg = SettingsExtractorArg.Text;
+            settings.IsoArg = SettingsIsoBuilderArg.Text;
+            settings.Save();
         }
 
         #endregion
@@ -1745,12 +1754,12 @@ namespace SSX_Modder
         #region BoltPS2 Items
         BoltPS2Handler boltPS2 = new BoltPS2Handler();
         bool loaded = false;
-        private void button1_Click(object sender, EventArgs e)
+        private void BoltLoad_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
                 InitialDirectory = workspacePath,
-                Filter = "BIG File (*.dat)|*.dat|All files (*.*)|*.*",
+                Filter = "BOLTPS2 File (*.dat)|*.dat|All files (*.*)|*.*",
                 FilterIndex = 1,
                 RestoreDirectory = false
             };
@@ -1774,7 +1783,7 @@ namespace SSX_Modder
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void BoltSave_Click(object sender, EventArgs e)
         {
             SaveFileDialog openFileDialog = new SaveFileDialog
             {
@@ -1789,7 +1798,7 @@ namespace SSX_Modder
             }
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void BoltDupe_Click(object sender, EventArgs e)
         {
             //if (BoltlistBox1.SelectedIndex != -1)
             //{
@@ -1847,7 +1856,7 @@ namespace SSX_Modder
             }
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void BoltApply_Click(object sender, EventArgs e)
         {
             if (BoltlistBox1.SelectedIndex != -1 && loaded)
             {

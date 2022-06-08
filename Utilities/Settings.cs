@@ -19,6 +19,8 @@ namespace SSX_Modder.Utilities
         public string SSX2ISOPath = "";
         public string SSX3ISOPath = "";
         public string SSX4ISOPath = "";
+        public string ExtractorArg = "x \"#Source\" *.* -o\"#Output\" -r -y";
+        public string IsoArg = "/MODE BUILD /BUILDINPUTMODE IMAGEFILE /SRC \"#Source\" /DEST \"#Output\" /FILESYSTEM \"ISO9660 + UDF\" /UDFREVISION \"1.02\" /VOLUMELABEL \"SSX\" /ERASE /OVERWITE YES /START /NOIMAGEDETAILS /ROOTFOLDER /CLOSE";
         public int Game = 2;
         public void Save()
         {

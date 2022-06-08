@@ -171,6 +171,16 @@ namespace SSX_Modder.ModSystem
                             tempHeader.BuildBig(Output);
                         }
                     }
+                    else if (Instructions[i].Type == "Big4 Make")
+                    {
+                        if (Directory.Exists(Source))
+                        {
+                            BigHandler tempHeader = new BigHandler();
+                            tempHeader.LoadFolder(Source);
+                            tempHeader.bigType = BigType.BIG4;
+                            tempHeader.BuildBig(Output);
+                        }
+                    }
                     else if (Instructions[i].Type == "Txt Insert")
                     {
                         if (File.Exists(Source))

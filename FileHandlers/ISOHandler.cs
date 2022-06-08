@@ -15,7 +15,11 @@ namespace SSX_Modder.FileHandlers
             ProcessStartInfo startInfo = new ProcessStartInfo();
             startInfo.FileName = MainWindow.settings.ZipPath;
             string test = Path.Combine(MainWindow.workspacePath, "");
-            startInfo.Arguments = "x \"" + path + "\" *.* -o\"" + test + "\" -r -y";
+
+            string Arguments = MainWindow.settings.ExtractorArg;
+            Arguments = Arguments.Replace("#Source", path);
+            Arguments = Arguments.Replace("#Output", test);
+            startInfo.Arguments = Arguments;
             Process.Start(startInfo);
             if (wait)
             {
@@ -45,7 +49,10 @@ namespace SSX_Modder.FileHandlers
                 MainWindow.settings.SSX4ISOPath = path;
             }
             MainWindow.settings.Save();
-            startInfo.Arguments = "/MODE BUILD /BUILDINPUTMODE IMAGEFILE /SRC \"" + test + "\" /DEST \"" + path + "\" /FILESYSTEM \"ISO9660 + UDF\" /UDFREVISION \"1.02\" /VOLUMELABEL \"SSX3\" /ERASE /OVERWITE YES /START /NOIMAGEDETAILS /ROOTFOLDER /CLOSE";
+            string Arguments = MainWindow.settings.IsoArg;
+            Arguments = Arguments.Replace("#Source", test);
+            Arguments = Arguments.Replace("#Output", path);
+            startInfo.Arguments = Arguments;
             var temp = Process.Start(startInfo);
             if (wait)
             {

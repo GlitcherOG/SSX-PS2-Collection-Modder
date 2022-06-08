@@ -265,9 +265,9 @@ namespace SSX_Modder
             this.BoltCharacter = new System.Windows.Forms.ComboBox();
             this.label100 = new System.Windows.Forms.Label();
             this.label99 = new System.Windows.Forms.Label();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.BoltApply = new System.Windows.Forms.Button();
+            this.BoltDupe = new System.Windows.Forms.Button();
+            this.BoltSave = new System.Windows.Forms.Button();
             this.label97 = new System.Windows.Forms.Label();
             this.label96 = new System.Windows.Forms.Label();
             this.label95 = new System.Windows.Forms.Label();
@@ -314,7 +314,7 @@ namespace SSX_Modder
             this.BoltUnlock = new System.Windows.Forms.NumericUpDown();
             this.BoltUnkownOne = new System.Windows.Forms.NumericUpDown();
             this.BoltModelIDThree = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.boltLoad = new System.Windows.Forms.Button();
             this.BoltlistBox1 = new System.Windows.Forms.ListBox();
             this.tabTools = new System.Windows.Forms.TabPage();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
@@ -337,6 +337,11 @@ namespace SSX_Modder
             this.ToolsColours = new System.Windows.Forms.Button();
             this.NumToolsColour = new System.Windows.Forms.NumericUpDown();
             this.tabSettings = new System.Windows.Forms.TabPage();
+            this.SettingsSave = new System.Windows.Forms.Button();
+            this.SettingsIsoBuilderArg = new System.Windows.Forms.TextBox();
+            this.SettingsExtractorArg = new System.Windows.Forms.TextBox();
+            this.label98 = new System.Windows.Forms.Label();
+            this.label75 = new System.Windows.Forms.Label();
             this.label74 = new System.Windows.Forms.Label();
             this.label71 = new System.Windows.Forms.Label();
             this.linkGithub = new System.Windows.Forms.LinkLabel();
@@ -358,9 +363,9 @@ namespace SSX_Modder
             this.toolStripWorkspace = new System.Windows.Forms.ToolStripButton();
             this.toolStripGameStart = new System.Windows.Forms.ToolStripButton();
             this.GameType = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripBuildRun = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripBuildRun = new System.Windows.Forms.ToolStripButton();
             this.tabControl1.SuspendLayout();
             this.tabModPacks.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -625,6 +630,8 @@ namespace SSX_Modder
             // 
             // ModList
             // 
+            this.ModList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.ModList.FormattingEnabled = true;
             this.ModList.Location = new System.Drawing.Point(12, 259);
             this.ModList.Name = "ModList";
@@ -633,6 +640,7 @@ namespace SSX_Modder
             // 
             // ModApply
             // 
+            this.ModApply.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ModApply.Location = new System.Drawing.Point(1088, 465);
             this.ModApply.Name = "ModApply";
             this.ModApply.Size = new System.Drawing.Size(75, 23);
@@ -643,6 +651,7 @@ namespace SSX_Modder
             // 
             // ModLoad
             // 
+            this.ModLoad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ModLoad.Location = new System.Drawing.Point(12, 465);
             this.ModLoad.Name = "ModLoad";
             this.ModLoad.Size = new System.Drawing.Size(75, 23);
@@ -742,6 +751,9 @@ namespace SSX_Modder
             // 
             // ModPicture
             // 
+            this.ModPicture.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ModPicture.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.ModPicture.Location = new System.Drawing.Point(721, 3);
             this.ModPicture.Name = "ModPicture";
@@ -1002,6 +1014,9 @@ namespace SSX_Modder
             // 
             // ModMakerIcon
             // 
+            this.ModMakerIcon.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ModMakerIcon.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.ModMakerIcon.Location = new System.Drawing.Point(728, 6);
             this.ModMakerIcon.Name = "ModMakerIcon";
@@ -1021,6 +1036,7 @@ namespace SSX_Modder
             // 
             // ModMakerSave
             // 
+            this.ModMakerSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ModMakerSave.Location = new System.Drawing.Point(952, 465);
             this.ModMakerSave.Name = "ModMakerSave";
             this.ModMakerSave.Size = new System.Drawing.Size(106, 23);
@@ -1031,6 +1047,7 @@ namespace SSX_Modder
             // 
             // ModMakerPack
             // 
+            this.ModMakerPack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ModMakerPack.Location = new System.Drawing.Point(1064, 465);
             this.ModMakerPack.Name = "ModMakerPack";
             this.ModMakerPack.Size = new System.Drawing.Size(106, 23);
@@ -1041,6 +1058,7 @@ namespace SSX_Modder
             // 
             // ModMakerLoad
             // 
+            this.ModMakerLoad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ModMakerLoad.Location = new System.Drawing.Point(6, 465);
             this.ModMakerLoad.Name = "ModMakerLoad";
             this.ModMakerLoad.Size = new System.Drawing.Size(106, 23);
@@ -1080,6 +1098,9 @@ namespace SSX_Modder
             // 
             // ModInstructionMod
             // 
+            this.ModInstructionMod.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ModInstructionMod.FormattingEnabled = true;
             this.ModInstructionMod.Location = new System.Drawing.Point(749, 170);
             this.ModInstructionMod.Name = "ModInstructionMod";
@@ -1089,6 +1110,8 @@ namespace SSX_Modder
             // 
             // ModInstructionGame
             // 
+            this.ModInstructionGame.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.ModInstructionGame.FormattingEnabled = true;
             this.ModInstructionGame.Location = new System.Drawing.Point(377, 170);
             this.ModInstructionGame.Name = "ModInstructionGame";
@@ -1098,6 +1121,7 @@ namespace SSX_Modder
             // 
             // ModInstructionLoad
             // 
+            this.ModInstructionLoad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ModInstructionLoad.Location = new System.Drawing.Point(240, 457);
             this.ModInstructionLoad.Name = "ModInstructionLoad";
             this.ModInstructionLoad.Size = new System.Drawing.Size(107, 23);
@@ -1144,6 +1168,7 @@ namespace SSX_Modder
             // 
             // ModInstructionMoveDown
             // 
+            this.ModInstructionMoveDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ModInstructionMoveDown.Location = new System.Drawing.Point(120, 458);
             this.ModInstructionMoveDown.Name = "ModInstructionMoveDown";
             this.ModInstructionMoveDown.Size = new System.Drawing.Size(114, 23);
@@ -1154,6 +1179,7 @@ namespace SSX_Modder
             // 
             // ModInstructionRemove
             // 
+            this.ModInstructionRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ModInstructionRemove.Location = new System.Drawing.Point(120, 433);
             this.ModInstructionRemove.Name = "ModInstructionRemove";
             this.ModInstructionRemove.Size = new System.Drawing.Size(114, 23);
@@ -1164,6 +1190,7 @@ namespace SSX_Modder
             // 
             // ModInstructionMoveUp
             // 
+            this.ModInstructionMoveUp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ModInstructionMoveUp.Location = new System.Drawing.Point(7, 458);
             this.ModInstructionMoveUp.Name = "ModInstructionMoveUp";
             this.ModInstructionMoveUp.Size = new System.Drawing.Size(107, 23);
@@ -1174,6 +1201,7 @@ namespace SSX_Modder
             // 
             // ModInstructionAdd
             // 
+            this.ModInstructionAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ModInstructionAdd.Location = new System.Drawing.Point(7, 433);
             this.ModInstructionAdd.Name = "ModInstructionAdd";
             this.ModInstructionAdd.Size = new System.Drawing.Size(107, 23);
@@ -1211,6 +1239,7 @@ namespace SSX_Modder
             // 
             // ModInstructionSave
             // 
+            this.ModInstructionSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ModInstructionSave.Location = new System.Drawing.Point(1066, 457);
             this.ModInstructionSave.Name = "ModInstructionSave";
             this.ModInstructionSave.Size = new System.Drawing.Size(107, 23);
@@ -1254,6 +1283,7 @@ namespace SSX_Modder
             "Big Extract",
             "BigF Make",
             "BigC0FB Make",
+            "Big4 Make",
             "Config Insert"});
             this.ModInstructionType.Location = new System.Drawing.Point(378, 95);
             this.ModInstructionType.Name = "ModInstructionType";
@@ -1394,7 +1424,7 @@ namespace SSX_Modder
             // 
             // BigLoadFolder
             // 
-            this.BigLoadFolder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.BigLoadFolder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.BigLoadFolder.Location = new System.Drawing.Point(351, 492);
             this.BigLoadFolder.Name = "BigLoadFolder";
             this.BigLoadFolder.Size = new System.Drawing.Size(87, 23);
@@ -1447,7 +1477,7 @@ namespace SSX_Modder
             // 
             // BigLoad
             // 
-            this.BigLoad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.BigLoad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.BigLoad.Location = new System.Drawing.Point(258, 492);
             this.BigLoad.Name = "BigLoad";
             this.BigLoad.Size = new System.Drawing.Size(87, 23);
@@ -3051,9 +3081,9 @@ namespace SSX_Modder
             this.tabBolt.Controls.Add(this.BoltCharacter);
             this.tabBolt.Controls.Add(this.label100);
             this.tabBolt.Controls.Add(this.label99);
-            this.tabBolt.Controls.Add(this.button4);
-            this.tabBolt.Controls.Add(this.button3);
-            this.tabBolt.Controls.Add(this.button2);
+            this.tabBolt.Controls.Add(this.BoltApply);
+            this.tabBolt.Controls.Add(this.BoltDupe);
+            this.tabBolt.Controls.Add(this.BoltSave);
             this.tabBolt.Controls.Add(this.label97);
             this.tabBolt.Controls.Add(this.label96);
             this.tabBolt.Controls.Add(this.label95);
@@ -3100,7 +3130,7 @@ namespace SSX_Modder
             this.tabBolt.Controls.Add(this.BoltUnlock);
             this.tabBolt.Controls.Add(this.BoltUnkownOne);
             this.tabBolt.Controls.Add(this.BoltModelIDThree);
-            this.tabBolt.Controls.Add(this.button1);
+            this.tabBolt.Controls.Add(this.boltLoad);
             this.tabBolt.Controls.Add(this.BoltlistBox1);
             this.tabBolt.Location = new System.Drawing.Point(4, 22);
             this.tabBolt.Name = "tabBolt";
@@ -3168,35 +3198,38 @@ namespace SSX_Modder
             this.label99.TabIndex = 56;
             this.label99.Text = "Item ID";
             // 
-            // button4
+            // BoltApply
             // 
-            this.button4.Location = new System.Drawing.Point(564, 492);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 55;
-            this.button4.Text = "Apply";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.BoltApply.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.BoltApply.Location = new System.Drawing.Point(564, 492);
+            this.BoltApply.Name = "BoltApply";
+            this.BoltApply.Size = new System.Drawing.Size(75, 23);
+            this.BoltApply.TabIndex = 55;
+            this.BoltApply.Text = "Apply";
+            this.BoltApply.UseVisualStyleBackColor = true;
+            this.BoltApply.Click += new System.EventHandler(this.BoltApply_Click);
             // 
-            // button3
+            // BoltDupe
             // 
-            this.button3.Location = new System.Drawing.Point(645, 492);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 54;
-            this.button3.Text = "Dupe";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.BoltDupe.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.BoltDupe.Location = new System.Drawing.Point(645, 492);
+            this.BoltDupe.Name = "BoltDupe";
+            this.BoltDupe.Size = new System.Drawing.Size(75, 23);
+            this.BoltDupe.TabIndex = 54;
+            this.BoltDupe.Text = "Dupe";
+            this.BoltDupe.UseVisualStyleBackColor = true;
+            this.BoltDupe.Click += new System.EventHandler(this.BoltDupe_Click);
             // 
-            // button2
+            // BoltSave
             // 
-            this.button2.Location = new System.Drawing.Point(373, 492);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 52;
-            this.button2.Text = "Save";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.BoltSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.BoltSave.Location = new System.Drawing.Point(373, 492);
+            this.BoltSave.Name = "BoltSave";
+            this.BoltSave.Size = new System.Drawing.Size(75, 23);
+            this.BoltSave.TabIndex = 52;
+            this.BoltSave.Text = "Save";
+            this.BoltSave.UseVisualStyleBackColor = true;
+            this.BoltSave.Click += new System.EventHandler(this.BoltSave_Click);
             // 
             // label97
             // 
@@ -3659,18 +3692,21 @@ namespace SSX_Modder
             this.BoltModelIDThree.Size = new System.Drawing.Size(100, 20);
             this.BoltModelIDThree.TabIndex = 3;
             // 
-            // button1
+            // boltLoad
             // 
-            this.button1.Location = new System.Drawing.Point(280, 492);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Load";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.boltLoad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.boltLoad.Location = new System.Drawing.Point(280, 492);
+            this.boltLoad.Name = "boltLoad";
+            this.boltLoad.Size = new System.Drawing.Size(75, 23);
+            this.boltLoad.TabIndex = 1;
+            this.boltLoad.Text = "Load";
+            this.boltLoad.UseVisualStyleBackColor = true;
+            this.boltLoad.Click += new System.EventHandler(this.BoltLoad_Click);
             // 
             // BoltlistBox1
             // 
+            this.BoltlistBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.BoltlistBox1.FormattingEnabled = true;
             this.BoltlistBox1.Location = new System.Drawing.Point(4, 30);
             this.BoltlistBox1.Name = "BoltlistBox1";
@@ -3901,6 +3937,11 @@ namespace SSX_Modder
             // 
             // tabSettings
             // 
+            this.tabSettings.Controls.Add(this.SettingsSave);
+            this.tabSettings.Controls.Add(this.SettingsIsoBuilderArg);
+            this.tabSettings.Controls.Add(this.SettingsExtractorArg);
+            this.tabSettings.Controls.Add(this.label98);
+            this.tabSettings.Controls.Add(this.label75);
             this.tabSettings.Controls.Add(this.label74);
             this.tabSettings.Controls.Add(this.label71);
             this.tabSettings.Controls.Add(this.linkGithub);
@@ -3923,11 +3964,55 @@ namespace SSX_Modder
             this.tabSettings.Text = "Settings";
             this.tabSettings.UseVisualStyleBackColor = true;
             // 
+            // SettingsSave
+            // 
+            this.SettingsSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.SettingsSave.Location = new System.Drawing.Point(1113, 501);
+            this.SettingsSave.Name = "SettingsSave";
+            this.SettingsSave.Size = new System.Drawing.Size(75, 23);
+            this.SettingsSave.TabIndex = 20;
+            this.SettingsSave.Text = "Save";
+            this.SettingsSave.UseVisualStyleBackColor = true;
+            this.SettingsSave.Click += new System.EventHandler(this.SettingsSave_Click);
+            // 
+            // SettingsIsoBuilderArg
+            // 
+            this.SettingsIsoBuilderArg.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SettingsIsoBuilderArg.Location = new System.Drawing.Point(19, 182);
+            this.SettingsIsoBuilderArg.Name = "SettingsIsoBuilderArg";
+            this.SettingsIsoBuilderArg.Size = new System.Drawing.Size(1116, 18);
+            this.SettingsIsoBuilderArg.TabIndex = 19;
+            // 
+            // SettingsExtractorArg
+            // 
+            this.SettingsExtractorArg.Location = new System.Drawing.Point(19, 88);
+            this.SettingsExtractorArg.Name = "SettingsExtractorArg";
+            this.SettingsExtractorArg.Size = new System.Drawing.Size(1116, 20);
+            this.SettingsExtractorArg.TabIndex = 0;
+            // 
+            // label98
+            // 
+            this.label98.AutoSize = true;
+            this.label98.Location = new System.Drawing.Point(16, 71);
+            this.label98.Name = "label98";
+            this.label98.Size = new System.Drawing.Size(102, 13);
+            this.label98.TabIndex = 17;
+            this.label98.Text = "Extractor Arguments";
+            // 
+            // label75
+            // 
+            this.label75.AutoSize = true;
+            this.label75.Location = new System.Drawing.Point(16, 166);
+            this.label75.Name = "label75";
+            this.label75.Size = new System.Drawing.Size(109, 13);
+            this.label75.TabIndex = 16;
+            this.label75.Text = "Iso Builder Arguments";
+            // 
             // label74
             // 
             this.label74.AutoSize = true;
             this.label74.ForeColor = System.Drawing.Color.Transparent;
-            this.label74.Location = new System.Drawing.Point(16, 279);
+            this.label74.Location = new System.Drawing.Point(373, 326);
             this.label74.Name = "label74";
             this.label74.Size = new System.Drawing.Size(89, 13);
             this.label74.TabIndex = 15;
@@ -3936,7 +4021,7 @@ namespace SSX_Modder
             // label71
             // 
             this.label71.AutoSize = true;
-            this.label71.Location = new System.Drawing.Point(16, 266);
+            this.label71.Location = new System.Drawing.Point(16, 330);
             this.label71.Name = "label71";
             this.label71.Size = new System.Drawing.Size(114, 13);
             this.label71.TabIndex = 14;
@@ -3945,7 +4030,7 @@ namespace SSX_Modder
             // linkGithub
             // 
             this.linkGithub.AutoSize = true;
-            this.linkGithub.Location = new System.Drawing.Point(16, 253);
+            this.linkGithub.Location = new System.Drawing.Point(16, 317);
             this.linkGithub.Name = "linkGithub";
             this.linkGithub.Size = new System.Drawing.Size(40, 13);
             this.linkGithub.TabIndex = 13;
@@ -3956,7 +4041,7 @@ namespace SSX_Modder
             // SettingsIsoPath
             // 
             this.SettingsIsoPath.AutoSize = true;
-            this.SettingsIsoPath.Location = new System.Drawing.Point(16, 199);
+            this.SettingsIsoPath.Location = new System.Drawing.Point(16, 277);
             this.SettingsIsoPath.Name = "SettingsIsoPath";
             this.SettingsIsoPath.Size = new System.Drawing.Size(25, 13);
             this.SettingsIsoPath.TabIndex = 12;
@@ -3964,7 +4049,7 @@ namespace SSX_Modder
             // 
             // SettingsIsoSet
             // 
-            this.SettingsIsoSet.Location = new System.Drawing.Point(19, 213);
+            this.SettingsIsoSet.Location = new System.Drawing.Point(19, 291);
             this.SettingsIsoSet.Name = "SettingsIsoSet";
             this.SettingsIsoSet.Size = new System.Drawing.Size(75, 23);
             this.SettingsIsoSet.TabIndex = 11;
@@ -3975,7 +4060,7 @@ namespace SSX_Modder
             // label49
             // 
             this.label49.AutoSize = true;
-            this.label49.Location = new System.Drawing.Point(16, 186);
+            this.label49.Location = new System.Drawing.Point(16, 264);
             this.label49.Name = "label49";
             this.label49.Size = new System.Drawing.Size(62, 13);
             this.label49.TabIndex = 9;
@@ -3983,7 +4068,7 @@ namespace SSX_Modder
             // 
             // SettingsPCSX2Button
             // 
-            this.SettingsPCSX2Button.Location = new System.Drawing.Point(19, 156);
+            this.SettingsPCSX2Button.Location = new System.Drawing.Point(19, 234);
             this.SettingsPCSX2Button.Name = "SettingsPCSX2Button";
             this.SettingsPCSX2Button.Size = new System.Drawing.Size(75, 23);
             this.SettingsPCSX2Button.TabIndex = 8;
@@ -3994,7 +4079,7 @@ namespace SSX_Modder
             // SettingsPCSX2Path
             // 
             this.SettingsPCSX2Path.AutoSize = true;
-            this.SettingsPCSX2Path.Location = new System.Drawing.Point(16, 140);
+            this.SettingsPCSX2Path.Location = new System.Drawing.Point(16, 218);
             this.SettingsPCSX2Path.Name = "SettingsPCSX2Path";
             this.SettingsPCSX2Path.Size = new System.Drawing.Size(25, 13);
             this.SettingsPCSX2Path.TabIndex = 7;
@@ -4003,7 +4088,7 @@ namespace SSX_Modder
             // label48
             // 
             this.label48.AutoSize = true;
-            this.label48.Location = new System.Drawing.Point(16, 127);
+            this.label48.Location = new System.Drawing.Point(16, 205);
             this.label48.Name = "label48";
             this.label48.Size = new System.Drawing.Size(66, 13);
             this.label48.TabIndex = 6;
@@ -4011,7 +4096,7 @@ namespace SSX_Modder
             // 
             // SettingsImgBurnButton
             // 
-            this.SettingsImgBurnButton.Location = new System.Drawing.Point(19, 101);
+            this.SettingsImgBurnButton.Location = new System.Drawing.Point(19, 140);
             this.SettingsImgBurnButton.Name = "SettingsImgBurnButton";
             this.SettingsImgBurnButton.Size = new System.Drawing.Size(75, 23);
             this.SettingsImgBurnButton.TabIndex = 5;
@@ -4032,7 +4117,7 @@ namespace SSX_Modder
             // SettingsImgBurn
             // 
             this.SettingsImgBurn.AutoSize = true;
-            this.SettingsImgBurn.Location = new System.Drawing.Point(16, 85);
+            this.SettingsImgBurn.Location = new System.Drawing.Point(16, 124);
             this.SettingsImgBurn.Name = "SettingsImgBurn";
             this.SettingsImgBurn.Size = new System.Drawing.Size(25, 13);
             this.SettingsImgBurn.TabIndex = 3;
@@ -4050,7 +4135,7 @@ namespace SSX_Modder
             // label46
             // 
             this.label46.AutoSize = true;
-            this.label46.Location = new System.Drawing.Point(16, 72);
+            this.label46.Location = new System.Drawing.Point(16, 111);
             this.label46.Name = "label46";
             this.label46.Size = new System.Drawing.Size(71, 13);
             this.label46.TabIndex = 1;
@@ -4133,6 +4218,16 @@ namespace SSX_Modder
             this.GameType.Size = new System.Drawing.Size(121, 25);
             this.GameType.SelectedIndexChanged += new System.EventHandler(this.GameType_Click);
             // 
+            // toolStripBuildRun
+            // 
+            this.toolStripBuildRun.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripBuildRun.Image = ((System.Drawing.Image)(resources.GetObject("toolStripBuildRun.Image")));
+            this.toolStripBuildRun.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripBuildRun.Name = "toolStripBuildRun";
+            this.toolStripBuildRun.Size = new System.Drawing.Size(85, 22);
+            this.toolStripBuildRun.Text = "Build and Run";
+            this.toolStripBuildRun.Click += new System.EventHandler(this.toolStripBuildRun_Click);
+            // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -4148,16 +4243,6 @@ namespace SSX_Modder
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
             // 
-            // toolStripBuildRun
-            // 
-            this.toolStripBuildRun.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripBuildRun.Image = ((System.Drawing.Image)(resources.GetObject("toolStripBuildRun.Image")));
-            this.toolStripBuildRun.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripBuildRun.Name = "toolStripBuildRun";
-            this.toolStripBuildRun.Size = new System.Drawing.Size(85, 22);
-            this.toolStripBuildRun.Text = "Build and Run";
-            this.toolStripBuildRun.Click += new System.EventHandler(this.toolStripBuildRun_Click);
-            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -4167,7 +4252,7 @@ namespace SSX_Modder
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.tabControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(829, 449);
+            this.MinimumSize = new System.Drawing.Size(1240, 645);
             this.Name = "MainWindow";
             this.Text = "SSX PS2 Collection Modder";
             this.Load += new System.EventHandler(this.MainWindow_Load);
@@ -4534,7 +4619,7 @@ namespace SSX_Modder
         private System.Windows.Forms.CheckBox SSHAlphaFix;
         private System.Windows.Forms.TabPage tabBolt;
         private System.Windows.Forms.ListBox BoltlistBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button boltLoad;
         private System.Windows.Forms.TextBox BoltModelIDFour;
         private System.Windows.Forms.TextBox BoltModelIDTwo;
         private System.Windows.Forms.TextBox BoltModelID;
@@ -4581,12 +4666,17 @@ namespace SSX_Modder
         private System.Windows.Forms.Label label78;
         private System.Windows.Forms.Label label77;
         private System.Windows.Forms.Label label76;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button BoltSave;
+        private System.Windows.Forms.Button BoltDupe;
+        private System.Windows.Forms.Button BoltApply;
         private System.Windows.Forms.Label label100;
         private System.Windows.Forms.Label label99;
         private System.Windows.Forms.ComboBox BoltCharacter;
         private System.Windows.Forms.ToolStripButton toolStripBuildRun;
+        private System.Windows.Forms.TextBox SettingsIsoBuilderArg;
+        private System.Windows.Forms.TextBox SettingsExtractorArg;
+        private System.Windows.Forms.Label label98;
+        private System.Windows.Forms.Label label75;
+        private System.Windows.Forms.Button SettingsSave;
     }
 }

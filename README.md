@@ -20,7 +20,8 @@ This is a modding tool I came up and started making when I caught COVID as a way
 - SSX 3 Store/Item Editing (BoltPS2.Dat)
 - Workspace Backup/Restoring
 - Build And Running Of ISO
-- Redone SSH Support
+- Redone SSH Support (Works For SSX (2000), SSX Tricky, SSX 3)
+- Custom Iso Extracting and Building Arguments
 
 ## Requirements
 
@@ -35,9 +36,6 @@ This is a modding tool I came up and started making when I caught COVID as a way
 
 ### Current Todo
 - Test Modding Functions
-- Fix Menu Buttons Internal Names
-- Fix Bolt Loading File Type
-- Custom Arguments For ISO Extraction and Making (To allow the use of other programs)
 
 ### Todo Later
 - Mod System Loc Txt Insert, Big Insert
