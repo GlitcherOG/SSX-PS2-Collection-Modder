@@ -1,8 +1,0 @@
-SSX 3 
-Double Alpha Check Unless Matrix 5, if Byte Swapped Double Colours 
-SSX 2
-Double Alpha Check
-SSX 1
-Double Alpha Check
-SSX On Tour
-???

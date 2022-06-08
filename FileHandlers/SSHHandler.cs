@@ -178,6 +178,37 @@ namespace SSX_Modder.FileHandlers
                     {
                         sshTable.colorTable.Add(StreamUtil.ReadColour(stream));
                     }
+
+                    int Max = 0;
+                    //Alpha Fix
+                    for (int a = 0; a < sshTable.colorTable.Count; a++)
+                    {
+                        if(Max < sshTable.colorTable[a].A)
+                        {
+                            Max = sshTable.colorTable[a].A;
+                        }
+                    }
+                    if(Max<=128)
+                    {
+                        tempImage.AlphaFix = true;
+
+                        for (int a = 0; a < sshTable.colorTable.Count; a++)
+                        {
+                            var TempColour = sshTable.colorTable[a];
+                            int A = (TempColour.A * 2) - 1;
+                            if(A>255)
+                            {
+                                A = 255;
+                            }
+                            else if(A < 0)
+                            {
+                                A = 0;
+                            }
+                            TempColour = Color.FromArgb(A, TempColour.R, TempColour.G, TempColour.B);
+                            sshTable.colorTable[a] = TempColour;
+                        }
+                    }
+
                     tempImage.sshTable = sshTable;
                 }
 
@@ -798,6 +829,14 @@ namespace SSX_Modder.FileHandlers
                 for (int x = 0; x < sshImages[i].bitmap.Width; x++)
                 {
                     Color color = sshImages[i].bitmap.GetPixel(x, y);
+                    //Alpha Fix
+                    if (sshImages[i].AlphaFix)
+                    {
+                        int A = (color.A + 1) / 2;
+                        color = Color.FromArgb(A, color.R, color.G, color.B); 
+                    }
+
+
                     if (colourTable.colorTable.Contains(color))
                     {
                         int index = colourTable.colorTable.IndexOf(color);
@@ -886,6 +925,13 @@ namespace SSX_Modder.FileHandlers
                 for (int x = 0; x < sshImages[i].bitmap.Width; x++)
                 {
                     Color color = sshImages[i].bitmap.GetPixel(x, y);
+
+                    if (sshImages[i].AlphaFix)
+                    {
+                        int A = (color.A + 1) / 2;
+                        color = Color.FromArgb(A, color.R, color.G, color.B);
+                    }
+
                     if (sshImages[i].MetalBin)
                     {
                         color = Color.FromArgb(sshImages[i].metalBitmap.GetPixel(x, y).R, color.R, color.G, color.B);
@@ -967,13 +1013,6 @@ namespace SSX_Modder.FileHandlers
                 int B = colourTable.colorTable[a].B;
                 int A = colourTable.colorTable[a].A;
 
-                //if (sshImages[i].MetalBin)
-                //{
-                //    R = (R + 1) / 2;
-                //    G = (G + 1) / 2;
-                //    B = (B + 1) / 2;
-                //}
-
                 BitConverter.GetBytes(R).CopyTo(tempByte, 0);
                 stream.Write(tempByte, 0, 1);
                 tempByte = new byte[4];
@@ -1004,6 +1043,10 @@ namespace SSX_Modder.FileHandlers
                     int G = color.G;
                     int B = color.B;
                     int A = color.A;
+                    if (sshImages[i].AlphaFix)
+                    {
+                        A = (A + 1) / 2;
+                    }
                     BitConverter.GetBytes(R).CopyTo(tempByte, 0);
                     stream.Write(tempByte, 0, 1);
                     tempByte = new byte[4];

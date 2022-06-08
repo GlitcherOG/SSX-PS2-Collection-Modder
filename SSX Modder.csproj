@@ -346,7 +346,6 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Guides\Auto SSH Fix.txt" />
     <Content Include="Guides\LUI.txt" />
     <Content Include="Guides\MainELFReader.txt" />
     <Content Include="Guides\ps2Bolt.txt" />

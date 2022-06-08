@@ -3230,36 +3230,36 @@ namespace SSX_Modder
             this.label94.AutoSize = true;
             this.label94.Location = new System.Drawing.Point(596, 273);
             this.label94.Name = "label94";
-            this.label94.Size = new System.Drawing.Size(59, 13);
+            this.label94.Size = new System.Drawing.Size(92, 13);
             this.label94.TabIndex = 48;
-            this.label94.Text = "Model ID 4";
+            this.label94.Text = "Model Shadow ID";
             // 
             // label93
             // 
             this.label93.AutoSize = true;
             this.label93.Location = new System.Drawing.Point(383, 273);
             this.label93.Name = "label93";
-            this.label93.Size = new System.Drawing.Size(59, 13);
+            this.label93.Size = new System.Drawing.Size(96, 13);
             this.label93.TabIndex = 47;
-            this.label93.Text = "Model ID 2";
+            this.label93.Text = "Model Med Res ID";
             // 
             // label92
             // 
             this.label92.AutoSize = true;
             this.label92.Location = new System.Drawing.Point(489, 273);
             this.label92.Name = "label92";
-            this.label92.Size = new System.Drawing.Size(59, 13);
+            this.label92.Size = new System.Drawing.Size(95, 13);
             this.label92.TabIndex = 46;
-            this.label92.Text = "Model ID 3";
+            this.label92.Text = "Model Low Res ID";
             // 
             // label91
             // 
             this.label91.AutoSize = true;
             this.label91.Location = new System.Drawing.Point(277, 273);
             this.label91.Name = "label91";
-            this.label91.Size = new System.Drawing.Size(50, 13);
+            this.label91.Size = new System.Drawing.Size(97, 13);
             this.label91.TabIndex = 45;
-            this.label91.Text = "Model ID";
+            this.label91.Text = "Model High Res ID";
             // 
             // label90
             // 
@@ -3302,9 +3302,9 @@ namespace SSX_Modder
             this.label86.AutoSize = true;
             this.label86.Location = new System.Drawing.Point(403, 198);
             this.label86.Name = "label86";
-            this.label86.Size = new System.Drawing.Size(72, 13);
+            this.label86.Size = new System.Drawing.Size(85, 13);
             this.label86.TabIndex = 40;
-            this.label86.Text = "Special FX ID";
+            this.label86.Text = "Special FX Type";
             // 
             // label85
             // 
