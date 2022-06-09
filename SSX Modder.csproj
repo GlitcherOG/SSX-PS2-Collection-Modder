@@ -8,7 +8,7 @@
     <ProjectGuid>{77905404-BB40-4CB4-BC22-88137F10238A}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>SSX_Modder</RootNamespace>
-    <AssemblyName>SSX 3 Modder</AssemblyName>
+    <AssemblyName>SSX PS2 Collection Modder</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

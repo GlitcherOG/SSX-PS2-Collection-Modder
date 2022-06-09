@@ -5,23 +5,17 @@ This is a modding tool I came up and started making when I caught COVID as a way
 
 ## Current Features
 - SSH (SHPS) Texture Extractor/Maker (SSX, Tricky, SSX 3)
-- Big (BigF) Decompressor/Extractor and Making (BigF)
+- Big (BigF, Big4 And C0FB) Decompressor/Extractor and Making (BigF, Big4 And C0FB)
 - Character DB Editor (SSX 3)
 - Music Inf Editor (SSX 3)
 - Loc (Language) Files Editor
 - Easy ISO Extraction and Making (Using External Programs) (Tricky, SSX 3, SSX On Tour)
 - Auto Boot PCSX2 Emulator With ISO
+- Easy Mod Support
+- SSX 3 Store/Item Editing (BoltPS2.Dat)
+- SSX-ElfLdr Support For Launching Game
 
 ## WIP Features
-- Easy Mod Support
-- Big (Big4 And C0FB) Decompressor/Extractor and Making (Big4 And C0FB)
-- SSX Trick, SSX (2000), SSX On Tour Limited Support
-- SSX-ElfLdr Support For Launching Game
-- SSX 3 Store/Item Editing (BoltPS2.Dat)
-- Workspace Backup/Restoring
-- Build And Running Of ISO
-- Redone SSH Support (Works For SSX (2000), SSX Tricky, SSX 3)
-- Custom Iso Extracting and Building Arguments
 
 ## Requirements
 
@@ -35,7 +29,6 @@ This is a modding tool I came up and started making when I caught COVID as a way
 ## Todo
 
 ### Current Todo
-- Test Modding Functions
 
 ### Todo Later
 - Mod System Loc Txt Insert, Big Insert
