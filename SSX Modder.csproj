@@ -283,6 +283,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="FileHandlers\CSVHandler.cs" />
     <Compile Include="Utilities\ImageUtil.cs" />
     <Compile Include="Utilities\Settings.cs" />
     <Compile Include="Utilities\StreamUtil.cs" />

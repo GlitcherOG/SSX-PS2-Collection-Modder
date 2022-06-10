@@ -29,6 +29,13 @@ This is a modding tool I came up and started making when I caught COVID as a way
 ## Todo
 
 ### Current Todo
+- SSX On Tour SSH Support (ShpS)
+- Figure out More BoltPS2 Varibles
+- Figure out How to Insert New Item
+- Allow Exporting To CSV Table BOLTPS2
+- Allow Exporting To CSV Table Loc
+- MUS Extractor
+- MPC Extractor
 
 ### Todo Later
 - Mod System Loc Txt Insert, Big Insert
@@ -37,10 +44,7 @@ This is a modding tool I came up and started making when I caught COVID as a way
 - Threading
 - Make Better Workflow interface
 - Control Editor Menu
-- MUS Extractor
-- MPC Extractor
 - Redo Loc and Music INF (Support Other Games)
-- SSX On Tour SSH Support (ShpS)
 
 ### If I ever find the correct code or work it out
 - Refpack Compressor
