@@ -262,6 +262,8 @@ namespace SSX_Modder
             this.label9 = new System.Windows.Forms.Label();
             this.musiclistBox1 = new System.Windows.Forms.ListBox();
             this.tabBolt = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
+            this.BoltPS2TreeView = new System.Windows.Forms.TreeView();
             this.BoltCharacter = new System.Windows.Forms.ComboBox();
             this.label100 = new System.Windows.Forms.Label();
             this.label99 = new System.Windows.Forms.Label();
@@ -315,7 +317,6 @@ namespace SSX_Modder
             this.BoltUnkownOne = new System.Windows.Forms.NumericUpDown();
             this.BoltModelIDThree = new System.Windows.Forms.TextBox();
             this.boltLoad = new System.Windows.Forms.Button();
-            this.BoltlistBox1 = new System.Windows.Forms.ListBox();
             this.tabTools = new System.Windows.Forms.TabPage();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.ToolsRestoreSSXOnTour = new System.Windows.Forms.Button();
@@ -366,6 +367,9 @@ namespace SSX_Modder
             this.toolStripBuildRun = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tabMPFModel = new System.Windows.Forms.TabPage();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabModPacks.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -430,6 +434,7 @@ namespace SSX_Modder
             this.tabSettings.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            this.tabMPFModel.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -444,6 +449,7 @@ namespace SSX_Modder
             this.tabControl1.Controls.Add(this.tabCharacters);
             this.tabControl1.Controls.Add(this.tabMusic);
             this.tabControl1.Controls.Add(this.tabBolt);
+            this.tabControl1.Controls.Add(this.tabMPFModel);
             this.tabControl1.Controls.Add(this.tabTools);
             this.tabControl1.Controls.Add(this.tabSettings);
             this.tabControl1.Location = new System.Drawing.Point(14, 29);
@@ -3080,6 +3086,8 @@ namespace SSX_Modder
             // 
             // tabBolt
             // 
+            this.tabBolt.Controls.Add(this.button1);
+            this.tabBolt.Controls.Add(this.BoltPS2TreeView);
             this.tabBolt.Controls.Add(this.BoltCharacter);
             this.tabBolt.Controls.Add(this.label100);
             this.tabBolt.Controls.Add(this.label99);
@@ -3133,13 +3141,30 @@ namespace SSX_Modder
             this.tabBolt.Controls.Add(this.BoltUnkownOne);
             this.tabBolt.Controls.Add(this.BoltModelIDThree);
             this.tabBolt.Controls.Add(this.boltLoad);
-            this.tabBolt.Controls.Add(this.BoltlistBox1);
             this.tabBolt.Location = new System.Drawing.Point(4, 22);
             this.tabBolt.Name = "tabBolt";
             this.tabBolt.Size = new System.Drawing.Size(1191, 527);
             this.tabBolt.TabIndex = 13;
             this.tabBolt.Text = "BoltPS2 (SSX 3) (WIP)";
             this.tabBolt.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(918, 426);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 60;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // BoltPS2TreeView
+            // 
+            this.BoltPS2TreeView.Location = new System.Drawing.Point(4, 30);
+            this.BoltPS2TreeView.Name = "BoltPS2TreeView";
+            this.BoltPS2TreeView.Size = new System.Drawing.Size(267, 485);
+            this.BoltPS2TreeView.TabIndex = 59;
+            this.BoltPS2TreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.BoltPS2TreeView_AfterSelect);
             // 
             // BoltCharacter
             // 
@@ -3187,9 +3212,9 @@ namespace SSX_Modder
             this.label100.AutoSize = true;
             this.label100.Location = new System.Drawing.Point(529, 61);
             this.label100.Name = "label100";
-            this.label100.Size = new System.Drawing.Size(71, 13);
+            this.label100.Size = new System.Drawing.Size(78, 13);
             this.label100.TabIndex = 57;
-            this.label100.Text = "Unkown Int 4";
+            this.label100.Text = "Parent Item ID ";
             // 
             // label99
             // 
@@ -3214,7 +3239,6 @@ namespace SSX_Modder
             // BoltDupe
             // 
             this.BoltDupe.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.BoltDupe.Enabled = false;
             this.BoltDupe.Location = new System.Drawing.Point(645, 492);
             this.BoltDupe.Name = "BoltDupe";
             this.BoltDupe.Size = new System.Drawing.Size(75, 23);
@@ -3401,9 +3425,9 @@ namespace SSX_Modder
             this.label79.AutoSize = true;
             this.label79.Location = new System.Drawing.Point(277, 109);
             this.label79.Name = "label79";
-            this.label79.Size = new System.Drawing.Size(49, 13);
+            this.label79.Size = new System.Drawing.Size(63, 13);
             this.label79.TabIndex = 33;
-            this.label79.Text = "Category";
+            this.label79.Text = "Category ID";
             // 
             // label78
             // 
@@ -3705,17 +3729,6 @@ namespace SSX_Modder
             this.boltLoad.Text = "Load";
             this.boltLoad.UseVisualStyleBackColor = true;
             this.boltLoad.Click += new System.EventHandler(this.BoltLoad_Click);
-            // 
-            // BoltlistBox1
-            // 
-            this.BoltlistBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.BoltlistBox1.FormattingEnabled = true;
-            this.BoltlistBox1.Location = new System.Drawing.Point(4, 30);
-            this.BoltlistBox1.Name = "BoltlistBox1";
-            this.BoltlistBox1.Size = new System.Drawing.Size(270, 485);
-            this.BoltlistBox1.TabIndex = 0;
-            this.BoltlistBox1.SelectedIndexChanged += new System.EventHandler(this.BoltlistBox1_SelectedIndexChanged);
             // 
             // tabTools
             // 
@@ -4246,6 +4259,37 @@ namespace SSX_Modder
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
             // 
+            // tabMPFModel
+            // 
+            this.tabMPFModel.Controls.Add(this.button3);
+            this.tabMPFModel.Controls.Add(this.button2);
+            this.tabMPFModel.Location = new System.Drawing.Point(4, 22);
+            this.tabMPFModel.Name = "tabMPFModel";
+            this.tabMPFModel.Size = new System.Drawing.Size(1191, 527);
+            this.tabMPFModel.TabIndex = 14;
+            this.tabMPFModel.Text = "MPF Model";
+            this.tabMPFModel.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(39, 461);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 0;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(134, 460);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 1;
+            this.button3.Text = "button3";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -4338,6 +4382,7 @@ namespace SSX_Modder
             this.toolStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            this.tabMPFModel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -4621,7 +4666,6 @@ namespace SSX_Modder
         private System.Windows.Forms.Label label74;
         private System.Windows.Forms.CheckBox SSHAlphaFix;
         private System.Windows.Forms.TabPage tabBolt;
-        private System.Windows.Forms.ListBox BoltlistBox1;
         private System.Windows.Forms.Button boltLoad;
         private System.Windows.Forms.TextBox BoltModelIDFour;
         private System.Windows.Forms.TextBox BoltModelIDTwo;
@@ -4681,5 +4725,10 @@ namespace SSX_Modder
         private System.Windows.Forms.Label label98;
         private System.Windows.Forms.Label label75;
         private System.Windows.Forms.Button SettingsSave;
+        private System.Windows.Forms.TreeView BoltPS2TreeView;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TabPage tabMPFModel;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
     }
 }

@@ -42,7 +42,7 @@ namespace SSX_Modder.FileHandlers
                     temp1.Unlock = stream.ReadByte(); //3
                     temp1.unkownInt2 = stream.ReadByte(); //4
                     temp1.ItemID = StreamUtil.ReadInt16(stream);
-                    temp1.unkownInt4 = StreamUtil.ReadInt16(stream);
+                    temp1.ParentID = StreamUtil.ReadInt16(stream);
 
                     temp1.category = stream.ReadByte(); //9
                     temp1.buyable = stream.ReadByte(); //10
@@ -91,12 +91,12 @@ namespace SSX_Modder.FileHandlers
                     //Read 12 bytes
                     Unkown2 temp2 = new Unkown2();
                     temp2.CharacterID = stream.ReadByte();
-                    temp2.BoolInt = stream.ReadByte();
-                    temp2.UnkownInt = StreamUtil.ReadInt16(stream);
-                    temp2.UnkownInt2 = stream.ReadByte();
+                    temp2.BoolInt = stream.ReadByte(); //Effects what can be equiped with what
+                    temp2.UnkownInt = StreamUtil.ReadInt16(stream); //Effects model loading (Possible Item ID)
+                    temp2.UnkownInt2 = stream.ReadByte(); // No idea
 
                     //All seem to be relyant on the next
-                    temp2.UnkownInt3 = stream.ReadByte();
+                    temp2.UnkownInt3 = stream.ReadByte(); //No idea
                     temp2.UnkownInt4 = StreamUtil.ReadInt16(stream);
                     temp2.UnkownInt5 = stream.ReadByte();
                     temp2.BoolInt2 = stream.ReadByte();
@@ -238,7 +238,7 @@ namespace SSX_Modder.FileHandlers
                     stream.WriteByte((byte)TempEntry.unkownInt2);
 
                     StreamUtil.WriteInt16(stream, TempEntry.ItemID);
-                    StreamUtil.WriteInt16(stream, TempEntry.unkownInt4);
+                    StreamUtil.WriteInt16(stream, TempEntry.ParentID);
 
                     stream.WriteByte((byte)TempEntry.category);
                     stream.WriteByte((byte)TempEntry.buyable);
@@ -359,7 +359,7 @@ namespace SSX_Modder.FileHandlers
         public int Unlock;
         public int unkownInt2;
         public int ItemID;
-        public int unkownInt4; //Effects Equip Postion??
+        public int ParentID; //Effects Equip Postion??
         public int category;
         public int buyable;
         public int menuOrder;

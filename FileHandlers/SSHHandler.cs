@@ -33,15 +33,70 @@ namespace SSX_Modder.FileHandlers
 
                     format = StreamUtil.ReadString(stream, 4);
 
+                    for (int i = 0; i < Ammount; i++)
+                    {
+                        SSHImage tempImage = new SSHImage();
+
+                        tempImage.shortname = StreamUtil.ReadString(stream, 4);
+
+                        tempImage.offset = StreamUtil.ReadInt32(stream);
+
+                        sshImages.Add(tempImage);
+                    }
+
+                    group = StreamUtil.ReadString(stream, 4);
+
+                    endingstring = StreamUtil.ReadString(stream, 4);
+
                     try
                     {
-                        StandardToBitmap(stream, (int)stream.Position);
+                        StandardToBitmap(stream);
                     }
                     catch
                     {
                         sshImages = new List<SSHImage>();
                         MessageBox.Show("Error reading File " + MagicWord + " " + format);
                     }
+                }
+                else if (MagicWord == "ShpS")
+                {
+                    Size = StreamUtil.ReadInt32(stream);
+
+                    Ammount = StreamUtil.ReadInt32Big(stream);
+
+                    stream.Position += 4; //Find Out
+
+                    for (int i = 0; i < Ammount; i++)
+                    {
+                        SSHImage tempImage = new SSHImage();
+
+                        tempImage.offset = StreamUtil.ReadInt32Big(stream);
+
+                        stream.Position += 4; //Size
+
+                        tempImage.shortname = StreamUtil.ReadNullEndString(stream);
+
+                        sshImages.Add(tempImage);
+                    }
+
+                    format = StreamUtil.ReadString(stream,4);
+
+                    stream.Position += 4; //Blank
+
+                    group = StreamUtil.ReadString(stream, 4);
+
+                    endingstring = StreamUtil.ReadString(stream, 4);
+
+                    //try
+                    {
+                        //StandardToBitmap(stream, (int)stream.Position);
+                    }
+                    //catch
+                    {
+                        sshImages = new List<SSHImage>();
+                        MessageBox.Show("Error reading File " + MagicWord + " " + format);
+                    }
+
                 }
                 else
                 {
@@ -52,24 +107,9 @@ namespace SSX_Modder.FileHandlers
             }
         }
 
-        public void StandardToBitmap(Stream stream, int offset)
+        public void StandardToBitmap(Stream stream)
         {
-            stream.Position = offset;
             byte[] tempByte;
-            for (int i = 0; i < Ammount; i++)
-            {
-                SSHImage tempImage = new SSHImage();
-
-                tempImage.shortname = StreamUtil.ReadString(stream, 4);
-
-                tempImage.offset = StreamUtil.ReadInt32(stream);
-
-                sshImages.Add(tempImage);
-            }
-
-            group = StreamUtil.ReadString(stream, 4);
-
-            endingstring = StreamUtil.ReadString(stream, 4);
 
             for (int i = 0; i < sshImages.Count; i++)
             {
@@ -350,10 +390,13 @@ namespace SSX_Modder.FileHandlers
             SSHImage temp = sshImages[i];
             SSHColourTable colourTable = new SSHColourTable();
             colourTable.colorTable = new List<Color>();
-            if(sshImages[i].bitmap.Width== sshImages[i].metalBitmap.Width && sshImages[i].bitmap.Height == sshImages[i].metalBitmap.Height)
+            if (sshImages[i].MetalBin)
             {
-                Bitmap metalBitmap = new Bitmap(sshImages[i].bitmap.Width, sshImages[i].bitmap.Height, PixelFormat.Format32bppArgb);
-                temp.metalBitmap = metalBitmap;
+                if (sshImages[i].bitmap.Width != sshImages[i].metalBitmap.Width && sshImages[i].bitmap.Height != sshImages[i].metalBitmap.Height)
+                {
+                    Bitmap metalBitmap = new Bitmap(sshImages[i].bitmap.Width, sshImages[i].bitmap.Height, PixelFormat.Format32bppArgb);
+                    temp.metalBitmap = metalBitmap;
+                }
             }
             for (int y = 0; y < temp.bitmap.Height; y++)
             {

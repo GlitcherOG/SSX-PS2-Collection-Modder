@@ -1,0 +1,16 @@
+﻿01-04 Int32
+05-06 Int16
+07-08 Int16
+09-12 Int32 (//Start Offset from last read)
+13-28 String
+29-32 Int32
+33-36 Int32
+37-40 Int32
+41-44 Int32
+45-48 Int32
+49-52 Int32
+53-56 Int32
+57-60 Int32
+
+
+All Probably just int32s

@@ -31,11 +31,11 @@ This is a modding tool I came up and started making when I caught COVID as a way
 ### Current Todo
 - SSX On Tour SSH Support (ShpS)
 - Figure out More BoltPS2 Varibles
-- Figure out How to Insert New Item
 - Allow Exporting To CSV Table BOLTPS2
 - Allow Exporting To CSV Table Loc
 - MUS Extractor
 - MPC Extractor
+- Mass Replace Textures for Shirt/Pants and others
 
 ### Todo Later
 - Mod System Loc Txt Insert, Big Insert
@@ -45,6 +45,8 @@ This is a modding tool I came up and started making when I caught COVID as a way
 - Make Better Workflow interface
 - Control Editor Menu
 - Redo Loc and Music INF (Support Other Games)
+- Figure out the Offsets
+- Fix metal Alpha not saving
 
 ### If I ever find the correct code or work it out
 - Refpack Compressor

@@ -23,7 +23,7 @@
 
 //Colour Index Table Header
 
-1- Unkown (entry ID)
+1- entry ID
 3- Size
 2- Ammount (palette width)
 2- Palette height (Always 1)

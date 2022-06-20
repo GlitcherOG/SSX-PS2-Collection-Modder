@@ -259,6 +259,7 @@
   <ItemGroup>
     <Compile Include="FileHandlers\BoltPS2Handler.cs" />
     <Compile Include="FileHandlers\ISOHandler.cs" />
+    <Compile Include="FileHandlers\MPFModelHandler.cs" />
     <Compile Include="FileHandlers\RefpackHandler.cs" />
     <Compile Include="ModSystem\ModApplication.cs" />
     <Compile Include="ModSystem\ModInfo.cs" />
@@ -349,6 +350,7 @@
   <ItemGroup>
     <Content Include="Guides\LUI.txt" />
     <Content Include="Guides\MainELFReader.txt" />
+    <Content Include="Guides\MPF.txt" />
     <Content Include="Guides\ps2Bolt.txt" />
     <Content Include="Guides\SSH.txt" />
     <Content Include="SSX31.ico" />

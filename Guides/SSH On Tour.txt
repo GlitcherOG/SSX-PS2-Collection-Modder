@@ -1,0 +1,17 @@
+0 - Index
+1-3 Unknown
+4-6 Size
+7-8 Width/Height?
+9-11 Unknown
+12-13 Unkown
+14-15 Unkown
+
+16512
+
+21 - Index
+1-3 Unknown
+4-6 Size
+7-8 Width/Height?
+9-11 Unknown
+12-13 Unkown
+14-15 Unkown
