@@ -969,16 +969,17 @@ namespace SSX_Modder.FileHandlers
                 {
                     Color color = sshImages[i].bitmap.GetPixel(x, y);
 
+                    if (sshImages[i].MetalBin)
+                    {
+                        color = Color.FromArgb(sshImages[i].metalBitmap.GetPixel(x, y).R, color.R, color.G, color.B);
+                    }
+
                     if (sshImages[i].AlphaFix)
                     {
                         int A = (color.A + 1) / 2;
                         color = Color.FromArgb(A, color.R, color.G, color.B);
                     }
 
-                    if (sshImages[i].MetalBin)
-                    {
-                        color = Color.FromArgb(sshImages[i].metalBitmap.GetPixel(x, y).R, color.R, color.G, color.B);
-                    }
                     if (colourTable.colorTable.Contains(color))
                     {
                         int index = colourTable.colorTable.IndexOf(color);

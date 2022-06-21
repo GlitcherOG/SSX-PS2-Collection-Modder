@@ -317,6 +317,9 @@ namespace SSX_Modder
             this.BoltUnkownOne = new System.Windows.Forms.NumericUpDown();
             this.BoltModelIDThree = new System.Windows.Forms.TextBox();
             this.boltLoad = new System.Windows.Forms.Button();
+            this.tabMPFModel = new System.Windows.Forms.TabPage();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.tabTools = new System.Windows.Forms.TabPage();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.ToolsRestoreSSXOnTour = new System.Windows.Forms.Button();
@@ -367,9 +370,6 @@ namespace SSX_Modder
             this.toolStripBuildRun = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tabMPFModel = new System.Windows.Forms.TabPage();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabModPacks.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -425,6 +425,7 @@ namespace SSX_Modder
             ((System.ComponentModel.ISupportInitialize)(this.BoltUnkownTwo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BoltUnlock)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BoltUnkownOne)).BeginInit();
+            this.tabMPFModel.SuspendLayout();
             this.tabTools.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -434,7 +435,6 @@ namespace SSX_Modder
             this.tabSettings.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
-            this.tabMPFModel.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -1558,6 +1558,7 @@ namespace SSX_Modder
             this.SSHAlphaFix.TabIndex = 30;
             this.SSHAlphaFix.Text = "Alpha Fix";
             this.SSHAlphaFix.UseVisualStyleBackColor = true;
+            this.SSHAlphaFix.CheckedChanged += new System.EventHandler(this.SSH_TextChanged);
             // 
             // sshHAlpha
             // 
@@ -3730,6 +3731,37 @@ namespace SSX_Modder
             this.boltLoad.UseVisualStyleBackColor = true;
             this.boltLoad.Click += new System.EventHandler(this.BoltLoad_Click);
             // 
+            // tabMPFModel
+            // 
+            this.tabMPFModel.Controls.Add(this.button3);
+            this.tabMPFModel.Controls.Add(this.button2);
+            this.tabMPFModel.Location = new System.Drawing.Point(4, 22);
+            this.tabMPFModel.Name = "tabMPFModel";
+            this.tabMPFModel.Size = new System.Drawing.Size(1191, 527);
+            this.tabMPFModel.TabIndex = 14;
+            this.tabMPFModel.Text = "MPF Model";
+            this.tabMPFModel.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(134, 460);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 1;
+            this.button3.Text = "button3";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(39, 461);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 0;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // tabTools
             // 
             this.tabTools.Controls.Add(this.groupBox7);
@@ -4259,37 +4291,6 @@ namespace SSX_Modder
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
             // 
-            // tabMPFModel
-            // 
-            this.tabMPFModel.Controls.Add(this.button3);
-            this.tabMPFModel.Controls.Add(this.button2);
-            this.tabMPFModel.Location = new System.Drawing.Point(4, 22);
-            this.tabMPFModel.Name = "tabMPFModel";
-            this.tabMPFModel.Size = new System.Drawing.Size(1191, 527);
-            this.tabMPFModel.TabIndex = 14;
-            this.tabMPFModel.Text = "MPF Model";
-            this.tabMPFModel.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(39, 461);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 0;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(134, 460);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 1;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -4370,6 +4371,7 @@ namespace SSX_Modder
             ((System.ComponentModel.ISupportInitialize)(this.BoltUnkownTwo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BoltUnlock)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BoltUnkownOne)).EndInit();
+            this.tabMPFModel.ResumeLayout(false);
             this.tabTools.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
@@ -4382,7 +4384,6 @@ namespace SSX_Modder
             this.toolStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            this.tabMPFModel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
