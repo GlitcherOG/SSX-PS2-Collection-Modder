@@ -36,6 +36,7 @@ This is a modding tool I came up and started making when I caught COVID as a way
 - MUS Extractor
 - MPC Extractor
 - Mass Replace Textures for Shirt/Pants and others
+- BoltPS2 Make Override to add non parented items to list if goes over 10 tries
 
 ### Todo Later
 - Mod System Loc Txt Insert, Big Insert

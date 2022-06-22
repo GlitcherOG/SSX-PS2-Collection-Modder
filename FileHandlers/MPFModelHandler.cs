@@ -39,7 +39,7 @@ namespace SSX_Modder.FileHandlers
                     modelHeader.ModelName = StreamUtil.ReadString(stream, 16).Replace("\0", "");
                     modelHeader.Offset = StreamUtil.ReadInt32(stream);
                     modelHeader.EntrySize = StreamUtil.ReadInt32(stream);
-                    modelHeader.HeaderEnd = StreamUtil.ReadInt32(stream);
+                    modelHeader.Name = StreamUtil.ReadInt32(stream);
                     modelHeader.U7 = StreamUtil.ReadInt32(stream);
                     modelHeader.U8 = StreamUtil.ReadInt32(stream);
                     modelHeader.U9 = StreamUtil.ReadInt32(stream);
@@ -103,7 +103,7 @@ namespace SSX_Modder.FileHandlers
                 StreamUtil.WriteInt32(stream, 0);
 
                 StreamUtil.WriteInt32(stream, ModelList[i].EntrySize);
-                StreamUtil.WriteInt32(stream, ModelList[i].HeaderEnd);
+                StreamUtil.WriteInt32(stream, ModelList[i].Name);
                 StreamUtil.WriteInt32(stream, ModelList[i].U7); //Vertex Points? Start
                 StreamUtil.WriteInt32(stream, ModelList[i].U8); //Vertex Connect?
                 StreamUtil.WriteInt32(stream, ModelList[i].U9);
@@ -157,7 +157,7 @@ namespace SSX_Modder.FileHandlers
             public string ModelName;
             public int Offset;
             public int EntrySize;
-            public int HeaderEnd; //Offset Start Of something
+            public int Name; //Offset Start Of something
             public int U7; //Offset Start Of something
             public int U8; //Offset Start Of something
             public int U9; //Offset Start Of something
