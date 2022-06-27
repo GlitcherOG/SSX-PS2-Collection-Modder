@@ -1,0 +1,9 @@
+﻿1-Type
+3-Size
+2-Width
+2-Height
+6-Unkown
+2-Downsacle Tag
+4-Image Start From Start Of Entry
+108-Padding
+

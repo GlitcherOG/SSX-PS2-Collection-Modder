@@ -370,6 +370,9 @@ namespace SSX_Modder
             this.toolStripBuildRun = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tabSSB = new System.Windows.Forms.TabPage();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabModPacks.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -435,6 +438,7 @@ namespace SSX_Modder
             this.tabSettings.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            this.tabSSB.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -452,6 +456,7 @@ namespace SSX_Modder
             this.tabControl1.Controls.Add(this.tabMPFModel);
             this.tabControl1.Controls.Add(this.tabTools);
             this.tabControl1.Controls.Add(this.tabSettings);
+            this.tabControl1.Controls.Add(this.tabSSB);
             this.tabControl1.Location = new System.Drawing.Point(14, 29);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -4291,6 +4296,37 @@ namespace SSX_Modder
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
             // 
+            // tabSSB
+            // 
+            this.tabSSB.Controls.Add(this.button5);
+            this.tabSSB.Controls.Add(this.button4);
+            this.tabSSB.Location = new System.Drawing.Point(4, 22);
+            this.tabSSB.Name = "tabSSB";
+            this.tabSSB.Size = new System.Drawing.Size(1191, 527);
+            this.tabSSB.TabIndex = 15;
+            this.tabSSB.Text = "SSB";
+            this.tabSSB.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(37, 497);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 0;
+            this.button4.Text = "button4";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(119, 497);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.TabIndex = 1;
+            this.button5.Text = "button5";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -4384,6 +4420,7 @@ namespace SSX_Modder
             this.toolStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            this.tabSSB.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -4731,5 +4768,8 @@ namespace SSX_Modder
         private System.Windows.Forms.TabPage tabMPFModel;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.TabPage tabSSB;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button4;
     }
 }

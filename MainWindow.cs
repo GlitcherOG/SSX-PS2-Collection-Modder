@@ -1520,7 +1520,7 @@ namespace SSX_Modder
             SaveFileDialog openFileDialog = new SaveFileDialog
             {
                 InitialDirectory = workspacePath,
-                Filter = "SSX Mod File (*.ssx)|*.ssx|All files (*.*)|*.*",
+                Filter = "SSX Mod File (*.zip)|*.zip|All files (*.*)|*.*",
                 FilterIndex = 1,
                 RestoreDirectory = false
             };
@@ -1687,7 +1687,7 @@ namespace SSX_Modder
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
                 InitialDirectory = workspacePath,
-                Filter = "SSX Mod File (*.ssx)|*.ssx|All files (*.*)|*.*",
+                Filter = "SSX Mod File (*.zip)|*.zip|All files (*.*)|*.*",
                 FilterIndex = 1,
                 RestoreDirectory = false
             };
@@ -2016,6 +2016,7 @@ namespace SSX_Modder
 
         #endregion
 
+        #region Model Handler
         MPFModelHandler modelHandler = new MPFModelHandler();
         private void button2_Click(object sender, EventArgs e)
         {
@@ -2045,6 +2046,38 @@ namespace SSX_Modder
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 modelHandler.Save(openFileDialog.FileName);
+            }
+        }
+        #endregion
+
+        SSBHandler ssbHandler = new SSBHandler();
+        private void button4_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                InitialDirectory = workspacePath,
+                Filter = "SSB File (*.ssb)|*.ssb|All files (*.*)|*.*",
+                FilterIndex = 1,
+                RestoreDirectory = false
+            };
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                ssbHandler.load(openFileDialog.FileName);
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog openFileDialog = new SaveFileDialog
+            {
+                InitialDirectory = workspacePath,
+                Filter = "SSB File (*.ssb)|*.ssb|All files (*.*)|*.*",
+                FilterIndex = 1,
+                RestoreDirectory = false
+            };
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                ssbHandler.Save(openFileDialog.FileName);
             }
         }
     }

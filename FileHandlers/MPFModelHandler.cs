@@ -22,7 +22,8 @@ namespace SSX_Modder.FileHandlers
                     MPFModelHeader modelHeader = new MPFModelHeader();
 
                     modelHeader.U1 = StreamUtil.ReadInt32(stream);
-                    modelHeader.U2 = StreamUtil.ReadInt32(stream); //File Uncompressed
+                    modelHeader.SubHeaders = StreamUtil.ReadInt16(stream);
+                    modelHeader.HeaderSize = StreamUtil.ReadInt16(stream);
                     modelHeader.FileStart = StreamUtil.ReadInt32(stream);
 
                     int Test = StreamUtil.ReadInt32(stream);
@@ -37,9 +38,9 @@ namespace SSX_Modder.FileHandlers
                     }
 
                     modelHeader.ModelName = StreamUtil.ReadString(stream, 16).Replace("\0", "");
-                    modelHeader.Offset = StreamUtil.ReadInt32(stream);
+                    modelHeader.DataOffset = StreamUtil.ReadInt32(stream);
                     modelHeader.EntrySize = StreamUtil.ReadInt32(stream);
-                    modelHeader.Name = StreamUtil.ReadInt32(stream);
+                    modelHeader.NameOffset = StreamUtil.ReadInt32(stream);
                     modelHeader.U7 = StreamUtil.ReadInt32(stream);
                     modelHeader.U8 = StreamUtil.ReadInt32(stream);
                     modelHeader.U9 = StreamUtil.ReadInt32(stream);
@@ -50,10 +51,15 @@ namespace SSX_Modder.FileHandlers
                     modelHeader.U14 = StreamUtil.ReadInt32(stream);
                     modelHeader.U15 = StreamUtil.ReadInt32(stream);
                     modelHeader.U16 = StreamUtil.ReadInt32(stream);
-                    modelHeader.U17 = StreamUtil.ReadInt32(stream);
-                    modelHeader.U18 = StreamUtil.ReadInt32(stream);
-                    modelHeader.U19 = StreamUtil.ReadInt32(stream);
-                    modelHeader.U20 = StreamUtil.ReadInt32(stream);
+
+                    modelHeader.U17 = StreamUtil.ReadInt16(stream);
+                    modelHeader.U18 = StreamUtil.ReadInt16(stream);
+                    modelHeader.U19 = StreamUtil.ReadInt16(stream);
+                    modelHeader.U20 = StreamUtil.ReadInt16(stream);
+                    modelHeader.BodyObjectsCount = StreamUtil.ReadInt16(stream);
+                    modelHeader.U22 = StreamUtil.ReadInt16(stream);
+                    modelHeader.U23 = StreamUtil.ReadInt16(stream);
+                    modelHeader.U24 = StreamUtil.ReadInt16(stream);
                     ModelList.Add(modelHeader);
                 }
 
@@ -61,15 +67,15 @@ namespace SSX_Modder.FileHandlers
                 int StartPos = ModelList[0].FileStart;
                 for (int i = 0; i < ModelList.Count-1; i++)
                 {
-                    stream.Position = StartPos + ModelList[i].Offset;
+                    stream.Position = StartPos + ModelList[i].DataOffset;
                     int EndPos = 0;
                     if(i == ModelList.Count - 2)
                     {
-                        EndPos = ((int)stream.Length - StartPos) - ModelList[i].Offset;
+                        EndPos = ((int)stream.Length - StartPos) - ModelList[i].DataOffset;
                     }
                     else
                     {
-                        EndPos = ModelList[i + 1].Offset - ModelList[i].Offset;
+                        EndPos = ModelList[i + 1].DataOffset - ModelList[i].DataOffset;
                     }
 
                     MPFModelHeader modelHandler = ModelList[i];
@@ -85,10 +91,11 @@ namespace SSX_Modder.FileHandlers
         {
             Stream stream = new MemoryStream();
             List<long> StreamPos = new List<long>();
-            for (int i = 0; i < ModelList.Count; i++)
+            for (int i = 0; i < 1; i++)
             {
                 StreamUtil.WriteInt32(stream, ModelList[i].U1);
-                StreamUtil.WriteInt32(stream, ModelList[i].U2);
+                StreamUtil.WriteInt32(stream, ModelList[i].SubHeaders);
+                StreamUtil.WriteInt32(stream, ModelList[i].HeaderSize);
                 StreamUtil.WriteInt32(stream, 0);
 
                 if (ModelList[i].ModelName == null)
@@ -103,9 +110,9 @@ namespace SSX_Modder.FileHandlers
                 StreamUtil.WriteInt32(stream, 0);
 
                 StreamUtil.WriteInt32(stream, ModelList[i].EntrySize);
-                StreamUtil.WriteInt32(stream, ModelList[i].Name);
-                StreamUtil.WriteInt32(stream, ModelList[i].U7); //Vertex Points? Start
-                StreamUtil.WriteInt32(stream, ModelList[i].U8); //Vertex Connect?
+                StreamUtil.WriteInt32(stream, ModelList[i].NameOffset);
+                StreamUtil.WriteInt32(stream, ModelList[i].U7);
+                StreamUtil.WriteInt32(stream, ModelList[i].U8);
                 StreamUtil.WriteInt32(stream, ModelList[i].U9);
                 StreamUtil.WriteInt32(stream, ModelList[i].U10);
                 StreamUtil.WriteInt32(stream, ModelList[i].U11);
@@ -114,10 +121,15 @@ namespace SSX_Modder.FileHandlers
                 StreamUtil.WriteInt32(stream, ModelList[i].U14);
                 StreamUtil.WriteInt32(stream, ModelList[i].U15);
                 StreamUtil.WriteInt32(stream, ModelList[i].U16);
-                StreamUtil.WriteInt32(stream, ModelList[i].U17);
-                StreamUtil.WriteInt32(stream, ModelList[i].U18);
-                StreamUtil.WriteInt32(stream, ModelList[i].U19);
-                StreamUtil.WriteInt32(stream, ModelList[i].U20);
+
+                StreamUtil.WriteInt16(stream, ModelList[i].U17);
+                StreamUtil.WriteInt16(stream, ModelList[i].U18);
+                StreamUtil.WriteInt16(stream, ModelList[i].U19);
+                StreamUtil.WriteInt16(stream, ModelList[i].U20);
+                StreamUtil.WriteInt16(stream, ModelList[i].BodyObjectsCount);
+                StreamUtil.WriteInt16(stream, ModelList[i].U22);
+                StreamUtil.WriteInt16(stream, ModelList[i].U23);
+                StreamUtil.WriteInt16(stream, ModelList[i].U24);
             }
 
             stream.Position = 8;
@@ -125,7 +137,7 @@ namespace SSX_Modder.FileHandlers
             StreamUtil.WriteInt32(stream, FileStart);
             stream.Position = stream.Length;
 
-            for (int i = 0; i < ModelList.Count-1; i++)
+            for (int i = 0; i < 1; i++)
             {
                 //Save current pos go back and set start pos
                 long CurPos = stream.Position - FileStart;
@@ -151,29 +163,64 @@ namespace SSX_Modder.FileHandlers
 
         public struct MPFModelHeader
         {
+            //GlobalHeader
             public int U1;
-            public int U2; //Possibly 2 16ints
+            public int SubHeaders;
+            public int HeaderSize;
             public int FileStart;
+            //Main Header
             public string ModelName;
-            public int Offset;
+            public int DataOffset;
             public int EntrySize;
-            public int Name; //Offset Start Of something
-            public int U7; //Offset Start Of something
-            public int U8; //Offset Start Of something
-            public int U9; //Offset Start Of something
+            public int NameOffset; //Offset Start Of something (Rotation Info?)
+            public int U7; //Offset Start Of something (After Roation Info?)
+            public int U8; //Offset Start Of something (Right After U7)
+            public int U9; //Offset Start Of something 
             public int U10; //Blank Guessing Also Offset Start
-            public int U11; //?
-            public int U12; 
+            public int U11; //Same as U7 (After Rotation Rotation Info)
+            public int U12; //After U7 (After Roation Info)
             public int U13;
             public int U14;
             public int U15;
             public int U16;
-            public int U17; //Rest of File might be int 16
-            public int U18;
-            public int U19; //Subobjects?
-            public int U20;
+
+            //Counts
+            public int U17; //Faces Count? (Right After U7)
+            public int U18; //!8-20 might be counts related to the bottom
+            public int U19;
+            public int U20; //Rotation Info Objects?
+            public int BodyObjectsCount; //BodyObjects?
+            public int U22;
+            public int U23;
+            public int U24; //VertexCount?
 
             public byte[] Matrix;
+
+            public List<BodyObjects> bodyObjectsList;
+            public List<MPFUnkownArray1> U7UnkownArray1; //Uses U17 As Count
+            public List<MPFUnkownArray1> U12UnkownArray2;
+            //
+        }
+
+        public struct BodyObjects
+        {
+            public string Name;
+            public string Unknown;
+            public string Unknown2;
+            public string Unknown3;
+            public string Unknown4;
+            public float Float1;
+            public float Float2;
+            public float Float3;
+        }
+
+        public struct MPFUnkownArray1
+        {
+            //Header
+            public int Count;
+            public int StartOffset; 
+            public int EndOffset; //Sometimes Used Sometimes Not
+            public List<int> IntList;
         }
     }
 }

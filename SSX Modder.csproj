@@ -261,6 +261,7 @@
     <Compile Include="FileHandlers\ISOHandler.cs" />
     <Compile Include="FileHandlers\MPFModelHandler.cs" />
     <Compile Include="FileHandlers\RefpackHandler.cs" />
+    <Compile Include="FileHandlers\SSBHandler.cs" />
     <Compile Include="ModSystem\ModApplication.cs" />
     <Compile Include="ModSystem\ModInfo.cs" />
     <Compile Include="ModSystem\ModMakerHandler.cs" />
@@ -353,6 +354,7 @@
     <Content Include="Guides\MPF.txt" />
     <Content Include="Guides\ps2Bolt.txt" />
     <Content Include="Guides\SSH.txt" />
+    <Content Include="Guides\SSB.txt" />
     <Content Include="SSX31.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
