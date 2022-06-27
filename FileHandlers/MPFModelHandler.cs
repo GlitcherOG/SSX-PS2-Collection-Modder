@@ -136,6 +136,52 @@ namespace SSX_Modder.FileHandlers
                     TempArrayListU12.Add(TempArray);
                 }
                 Model.U12UnkownArray2 = TempArrayListU12;
+
+
+
+
+                //Just a translation of whats going on in someone elses program
+
+                //Read StripCounter
+                byte[] tempByte = new byte[] { 0x00, 0x00, 0x10, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x01, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, };
+                streamMatrix.Position = ByteUtil.FindPosition(streamMatrix, tempByte, 0);
+                streamMatrix.Position += 47;
+                int StripCount = StreamUtil.ReadInt32(streamMatrix);
+                streamMatrix.Position += 12;
+
+                List<int> stripCounts = new List<int>();
+                for (int a = 0; a < StripCount; a++)
+                {
+                    stripCounts.Add(StreamUtil.ReadInt32(streamMatrix));
+                    streamMatrix.Position += 12;
+                }
+                // Incrament the stripcount
+                List<int> stripCounts2 = new List<int>();
+                stripCounts2.Add(0);
+                foreach (var item in stripCounts)
+                {
+                    stripCounts2.Add(stripCounts2[stripCounts2.Count-1] + item);
+                }
+
+                Model.StripCounts = stripCounts2;
+
+                //Read Vertexes
+                tempByte = new byte[] { 0x80, 0x3F, 0x00, 0x00, 0x00, 0x20, 0x40, 0x40, 0x40, 0x40, };
+                streamMatrix.Position = ByteUtil.FindPosition(streamMatrix, tempByte, 0);
+                streamMatrix.Position += 24;
+                int VertexCount = StreamUtil.ReadByte(streamMatrix);
+                streamMatrix.Position++;
+                List<Vertex3> vertices = new List<Vertex3>();
+                for (int a = 0; a < VertexCount; a++)
+                {
+                    Vertex3 vertex = new Vertex3();
+                    vertex.X = StreamUtil.ReadFloat(streamMatrix);
+                    vertex.Y = StreamUtil.ReadFloat(streamMatrix);
+                    vertex.Z = StreamUtil.ReadFloat(streamMatrix);
+                    vertices.Add(vertex);
+                }
+                Model.vertices = vertices;
+
                 streamMatrix.Dispose();
                 streamMatrix.Close();
             }
@@ -253,7 +299,18 @@ namespace SSX_Modder.FileHandlers
             public List<BodyObjects> bodyObjectsList;
             public List<MPFUnkownArray1> U7UnkownArray1; //Uses U17 As Count
             public List<MPFUnkownArray1> U12UnkownArray2;
+
+
+            public List<Vertex3> vertices;
+            public List<int> StripCounts;
             //
+        }
+
+        public struct Vertex3
+        {
+            public float X;
+            public float Y;
+            public float Z;
         }
 
         public struct BodyObjects

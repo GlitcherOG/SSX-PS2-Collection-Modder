@@ -361,6 +361,9 @@ namespace SSX_Modder
             this.Settings7ZipPath = new System.Windows.Forms.Label();
             this.label46 = new System.Windows.Forms.Label();
             this.label41 = new System.Windows.Forms.Label();
+            this.tabSSB = new System.Windows.Forms.TabPage();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripExtract = new System.Windows.Forms.ToolStripButton();
             this.toolStripBuild = new System.Windows.Forms.ToolStripButton();
@@ -370,9 +373,7 @@ namespace SSX_Modder
             this.toolStripBuildRun = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tabSSB = new System.Windows.Forms.TabPage();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabModPacks.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -436,9 +437,9 @@ namespace SSX_Modder
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NumToolsColour)).BeginInit();
             this.tabSettings.SuspendLayout();
+            this.tabSSB.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
-            this.tabSSB.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -3738,6 +3739,7 @@ namespace SSX_Modder
             // 
             // tabMPFModel
             // 
+            this.tabMPFModel.Controls.Add(this.button6);
             this.tabMPFModel.Controls.Add(this.button3);
             this.tabMPFModel.Controls.Add(this.button2);
             this.tabMPFModel.Location = new System.Drawing.Point(4, 22);
@@ -3749,21 +3751,21 @@ namespace SSX_Modder
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(134, 460);
+            this.button3.Location = new System.Drawing.Point(84, 501);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.Size = new System.Drawing.Size(116, 23);
             this.button3.TabIndex = 1;
-            this.button3.Text = "button3";
+            this.button3.Text = "Save Decompressed";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(39, 461);
+            this.button2.Location = new System.Drawing.Point(3, 501);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 0;
-            this.button2.Text = "button2";
+            this.button2.Text = "Load";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -4203,6 +4205,37 @@ namespace SSX_Modder
             this.label41.TabIndex = 0;
             this.label41.Text = "7-Zip Path";
             // 
+            // tabSSB
+            // 
+            this.tabSSB.Controls.Add(this.button5);
+            this.tabSSB.Controls.Add(this.button4);
+            this.tabSSB.Location = new System.Drawing.Point(4, 22);
+            this.tabSSB.Name = "tabSSB";
+            this.tabSSB.Size = new System.Drawing.Size(1191, 527);
+            this.tabSSB.TabIndex = 15;
+            this.tabSSB.Text = "SSB";
+            this.tabSSB.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(119, 497);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.TabIndex = 1;
+            this.button5.Text = "button5";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(37, 497);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 0;
+            this.button4.Text = "button4";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -4296,36 +4329,14 @@ namespace SSX_Modder
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
             // 
-            // tabSSB
+            // button6
             // 
-            this.tabSSB.Controls.Add(this.button5);
-            this.tabSSB.Controls.Add(this.button4);
-            this.tabSSB.Location = new System.Drawing.Point(4, 22);
-            this.tabSSB.Name = "tabSSB";
-            this.tabSSB.Size = new System.Drawing.Size(1191, 527);
-            this.tabSSB.TabIndex = 15;
-            this.tabSSB.Text = "SSB";
-            this.tabSSB.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(37, 497);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 0;
-            this.button4.Text = "button4";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(119, 497);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 1;
-            this.button5.Text = "button5";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.button6.Location = new System.Drawing.Point(1072, 501);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(116, 23);
+            this.button6.TabIndex = 2;
+            this.button6.Text = "Export Models";
+            this.button6.UseVisualStyleBackColor = true;
             // 
             // MainWindow
             // 
@@ -4416,11 +4427,11 @@ namespace SSX_Modder
             ((System.ComponentModel.ISupportInitialize)(this.NumToolsColour)).EndInit();
             this.tabSettings.ResumeLayout(false);
             this.tabSettings.PerformLayout();
+            this.tabSSB.ResumeLayout(false);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            this.tabSSB.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -4771,5 +4782,6 @@ namespace SSX_Modder
         private System.Windows.Forms.TabPage tabSSB;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button6;
     }
 }

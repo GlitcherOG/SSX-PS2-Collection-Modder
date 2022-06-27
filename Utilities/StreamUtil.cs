@@ -46,6 +46,12 @@ namespace SSX_Modder.Utilities
             return tempByte;
         }
 
+        public static byte ReadByte(Stream stream)
+        {
+            byte tempByte = (byte)stream.ReadByte();
+            return tempByte;
+        }
+
         public static int ReadInt12(Stream stream)
         {
             byte[] tempByte = new byte[2];
@@ -104,6 +110,13 @@ namespace SSX_Modder.Utilities
             if (BitConverter.IsLittleEndian)
                 Array.Reverse(tempByte);
             return BitConverter.ToInt32(tempByte, 0);
+        }
+
+        public static int ReadFloat(Stream stream)
+        {
+            byte[] tempByte = new byte[4];
+            stream.Read(tempByte, 0, tempByte.Length);
+            return (int)BitConverter.ToSingle(tempByte, 0);
         }
 
         public static Color ReadColour(Stream stream)
