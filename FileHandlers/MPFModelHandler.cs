@@ -63,13 +63,13 @@ namespace SSX_Modder.FileHandlers
                     ModelList.Add(modelHeader);
                 }
 
-                //Read Matrix
+                //Read Matrix And Decompress
                 int StartPos = ModelList[0].FileStart;
-                for (int i = 0; i < ModelList.Count-1; i++)
+                for (int i = 0; i < ModelList.Count - 1; i++)
                 {
                     stream.Position = StartPos + ModelList[i].DataOffset;
                     int EndPos = 0;
-                    if(i == ModelList.Count - 2)
+                    if (i == ModelList.Count - 2)
                     {
                         EndPos = ((int)stream.Length - StartPos) - ModelList[i].DataOffset;
                     }
@@ -84,59 +84,60 @@ namespace SSX_Modder.FileHandlers
                     modelHandler.Matrix = refpackHandler.Decompress(modelHandler.Matrix);
                     ModelList[i] = modelHandler;
                 }
+            }
 
-                for (int i = 0; i < ModelList.Count-1; i++)
+            //Read Matrix Data
+            for (int i = 0; i < ModelList.Count - 1; i++)
+            {
+                Stream streamMatrix = new MemoryStream();
+                var Model = ModelList[i];
+                streamMatrix.Write(ModelList[i].Matrix, 0, ModelList[i].Matrix.Length);
+
+                //U7 IDK
+                streamMatrix.Position = Model.U7;
+                List<MPFUnkownArray1> TempArrayListU7 = new List<MPFUnkownArray1>();
+                for (int a = 0; a < Model.U17; a++)
                 {
-                    Stream streamMatrix = new MemoryStream();
-                    var Model = ModelList[i];
-                    streamMatrix.Write(ModelList[i].Matrix, 0, ModelList[i].Matrix.Length);
+                    MPFUnkownArray1 TempArray = new MPFUnkownArray1();
+                    TempArray.Count = StreamUtil.ReadInt32(streamMatrix);
+                    TempArray.StartOffset = StreamUtil.ReadInt32(streamMatrix);
+                    TempArray.EndOffset = StreamUtil.ReadInt32(streamMatrix);
+                    long Position = streamMatrix.Position;
 
-                    //U7 IDK
-                    streamMatrix.Position = Model.U7;
-                    List<MPFUnkownArray1> TempArrayListU7 = new List<MPFUnkownArray1>();
-                    for (int a = 0; a < Model.U17; a++)
+                    //Read Ints
+                    TempArray.IntList = new List<int>();
+                    streamMatrix.Position = TempArray.StartOffset;
+                    for (int b = 0; b < TempArray.Count; b++)
                     {
-                        MPFUnkownArray1 TempArray = new MPFUnkownArray1();
-                        TempArray.Count = StreamUtil.ReadInt32(streamMatrix);
-                        TempArray.StartOffset = StreamUtil.ReadInt32(streamMatrix);
-                        TempArray.EndOffset = StreamUtil.ReadInt32(streamMatrix);
-                        long Position = streamMatrix.Position;
-
-                        //Read Ints
-                        TempArray.IntList = new List<int>();
-                        streamMatrix.Position = TempArray.StartOffset;
-                        for (int b = 0; b < TempArray.Count; b++)
-                        {
-                            TempArray.IntList.Add(StreamUtil.ReadInt32(streamMatrix));
-                        }
-                        streamMatrix.Position = Position;
-                        TempArrayListU7.Add(TempArray);
+                        TempArray.IntList.Add(StreamUtil.ReadInt32(streamMatrix));
                     }
-                    Model.U7UnkownArray1 = TempArrayListU7;
-
-                    //U12
-                    streamMatrix.Position = Model.U12;
-                    List<MPFUnkownArray1> TempArrayListU12 = new List<MPFUnkownArray1>();
-                    for (int a = 0; a < 3; a++)
-                    {
-                        MPFUnkownArray1 TempArray = new MPFUnkownArray1();
-                        TempArray.Count = StreamUtil.ReadInt32(streamMatrix);
-                        TempArray.StartOffset = StreamUtil.ReadInt32(streamMatrix);
-                        long Position = streamMatrix.Position;
-
-                        TempArray.IntList = new List<int>();
-                        streamMatrix.Position = TempArray.StartOffset;
-                        for (int b = 0; b < TempArray.Count; b++)
-                        {
-                            TempArray.IntList.Add(StreamUtil.ReadInt32(streamMatrix));
-                        }
-                        streamMatrix.Position = Position;
-                        TempArrayListU12.Add(TempArray);
-                    }
-                    Model.U12UnkownArray2 = TempArrayListU12;
-                    streamMatrix.Dispose();
-                    streamMatrix.Close();
+                    streamMatrix.Position = Position;
+                    TempArrayListU7.Add(TempArray);
                 }
+                Model.U7UnkownArray1 = TempArrayListU7;
+
+                //U12
+                streamMatrix.Position = Model.U12;
+                List<MPFUnkownArray1> TempArrayListU12 = new List<MPFUnkownArray1>();
+                for (int a = 0; a < 3; a++)
+                {
+                    MPFUnkownArray1 TempArray = new MPFUnkownArray1();
+                    TempArray.Count = StreamUtil.ReadInt32(streamMatrix);
+                    TempArray.StartOffset = StreamUtil.ReadInt32(streamMatrix);
+                    long Position = streamMatrix.Position;
+
+                    TempArray.IntList = new List<int>();
+                    streamMatrix.Position = TempArray.StartOffset;
+                    for (int b = 0; b < TempArray.Count; b++)
+                    {
+                        TempArray.IntList.Add(StreamUtil.ReadInt32(streamMatrix));
+                    }
+                    streamMatrix.Position = Position;
+                    TempArrayListU12.Add(TempArray);
+                }
+                Model.U12UnkownArray2 = TempArrayListU12;
+                streamMatrix.Dispose();
+                streamMatrix.Close();
             }
         }
 
