@@ -84,6 +84,59 @@ namespace SSX_Modder.FileHandlers
                     modelHandler.Matrix = refpackHandler.Decompress(modelHandler.Matrix);
                     ModelList[i] = modelHandler;
                 }
+
+                for (int i = 0; i < ModelList.Count-1; i++)
+                {
+                    Stream streamMatrix = new MemoryStream();
+                    var Model = ModelList[i];
+                    streamMatrix.Write(ModelList[i].Matrix, 0, ModelList[i].Matrix.Length);
+
+                    //U7 IDK
+                    streamMatrix.Position = Model.U7;
+                    List<MPFUnkownArray1> TempArrayListU7 = new List<MPFUnkownArray1>();
+                    for (int a = 0; a < Model.U17; a++)
+                    {
+                        MPFUnkownArray1 TempArray = new MPFUnkownArray1();
+                        TempArray.Count = StreamUtil.ReadInt32(streamMatrix);
+                        TempArray.StartOffset = StreamUtil.ReadInt32(streamMatrix);
+                        TempArray.EndOffset = StreamUtil.ReadInt32(streamMatrix);
+                        long Position = streamMatrix.Position;
+
+                        //Read Ints
+                        TempArray.IntList = new List<int>();
+                        streamMatrix.Position = TempArray.StartOffset;
+                        for (int b = 0; b < TempArray.Count; b++)
+                        {
+                            TempArray.IntList.Add(StreamUtil.ReadInt32(streamMatrix));
+                        }
+                        streamMatrix.Position = Position;
+                        TempArrayListU7.Add(TempArray);
+                    }
+                    Model.U7UnkownArray1 = TempArrayListU7;
+
+                    //U12
+                    streamMatrix.Position = Model.U12;
+                    List<MPFUnkownArray1> TempArrayListU12 = new List<MPFUnkownArray1>();
+                    for (int a = 0; a < 3; a++)
+                    {
+                        MPFUnkownArray1 TempArray = new MPFUnkownArray1();
+                        TempArray.Count = StreamUtil.ReadInt32(streamMatrix);
+                        TempArray.StartOffset = StreamUtil.ReadInt32(streamMatrix);
+                        long Position = streamMatrix.Position;
+
+                        TempArray.IntList = new List<int>();
+                        streamMatrix.Position = TempArray.StartOffset;
+                        for (int b = 0; b < TempArray.Count; b++)
+                        {
+                            TempArray.IntList.Add(StreamUtil.ReadInt32(streamMatrix));
+                        }
+                        streamMatrix.Position = Position;
+                        TempArrayListU12.Add(TempArray);
+                    }
+                    Model.U12UnkownArray2 = TempArrayListU12;
+                    streamMatrix.Dispose();
+                    streamMatrix.Close();
+                }
             }
         }
 
@@ -185,7 +238,7 @@ namespace SSX_Modder.FileHandlers
             public int U16;
 
             //Counts
-            public int U17; //Faces Count? (Right After U7)
+            public int U17; //Faces Count? (U7)
             public int U18; //!8-20 might be counts related to the bottom
             public int U19;
             public int U20; //Rotation Info Objects?
