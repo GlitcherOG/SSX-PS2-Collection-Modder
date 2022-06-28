@@ -318,6 +318,7 @@ namespace SSX_Modder
             this.BoltModelIDThree = new System.Windows.Forms.TextBox();
             this.boltLoad = new System.Windows.Forms.Button();
             this.tabMPFModel = new System.Windows.Forms.TabPage();
+            this.button6 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.tabTools = new System.Windows.Forms.TabPage();
@@ -373,7 +374,6 @@ namespace SSX_Modder
             this.toolStripBuildRun = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.button6 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabModPacks.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -3749,6 +3749,16 @@ namespace SSX_Modder
             this.tabMPFModel.Text = "MPF Model";
             this.tabMPFModel.UseVisualStyleBackColor = true;
             // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(1072, 501);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(116, 23);
+            this.button6.TabIndex = 2;
+            this.button6.Text = "Export Models";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(84, 501);
@@ -4328,15 +4338,6 @@ namespace SSX_Modder
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(1072, 501);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(116, 23);
-            this.button6.TabIndex = 2;
-            this.button6.Text = "Export Models";
-            this.button6.UseVisualStyleBackColor = true;
             // 
             // MainWindow
             // 

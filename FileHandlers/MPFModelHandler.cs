@@ -149,21 +149,21 @@ namespace SSX_Modder.FileHandlers
                 int StripCount = StreamUtil.ReadInt32(streamMatrix);
                 streamMatrix.Position += 12;
 
-                List<int> stripCounts = new List<int>();
+                List<int> TempStrips = new List<int>();
                 for (int a = 0; a < StripCount; a++)
                 {
-                    stripCounts.Add(StreamUtil.ReadInt32(streamMatrix));
+                    TempStrips.Add(StreamUtil.ReadInt32(streamMatrix));
                     streamMatrix.Position += 12;
                 }
                 // Incrament the stripcount
                 List<int> stripCounts2 = new List<int>();
                 stripCounts2.Add(0);
-                foreach (var item in stripCounts)
+                foreach (var item in TempStrips)
                 {
                     stripCounts2.Add(stripCounts2[stripCounts2.Count-1] + item);
                 }
 
-                Model.StripCounts = stripCounts2;
+                Model.Strips = stripCounts2;
 
                 //Read Vertexes
                 tempByte = new byte[] { 0x80, 0x3F, 0x00, 0x00, 0x00, 0x20, 0x40, 0x40, 0x40, 0x40, };
@@ -182,9 +182,51 @@ namespace SSX_Modder.FileHandlers
                 }
                 Model.vertices = vertices;
 
+                Model.faces = new List<Face>();
+                int localIndex = 0;
+                //Make Faces
+                for (int a = 0; a < Model.vertices.Count; a++)
+                {
+                    if (InsideSplits(a, Model.Strips))
+                    {
+                        localIndex = 1;
+                        continue;
+                    }
+                    if(localIndex<2)
+                    {
+                        localIndex++;
+                        continue;
+                    }
+
+                    Model.faces.Add(CreateFaces(a));
+                    localIndex++;
+                }
+                ModelList[i] = Model;
+
                 streamMatrix.Dispose();
                 streamMatrix.Close();
             }
+        }
+
+        public bool InsideSplits(int Number, List<int> splits)
+        {
+            foreach (var item in splits)
+            {
+                if(item==Number)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public Face CreateFaces(int Index)
+        {
+            Face face = new Face();
+            face.V1 = Index;
+            face.V2 = Index - 1;
+            face.V3 = Index - 2;
+            return face;
         }
 
         public void Save(string path)
@@ -260,6 +302,32 @@ namespace SSX_Modder.FileHandlers
             file.Close();
         }
 
+        public void SaveModel(string path)
+        {
+            string output = "";
+            for (int b = 0; b < ModelList.Count-1; b++)
+            {
+                output += "o mesh" + b.ToString() + "\n";
+                var Model = ModelList[b];
+                for (int i = 0; i < Model.vertices.Count; i++)
+                {
+                    output += "v " + Model.vertices[i].X + " " + Model.vertices[i].Y + " " + Model.vertices[i].Z + "\n";
+                }
+
+                for (int i = 0; i < Model.faces.Count; i++)
+                {
+                    output += "f " + (Model.faces[i].V1 + 1).ToString() + " " + (Model.faces[i].V2 + 1).ToString() + " " + (Model.faces[i].V3 + 1).ToString() + "\n";
+                }
+            }
+
+            if (File.Exists(path))
+            {
+                File.Delete(path);
+            }
+
+            File.WriteAllText(path,output);
+        }
+
 
         public struct MPFModelHeader
         {
@@ -302,7 +370,8 @@ namespace SSX_Modder.FileHandlers
 
 
             public List<Vertex3> vertices;
-            public List<int> StripCounts;
+            public List<Face> faces;
+            public List<int> Strips;
             //
         }
 
@@ -311,6 +380,13 @@ namespace SSX_Modder.FileHandlers
             public float X;
             public float Y;
             public float Z;
+        }
+
+        public struct Face
+        {
+            public int V1;
+            public int V2;
+            public int V3;
         }
 
         public struct BodyObjects
