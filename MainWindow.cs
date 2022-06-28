@@ -2036,17 +2036,17 @@ namespace SSX_Modder
 
         private void button3_Click(object sender, EventArgs e)
         {
-            SaveFileDialog openFileDialog = new SaveFileDialog
-            {
-                InitialDirectory = workspacePath,
-                Filter = "Model File (*.mpf)|*.mpf|All files (*.*)|*.*",
-                FilterIndex = 1,
-                RestoreDirectory = false
-            };
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                modelHandler.Save(openFileDialog.FileName);
-            }
+            //SaveFileDialog openFileDialog = new SaveFileDialog
+            //{
+            //    InitialDirectory = workspacePath,
+            //    Filter = "Model File (*.mpf)|*.mpf|All files (*.*)|*.*",
+            //    FilterIndex = 1,
+            //    RestoreDirectory = false
+            //};
+            //if (openFileDialog.ShowDialog() == DialogResult.OK)
+            //{
+            //    modelHandler.Save(openFileDialog.FileName);
+            //}
         }
 
         private void button6_Click(object sender, EventArgs e)
