@@ -29,16 +29,22 @@ This is a modding tool I came up and started making when I caught COVID as a way
 ## Todo
 
 ### Current Todo
+- MPC Extractor (Finally Found Files just need to incorperate it into program)
+- MPF Extractor
+
+# MPF Extractor Todo
+- Fix Chunk Loading (Every Chunks Splits Refrence that chunk)
+- Figure Out Indvidual Model Loading
+- Make Interface To Speed Up Process
+
+### Todo Later
 - SSX On Tour SSH Support (ShpS)
 - Figure out More BoltPS2 Varibles
 - Allow Exporting To CSV Table BOLTPS2
 - Allow Exporting To CSV Table Loc
 - MUS Extractor
-- MPC Extractor
 - Mass Replace Textures for Shirt/Pants and others
 - BoltPS2 Make Override to add non parented items to list if goes over 10 tries
-
-### Todo Later
 - Mod System Loc Txt Insert, Big Insert
 - Modding Guide
 - Progress Bar
