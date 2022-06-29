@@ -69,8 +69,8 @@ namespace SSX_Modder.FileHandlers
                 streamMatrix.Write(ModelList[i].Matrix, 0, ModelList[i].Matrix.Length);
 
                 //Read BodyObjects
-                streamMatrix.Position = 0;
                 Model.bodyObjectsList = new List<BodyObjects>();
+                streamMatrix.Position = 0;
                 for (int b = 0; b < Model.BodyObjectsCount; b++)
                 {
                     BodyObjects body = new BodyObjects();
@@ -78,78 +78,149 @@ namespace SSX_Modder.FileHandlers
                     body.Float1 = StreamUtil.ReadFloat(streamMatrix);
                     body.Float2 = StreamUtil.ReadFloat(streamMatrix);
                     body.Float3 = StreamUtil.ReadFloat(streamMatrix);
+                    Model.bodyObjectsList.Add(body);
                 }
 
                 //Read ModelData
                 streamMatrix.Position = Model.ModelsOffset;
+                var models = new List<ModelData>();
                 for (int b = 0; b < Model.ModelCount; b++)
                 {
-                    Model.modelName = StreamUtil.ReadString(streamMatrix, 16);
+                    ModelData modelData = new ModelData();
+                    modelData.modelName = StreamUtil.ReadString(streamMatrix, 16);
+                    modelData.Int1 = StreamUtil.ReadInt32(streamMatrix);
+                    modelData.Float2 = StreamUtil.ReadFloat(streamMatrix);
+                    modelData.Float3 = StreamUtil.ReadFloat(streamMatrix);
+                    modelData.Float4 = StreamUtil.ReadFloat(streamMatrix);
+                    models.Add(modelData);
                 }
+                Model.models = models;
 
-
-                //Just a translation of whats going on in someone elses program
-
-                //Read StripCounter
-                byte[] tempByte = new byte[] { 0x00, 0x00, 0x10, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x01, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, };
-                streamMatrix.Position = ByteUtil.FindPosition(streamMatrix, tempByte, 0);
-                streamMatrix.Position += 47;
-                int StripCount = StreamUtil.ReadInt32(streamMatrix);
-                streamMatrix.Position += 12;
-
-                List<int> TempStrips = new List<int>();
-                for (int a = 0; a < StripCount; a++)
+                //Read RotationData?
+                streamMatrix.Position = Model.RotationInfo;
+                var Verties = new List<Vertex3>();
+                for (int a = 0; a < Model.U23; a++)
                 {
-                    TempStrips.Add(StreamUtil.ReadInt32(streamMatrix));
-                    streamMatrix.Position += 12;
+                    Vertex3 v = new Vertex3();
+                    v.X = StreamUtil.ReadFloat(streamMatrix);
+                    v.Y = StreamUtil.ReadFloat(streamMatrix);
+                    v.Z = StreamUtil.ReadFloat(streamMatrix);
+                    streamMatrix.Position += 4;
+                    Verties.Add(v);
                 }
-                // Incrament the stripcount
-                List<int> stripCounts2 = new List<int>();
-                stripCounts2.Add(0);
-                foreach (var item in TempStrips)
-                {
-                    stripCounts2.Add(stripCounts2[stripCounts2.Count - 1] + item);
-                }
+                Model.Unkown = Verties;
 
-                Model.Strips = stripCounts2;
 
-                //Read Vertexes
-                tempByte = new byte[] { 0x80, 0x3F, 0x00, 0x00, 0x00, 0x20, 0x40, 0x40, 0x40, 0x40, };
-                streamMatrix.Position = ByteUtil.FindPosition(streamMatrix, tempByte, 0);
-                streamMatrix.Position += 24;
-                int VertexCount = StreamUtil.ReadByte(streamMatrix);
-                streamMatrix.Position++;
-                List<Vertex3> vertices = new List<Vertex3>();
-                for (int a = 0; a < VertexCount; a++)
+                streamMatrix.Position = Model.DataStart;
+                for (int a = 0; a < Model.models.Count; a++)
                 {
-                    Vertex3 vertex = new Vertex3();
-                    vertex.X = StreamUtil.ReadFloat(streamMatrix);
-                    vertex.Y = StreamUtil.ReadFloat(streamMatrix);
-                    vertex.Z = StreamUtil.ReadFloat(streamMatrix);
-                    vertices.Add(vertex);
-                }
-                Model.vertices = vertices;
+                    var ModelData = Model.models[a];
+                    ModelData.chunks = new List<Chunk>();
 
-                Model.faces = new List<Face>();
-                int localIndex = 0;
-                //Make Faces
-                for (int a = 0; a < Model.vertices.Count; a++)
-                {
-                    if (InsideSplits(a, Model.Strips))
+                    ModelData.vertices = new List<Vertex3>();
+                    ModelData.Strips = new List<int>();
+                    ModelData.uv = new List<UV>();
+                    var Chunks = ModelData.chunks;
+                    for (int b = 0; b < Model.Chunks; b++)
                     {
-                        localIndex = 1;
-                        continue;
+                        streamMatrix.Position += 48;
+                        var Chunk = new Chunk();
+                        Chunk.StripCount = StreamUtil.ReadInt32(streamMatrix);
+                        Chunk.u1 = StreamUtil.ReadInt32(streamMatrix);
+                        Chunk.NormalCount = StreamUtil.ReadInt32(streamMatrix);
+                        Chunk.VertexCount = StreamUtil.ReadInt32(streamMatrix);
+
+                        //Load Strip Count
+                        List<int> TempStrips = ModelData.Strips;
+                        for (int d = 0; d < Chunk.StripCount; d++)
+                        {
+                            TempStrips.Add(StreamUtil.ReadInt32(streamMatrix));
+                            streamMatrix.Position += 12;
+                        }
+
+                        // Incrament the stripcount
+                        List<int> strip2 = new List<int>();
+                        strip2.Add(0);
+                        foreach (var item in TempStrips)
+                        {
+                            strip2.Add(strip2[strip2.Count - 1] + item);
+                        }
+                        streamMatrix.Position += 16;
+                        ModelData.Strips = strip2;
+
+                        if (Chunk.NormalCount != 0)
+                        {
+                            streamMatrix.Position += 48;
+                            List<UV> UVs = ModelData.uv;
+                            for (int c = 0; c < Chunk.VertexCount; c++)
+                            {
+                                UV tempUV = new UV();
+                                tempUV.X = StreamUtil.ReadInt16(streamMatrix);
+                                tempUV.Y = StreamUtil.ReadInt16(streamMatrix);
+                                UVs.Add(tempUV);
+                            }
+                            ModelData.uv = UVs;
+                            streamMatrix.Position += 16 - (streamMatrix.Position % 16);
+                        }
+
+                        if (Chunk.NormalCount != 0)
+                        {
+                            streamMatrix.Position += 48;
+                            List<UV> UVs = ModelData.uv;
+                            for (int c = 0; c < Chunk.VertexCount; c++)
+                            {
+                                streamMatrix.Position += 6;
+                                //UV tempUV = new UV();
+                                //tempUV.X = StreamUtil.ReadInt16(streamMatrix);
+                                //tempUV.Y = StreamUtil.ReadInt16(streamMatrix);
+                                //UVs.Add(tempUV);
+                            }
+                            ModelData.uv = UVs;
+                            streamMatrix.Position += 16 - (streamMatrix.Position % 16);
+                        }
+
+                        if (Chunk.VertexCount != 0)
+                        {
+                            streamMatrix.Position += 48;
+                            List<Vertex3> vertices = ModelData.vertices;
+                            for (int c = 0; c < Chunk.VertexCount; c++)
+                            {
+                                Vertex3 vertex = new Vertex3();
+                                vertex.X = StreamUtil.ReadFloat(streamMatrix);
+                                vertex.Y = StreamUtil.ReadFloat(streamMatrix);
+                                vertex.Z = StreamUtil.ReadFloat(streamMatrix);
+                                vertices.Add(vertex);
+                            }
+                            ModelData.vertices = vertices;
+                            streamMatrix.Position += 16 - (streamMatrix.Position % 16);
+
+                            streamMatrix.Position += 64;
+                        }
+                        Chunks.Add(Chunk);
                     }
-                    if (localIndex < 2)
+                    ModelData.faces = new List<Face>();
+                    int localIndex = 0;
+                    //Make Faces
+                    for (int b = 0; b < ModelData.vertices.Count; b++)
                     {
+                        if (InsideSplits(b, ModelData.Strips))
+                        {
+                            localIndex = 1;
+                            continue;
+                        }
+                        if (localIndex < 2)
+                        {
+                            localIndex++;
+                            continue;
+                        }
+
+                        ModelData.faces.Add(CreateFaces(b));
                         localIndex++;
-                        continue;
                     }
-
-                    Model.faces.Add(CreateFaces(a));
-                    localIndex++;
+                    ModelData.chunks = Chunks;
+                    Model.models[a] = ModelData;
+                    ModelList[i] = Model;
                 }
-                ModelList[i] = Model;
 
                 streamMatrix.Dispose();
                 streamMatrix.Close();
@@ -381,21 +452,21 @@ namespace SSX_Modder.FileHandlers
             return face;
         }
 
-        public void SaveModel(string path)
+        public void SaveModel(string path, int pos = 4)
         {
             string output = "";
-            for (int b = 0; b < ModelList.Count - 1; b++)
+            var Model = ModelList[pos];
+            for (int b = 0; b < Model.models.Count; b++)
             {
-                output += "o " + ModelList[b].FileName + b.ToString() + "\n";
-                var Model = ModelList[b];
-                for (int i = 0; i < Model.vertices.Count; i++)
+                output += "o " + Model.models[b] + b.ToString() + "\n";
+                for (int i = 0; i < Model.models[b].vertices.Count; i++)
                 {
-                    output += "v " + Model.vertices[i].X + " " + Model.vertices[i].Y + " " + Model.vertices[i].Z + "\n";
+                    output += "v " + Model.models[b].vertices[i].X + " " + Model.models[b].vertices[i].Y + " " + Model.models[b].vertices[i].Z + "\n";
                 }
 
-                for (int i = 0; i < Model.faces.Count; i++)
+                for (int i = 0; i < Model.models[b].faces.Count; i++)
                 {
-                    output += "f " + (Model.faces[i].V1 + 1).ToString() + " " + (Model.faces[i].V2 + 1).ToString() + " " + (Model.faces[i].V3 + 1).ToString() + "\n";
+                    output += "f " + (Model.models[b].faces[i].V1 + 1).ToString() + " " + (Model.models[b].faces[i].V2 + 1).ToString() + " " + (Model.models[b].faces[i].V3 + 1).ToString() + "\n";
                 }
             }
 
@@ -430,14 +501,35 @@ namespace SSX_Modder.FileHandlers
             public int U23;
 
             public byte[] Matrix;
-
+            public List<Vertex3> Unkown;
             //Matrix Data
-            public string modelName;
             public List<BodyObjects> bodyObjectsList;
+            public List<ModelData> models;
+            //
+        }
+
+        public struct ModelData
+        {
+            public string modelName;
+            public float Int1;
+            public float Float2;
+            public float Float3;
+            public float Float4;
+
+            public List<Chunk> chunks;
+
+            public List<UV> uv;
             public List<Vertex3> vertices;
             public List<Face> faces;
             public List<int> Strips;
-            //
+        }
+
+        public struct Chunk
+        {
+            public int StripCount;
+            public int u1;
+            public int NormalCount;
+            public int VertexCount;
         }
 
 
@@ -494,11 +586,19 @@ namespace SSX_Modder.FileHandlers
             public float Z;
         }
 
+        public struct UV
+        {
+            public int X;
+            public int Y;
+        }
+
         public struct Face
         {
             public int V1;
             public int V2;
             public int V3;
+
+            public int UV;
         }
 
         public struct BodyObjects
