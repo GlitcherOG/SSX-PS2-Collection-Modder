@@ -132,6 +132,8 @@ namespace SSX_Modder.FileHandlers
                     {
                         var ModelData = ModelList[i].models[z];
                         var Chunks = ModelData.chunks;
+
+                        //Load Main Chunk Header
                         streamMatrix.Position += 48;
                         var Chunk = new Chunk();
                         Chunk.StripCount = StreamUtil.ReadInt32(streamMatrix);
@@ -181,7 +183,11 @@ namespace SSX_Modder.FileHandlers
                             streamMatrix.Position += 48;
                             ModelData.vertices = ReadVertex(Chunk.VertexCount, streamMatrix, ModelData.vertices);
                             StreamUtil.AlignBy16(streamMatrix);
-                            streamMatrix.Position += 64;
+                            streamMatrix.Position += 48;
+                        }
+                        if(streamMatrix.Position==Model.-16)
+                        {
+                            streamMatrix.Position += 16;
                         }
                         Chunks.Add(Chunk);
                         ModelData.chunks = Chunks;

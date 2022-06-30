@@ -1,2 +1,10 @@
 Model, Chunk, -1, StartOffset, End Offset, -1, -1, Null
 ModelCount, Chunk, -1, Start, End Offset, Start Of Next File, End Of Next File, Unknown (Float?)
+
+
+
+
+Strip Count
+Array ID?
+Count
+Type - (120 Faces, 108 Strip, 117 Normal?, 121 Normal?   
