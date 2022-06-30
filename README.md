@@ -32,10 +32,11 @@ This is a modding tool I came up and started making when I caught COVID as a way
 - MPC Extractor (Finally Found Files just need to incorperate it into program)
 - MPF Extractor
 
-# MPF Extractor Todo
+### MPF Extractor Todo
 - Fix Chunk Loading (Every Chunks Splits Refrence that chunk)
 - Figure Out Indvidual Model Loading
 - Make Interface To Speed Up Process
+- Redo Chunk Reading so it Builds Each Chunk before Combining them
 
 ### Todo Later
 - SSX On Tour SSH Support (ShpS)
@@ -59,3 +60,9 @@ This is a modding tool I came up and started making when I caught COVID as a way
 - Refpack Compressor
 - Big Refpack Compress
 - SSH Refpack Compress
+
+
+## Special Thanks
+https://github.com/Erickson400/SSXTrickyModelExporter
+https://github.com/WouterBaeyens/Ssx3SshConverter
+https://github.com/SSXModding/bigfile

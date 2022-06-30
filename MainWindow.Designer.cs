@@ -374,6 +374,8 @@ namespace SSX_Modder
             this.toolStripBuildRun = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.MPFList = new System.Windows.Forms.ListBox();
+            this.MPFModelList = new System.Windows.Forms.ListBox();
             this.tabControl1.SuspendLayout();
             this.tabModPacks.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -3739,6 +3741,8 @@ namespace SSX_Modder
             // 
             // tabMPFModel
             // 
+            this.tabMPFModel.Controls.Add(this.MPFModelList);
+            this.tabMPFModel.Controls.Add(this.MPFList);
             this.tabMPFModel.Controls.Add(this.button6);
             this.tabMPFModel.Controls.Add(this.button3);
             this.tabMPFModel.Controls.Add(this.button2);
@@ -4339,6 +4343,23 @@ namespace SSX_Modder
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
             // 
+            // MPFList
+            // 
+            this.MPFList.FormattingEnabled = true;
+            this.MPFList.Location = new System.Drawing.Point(4, 4);
+            this.MPFList.Name = "MPFList";
+            this.MPFList.Size = new System.Drawing.Size(175, 459);
+            this.MPFList.TabIndex = 3;
+            this.MPFList.SelectedIndexChanged += new System.EventHandler(this.MPFList_SelectedIndexChanged);
+            // 
+            // MPFModelList
+            // 
+            this.MPFModelList.FormattingEnabled = true;
+            this.MPFModelList.Location = new System.Drawing.Point(197, 4);
+            this.MPFModelList.Name = "MPFModelList";
+            this.MPFModelList.Size = new System.Drawing.Size(175, 459);
+            this.MPFModelList.TabIndex = 4;
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -4784,5 +4805,7 @@ namespace SSX_Modder
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.ListBox MPFList;
+        private System.Windows.Forms.ListBox MPFModelList;
     }
 }

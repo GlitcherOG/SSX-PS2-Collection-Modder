@@ -1,0 +1,21 @@
+Elysium Alps:
+
+- snow-related objects (snow-covered trees, partially snow-covered trees, icicles, etc) use the level's ambient pink color instead of the ground snow's white color
+- same applies to rock objects, they're pink unlike the rock ground textures
+- same for manmade objects, seriously, what is it with this game and its stupid ambient colors?
+
+Mesablanca:
+
+- the rock walls that make up the level have lost some of their color, the rock objects on the ground reveal their original color
+
+Tokyo Megaplex:
+
+- Back Poles
+
+Pipedream:
+
+- the giant room with the PIPEDREAM sign written in rails is actually too bright compared to vanilla, the entire level is supposed to look like they have the lights on very low, unlike Warmup which is supposed to be really bright
+
+Misc:
+
+- Hud Patch

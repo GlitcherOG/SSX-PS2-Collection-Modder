@@ -2031,6 +2031,24 @@ namespace SSX_Modder
             {
                 modelHandler = new MPFModelHandler();
                 modelHandler.load(openFileDialog.FileName);
+                MPFList.Items.Clear();
+                MPFModelList.Items.Clear();
+                for (int i = 0; i < modelHandler.ModelList.Count; i++)
+                {
+                    MPFList.Items.Add(modelHandler.ModelList[i].FileName);
+                }
+            }
+        }
+
+        private void MPFList_SelectedIndexChanged(object sender, EventArgs e)
+        { 
+            if (MPFList.SelectedIndex != -1)
+            {
+                MPFModelList.Items.Clear();
+                for (int i = 0; i < modelHandler.ModelList[MPFList.SelectedIndex].modelsData.Count; i++)
+                {
+                    MPFModelList.Items.Add(modelHandler.ModelList[MPFList.SelectedIndex].modelsData[i].modelName);
+                }
             }
         }
 
@@ -2051,16 +2069,19 @@ namespace SSX_Modder
 
         private void button6_Click(object sender, EventArgs e)
         {
-            SaveFileDialog openFileDialog = new SaveFileDialog
+            if (MPFList.SelectedIndex != -1)
             {
-                InitialDirectory = workspacePath,
-                Filter = "Obj File (*.obj)|*.obj|All files (*.*)|*.*",
-                FilterIndex = 1,
-                RestoreDirectory = false
-            };
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                modelHandler.SaveModel(openFileDialog.FileName);
+                SaveFileDialog openFileDialog = new SaveFileDialog
+                {
+                    InitialDirectory = workspacePath,
+                    Filter = "Obj File (*.obj)|*.obj|All files (*.*)|*.*",
+                    FilterIndex = 1,
+                    RestoreDirectory = false
+                };
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    modelHandler.SaveModel(openFileDialog.FileName, MPFList.SelectedIndex);
+                }
             }
         }
         #endregion

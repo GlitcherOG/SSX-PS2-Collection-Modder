@@ -10,6 +10,7 @@ namespace SSX_Modder.Utilities
 {
     class StreamUtil
     {
+        #region Read
         public static string ReadNullEndString(Stream stream)
         {
             bool tillNull = false;
@@ -36,7 +37,7 @@ namespace SSX_Modder.Utilities
         {
             byte[] tempByte = new byte[Length];
             stream.Read(tempByte, 0, tempByte.Length);
-            return Encoding.ASCII.GetString(tempByte);
+            return Encoding.ASCII.GetString(tempByte).Replace("\0","");
         }
 
         public static byte[] ReadBytes(Stream stream, int Length)
@@ -136,7 +137,9 @@ namespace SSX_Modder.Utilities
             int A = stream.ReadByte();
             return Color.FromArgb(A, R, G, B);
         }
+        #endregion
 
+        #region Write
         public static void WriteNullString(Stream stream, string String)
         {
             if (String != null)
@@ -222,6 +225,13 @@ namespace SSX_Modder.Utilities
             if (BitConverter.IsLittleEndian)
                 Array.Reverse(tempByte);
             stream.Write(tempByte, 0, tempByte.Length);
+        }
+
+        #endregion
+
+        public static void AlignBy16(Stream stream)
+        {
+            stream.Position += 16 - (stream.Position % 16);
         }
     }
 }
