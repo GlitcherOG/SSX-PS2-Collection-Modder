@@ -2047,7 +2047,7 @@ namespace SSX_Modder
                 MPFModelList.Items.Clear();
                 for (int i = 0; i < modelHandler.ModelList[MPFList.SelectedIndex].modelsData.Count; i++)
                 {
-                    MPFModelList.Items.Add(modelHandler.ModelList[MPFList.SelectedIndex].modelsData[i].modelName);
+                    MPFModelList.Items.Add(i);
                 }
             }
         }

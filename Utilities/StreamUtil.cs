@@ -231,7 +231,11 @@ namespace SSX_Modder.Utilities
 
         public static void AlignBy16(Stream stream)
         {
-            stream.Position += 16 - (stream.Position % 16);
+            int Num = 16 - ((int)stream.Position % 16);
+            if (Num != 16)
+            {
+                stream.Position += Num;
+            }
         }
     }
 }
