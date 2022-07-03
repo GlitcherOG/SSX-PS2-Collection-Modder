@@ -173,7 +173,11 @@ namespace SSX_Modder.FileHandlers
                             List<UV> UVs = ModelData.uv;
                             for (int c = 0; c < ModelData.VertexCount; c++)
                             {
-                                streamMatrix.Position += 4;
+                                UV uv = new UV();
+                                uv.X = StreamUtil.ReadInt16(streamMatrix);
+                                uv.Y = StreamUtil.ReadInt16(streamMatrix);
+                                //streamMatrix.Position += 4;
+                                UVs.Add(uv);
                             }
                             ModelData.uv = UVs;
                             StreamUtil.AlignBy16(streamMatrix);
@@ -210,6 +214,7 @@ namespace SSX_Modder.FileHandlers
                         {
                             Model.modelsData[ModelPos] = ModelData;
                         }
+                        //ModelPos++;
                     }
                 }
 
@@ -264,7 +269,7 @@ namespace SSX_Modder.FileHandlers
                     continue;
                 }
 
-                ModelData.faces.Add(CreateFaces(b));
+                ModelData.faces.Add(CreateFaces(b, ModelData));
                 localIndex++;
             }
 
@@ -283,33 +288,119 @@ namespace SSX_Modder.FileHandlers
             return false;
         }
 
-        public Face CreateFaces(int Index)
+        public Face CreateFaces(int Index, ModelData ModelData)
         {
             Face face = new Face();
-            face.V1 = Index;
-            face.V2 = Index - 1;
-            face.V3 = Index - 2;
+            face.V1 = ModelData.vertices[Index];
+            face.V2 = ModelData.vertices[Index - 1];
+            face.V3 = ModelData.vertices[Index - 2];
+
+            face.V1Pos = Index;
+            face.V2Pos = Index - 1;
+            face.V3Pos = Index - 2;
+
+            if (ModelData.uv.Count != 0)
+            {
+                face.UV1 = ModelData.uv[Index];
+                face.UV2 = ModelData.uv[Index - 1];
+                face.UV3 = ModelData.uv[Index - 2];
+
+                face.UV1Pos = Index;
+                face.UV2Pos = Index - 1;
+                face.UV3Pos = Index - 2;
+            }
+
             return face;
         }
 
-        public void SaveModel(string path, int pos = 0)
+        public void SaveModel(string path, int pos = 0, int ChunkPos = 0)
         {
             string output = "";
             var Model = ModelList[pos];
-            for (int b = 0; b < Model.modelsData.Count; b++)
+            int b = ChunkPos;
+            var ModelData = Model.modelsData[b];
+            output += "o " + Model.FileName + b.ToString() + "\n";
+
+            List<Vertex3> vertices = new List<Vertex3>();
+            for (int i = 0; i < ModelData.faces.Count; i++)
             {
-                output += "o " + Model.FileName + b.ToString() + "\n";
-                for (int i = 0; i < Model.modelsData[b].vertices.Count; i++)
+                var Face = ModelData.faces[i];
+                if (!vertices.Contains(Face.V1))
                 {
-                    output += "v " + Model.modelsData[b].vertices[i].X + " " + Model.modelsData[b].vertices[i].Y + " " + Model.modelsData[b].vertices[i].Z + "\n";
+                    vertices.Add(Face.V1);
                 }
+                Face.V1Pos = vertices.IndexOf(Face.V1);
 
-                for (int i = 0; i < Model.modelsData[b].faces.Count; i++)
+                if (!vertices.Contains(Face.V2))
                 {
-                    output += "f " + (Model.modelsData[b].faces[i].V1 + 1).ToString() + " " + (Model.modelsData[b].faces[i].V2 + 1).ToString() + " " + (Model.modelsData[b].faces[i].V3 + 1).ToString() + "\n";
+                    vertices.Add(Face.V2);
                 }
+                Face.V2Pos = vertices.IndexOf(Face.V2);
 
-                output += "\n";
+                if (!vertices.Contains(Face.V3))
+                {
+                    vertices.Add(Face.V3);
+                }
+                Face.V3Pos = vertices.IndexOf(Face.V3);
+
+                ModelData.faces[i] = Face;
+            }
+
+            List<UV> UV = new List<UV>();
+            if (ModelData.uv.Count != 0)
+            {
+                for (int i = 0; i < ModelData.faces.Count; i++)
+                {
+                    var Face = ModelData.faces[i];
+                    if (!UV.Contains(Face.UV1))
+                    {
+                        UV.Add(Face.UV1);
+                    }
+                    Face.UV1Pos = UV.IndexOf(Face.UV1);
+
+                    if (!UV.Contains(Face.UV2))
+                    {
+                        UV.Add(Face.UV2);
+                    }
+                    Face.UV2Pos = UV.IndexOf(Face.UV2);
+
+                    if (!UV.Contains(Face.UV3))
+                    {
+                        UV.Add(Face.UV3);
+                    }
+                    Face.UV3Pos = UV.IndexOf(Face.UV3);
+
+                    ModelData.faces[i] = Face;
+                }
+            }
+
+            //Need to Redo so it generates the Vertices from faces
+
+            for (int i = 0; i < vertices.Count; i++)
+            {
+                output += "v " + vertices[i].X + " " + vertices[i].Y + " " + vertices[i].Z + "\n";
+            }
+
+            for (int i = 0; i < UV.Count; i++)
+            {
+                output += "vt " + ( ((float)UV[i].X) / 0xFFFF ) + " " + ( ((float)UV[i].Y) / 0xFFFF ) + "\n";
+            }
+
+            if (ModelData.uv.Count != 0)
+            {
+                for (int i = 0; i < ModelData.faces.Count; i++)
+                {
+                    var Face = ModelData.faces[i];
+                    output += "f " + (Face.V1Pos + 1).ToString() + "/" + (Face.UV1Pos + 1).ToString() + " " + (Face.V2Pos + 1).ToString() + "/" + (Face.UV2Pos + 1).ToString() + " " + (Face.V3Pos + 1).ToString() + "/" + (Face.UV3Pos + 1).ToString() + " " + "\n";
+                }
+            }
+            else
+            {
+                for (int i = 0; i < ModelData.faces.Count; i++)
+                {
+                    var Face = ModelData.faces[i];
+                    output += "f " + (Face.V1Pos + 1).ToString() + " " + (Face.V2Pos + 1).ToString() + " " + (Face.V3Pos + 1).ToString() + " " + "\n";
+                }
             }
 
             if (File.Exists(path))
@@ -400,11 +491,21 @@ namespace SSX_Modder.FileHandlers
 
         public struct Face
         {
-            public int V1;
-            public int V2;
-            public int V3;
+            public Vertex3 V1;
+            public Vertex3 V2;
+            public Vertex3 V3;
 
-            public int UV;
+            public int V1Pos;
+            public int V2Pos;
+            public int V3Pos;
+
+            public UV UV1;
+            public UV UV2;
+            public UV UV3;
+
+            public int UV1Pos;
+            public int UV2Pos;
+            public int UV3Pos;
         }
 
         public struct BodyObjects

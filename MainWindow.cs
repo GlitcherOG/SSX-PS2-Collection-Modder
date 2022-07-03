@@ -2069,7 +2069,7 @@ namespace SSX_Modder
 
         private void button6_Click(object sender, EventArgs e)
         {
-            if (MPFList.SelectedIndex != -1)
+            if (MPFList.SelectedIndex != -1 && MPFModelList.SelectedIndex!=-1)
             {
                 SaveFileDialog openFileDialog = new SaveFileDialog
                 {
@@ -2080,7 +2080,7 @@ namespace SSX_Modder
                 };
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    modelHandler.SaveModel(openFileDialog.FileName, MPFList.SelectedIndex);
+                    modelHandler.SaveModel(openFileDialog.FileName, MPFList.SelectedIndex, MPFModelList.SelectedIndex);
                 }
             }
         }
