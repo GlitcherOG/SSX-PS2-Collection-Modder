@@ -383,7 +383,7 @@ namespace SSX_Modder.FileHandlers
 
             for (int i = 0; i < UV.Count; i++)
             {
-                output += "vt " + ( ((float)UV[i].X) / 0xFFFF ) + " " + ( ((float)UV[i].Y) / 0xFFFF ) + "\n";
+                output += "vt " + ( ((float)UV[i].X) / 0xFFFF )*16 + " " + ( ((float)UV[i].Y) / 0xFFFF )*16 + "\n";
             }
 
             if (ModelData.uv.Count != 0)
