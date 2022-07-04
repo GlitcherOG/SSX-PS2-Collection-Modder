@@ -139,6 +139,7 @@ namespace SSX_Modder.FileHandlers
                         ModelData.vertices = new List<Vertex3>();
                         ModelData.Strips = new List<int>();
                         ModelData.uv = new List<UV>();
+                        ModelData.uvNormals = new List<UVNormal>();
                         if (ModelPos < Model.modelsData.Count)
                         {
                             found = true;
@@ -176,23 +177,26 @@ namespace SSX_Modder.FileHandlers
                                 UV uv = new UV();
                                 uv.X = StreamUtil.ReadInt16(streamMatrix);
                                 uv.Y = StreamUtil.ReadInt16(streamMatrix);
-                                //streamMatrix.Position += 4;
                                 UVs.Add(uv);
                             }
                             ModelData.uv = UVs;
                             StreamUtil.AlignBy16(streamMatrix);
                         }
 
-                        //Something todo with normals
+                        //Read Normals
                         if (ModelData.NormalCount != 0)
                         {
                             streamMatrix.Position += 48;
-                            List<UV> UVs = ModelData.uv;
+                            List<UVNormal> Normals = ModelData.uvNormals;
                             for (int c = 0; c < ModelData.VertexCount; c++)
                             {
-                                streamMatrix.Position += 6;
+                                UVNormal normal = new UVNormal();
+                                normal.X = StreamUtil.ReadInt16(streamMatrix);
+                                normal.Y = StreamUtil.ReadInt16(streamMatrix);
+                                normal.Z = StreamUtil.ReadInt16(streamMatrix);
+                                Normals.Add(normal);
                             }
-                            ModelData.uv = UVs;
+                            ModelData.uvNormals = Normals;
                             StreamUtil.AlignBy16(streamMatrix);
                         }
 
@@ -308,6 +312,14 @@ namespace SSX_Modder.FileHandlers
                 face.UV1Pos = Index;
                 face.UV2Pos = Index - 1;
                 face.UV3Pos = Index - 2;
+
+                face.Normal1 = ModelData.uvNormals[Index];
+                face.Normal2 = ModelData.uvNormals[Index - 1];
+                face.Normal3 = ModelData.uvNormals[Index - 2];
+
+                face.Normal1Pos = Index;
+                face.Normal2Pos = Index - 1;
+                face.Normal3Pos = Index - 2;
             }
 
             return face;
@@ -376,14 +388,47 @@ namespace SSX_Modder.FileHandlers
                 }
             }
 
+            List<UVNormal> Normals = new List<UVNormal>();
+            if (ModelData.uvNormals.Count != 0)
+            {
+                for (int i = 0; i < ModelData.faces.Count; i++)
+                {
+                    var Face = ModelData.faces[i];
+                    if (!Normals.Contains(Face.Normal1))
+                    {
+                        Normals.Add(Face.Normal1);
+                    }
+                    Face.Normal1Pos = Normals.IndexOf(Face.Normal1);
+
+                    if (!Normals.Contains(Face.Normal2))
+                    {
+                        Normals.Add(Face.Normal2);
+                    }
+                    Face.Normal2Pos = Normals.IndexOf(Face.Normal2);
+
+                    if (!Normals.Contains(Face.Normal3))
+                    {
+                        Normals.Add(Face.Normal3);
+                    }
+                    Face.Normal3Pos = Normals.IndexOf(Face.Normal3);
+
+                    ModelData.faces[i] = Face;
+                }
+            }
+
             for (int i = 0; i < vertices.Count; i++)
             {
                 output += "v " + vertices[i].X + " " + vertices[i].Y + " " + vertices[i].Z + "\n";
             }
-            //While Math Works its wrong
+            //While Math Works Its Wrong
             for (int i = 0; i < UV.Count; i++)
             {
                 output += "vt " + ( ((float)UV[i].X) / 4096 ) + " " + ( ((float)UV[i].Y) / 4096) + "\n";
+            }
+
+            for (int i = 0; i < Normals.Count; i++)
+            {
+                output += "vn " + (((float)Normals[i].X) / 4096) + " " + (((float)Normals[i].Y) / 4096) + " " + (((float)Normals[i].Z) / 4096) + "\n";
             }
 
             if (ModelData.uv.Count != 0)
@@ -391,7 +436,7 @@ namespace SSX_Modder.FileHandlers
                 for (int i = 0; i < ModelData.faces.Count; i++)
                 {
                     var Face = ModelData.faces[i];
-                    output += "f " + (Face.V1Pos + 1).ToString() + "/" + (Face.UV1Pos + 1).ToString() + " " + (Face.V2Pos + 1).ToString() + "/" + (Face.UV2Pos + 1).ToString() + " " + (Face.V3Pos + 1).ToString() + "/" + (Face.UV3Pos + 1).ToString() + " " + "\n";
+                    output += "f " + (Face.V1Pos + 1).ToString() + "/" + (Face.UV1Pos + 1).ToString() + "/" + (Face.Normal1Pos + 1).ToString() + " " + (Face.V2Pos + 1).ToString() + "/" + (Face.UV2Pos + 1).ToString() + "/" + (Face.Normal2Pos + 1).ToString() + " " + (Face.V3Pos + 1).ToString() + "/" + (Face.UV3Pos + 1).ToString() + "/" + (Face.Normal3Pos + 1).ToString() + " " + "\n";
                 }
             }
             else
@@ -453,6 +498,7 @@ namespace SSX_Modder.FileHandlers
             public List<UV> uv;
             public List<Vertex3> vertices;
             public List<Face> faces;
+            public List<UVNormal> uvNormals;
             public List<int> Strips;
         }
 
@@ -489,6 +535,13 @@ namespace SSX_Modder.FileHandlers
             public int Y;
         }
 
+        public struct UVNormal
+        {
+            public int X;
+            public int Y;
+            public int Z;
+        }
+
         public struct Face
         {
             public Vertex3 V1;
@@ -506,6 +559,14 @@ namespace SSX_Modder.FileHandlers
             public int UV1Pos;
             public int UV2Pos;
             public int UV3Pos;
+
+            public UVNormal Normal1;
+            public UVNormal Normal2;
+            public UVNormal Normal3;
+
+            public int Normal1Pos;
+            public int Normal2Pos;
+            public int Normal3Pos;
         }
 
         public struct BodyObjects
