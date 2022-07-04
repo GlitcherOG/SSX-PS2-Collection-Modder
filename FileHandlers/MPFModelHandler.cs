@@ -166,7 +166,7 @@ namespace SSX_Modder.FileHandlers
                         ModelData.Strips = TempStrips;
                         streamMatrix.Position += 16;
 
-                        //Something to do with normals
+                        //Read UV Texture Points
                         if (ModelData.NormalCount != 0)
                         {
                             streamMatrix.Position += 48;
@@ -321,6 +321,7 @@ namespace SSX_Modder.FileHandlers
             var ModelData = Model.modelsData[b];
             output += "o " + Model.FileName + b.ToString() + "\n";
 
+            //Conevert Vertices into List
             List<Vertex3> vertices = new List<Vertex3>();
             for (int i = 0; i < ModelData.faces.Count; i++)
             {
@@ -346,6 +347,7 @@ namespace SSX_Modder.FileHandlers
                 ModelData.faces[i] = Face;
             }
 
+            //Convert UV Points Into List
             List<UV> UV = new List<UV>();
             if (ModelData.uv.Count != 0)
             {
@@ -374,16 +376,14 @@ namespace SSX_Modder.FileHandlers
                 }
             }
 
-            //Need to Redo so it generates the Vertices from faces
-
             for (int i = 0; i < vertices.Count; i++)
             {
                 output += "v " + vertices[i].X + " " + vertices[i].Y + " " + vertices[i].Z + "\n";
             }
-
+            //While Math Works its wrong
             for (int i = 0; i < UV.Count; i++)
             {
-                output += "vt " + ( ((float)UV[i].X) / 0xFFFF )*16 + " " + ( ((float)UV[i].Y) / 0xFFFF )*16 + "\n";
+                output += "vt " + ( ((float)UV[i].X) / 4096 ) + " " + ( ((float)UV[i].Y) / 4096) + "\n";
             }
 
             if (ModelData.uv.Count != 0)
