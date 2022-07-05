@@ -204,11 +204,19 @@ namespace SSX_Modder.FileHandlers
                         if (ModelData.VertexCount != 0)
                         {
                             streamMatrix.Position += 48;
-                            ModelData.vertices = ReadVertex(ModelData.VertexCount, streamMatrix, ModelData.vertices);
+                            List<Vertex3> vertices = ModelData.vertices;
+                            for (int a = 0; a < ModelData.VertexCount; a++)
+                            {
+                                Vertex3 vertex = new Vertex3();
+                                vertex.X = StreamUtil.ReadFloat(streamMatrix);
+                                vertex.Y = StreamUtil.ReadFloat(streamMatrix);
+                                vertex.Z = StreamUtil.ReadFloat(streamMatrix);
+                                vertices.Add(vertex);
+                            }
+                            ModelData.vertices = vertices;
                             StreamUtil.AlignBy16(streamMatrix);
                         }
                         streamMatrix.Position += 16;
-
 
                         if (!found)
                         {
@@ -221,7 +229,6 @@ namespace SSX_Modder.FileHandlers
                         //ModelPos++;
                     }
                 }
-
                 for (int z = 0; z < Model.modelsData.Count; z++)
                 {
                     Model.modelsData[z] = GenerateFaces(Model.modelsData[z]);
@@ -260,10 +267,12 @@ namespace SSX_Modder.FileHandlers
             //Make Faces
             ModelData.faces = new List<Face>();
             int localIndex = 0;
+            int Rotation = 0;
             for (int b = 0; b < ModelData.vertices.Count; b++)
             {
                 if (InsideSplits(b, ModelData.Strips))
                 {
+                    Rotation = 0;
                     localIndex = 1;
                     continue;
                 }
@@ -273,7 +282,12 @@ namespace SSX_Modder.FileHandlers
                     continue;
                 }
 
-                ModelData.faces.Add(CreateFaces(b, ModelData));
+                ModelData.faces.Add(CreateFaces(b, ModelData, Rotation));
+                Rotation++;
+                if(Rotation==2)
+                {
+                    Rotation = 0;
+                }
                 localIndex++;
             }
 
@@ -291,43 +305,89 @@ namespace SSX_Modder.FileHandlers
             }
             return false;
         }
-
-        public Face CreateFaces(int Index, ModelData ModelData)
+        public Face CreateFaces(int Index, ModelData ModelData,int roatation)
         {
             Face face = new Face();
-            face.V1 = ModelData.vertices[Index];
-            face.V2 = ModelData.vertices[Index - 1];
-            face.V3 = ModelData.vertices[Index - 2];
+            int Index1 = 0;
+            int Index2 = 0;
+            int Index3 = 0;
+            if(roatation==1)
+            {
+                Index1 = Index;
+                Index2 = Index - 1;
+                Index3 = Index - 2;
+            }
+            if(roatation==0)
+            {
+                Index1 = Index;
+                Index2 = Index - 2;
+                Index3 = Index - 1;
+            }
+            face.V1 = ModelData.vertices[Index1];
+            face.V2 = ModelData.vertices[Index2];
+            face.V3 = ModelData.vertices[Index3];
 
-            face.V1Pos = Index;
-            face.V2Pos = Index - 1;
-            face.V3Pos = Index - 2;
+            face.V1Pos = Index1;
+            face.V2Pos = Index2;
+            face.V3Pos = Index3;
 
             if (ModelData.uv.Count != 0)
             {
-                face.UV1 = ModelData.uv[Index];
-                face.UV2 = ModelData.uv[Index - 1];
-                face.UV3 = ModelData.uv[Index - 2];
+                face.UV1 = ModelData.uv[Index1];
+                face.UV2 = ModelData.uv[Index2];
+                face.UV3 = ModelData.uv[Index3];
 
-                face.UV1Pos = Index;
-                face.UV2Pos = Index - 1;
-                face.UV3Pos = Index - 2;
+                face.UV1Pos = Index1;
+                face.UV2Pos = Index2;
+                face.UV3Pos = Index3;
 
-                face.Normal1 = ModelData.uvNormals[Index];
-                face.Normal2 = ModelData.uvNormals[Index - 1];
-                face.Normal3 = ModelData.uvNormals[Index - 2];
+                face.Normal1 = ModelData.uvNormals[Index1];
+                face.Normal2 = ModelData.uvNormals[Index2];
+                face.Normal3 = ModelData.uvNormals[Index3];
 
-                face.Normal1Pos = Index;
-                face.Normal2Pos = Index - 1;
-                face.Normal3Pos = Index - 2;
+                face.Normal1Pos = Index1;
+                face.Normal2Pos = Index2;
+                face.Normal3Pos = Index3;
             }
 
             return face;
         }
 
+        public Vertex3 findCentroid(List<Vertex3> points)
+        {
+            float x = 0;
+            float y = 0;
+            float z = 0;
+            for (int i = 0; i < points.Count; i++)
+            {
+                x += points[i].X;
+                y += points[i].Y;
+                z += points[i].Z;
+            }
+            Vertex3 center = new Vertex3();
+            center.X = x / points.Count();
+            center.Y = y / points.Count();
+            center.Z = z / points.Count();
+            return center;
+        }
+
+        public List<Vertex3> sortVerticies(List<Vertex3> points)
+        {
+            // get centroid
+            Vertex3 center = findCentroid(points);
+
+
+            //Collections.sort(points, (a, b)-> {
+            //    double a1 = (Math.toDegrees(Math.Atan2(a.x - center.x, a.y - center.y)) + 360) % 360;
+            //    double a2 = (Math.toDegrees(Math.A(b.x - center.x, b.y - center.y)) + 360) % 360;
+            //    return (int)(a1 - a2);
+            //});
+            return points;
+        }
+
         public void SaveModel(string path, int pos = 0, int ChunkPos = 0)
         {
-            string output = "";
+            string output = "# Exported From SSX \n";
             var Model = ModelList[pos];
             int b = ChunkPos;
             var ModelData = Model.modelsData[b];
