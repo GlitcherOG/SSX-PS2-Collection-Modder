@@ -318,6 +318,7 @@ namespace SSX_Modder
             this.BoltModelIDThree = new System.Windows.Forms.TextBox();
             this.boltLoad = new System.Windows.Forms.Button();
             this.tabMPFModel = new System.Windows.Forms.TabPage();
+            this.MPFList = new System.Windows.Forms.ListBox();
             this.button6 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -374,7 +375,6 @@ namespace SSX_Modder
             this.toolStripBuildRun = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.MPFList = new System.Windows.Forms.ListBox();
             this.MPFModelList = new System.Windows.Forms.ListBox();
             this.tabControl1.SuspendLayout();
             this.tabModPacks.SuspendLayout();
@@ -3753,6 +3753,14 @@ namespace SSX_Modder
             this.tabMPFModel.Text = "MPF Model";
             this.tabMPFModel.UseVisualStyleBackColor = true;
             // 
+            // MPFList
+            // 
+            this.MPFList.FormattingEnabled = true;
+            this.MPFList.Location = new System.Drawing.Point(4, 4);
+            this.MPFList.Name = "MPFList";
+            this.MPFList.Size = new System.Drawing.Size(175, 459);
+            this.MPFList.TabIndex = 3;
+            // 
             // button6
             // 
             this.button6.Location = new System.Drawing.Point(1072, 501);
@@ -4342,15 +4350,6 @@ namespace SSX_Modder
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
-            // 
-            // MPFList
-            // 
-            this.MPFList.FormattingEnabled = true;
-            this.MPFList.Location = new System.Drawing.Point(4, 4);
-            this.MPFList.Name = "MPFList";
-            this.MPFList.Size = new System.Drawing.Size(175, 459);
-            this.MPFList.TabIndex = 3;
-            this.MPFList.SelectedIndexChanged += new System.EventHandler(this.MPFList_SelectedIndexChanged);
             // 
             // MPFModelList
             // 

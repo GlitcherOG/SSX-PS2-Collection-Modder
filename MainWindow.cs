@@ -2032,22 +2032,9 @@ namespace SSX_Modder
                 modelHandler = new MPFModelHandler();
                 modelHandler.load(openFileDialog.FileName);
                 MPFList.Items.Clear();
-                MPFModelList.Items.Clear();
                 for (int i = 0; i < modelHandler.ModelList.Count; i++)
                 {
                     MPFList.Items.Add(modelHandler.ModelList[i].FileName);
-                }
-            }
-        }
-
-        private void MPFList_SelectedIndexChanged(object sender, EventArgs e)
-        { 
-            if (MPFList.SelectedIndex != -1)
-            {
-                MPFModelList.Items.Clear();
-                for (int i = 0; i < modelHandler.ModelList[MPFList.SelectedIndex].modelsData.Count; i++)
-                {
-                    MPFModelList.Items.Add(i);
                 }
             }
         }
@@ -2069,7 +2056,7 @@ namespace SSX_Modder
 
         private void button6_Click(object sender, EventArgs e)
         {
-            if (MPFList.SelectedIndex != -1 && MPFModelList.SelectedIndex!=-1)
+            if (MPFList.SelectedIndex != -1)
             {
                 SaveFileDialog openFileDialog = new SaveFileDialog
                 {
@@ -2080,7 +2067,7 @@ namespace SSX_Modder
                 };
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    modelHandler.SaveModel(openFileDialog.FileName, MPFList.SelectedIndex, MPFModelList.SelectedIndex);
+                    modelHandler.SaveModel(openFileDialog.FileName, MPFList.SelectedIndex);
                 }
             }
         }

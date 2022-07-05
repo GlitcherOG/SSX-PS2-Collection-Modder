@@ -125,26 +125,19 @@ namespace SSX_Modder.FileHandlers
                     chunk.OffsetEnd = StreamUtil.ReadInt32(streamMatrix);
                     Model.chunks.Add(chunk);
                 }
-                Model.modelsData = new List<ModelData>();
+                Model.modelData = new ModelData();
+                Model.modelData.vertices = new List<Vertex3>();
+                Model.modelData.Strips = new List<int>();
+                Model.modelData.uv = new List<UV>();
+                Model.modelData.uvNormals = new List<UVNormal>();
                 streamMatrix.Position = Model.DataStart;
                 //Read Model Data
                 for (int n = 0; n < Model.ChunksCount; n++)
                 {
-                    int ModelPos = 0;
                     streamMatrix.Position = Model.chunks[n].ModelDataOffsetStart;
                     while (true)
                     {
-                        bool found = false;
-                        var ModelData = new ModelData();
-                        ModelData.vertices = new List<Vertex3>();
-                        ModelData.Strips = new List<int>();
-                        ModelData.uv = new List<UV>();
-                        ModelData.uvNormals = new List<UVNormal>();
-                        if (ModelPos < Model.modelsData.Count)
-                        {
-                            found = true;
-                            ModelData = Model.modelsData[ModelPos];
-                        }
+                        var ModelData = Model.modelData;
 
                         //Load Main Model Data Header
                         streamMatrix.Position += 48;
@@ -218,21 +211,10 @@ namespace SSX_Modder.FileHandlers
                         }
                         streamMatrix.Position += 16;
 
-                        if (!found)
-                        {
-                            Model.modelsData.Add(ModelData);
-                        }
-                        else
-                        {
-                            Model.modelsData[ModelPos] = ModelData;
-                        }
-                        //ModelPos++;
+                        Model.modelData = ModelData;
                     }
                 }
-                for (int z = 0; z < Model.modelsData.Count; z++)
-                {
-                    Model.modelsData[z] = GenerateFaces(Model.modelsData[z]);
-                }
+                Model.modelData = GenerateFaces(Model.modelData);
                 ModelList[i] = Model;
                 streamMatrix.Dispose();
                 streamMatrix.Close();
@@ -311,6 +293,10 @@ namespace SSX_Modder.FileHandlers
             int Index1 = 0;
             int Index2 = 0;
             int Index3 = 0;
+            //Fixes the Rotation For Exporting
+            //Swap When Exporting to other formats
+            //1-Clockwise
+            //0-Counter Clocwise
             if(roatation==1)
             {
                 Index1 = Index;
@@ -353,45 +339,12 @@ namespace SSX_Modder.FileHandlers
             return face;
         }
 
-        public Vertex3 findCentroid(List<Vertex3> points)
+        public void SaveModel(string path, int pos = 0)
         {
-            float x = 0;
-            float y = 0;
-            float z = 0;
-            for (int i = 0; i < points.Count; i++)
-            {
-                x += points[i].X;
-                y += points[i].Y;
-                z += points[i].Z;
-            }
-            Vertex3 center = new Vertex3();
-            center.X = x / points.Count();
-            center.Y = y / points.Count();
-            center.Z = z / points.Count();
-            return center;
-        }
-
-        public List<Vertex3> sortVerticies(List<Vertex3> points)
-        {
-            // get centroid
-            Vertex3 center = findCentroid(points);
-
-
-            //Collections.sort(points, (a, b)-> {
-            //    double a1 = (Math.toDegrees(Math.Atan2(a.x - center.x, a.y - center.y)) + 360) % 360;
-            //    double a2 = (Math.toDegrees(Math.A(b.x - center.x, b.y - center.y)) + 360) % 360;
-            //    return (int)(a1 - a2);
-            //});
-            return points;
-        }
-
-        public void SaveModel(string path, int pos = 0, int ChunkPos = 0)
-        {
-            string output = "# Exported From SSX \n";
+            string output = "# Exported From SSX Using SSX PS2 Collection Modder by GlitcherOG \n";
             var Model = ModelList[pos];
-            int b = ChunkPos;
-            var ModelData = Model.modelsData[b];
-            output += "o " + Model.FileName + b.ToString() + "\n";
+            var ModelData = Model.modelData;
+            output += "o " + Model.FileName + "\n";
 
             //Conevert Vertices into List
             List<Vertex3> vertices = new List<Vertex3>();
@@ -543,7 +496,7 @@ namespace SSX_Modder.FileHandlers
             //Matrix Data
             public List<Chunk> chunks;
             public List<BodyObjects> bodyObjectsList;
-            public List<ModelData> modelsData;
+            public ModelData modelData;
             public List<Models> models;
             //
         }
