@@ -1,0 +1,4 @@
+14/33/20/40
+vert,edges,faces,tris?
+
+Splits has 1 int before splits location

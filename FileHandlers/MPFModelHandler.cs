@@ -43,7 +43,7 @@ namespace SSX_Modder.FileHandlers
                     modelHeader.ModelCount = StreamUtil.ReadInt16(stream);
                     modelHeader.U22 = StreamUtil.ReadInt16(stream);
                     modelHeader.BodyObjectsCount = StreamUtil.ReadByte(stream);
-                    modelHeader.U23 = StreamUtil.ReadByte(stream);
+                    modelHeader.RotationAmmount = StreamUtil.ReadByte(stream);
                     stream.Position += 4;
                     ModelList.Add(modelHeader);
                 }
@@ -99,7 +99,7 @@ namespace SSX_Modder.FileHandlers
                 //Read RotationData?
                 streamMatrix.Position = Model.RotationInfo;
                 var Verties = new List<Vertex3>();
-                for (int b = 0; b < Model.U23; b++)
+                for (int b = 0; b < Model.RotationAmmount; b++)
                 {
                     Vertex3 v = new Vertex3();
                     v.X = StreamUtil.ReadFloat(streamMatrix);
@@ -108,7 +108,7 @@ namespace SSX_Modder.FileHandlers
                     streamMatrix.Position += 4;
                     Verties.Add(v);
                 }
-                //Model.Unkown = Verties;
+                Model.Unkown = Verties;
 
                 //Read Chunk Offsets
                 streamMatrix.Position = Model.ChunkOffsets;
@@ -125,80 +125,144 @@ namespace SSX_Modder.FileHandlers
                     chunk.OffsetEnd = StreamUtil.ReadInt32(streamMatrix);
                     Model.chunks.Add(chunk);
                 }
-                Model.modelData = new ModelData();
+                Model.modelData = new ModelAllData();
                 Model.modelData.vertices = new List<Vertex3>();
                 Model.modelData.Strips = new List<int>();
                 Model.modelData.uv = new List<UV>();
                 Model.modelData.uvNormals = new List<UVNormal>();
+
+                Model.modelSplitData = new ModelSplitData();
+                Model.modelSplitData.newSplits = new List<NewSplit>();
+                Model.modelSplitData.vertices = new List<Vertex3>();
+                Model.modelSplitData.uvNormals = new List<UVNormal>();
+                Model.modelSplitData.UnknownInts = new List<int>();
+                Model.modelSplitData.UnknownInts2 = new List<int>();
+
                 streamMatrix.Position = Model.DataStart;
                 //Read Model Data
                 for (int n = 0; n < Model.ChunksCount; n++)
                 {
-                    streamMatrix.Position = Model.chunks[n].ModelDataOffsetStart;
-                    while (true)
+                    //Loads All Model Entries
+                    if (Model.chunks[n].ModelDataOffsetStart != -1)
                     {
-                        var ModelData = Model.modelData;
-
-                        //Load Main Model Data Header
-                        streamMatrix.Position += 48;
-                        if (streamMatrix.Position >= Model.chunks[n].ModelDataOffsetEnd)
+                        streamMatrix.Position = Model.chunks[n].ModelDataOffsetStart;
+                        while (true)
                         {
-                            break;
-                        }
-                        ModelData.StripCount = StreamUtil.ReadInt32(streamMatrix);
-                        ModelData.EdgeCount = StreamUtil.ReadInt32(streamMatrix);
-                        ModelData.NormalCount = StreamUtil.ReadInt32(streamMatrix);
-                        ModelData.VertexCount = StreamUtil.ReadInt32(streamMatrix);
+                            var ModelData = Model.modelData;
 
-                        //Load Strip Count
-                        List<int> TempStrips = ModelData.Strips;
-                        for (int d = 0; d < ModelData.StripCount; d++)
-                        {
-                            TempStrips.Add(StreamUtil.ReadInt32(streamMatrix));
-                            streamMatrix.Position += 12;
-                        }
-                        ModelData.Strips = TempStrips;
-                        streamMatrix.Position += 16;
-
-                        //Read UV Texture Points
-                        if (ModelData.NormalCount != 0)
-                        {
+                            //Load Main Model Data Header
                             streamMatrix.Position += 48;
-                            List<UV> UVs = ModelData.uv;
-                            for (int c = 0; c < ModelData.VertexCount; c++)
+                            if (streamMatrix.Position >= Model.chunks[n].ModelDataOffsetEnd)
                             {
-                                UV uv = new UV();
-                                uv.X = StreamUtil.ReadInt16(streamMatrix);
-                                uv.Y = StreamUtil.ReadInt16(streamMatrix);
-                                UVs.Add(uv);
+                                break;
                             }
-                            ModelData.uv = UVs;
-                            StreamUtil.AlignBy16(streamMatrix);
-                        }
+                            ModelData.StripCount = StreamUtil.ReadInt32(streamMatrix);
+                            ModelData.EdgeCount = StreamUtil.ReadInt32(streamMatrix);
+                            ModelData.NormalCount = StreamUtil.ReadInt32(streamMatrix);
+                            ModelData.VertexCount = StreamUtil.ReadInt32(streamMatrix);
 
-                        //Read Normals
-                        if (ModelData.NormalCount != 0)
-                        {
-                            streamMatrix.Position += 48;
-                            List<UVNormal> Normals = ModelData.uvNormals;
-                            for (int c = 0; c < ModelData.VertexCount; c++)
+                            //Load Strip Count
+                            List<int> TempStrips = ModelData.Strips;
+                            for (int a = 0; a < ModelData.StripCount; a++)
                             {
-                                UVNormal normal = new UVNormal();
-                                normal.X = StreamUtil.ReadInt16(streamMatrix);
-                                normal.Y = StreamUtil.ReadInt16(streamMatrix);
-                                normal.Z = StreamUtil.ReadInt16(streamMatrix);
-                                Normals.Add(normal);
+                                TempStrips.Add(StreamUtil.ReadInt32(streamMatrix));
+                                streamMatrix.Position += 12;
                             }
-                            ModelData.uvNormals = Normals;
-                            StreamUtil.AlignBy16(streamMatrix);
-                        }
+                            ModelData.Strips = TempStrips;
+                            streamMatrix.Position += 16;
 
-                        //Load Vertex
-                        if (ModelData.VertexCount != 0)
+                            //Read UV Texture Points
+                            if (ModelData.NormalCount != 0)
+                            {
+                                streamMatrix.Position += 48;
+                                List<UV> UVs = ModelData.uv;
+                                for (int a = 0; a < ModelData.VertexCount; a++)
+                                {
+                                    UV uv = new UV();
+                                    uv.X = StreamUtil.ReadInt16(streamMatrix);
+                                    uv.Y = StreamUtil.ReadInt16(streamMatrix);
+                                    UVs.Add(uv);
+                                }
+                                ModelData.uv = UVs;
+                                StreamUtil.AlignBy16(streamMatrix);
+                            }
+
+                            //Read Normals
+                            if (ModelData.NormalCount != 0)
+                            {
+                                streamMatrix.Position += 48;
+                                List<UVNormal> Normals = ModelData.uvNormals;
+                                for (int a = 0; a < ModelData.VertexCount; a++)
+                                {
+                                    UVNormal normal = new UVNormal();
+                                    normal.X = StreamUtil.ReadInt16(streamMatrix);
+                                    normal.Y = StreamUtil.ReadInt16(streamMatrix);
+                                    normal.Z = StreamUtil.ReadInt16(streamMatrix);
+                                    Normals.Add(normal);
+                                }
+                                ModelData.uvNormals = Normals;
+                                StreamUtil.AlignBy16(streamMatrix);
+                            }
+
+                            //Load Vertex
+                            if (ModelData.VertexCount != 0)
+                            {
+                                streamMatrix.Position += 48;
+                                List<Vertex3> vertices = ModelData.vertices;
+                                for (int a = 0; a < ModelData.VertexCount; a++)
+                                {
+                                    Vertex3 vertex = new Vertex3();
+                                    vertex.X = StreamUtil.ReadFloat(streamMatrix);
+                                    vertex.Y = StreamUtil.ReadFloat(streamMatrix);
+                                    vertex.Z = StreamUtil.ReadFloat(streamMatrix);
+                                    vertices.Add(vertex);
+                                }
+                                ModelData.vertices = vertices;
+                                StreamUtil.AlignBy16(streamMatrix);
+                            }
+                            streamMatrix.Position += 16;
+
+                            Model.modelData = ModelData;
+                        }
+                    }
+
+                    //Load File Splits
+                    if(Model.chunks[n].OffsetStart != -1)
+                    {
+                        streamMatrix.Position = Model.chunks[n].OffsetStart;
+                        while (true)
                         {
+                            var modelSplitData = Model.modelSplitData;
                             streamMatrix.Position += 48;
-                            List<Vertex3> vertices = ModelData.vertices;
-                            for (int a = 0; a < ModelData.VertexCount; a++)
+                            if (streamMatrix.Position >= Model.chunks[n].OffsetEnd)
+                            {
+                                break;
+                            }
+
+                            modelSplitData.StripCount = StreamUtil.ReadInt32(streamMatrix);
+                            modelSplitData.Unkown1 = StreamUtil.ReadInt32(streamMatrix);
+                            modelSplitData.Unkown2 = StreamUtil.ReadInt32(streamMatrix);
+                            modelSplitData.Unkown3 = StreamUtil.ReadInt32(streamMatrix);
+
+                            //Load Strip Count
+                            var TempStrips = modelSplitData.newSplits;
+                            for (int a = 0; a < modelSplitData.StripCount; a++)
+                            {
+                                NewSplit newSplit = new NewSplit();
+                                newSplit.Unknown = StreamUtil.ReadInt32(streamMatrix);
+                                newSplit.Split = StreamUtil.ReadInt32(streamMatrix);
+                                newSplit.Unknown2 = StreamUtil.ReadInt32(streamMatrix);
+                                newSplit.Unknown3 = StreamUtil.ReadInt32(streamMatrix);
+                                TempStrips.Add(newSplit);
+                            }
+                            modelSplitData.newSplits = TempStrips;
+
+                            //Load Vertex?
+                            streamMatrix.Position += 46;
+                            int TempCount = StreamUtil.ReadByte(streamMatrix);
+                            streamMatrix.Position += 1;
+                            List<Vertex3> vertices = modelSplitData.vertices;
+                            for (int a = 0; a < TempCount; a++)
                             {
                                 Vertex3 vertex = new Vertex3();
                                 vertex.X = StreamUtil.ReadFloat(streamMatrix);
@@ -206,12 +270,51 @@ namespace SSX_Modder.FileHandlers
                                 vertex.Z = StreamUtil.ReadFloat(streamMatrix);
                                 vertices.Add(vertex);
                             }
-                            ModelData.vertices = vertices;
+                            modelSplitData.vertices = vertices;
                             StreamUtil.AlignBy16(streamMatrix);
-                        }
-                        streamMatrix.Position += 16;
 
-                        Model.modelData = ModelData;
+                            //Unknown
+                            streamMatrix.Position += 46;
+                            TempCount = StreamUtil.ReadByte(streamMatrix);
+                            streamMatrix.Position += 1;
+                            List<UVNormal> Normals = modelSplitData.uvNormals;
+                            for (int a = 0; a < TempCount; a++)
+                            {
+                                UVNormal normal = new UVNormal();
+                                normal.X = StreamUtil.ReadInt16(streamMatrix);
+                                normal.Y = StreamUtil.ReadInt16(streamMatrix);
+                                normal.Z = StreamUtil.ReadInt16(streamMatrix);
+                                Normals.Add(normal);
+                            }
+                            modelSplitData.uvNormals = Normals;
+                            StreamUtil.AlignBy16(streamMatrix);
+
+                            //Unknown
+                            streamMatrix.Position += 14;
+                            TempCount = StreamUtil.ReadByte(streamMatrix); 
+                            streamMatrix.Position += 1;
+                            List<int> ints = modelSplitData.UnknownInts;
+                            for (int a = 0; a < TempCount; a++)
+                            {
+                                ints.Add(StreamUtil.ReadInt16(streamMatrix));
+                            }
+                            modelSplitData.UnknownInts = ints;
+                            StreamUtil.AlignBy16(streamMatrix);
+
+                            streamMatrix.Position += 46;
+                            TempCount = StreamUtil.ReadByte(streamMatrix);
+                            streamMatrix.Position += 1;
+                            List<int> ints2 = modelSplitData.UnknownInts2;
+                            for (int a = 0; a < TempCount; a++)
+                            {
+                                ints2.Add(StreamUtil.ReadInt32(streamMatrix));
+                            }
+                            modelSplitData.UnknownInts2 = ints2;
+                            StreamUtil.AlignBy16(streamMatrix);
+                            streamMatrix.Position += 16;
+
+                            Model.modelSplitData = modelSplitData;
+                        }
                     }
                 }
                 Model.modelData = GenerateFaces(Model.modelData);
@@ -234,7 +337,7 @@ namespace SSX_Modder.FileHandlers
             return vertices;
         }
 
-        public ModelData GenerateFaces(ModelData models)
+        public ModelAllData GenerateFaces(ModelAllData models)
         {
             var ModelData = models;
             //Increment Strips
@@ -287,7 +390,7 @@ namespace SSX_Modder.FileHandlers
             }
             return false;
         }
-        public Face CreateFaces(int Index, ModelData ModelData,int roatation)
+        public Face CreateFaces(int Index, ModelAllData ModelData,int roatation)
         {
             Face face = new Face();
             int Index1 = 0;
@@ -489,19 +592,41 @@ namespace SSX_Modder.FileHandlers
             public int ModelCount; 
             public int BodyObjectsCount; 
             public int U22;
-            public int U23;
+            public int RotationAmmount; //Possible Rotation Ammount 
 
             public byte[] Matrix;
-            //public List<Vertex3> Unkown;
+            public List<Vertex3> Unkown;
             //Matrix Data
             public List<Chunk> chunks;
             public List<BodyObjects> bodyObjectsList;
-            public ModelData modelData;
+            public ModelAllData modelData;
+            public ModelSplitData modelSplitData;
             public List<Models> models;
             //
         }
 
-        public struct ModelData
+        public struct ModelSplitData
+        {
+            public int StripCount;
+            public int Unkown1;
+            public int Unkown2;
+            public int Unkown3;
+
+            public List<Vertex3> vertices;
+            public List<NewSplit> newSplits;
+            public List<UVNormal> uvNormals;
+            public List<int> UnknownInts;
+            public List<int> UnknownInts2;
+        }
+
+        public struct NewSplit
+        {
+            public int Unknown;
+            public int Split;
+            public int Unknown2;
+            public int Unknown3;
+        }
+        public struct ModelAllData
         {
             public int StripCount;
             public int EdgeCount;
@@ -534,7 +659,6 @@ namespace SSX_Modder.FileHandlers
             public int OffsetEnd;
         }
 
-
         public struct Vertex3
         {
             public float X;
@@ -542,6 +666,7 @@ namespace SSX_Modder.FileHandlers
             public float Z;
         }
 
+        //Since there both int 16's They need to be divided by 4096
         public struct UV
         {
             public int X;
@@ -588,15 +713,6 @@ namespace SSX_Modder.FileHandlers
             public float Float1;
             public float Float2;
             public float Float3;
-        }
-
-        public struct MPFUnkownArray1
-        {
-            //Header
-            public int Count;
-            public int StartOffset; 
-            public int EndOffset; //Sometimes Used Sometimes Not
-            public List<int> IntList;
         }
     }
 }
