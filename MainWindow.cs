@@ -2071,6 +2071,24 @@ namespace SSX_Modder
                 }
             }
         }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            if (MPFList.SelectedIndex != -1)
+            {
+                SaveFileDialog openFileDialog = new SaveFileDialog
+                {
+                    InitialDirectory = workspacePath,
+                    Filter = "Obj File (*.obj)|*.obj|All files (*.*)|*.*",
+                    FilterIndex = 1,
+                    RestoreDirectory = false
+                };
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    modelHandler.TestSave(openFileDialog.FileName, MPFList.SelectedIndex);
+                }
+            }
+        }
         #endregion
 
         SSBHandler ssbHandler = new SSBHandler();
@@ -2103,5 +2121,6 @@ namespace SSX_Modder
                 ssbHandler.Save(openFileDialog.FileName);
             }
         }
+
     }
 }

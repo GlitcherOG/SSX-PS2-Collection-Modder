@@ -318,6 +318,7 @@ namespace SSX_Modder
             this.BoltModelIDThree = new System.Windows.Forms.TextBox();
             this.boltLoad = new System.Windows.Forms.Button();
             this.tabMPFModel = new System.Windows.Forms.TabPage();
+            this.MPFModelList = new System.Windows.Forms.ListBox();
             this.MPFList = new System.Windows.Forms.ListBox();
             this.button6 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -375,7 +376,7 @@ namespace SSX_Modder
             this.toolStripBuildRun = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.MPFModelList = new System.Windows.Forms.ListBox();
+            this.button7 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabModPacks.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -3741,6 +3742,7 @@ namespace SSX_Modder
             // 
             // tabMPFModel
             // 
+            this.tabMPFModel.Controls.Add(this.button7);
             this.tabMPFModel.Controls.Add(this.MPFModelList);
             this.tabMPFModel.Controls.Add(this.MPFList);
             this.tabMPFModel.Controls.Add(this.button6);
@@ -3752,6 +3754,14 @@ namespace SSX_Modder
             this.tabMPFModel.TabIndex = 14;
             this.tabMPFModel.Text = "MPF Model";
             this.tabMPFModel.UseVisualStyleBackColor = true;
+            // 
+            // MPFModelList
+            // 
+            this.MPFModelList.FormattingEnabled = true;
+            this.MPFModelList.Location = new System.Drawing.Point(197, 4);
+            this.MPFModelList.Name = "MPFModelList";
+            this.MPFModelList.Size = new System.Drawing.Size(175, 459);
+            this.MPFModelList.TabIndex = 4;
             // 
             // MPFList
             // 
@@ -4351,13 +4361,15 @@ namespace SSX_Modder
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
             // 
-            // MPFModelList
+            // button7
             // 
-            this.MPFModelList.FormattingEnabled = true;
-            this.MPFModelList.Location = new System.Drawing.Point(197, 4);
-            this.MPFModelList.Name = "MPFModelList";
-            this.MPFModelList.Size = new System.Drawing.Size(175, 459);
-            this.MPFModelList.TabIndex = 4;
+            this.button7.Location = new System.Drawing.Point(1072, 401);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(116, 23);
+            this.button7.TabIndex = 5;
+            this.button7.Text = "Export Models";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // MainWindow
             // 
@@ -4806,5 +4818,6 @@ namespace SSX_Modder
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.ListBox MPFList;
         private System.Windows.Forms.ListBox MPFModelList;
+        private System.Windows.Forms.Button button7;
     }
 }

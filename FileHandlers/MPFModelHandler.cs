@@ -257,7 +257,7 @@ namespace SSX_Modder.FileHandlers
                             }
                             modelSplitData.newSplits = TempStrips;
 
-                            //Load Vertex?
+                            //Unknown
                             streamMatrix.Position += 46;
                             int TempCount = StreamUtil.ReadByte(streamMatrix);
                             streamMatrix.Position += 1;
@@ -301,6 +301,7 @@ namespace SSX_Modder.FileHandlers
                             modelSplitData.UnknownInts = ints;
                             StreamUtil.AlignBy16(streamMatrix);
 
+                            //Unknown
                             streamMatrix.Position += 46;
                             TempCount = StreamUtil.ReadByte(streamMatrix);
                             streamMatrix.Position += 1;
@@ -572,6 +573,136 @@ namespace SSX_Modder.FileHandlers
             File.WriteAllText(path, output);
         }
 
+
+        public Face1 CreateFaces1(int Index, ModelSplitData ModelData, int roatation)
+        {
+            Face1 face = new Face1();
+            int Index1 = 0;
+            int Index2 = 0;
+            int Index3 = 0;
+            //Fixes the Rotation For Exporting
+            //Swap When Exporting to other formats
+            //1-Clockwise
+            //0-Counter Clocwise
+            if (roatation == 1)
+            {
+                Index1 = Index;
+                Index2 = Index - 1;
+                Index3 = Index - 2;
+            }
+            if (roatation == 0)
+            {
+                Index1 = Index;
+                Index2 = Index - 2;
+                Index3 = Index - 1;
+            }
+            face.V1 = ModelData.vertices[Index1];
+            face.V2 = ModelData.vertices[Index2];
+            face.V3 = ModelData.vertices[Index3];
+
+            face.V1Pos = Index1;
+            face.V2Pos = Index2;
+            face.V3Pos = Index3;
+
+            return face;
+        }
+
+        public ModelSplitData GenerateFaces1(ModelSplitData models)
+        {
+            var ModelData = models;
+            //Increment Strips
+            List<int> strip2 = new List<int>();
+            strip2.Add(0);
+            foreach (var item in ModelData.newSplits)
+            {
+                strip2.Add(strip2[strip2.Count - 1] + item.Split);
+            }
+            ModelData.Splits = strip2;
+
+            //Make Faces
+            ModelData.faces = new List<Face1>();
+            int localIndex = 0;
+            int Rotation = 0;
+            for (int b = 0; b < ModelData.vertices.Count; b++)
+            {
+                if (InsideSplits(b, ModelData.Splits))
+                {
+                    Rotation = 0;
+                    localIndex = 1;
+                    continue;
+                }
+                if (localIndex < 2)
+                {
+                    localIndex++;
+                    continue;
+                }
+
+                ModelData.faces.Add(CreateFaces1(b, ModelData, Rotation));
+                Rotation++;
+                if (Rotation == 2)
+                {
+                    Rotation = 0;
+                }
+                localIndex++;
+            }
+
+            return ModelData;
+        }
+
+        public void TestSave(string path, int pos = 0)
+        {
+            string output = "# Exported From SSX Using SSX PS2 Collection Modder by GlitcherOG \n";
+            var Model = ModelList[pos];
+            var ModelSplitData = Model.modelSplitData;
+            ModelSplitData = GenerateFaces1(ModelSplitData);
+            output += "o " + Model.FileName + "\n";
+
+            //Conevert Vertices into List
+            List<Vertex3> vertices = new List<Vertex3>();
+            for (int i = 0; i < ModelSplitData.faces.Count; i++)
+            {
+                var Face = ModelSplitData.faces[i];
+                if (!vertices.Contains(Face.V1))
+                {
+                    vertices.Add(Face.V1);
+                }
+                Face.V1Pos = vertices.IndexOf(Face.V1);
+
+                if (!vertices.Contains(Face.V2))
+                {
+                    vertices.Add(Face.V2);
+                }
+                Face.V2Pos = vertices.IndexOf(Face.V2);
+
+                if (!vertices.Contains(Face.V3))
+                {
+                    vertices.Add(Face.V3);
+                }
+                Face.V3Pos = vertices.IndexOf(Face.V3);
+
+                ModelSplitData.faces[i] = Face;
+            }
+
+            for (int i = 0; i < vertices.Count; i++)
+            {
+                output += "v " + vertices[i].X + " " + vertices[i].Y + " " + vertices[i].Z + "\n";
+            }
+            for (int i = 0; i < ModelSplitData.faces.Count; i++)
+            {
+                var Face = ModelSplitData.faces[i];
+                output += "f " + (Face.V1Pos + 1).ToString() + " " + (Face.V2Pos + 1).ToString() + " " + (Face.V3Pos + 1).ToString() + " " + "\n";
+            }
+
+
+            if (File.Exists(path))
+            {
+                File.Delete(path);
+            }
+
+            File.WriteAllText(path, output);
+        }
+
+
         public struct MPFModelHeader
         {
             //GlobalHeader
@@ -617,6 +748,9 @@ namespace SSX_Modder.FileHandlers
             public List<UVNormal> uvNormals;
             public List<int> UnknownInts;
             public List<int> UnknownInts2;
+            public List<Face1> faces;
+
+            public List<int> Splits;
         }
 
         public struct NewSplit
@@ -705,6 +839,17 @@ namespace SSX_Modder.FileHandlers
             public int Normal1Pos;
             public int Normal2Pos;
             public int Normal3Pos;
+        }
+
+        public struct Face1
+        {
+            public Vertex3 V1;
+            public Vertex3 V2;
+            public Vertex3 V3;
+
+            public int V1Pos;
+            public int V2Pos;
+            public int V3Pos;
         }
 
         public struct BodyObjects
