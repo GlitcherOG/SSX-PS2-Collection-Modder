@@ -119,40 +119,40 @@ namespace SSX_Modder.FileHandlers
                     chunk.ID = StreamUtil.ReadInt32(streamMatrix);
                     chunk.ChunkID = StreamUtil.ReadInt32(streamMatrix);
                     streamMatrix.Position += 4;
-                    chunk.ModelDataOffsetStart = StreamUtil.ReadInt32(streamMatrix);
-                    chunk.ModelDataOffsetEnd = StreamUtil.ReadInt32(streamMatrix);
-                    chunk.OffsetStart = StreamUtil.ReadInt32(streamMatrix);
-                    chunk.OffsetEnd = StreamUtil.ReadInt32(streamMatrix);
+                    chunk.StaticMeshOffsetStart = StreamUtil.ReadInt32(streamMatrix);
+                    chunk.StaticMeshOffsetEnd = StreamUtil.ReadInt32(streamMatrix);
+                    chunk.FlexableMeshOffsetStart = StreamUtil.ReadInt32(streamMatrix);
+                    chunk.FlexableMeshOffsetEnd = StreamUtil.ReadInt32(streamMatrix);
                     Model.chunks.Add(chunk);
                 }
-                Model.modelData = new ModelAllData();
-                Model.modelData.vertices = new List<Vertex3>();
-                Model.modelData.Strips = new List<int>();
-                Model.modelData.uv = new List<UV>();
-                Model.modelData.uvNormals = new List<UVNormal>();
+                Model.staticMesh = new StaticMesh();
+                Model.staticMesh.vertices = new List<Vertex3>();
+                Model.staticMesh.Strips = new List<int>();
+                Model.staticMesh.uv = new List<UV>();
+                Model.staticMesh.uvNormals = new List<UVNormal>();
 
-                Model.modelSplitData = new ModelSplitData();
-                Model.modelSplitData.newSplits = new List<NewSplit>();
-                Model.modelSplitData.vertices = new List<Vertex3>();
-                Model.modelSplitData.uvNormals = new List<UVNormal>();
-                Model.modelSplitData.UnknownInts = new List<int>();
-                Model.modelSplitData.UnknownInts2 = new List<int>();
+                Model.flexableMesh = new FlexableMesh();
+                Model.flexableMesh.newSplits = new List<NewSplit>();
+                Model.flexableMesh.vertices = new List<Vertex3>();
+                Model.flexableMesh.uvNormals = new List<UVNormal>();
+                Model.flexableMesh.UnknownInts = new List<int>();
+                Model.flexableMesh.UnknownInts2 = new List<int>();
 
                 streamMatrix.Position = Model.DataStart;
-                //Read Model Data
+                //Read Static Model Data
                 for (int n = 0; n < Model.ChunksCount; n++)
                 {
                     //Loads All Model Entries
-                    if (Model.chunks[n].ModelDataOffsetStart != -1)
+                    if (Model.chunks[n].StaticMeshOffsetStart != -1)
                     {
-                        streamMatrix.Position = Model.chunks[n].ModelDataOffsetStart;
+                        streamMatrix.Position = Model.chunks[n].StaticMeshOffsetStart;
                         while (true)
                         {
-                            var ModelData = Model.modelData;
+                            var ModelData = Model.staticMesh;
 
                             //Load Main Model Data Header
                             streamMatrix.Position += 48;
-                            if (streamMatrix.Position >= Model.chunks[n].ModelDataOffsetEnd)
+                            if (streamMatrix.Position >= Model.chunks[n].StaticMeshOffsetEnd)
                             {
                                 break;
                             }
@@ -222,19 +222,19 @@ namespace SSX_Modder.FileHandlers
                             }
                             streamMatrix.Position += 16;
 
-                            Model.modelData = ModelData;
+                            Model.staticMesh = ModelData;
                         }
                     }
 
                     //Load File Splits
-                    if(Model.chunks[n].OffsetStart != -1)
+                    if(Model.chunks[n].FlexableMeshOffsetStart != -1)
                     {
-                        streamMatrix.Position = Model.chunks[n].OffsetStart;
+                        streamMatrix.Position = Model.chunks[n].FlexableMeshOffsetStart;
                         while (true)
                         {
-                            var modelSplitData = Model.modelSplitData;
+                            var modelSplitData = Model.flexableMesh;
                             streamMatrix.Position += 48;
-                            if (streamMatrix.Position >= Model.chunks[n].OffsetEnd)
+                            if (streamMatrix.Position >= Model.chunks[n].FlexableMeshOffsetEnd)
                             {
                                 break;
                             }
@@ -314,11 +314,11 @@ namespace SSX_Modder.FileHandlers
                             StreamUtil.AlignBy16(streamMatrix);
                             streamMatrix.Position += 16;
 
-                            Model.modelSplitData = modelSplitData;
+                            Model.flexableMesh = modelSplitData;
                         }
                     }
                 }
-                Model.modelData = GenerateFaces(Model.modelData);
+                Model.staticMesh = GenerateFaces(Model.staticMesh);
                 ModelList[i] = Model;
                 streamMatrix.Dispose();
                 streamMatrix.Close();
@@ -338,7 +338,7 @@ namespace SSX_Modder.FileHandlers
             return vertices;
         }
 
-        public ModelAllData GenerateFaces(ModelAllData models)
+        public StaticMesh GenerateFaces(StaticMesh models)
         {
             var ModelData = models;
             //Increment Strips
@@ -391,7 +391,7 @@ namespace SSX_Modder.FileHandlers
             }
             return false;
         }
-        public Face CreateFaces(int Index, ModelAllData ModelData,int roatation)
+        public Face CreateFaces(int Index, StaticMesh ModelData,int roatation)
         {
             Face face = new Face();
             int Index1 = 0;
@@ -447,7 +447,7 @@ namespace SSX_Modder.FileHandlers
         {
             string output = "# Exported From SSX Using SSX PS2 Collection Modder by GlitcherOG \n";
             var Model = ModelList[pos];
-            var ModelData = Model.modelData;
+            var ModelData = Model.staticMesh;
             output += "o " + Model.FileName + "\n";
 
             //Conevert Vertices into List
@@ -574,9 +574,9 @@ namespace SSX_Modder.FileHandlers
         }
 
 
-        public Face1 CreateFaces1(int Index, ModelSplitData ModelData, int roatation)
+        public FlexableFace CreateFlexableFace(int Index, FlexableMesh ModelData, int roatation)
         {
-            Face1 face = new Face1();
+            FlexableFace face = new FlexableFace();
             int Index1 = 0;
             int Index2 = 0;
             int Index3 = 0;
@@ -607,7 +607,7 @@ namespace SSX_Modder.FileHandlers
             return face;
         }
 
-        public ModelSplitData GenerateFaces1(ModelSplitData models)
+        public FlexableMesh GenerateFaces1(FlexableMesh models)
         {
             var ModelData = models;
             //Increment Strips
@@ -620,7 +620,7 @@ namespace SSX_Modder.FileHandlers
             ModelData.Splits = strip2;
 
             //Make Faces
-            ModelData.faces = new List<Face1>();
+            ModelData.faces = new List<FlexableFace>();
             int localIndex = 0;
             int Rotation = 0;
             for (int b = 0; b < ModelData.vertices.Count; b++)
@@ -637,7 +637,7 @@ namespace SSX_Modder.FileHandlers
                     continue;
                 }
 
-                ModelData.faces.Add(CreateFaces1(b, ModelData, Rotation));
+                ModelData.faces.Add(CreateFlexableFace(b, ModelData, Rotation));
                 Rotation++;
                 if (Rotation == 2)
                 {
@@ -653,7 +653,7 @@ namespace SSX_Modder.FileHandlers
         {
             string output = "# Exported From SSX Using SSX PS2 Collection Modder by GlitcherOG \n";
             var Model = ModelList[pos];
-            var ModelSplitData = Model.modelSplitData;
+            var ModelSplitData = Model.flexableMesh;
             ModelSplitData = GenerateFaces1(ModelSplitData);
             output += "o " + Model.FileName + "\n";
 
@@ -730,13 +730,13 @@ namespace SSX_Modder.FileHandlers
             //Matrix Data
             public List<Chunk> chunks;
             public List<BodyObjects> bodyObjectsList;
-            public ModelAllData modelData;
-            public ModelSplitData modelSplitData;
+            public StaticMesh staticMesh;
+            public FlexableMesh flexableMesh;
             public List<Models> models;
             //
         }
 
-        public struct ModelSplitData
+        public struct FlexableMesh
         {
             public int StripCount;
             public int Unkown1;
@@ -748,7 +748,7 @@ namespace SSX_Modder.FileHandlers
             public List<UVNormal> uvNormals;
             public List<int> UnknownInts;
             public List<int> UnknownInts2;
-            public List<Face1> faces;
+            public List<FlexableFace> faces;
 
             public List<int> Splits;
         }
@@ -760,7 +760,7 @@ namespace SSX_Modder.FileHandlers
             public int Unknown2;
             public int Unknown3;
         }
-        public struct ModelAllData
+        public struct StaticMesh
         {
             public int StripCount;
             public int EdgeCount;
@@ -787,10 +787,10 @@ namespace SSX_Modder.FileHandlers
         {
             public int ID;
             public int ChunkID;
-            public int ModelDataOffsetStart;
-            public int ModelDataOffsetEnd;
-            public int OffsetStart;
-            public int OffsetEnd;
+            public int StaticMeshOffsetStart;
+            public int StaticMeshOffsetEnd;
+            public int FlexableMeshOffsetStart;
+            public int FlexableMeshOffsetEnd;
         }
 
         public struct Vertex3
@@ -841,7 +841,7 @@ namespace SSX_Modder.FileHandlers
             public int Normal3Pos;
         }
 
-        public struct Face1
+        public struct FlexableFace
         {
             public Vertex3 V1;
             public Vertex3 V2;
