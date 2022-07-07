@@ -318,6 +318,7 @@ namespace SSX_Modder
             this.BoltModelIDThree = new System.Windows.Forms.TextBox();
             this.boltLoad = new System.Windows.Forms.Button();
             this.tabMPFModel = new System.Windows.Forms.TabPage();
+            this.button7 = new System.Windows.Forms.Button();
             this.MPFModelList = new System.Windows.Forms.ListBox();
             this.MPFList = new System.Windows.Forms.ListBox();
             this.button6 = new System.Windows.Forms.Button();
@@ -376,7 +377,9 @@ namespace SSX_Modder
             this.toolStripBuildRun = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.button7 = new System.Windows.Forms.Button();
+            this.ChunkSize = new System.Windows.Forms.Label();
+            this.MeshCount = new System.Windows.Forms.Label();
+            this.SkinMeshCount = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabModPacks.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -3742,6 +3745,9 @@ namespace SSX_Modder
             // 
             // tabMPFModel
             // 
+            this.tabMPFModel.Controls.Add(this.SkinMeshCount);
+            this.tabMPFModel.Controls.Add(this.MeshCount);
+            this.tabMPFModel.Controls.Add(this.ChunkSize);
             this.tabMPFModel.Controls.Add(this.button7);
             this.tabMPFModel.Controls.Add(this.MPFModelList);
             this.tabMPFModel.Controls.Add(this.MPFList);
@@ -3754,6 +3760,16 @@ namespace SSX_Modder
             this.tabMPFModel.TabIndex = 14;
             this.tabMPFModel.Text = "MPF Model";
             this.tabMPFModel.UseVisualStyleBackColor = true;
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(1072, 401);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(116, 23);
+            this.button7.TabIndex = 5;
+            this.button7.Text = "Export Models";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // MPFModelList
             // 
@@ -3770,6 +3786,7 @@ namespace SSX_Modder
             this.MPFList.Name = "MPFList";
             this.MPFList.Size = new System.Drawing.Size(175, 459);
             this.MPFList.TabIndex = 3;
+            this.MPFList.SelectedIndexChanged += new System.EventHandler(this.MPFList_SelectedIndexChanged);
             // 
             // button6
             // 
@@ -4361,15 +4378,32 @@ namespace SSX_Modder
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
             // 
-            // button7
+            // ChunkSize
             // 
-            this.button7.Location = new System.Drawing.Point(1072, 401);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(116, 23);
-            this.button7.TabIndex = 5;
-            this.button7.Text = "Export Models";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
+            this.ChunkSize.AutoSize = true;
+            this.ChunkSize.Location = new System.Drawing.Point(462, 116);
+            this.ChunkSize.Name = "ChunkSize";
+            this.ChunkSize.Size = new System.Drawing.Size(47, 13);
+            this.ChunkSize.TabIndex = 6;
+            this.ChunkSize.Text = "label101";
+            // 
+            // MeshCount
+            // 
+            this.MeshCount.AutoSize = true;
+            this.MeshCount.Location = new System.Drawing.Point(562, 116);
+            this.MeshCount.Name = "MeshCount";
+            this.MeshCount.Size = new System.Drawing.Size(47, 13);
+            this.MeshCount.TabIndex = 7;
+            this.MeshCount.Text = "label101";
+            // 
+            // SkinMeshCount
+            // 
+            this.SkinMeshCount.AutoSize = true;
+            this.SkinMeshCount.Location = new System.Drawing.Point(653, 116);
+            this.SkinMeshCount.Name = "SkinMeshCount";
+            this.SkinMeshCount.Size = new System.Drawing.Size(47, 13);
+            this.SkinMeshCount.TabIndex = 8;
+            this.SkinMeshCount.Text = "label101";
             // 
             // MainWindow
             // 
@@ -4452,6 +4486,7 @@ namespace SSX_Modder
             ((System.ComponentModel.ISupportInitialize)(this.BoltUnlock)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BoltUnkownOne)).EndInit();
             this.tabMPFModel.ResumeLayout(false);
+            this.tabMPFModel.PerformLayout();
             this.tabTools.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
@@ -4819,5 +4854,8 @@ namespace SSX_Modder
         private System.Windows.Forms.ListBox MPFList;
         private System.Windows.Forms.ListBox MPFModelList;
         private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Label SkinMeshCount;
+        private System.Windows.Forms.Label MeshCount;
+        private System.Windows.Forms.Label ChunkSize;
     }
 }

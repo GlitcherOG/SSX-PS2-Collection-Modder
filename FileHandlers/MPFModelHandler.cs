@@ -136,7 +136,7 @@ namespace SSX_Modder.FileHandlers
                 Model.flexableMesh.vertices = new List<Vertex3>();
                 Model.flexableMesh.uvNormals = new List<UVNormal>();
                 Model.flexableMesh.UnknownInts = new List<int>();
-                Model.flexableMesh.UnknownInts2 = new List<int>();
+                Model.flexableMesh.uv = new List<UV>();
 
                 streamMatrix.Position = Model.DataStart;
                 //Read Static Model Data
@@ -148,6 +148,7 @@ namespace SSX_Modder.FileHandlers
                         streamMatrix.Position = Model.chunks[n].StaticMeshOffsetStart;
                         while (true)
                         {
+                            Model.MeshCount++;
                             var ModelData = Model.staticMesh;
 
                             //Load Main Model Data Header
@@ -232,6 +233,7 @@ namespace SSX_Modder.FileHandlers
                         streamMatrix.Position = Model.chunks[n].FlexableMeshOffsetStart;
                         while (true)
                         {
+                            Model.FlexMeshCount++;
                             var modelSplitData = Model.flexableMesh;
                             streamMatrix.Position += 48;
                             if (streamMatrix.Position >= Model.chunks[n].FlexableMeshOffsetEnd)
@@ -305,12 +307,15 @@ namespace SSX_Modder.FileHandlers
                             streamMatrix.Position += 46;
                             TempCount = StreamUtil.ReadByte(streamMatrix);
                             streamMatrix.Position += 1;
-                            List<int> ints2 = modelSplitData.UnknownInts2;
+                            List<UV> uvs = modelSplitData.uv;
                             for (int a = 0; a < TempCount; a++)
                             {
-                                ints2.Add(StreamUtil.ReadInt32(streamMatrix));
+                                UV uv = new UV();
+                                uv.X = StreamUtil.ReadInt16(streamMatrix);
+                                uv.Y = StreamUtil.ReadInt16(streamMatrix);
+                                uvs.Add(uv);
                             }
-                            modelSplitData.UnknownInts2 = ints2;
+                            modelSplitData.uv = uvs;
                             StreamUtil.AlignBy16(streamMatrix);
                             streamMatrix.Position += 16;
 
@@ -475,7 +480,6 @@ namespace SSX_Modder.FileHandlers
 
                 ModelData.faces[i] = Face;
             }
-
             //Convert UV Points Into List
             List<UV> UV = new List<UV>();
             if (ModelData.uv.Count != 0)
@@ -654,34 +658,34 @@ namespace SSX_Modder.FileHandlers
             string output = "# Exported From SSX Using SSX PS2 Collection Modder by GlitcherOG \n";
             var Model = ModelList[pos];
             var ModelSplitData = Model.flexableMesh;
-            ModelSplitData = GenerateFaces1(ModelSplitData);
+            //ModelSplitData = GenerateFaces1(ModelSplitData);
             output += "o " + Model.FileName + "\n";
 
             //Conevert Vertices into List
-            List<Vertex3> vertices = new List<Vertex3>();
-            for (int i = 0; i < ModelSplitData.faces.Count; i++)
-            {
-                var Face = ModelSplitData.faces[i];
-                if (!vertices.Contains(Face.V1))
-                {
-                    vertices.Add(Face.V1);
-                }
-                Face.V1Pos = vertices.IndexOf(Face.V1);
+            List<Vertex3> vertices = Model.flexableMesh.vertices;
+            //for (int i = 0; i < ModelSplitData.faces.Count; i++)
+            //{
+            //    var Face = ModelSplitData.faces[i];
+            //    if (!vertices.Contains(Face.V1))
+            //    {
+            //        vertices.Add(Face.V1);
+            //    }
+            //    Face.V1Pos = vertices.IndexOf(Face.V1);
 
-                if (!vertices.Contains(Face.V2))
-                {
-                    vertices.Add(Face.V2);
-                }
-                Face.V2Pos = vertices.IndexOf(Face.V2);
+            //    if (!vertices.Contains(Face.V2))
+            //    {
+            //        vertices.Add(Face.V2);
+            //    }
+            //    Face.V2Pos = vertices.IndexOf(Face.V2);
 
-                if (!vertices.Contains(Face.V3))
-                {
-                    vertices.Add(Face.V3);
-                }
-                Face.V3Pos = vertices.IndexOf(Face.V3);
+            //    if (!vertices.Contains(Face.V3))
+            //    {
+            //        vertices.Add(Face.V3);
+            //    }
+            //    Face.V3Pos = vertices.IndexOf(Face.V3);
 
-                ModelSplitData.faces[i] = Face;
-            }
+            //    ModelSplitData.faces[i] = Face;
+            //}
 
             for (int i = 0; i < vertices.Count; i++)
             {
@@ -734,6 +738,9 @@ namespace SSX_Modder.FileHandlers
             public FlexableMesh flexableMesh;
             public List<Models> models;
             //
+
+            public int MeshCount;
+            public int FlexMeshCount;
         }
 
         public struct FlexableMesh
@@ -747,7 +754,7 @@ namespace SSX_Modder.FileHandlers
             public List<NewSplit> newSplits;
             public List<UVNormal> uvNormals;
             public List<int> UnknownInts;
-            public List<int> UnknownInts2;
+            public List<UV> uv;
             public List<FlexableFace> faces;
 
             public List<int> Splits;

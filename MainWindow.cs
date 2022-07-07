@@ -2122,5 +2122,14 @@ namespace SSX_Modder
             }
         }
 
+        private void MPFList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(MPFList.SelectedIndex!=-1)
+            {
+                ChunkSize.Text = modelHandler.ModelList[MPFList.SelectedIndex].ChunksCount.ToString();
+                MeshCount.Text = modelHandler.ModelList[MPFList.SelectedIndex].MeshCount.ToString();
+                SkinMeshCount.Text = modelHandler.ModelList[MPFList.SelectedIndex].FlexMeshCount.ToString();
+            }
+        }
     }
 }
