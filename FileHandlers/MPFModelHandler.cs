@@ -56,7 +56,7 @@ namespace SSX_Modder.FileHandlers
                     MPFModelHeader modelHandler = ModelList[i];
                     modelHandler.Matrix = StreamUtil.ReadBytes(stream, ModelList[i].EntrySize);
                     RefpackHandler refpackHandler = new RefpackHandler();
-                    modelHandler.Matrix = refpackHandler.Decompress(modelHandler.Matrix);
+                    //modelHandler.Matrix = refpackHandler.Decompress(modelHandler.Matrix);
                     ModelList[i] = modelHandler;
                 }
             }
@@ -75,9 +75,9 @@ namespace SSX_Modder.FileHandlers
                 {
                     BodyObjects body = new BodyObjects();
                     body.Name = StreamUtil.ReadString(streamMatrix, 4);
-                    body.Float1 = StreamUtil.ReadFloat(streamMatrix);
-                    body.Float2 = StreamUtil.ReadFloat(streamMatrix);
-                    body.Float3 = StreamUtil.ReadFloat(streamMatrix);
+                    body.X = StreamUtil.ReadFloat(streamMatrix);
+                    body.Y = StreamUtil.ReadFloat(streamMatrix);
+                    body.Z = StreamUtil.ReadFloat(streamMatrix);
                     Model.bodyObjectsList.Add(body);
                 }
 
@@ -865,9 +865,9 @@ namespace SSX_Modder.FileHandlers
         public struct BodyObjects
         {
             public string Name;
-            public float Float1;
-            public float Float2;
-            public float Float3;
+            public float X;
+            public float Y;
+            public float Z;
         }
     }
 }
