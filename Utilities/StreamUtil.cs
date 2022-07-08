@@ -101,7 +101,7 @@ namespace SSX_Modder.Utilities
         {
             byte[] tempByte = new byte[4];
             stream.Read(tempByte, 0, tempByte.Length);
-            return (int)BitConverter.ToUInt32(tempByte, 0);
+            return (int)BitConverter.ToInt32(tempByte, 0);
         }
 
         public static int ReadInt32Big(Stream stream)

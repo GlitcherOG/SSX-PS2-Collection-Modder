@@ -34,7 +34,7 @@ namespace SSX_Modder.FileHandlers
                     modelHeader.FileName = StreamUtil.ReadString(stream, 16).Replace("\0", "");
                     modelHeader.DataOffset = StreamUtil.ReadInt32(stream);
                     modelHeader.EntrySize = StreamUtil.ReadInt32(stream);
-                    modelHeader.ModelsOffset = StreamUtil.ReadInt32(stream);
+                    modelHeader.BoneOffset = StreamUtil.ReadInt32(stream);
                     modelHeader.RotationInfo = StreamUtil.ReadInt32(stream);
                     modelHeader.ChunkOffsets = StreamUtil.ReadInt32(stream);
                     modelHeader.DataStart = StreamUtil.ReadInt32(stream);
@@ -81,20 +81,21 @@ namespace SSX_Modder.FileHandlers
                     Model.bodyObjectsList.Add(body);
                 }
 
-                //Read ModelData
-                streamMatrix.Position = Model.ModelsOffset;
-                var models = new List<Models>();
+                //Read Bone Data
+                streamMatrix.Position = Model.BoneOffset;
+                var bones = new List<Bone>();
                 for (int b = 0; b < Model.ModelCount; b++)
                 {
-                    Models modelData = new Models();
-                    modelData.modelName = StreamUtil.ReadString(streamMatrix, 16);
-                    modelData.Int1 = StreamUtil.ReadInt32(streamMatrix);
-                    modelData.Float2 = StreamUtil.ReadFloat(streamMatrix);
-                    modelData.Float3 = StreamUtil.ReadFloat(streamMatrix);
-                    modelData.Float4 = StreamUtil.ReadFloat(streamMatrix);
-                    models.Add(modelData);
+                    Bone boneData = new Bone();
+                    boneData.boneName = StreamUtil.ReadString(streamMatrix, 16);
+                    boneData.Unknown = StreamUtil.ReadInt16(streamMatrix);
+                    boneData.BoneParentID = StreamUtil.ReadInt16(streamMatrix);
+                    boneData.X = StreamUtil.ReadFloat(streamMatrix);
+                    boneData.Y = StreamUtil.ReadFloat(streamMatrix);
+                    boneData.Z = StreamUtil.ReadFloat(streamMatrix);
+                    bones.Add(boneData);
                 }
-                Model.models = models;
+                Model.bone = bones;
 
                 //Read RotationData?
                 streamMatrix.Position = Model.RotationInfo;
@@ -227,7 +228,7 @@ namespace SSX_Modder.FileHandlers
                         }
                     }
 
-                    //Load File Splits
+                    //Load Flex Mesh
                     if(Model.chunks[n].FlexableMeshOffsetStart != -1)
                     {
                         streamMatrix.Position = Model.chunks[n].FlexableMeshOffsetStart;
@@ -253,7 +254,7 @@ namespace SSX_Modder.FileHandlers
                                 NewSplit newSplit = new NewSplit();
                                 newSplit.Unknown = StreamUtil.ReadInt32(streamMatrix);
                                 newSplit.Split = StreamUtil.ReadInt32(streamMatrix);
-                                newSplit.Unknown2 = StreamUtil.ReadInt32(streamMatrix);
+                                newSplit.Unknown2 = StreamUtil.ReadInt32(streamMatrix); //To do with UV
                                 newSplit.Unknown3 = StreamUtil.ReadInt32(streamMatrix);
                                 TempStrips.Add(newSplit);
                             }
@@ -620,6 +621,7 @@ namespace SSX_Modder.FileHandlers
             foreach (var item in ModelData.newSplits)
             {
                 strip2.Add(strip2[strip2.Count - 1] + item.Split);
+                strip2.Add(strip2[strip2.Count - 1] + item.Unknown2);
             }
             ModelData.Splits = strip2;
 
@@ -658,34 +660,34 @@ namespace SSX_Modder.FileHandlers
             string output = "# Exported From SSX Using SSX PS2 Collection Modder by GlitcherOG \n";
             var Model = ModelList[pos];
             var ModelSplitData = Model.flexableMesh;
-            //ModelSplitData = GenerateFaces1(ModelSplitData);
+            ModelSplitData = GenerateFaces1(ModelSplitData);
             output += "o " + Model.FileName + "\n";
 
             //Conevert Vertices into List
-            List<Vertex3> vertices = Model.flexableMesh.vertices;
-            //for (int i = 0; i < ModelSplitData.faces.Count; i++)
-            //{
-            //    var Face = ModelSplitData.faces[i];
-            //    if (!vertices.Contains(Face.V1))
-            //    {
-            //        vertices.Add(Face.V1);
-            //    }
-            //    Face.V1Pos = vertices.IndexOf(Face.V1);
+            List<Vertex3> vertices = new List<Vertex3>();
+            for (int i = 0; i < ModelSplitData.faces.Count; i++)
+            {
+                var Face = ModelSplitData.faces[i];
+                if (!vertices.Contains(Face.V1))
+                {
+                    vertices.Add(Face.V1);
+                }
+                Face.V1Pos = vertices.IndexOf(Face.V1);
 
-            //    if (!vertices.Contains(Face.V2))
-            //    {
-            //        vertices.Add(Face.V2);
-            //    }
-            //    Face.V2Pos = vertices.IndexOf(Face.V2);
+                if (!vertices.Contains(Face.V2))
+                {
+                    vertices.Add(Face.V2);
+                }
+                Face.V2Pos = vertices.IndexOf(Face.V2);
 
-            //    if (!vertices.Contains(Face.V3))
-            //    {
-            //        vertices.Add(Face.V3);
-            //    }
-            //    Face.V3Pos = vertices.IndexOf(Face.V3);
+                if (!vertices.Contains(Face.V3))
+                {
+                    vertices.Add(Face.V3);
+                }
+                Face.V3Pos = vertices.IndexOf(Face.V3);
 
-            //    ModelSplitData.faces[i] = Face;
-            //}
+                ModelSplitData.faces[i] = Face;
+            }
 
             for (int i = 0; i < vertices.Count; i++)
             {
@@ -694,7 +696,7 @@ namespace SSX_Modder.FileHandlers
             for (int i = 0; i < ModelSplitData.faces.Count; i++)
             {
                 var Face = ModelSplitData.faces[i];
-                output += "f " + (Face.V1Pos + 1).ToString() + " " + (Face.V2Pos + 1).ToString() + " " + (Face.V3Pos + 1).ToString() + " " + "\n";
+                output += "f " + (Face.V1Pos + 1).ToString() + " " + (Face.V2Pos +1).ToString() + " " + (Face.V3Pos + 1).ToString() + " " + "\n";
             }
 
 
@@ -718,7 +720,7 @@ namespace SSX_Modder.FileHandlers
             public string FileName;
             public int DataOffset;
             public int EntrySize;
-            public int ModelsOffset; 
+            public int BoneOffset; 
             public int RotationInfo; 
             public int ChunkOffsets;
             public int DataStart;
@@ -736,7 +738,7 @@ namespace SSX_Modder.FileHandlers
             public List<BodyObjects> bodyObjectsList;
             public StaticMesh staticMesh;
             public FlexableMesh flexableMesh;
-            public List<Models> models;
+            public List<Bone> bone;
             //
 
             public int MeshCount;
@@ -781,13 +783,14 @@ namespace SSX_Modder.FileHandlers
             public List<int> Strips;
         }
 
-        public struct Models
+        public struct Bone
         {
-            public string modelName;
-            public float Int1;
-            public float Float2;
-            public float Float3;
-            public float Float4;
+            public string boneName;
+            public int Unknown;
+            public int BoneParentID;
+            public float X;
+            public float Y;
+            public float Z;
         }
 
         public struct Chunk
