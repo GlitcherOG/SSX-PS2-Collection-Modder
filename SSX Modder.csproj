@@ -257,10 +257,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FileHandlers\BoltPS2Handler.cs" />
+    <Compile Include="FileHandlers\SSX3\BoltPS2Handler.cs" />
     <Compile Include="FileHandlers\ISOHandler.cs" />
-    <Compile Include="FileHandlers\TrickyMPFModelHandler.cs" />
-    <Compile Include="FileHandlers\SSXMPFModelHandler.cs" />
+    <Compile Include="FileHandlers\Models\TrickyMPFModelHandler.cs" />
+    <Compile Include="FileHandlers\Models\SSXMPFModelHandler.cs" />
     <Compile Include="FileHandlers\RefpackHandler.cs" />
     <Compile Include="FileHandlers\SSBHandler.cs" />
     <Compile Include="ModSystem\ModApplication.cs" />
@@ -269,9 +269,9 @@
     <Compile Include="ModSystem\ModMakingInstructions.cs" />
     <Compile Include="Utilities\ByteUtil.cs" />
     <Compile Include="FileHandlers\BigHandler.cs" />
-    <Compile Include="FileHandlers\CHARDBLHandler.cs" />
+    <Compile Include="FileHandlers\SSX3\CHARDBLHandler.cs" />
     <Compile Include="FileHandlers\LOCHandler.cs" />
-    <Compile Include="FileHandlers\MusicINFHandler.cs" />
+    <Compile Include="FileHandlers\SSX3\MusicINFHandler.cs" />
     <Compile Include="FileHandlers\SSHHandler.cs" />
     <Compile Include="MainWindow.cs">
       <SubType>Form</SubType>
