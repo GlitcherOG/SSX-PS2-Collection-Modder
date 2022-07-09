@@ -2017,7 +2017,7 @@ namespace SSX_Modder
         #endregion
 
         #region Model Handler
-        MPFModelHandler modelHandler = new MPFModelHandler();
+        SSXMPFModelHandler modelHandler = new SSXMPFModelHandler();
         private void button2_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog
@@ -2029,7 +2029,7 @@ namespace SSX_Modder
             };
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                modelHandler = new MPFModelHandler();
+                modelHandler = new SSXMPFModelHandler();
                 modelHandler.load(openFileDialog.FileName);
                 MPFList.Items.Clear();
                 for (int i = 0; i < modelHandler.ModelList.Count; i++)

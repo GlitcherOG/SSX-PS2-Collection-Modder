@@ -259,7 +259,8 @@
   <ItemGroup>
     <Compile Include="FileHandlers\BoltPS2Handler.cs" />
     <Compile Include="FileHandlers\ISOHandler.cs" />
-    <Compile Include="FileHandlers\MPFModelHandler.cs" />
+    <Compile Include="FileHandlers\TrickyMPFModelHandler.cs" />
+    <Compile Include="FileHandlers\SSXMPFModelHandler.cs" />
     <Compile Include="FileHandlers\RefpackHandler.cs" />
     <Compile Include="FileHandlers\SSBHandler.cs" />
     <Compile Include="ModSystem\ModApplication.cs" />

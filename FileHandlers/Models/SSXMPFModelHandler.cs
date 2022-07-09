@@ -8,7 +8,7 @@ using SSX_Modder.Utilities;
 
 namespace SSX_Modder.FileHandlers
 {
-    public class MPFModelHandler
+    public class SSXMPFModelHandler
     {
         public int HeaderCount;
         public int HeaderSize;
@@ -31,7 +31,7 @@ namespace SSX_Modder.FileHandlers
                     modelHeader.HeaderSize = StreamUtil.ReadInt16(stream);
                     modelHeader.FileStart = StreamUtil.ReadInt32(stream);
 
-                    modelHeader.FileName = StreamUtil.ReadString(stream, 16).Replace("\0", "");
+                    modelHeader.FileName = StreamUtil.ReadString(stream, 16);
                     modelHeader.DataOffset = StreamUtil.ReadInt32(stream);
                     modelHeader.EntrySize = StreamUtil.ReadInt32(stream);
                     modelHeader.BoneOffset = StreamUtil.ReadInt32(stream);
