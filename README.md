@@ -29,21 +29,26 @@ This is a modding tool I came up and started making when I caught COVID as a way
 ## Todo
 
 ### Current Todo
-- MPC Extractor (Finally Found Files just need to incorperate it into program)
+- MPC Extractor/Maker
+- MUS Extractor/Maker
 - MPF Extractor
 
+### MPC Extractor/Maker
+- FFMpeg Paths
+- SX Checker
+- GX Checker
+- Chimp Checker
+- Extracting
+- Making
+
 ### MPF Extractor Todo
-- Fix Chunk Loading (Every Chunks Splits Refrence that chunk)
 - Figure Out Indvidual Model Loading
-- Make Interface To Speed Up Process
-- Redo Chunk Reading so it Builds Each Chunk before Combining them
+- Figure Out Flex Mesh
 
 ### Todo Later
 - SSX On Tour SSH Support (ShpS)
 - Figure out More BoltPS2 Varibles
-- Allow Exporting To CSV Table BOLTPS2
-- Allow Exporting To CSV Table Loc
-- MUS Extractor
+- Allow Exporting To CSV Table Loc, BOLTPS2
 - Mass Replace Textures for Shirt/Pants and others
 - BoltPS2 Make Override to add non parented items to list if goes over 10 tries
 - Mod System Loc Txt Insert, Big Insert
@@ -53,8 +58,6 @@ This is a modding tool I came up and started making when I caught COVID as a way
 - Make Better Workflow interface
 - Control Editor Menu
 - Redo Loc and Music INF (Support Other Games)
-- Figure out the Offsets
-- Fix metal Alpha not saving
 
 ### If I ever find the correct code or work it out
 - Refpack Compressor

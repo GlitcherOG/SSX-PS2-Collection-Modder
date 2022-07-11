@@ -318,6 +318,9 @@ namespace SSX_Modder
             this.BoltModelIDThree = new System.Windows.Forms.TextBox();
             this.boltLoad = new System.Windows.Forms.Button();
             this.tabMPFModel = new System.Windows.Forms.TabPage();
+            this.SkinMeshCount = new System.Windows.Forms.Label();
+            this.MeshCount = new System.Windows.Forms.Label();
+            this.ChunkSize = new System.Windows.Forms.Label();
             this.button7 = new System.Windows.Forms.Button();
             this.MPFModelList = new System.Windows.Forms.ListBox();
             this.MPFList = new System.Windows.Forms.ListBox();
@@ -365,7 +368,6 @@ namespace SSX_Modder
             this.Settings7ZipPath = new System.Windows.Forms.Label();
             this.label46 = new System.Windows.Forms.Label();
             this.label41 = new System.Windows.Forms.Label();
-            this.tabSSB = new System.Windows.Forms.TabPage();
             this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -377,9 +379,7 @@ namespace SSX_Modder
             this.toolStripBuildRun = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.ChunkSize = new System.Windows.Forms.Label();
-            this.MeshCount = new System.Windows.Forms.Label();
-            this.SkinMeshCount = new System.Windows.Forms.Label();
+            this.button8 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabModPacks.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -443,7 +443,6 @@ namespace SSX_Modder
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NumToolsColour)).BeginInit();
             this.tabSettings.SuspendLayout();
-            this.tabSSB.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -463,7 +462,6 @@ namespace SSX_Modder
             this.tabControl1.Controls.Add(this.tabMPFModel);
             this.tabControl1.Controls.Add(this.tabTools);
             this.tabControl1.Controls.Add(this.tabSettings);
-            this.tabControl1.Controls.Add(this.tabSSB);
             this.tabControl1.Location = new System.Drawing.Point(14, 29);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -3758,8 +3756,35 @@ namespace SSX_Modder
             this.tabMPFModel.Name = "tabMPFModel";
             this.tabMPFModel.Size = new System.Drawing.Size(1191, 527);
             this.tabMPFModel.TabIndex = 14;
-            this.tabMPFModel.Text = "MPF Model";
+            this.tabMPFModel.Text = "MPF Model (SSX OG)";
             this.tabMPFModel.UseVisualStyleBackColor = true;
+            // 
+            // SkinMeshCount
+            // 
+            this.SkinMeshCount.AutoSize = true;
+            this.SkinMeshCount.Location = new System.Drawing.Point(653, 116);
+            this.SkinMeshCount.Name = "SkinMeshCount";
+            this.SkinMeshCount.Size = new System.Drawing.Size(47, 13);
+            this.SkinMeshCount.TabIndex = 8;
+            this.SkinMeshCount.Text = "label101";
+            // 
+            // MeshCount
+            // 
+            this.MeshCount.AutoSize = true;
+            this.MeshCount.Location = new System.Drawing.Point(562, 116);
+            this.MeshCount.Name = "MeshCount";
+            this.MeshCount.Size = new System.Drawing.Size(47, 13);
+            this.MeshCount.TabIndex = 7;
+            this.MeshCount.Text = "label101";
+            // 
+            // ChunkSize
+            // 
+            this.ChunkSize.AutoSize = true;
+            this.ChunkSize.Location = new System.Drawing.Point(462, 116);
+            this.ChunkSize.Name = "ChunkSize";
+            this.ChunkSize.Size = new System.Drawing.Size(47, 13);
+            this.ChunkSize.TabIndex = 6;
+            this.ChunkSize.Text = "label101";
             // 
             // button7
             // 
@@ -3820,6 +3845,7 @@ namespace SSX_Modder
             // 
             // tabTools
             // 
+            this.tabTools.Controls.Add(this.button8);
             this.tabTools.Controls.Add(this.groupBox7);
             this.tabTools.Controls.Add(this.groupBox6);
             this.tabTools.Controls.Add(this.groupBox5);
@@ -4250,40 +4276,22 @@ namespace SSX_Modder
             this.label41.AutoSize = true;
             this.label41.Location = new System.Drawing.Point(16, 16);
             this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(56, 13);
+            this.label41.Size = new System.Drawing.Size(0, 13);
             this.label41.TabIndex = 0;
-            this.label41.Text = "7-Zip Path";
-            // 
-            // tabSSB
-            // 
-            this.tabSSB.Controls.Add(this.button5);
-            this.tabSSB.Controls.Add(this.button4);
-            this.tabSSB.Location = new System.Drawing.Point(4, 22);
-            this.tabSSB.Name = "tabSSB";
-            this.tabSSB.Size = new System.Drawing.Size(1191, 527);
-            this.tabSSB.TabIndex = 15;
-            this.tabSSB.Text = "SSB";
-            this.tabSSB.UseVisualStyleBackColor = true;
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(119, 497);
+            this.button5.Location = new System.Drawing.Point(0, 0);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 1;
-            this.button5.Text = "button5";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.button5.TabIndex = 0;
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(37, 497);
+            this.button4.Location = new System.Drawing.Point(0, 0);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 0;
-            this.button4.Text = "button4";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // toolStrip1
             // 
@@ -4378,32 +4386,15 @@ namespace SSX_Modder
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
             // 
-            // ChunkSize
+            // button8
             // 
-            this.ChunkSize.AutoSize = true;
-            this.ChunkSize.Location = new System.Drawing.Point(462, 116);
-            this.ChunkSize.Name = "ChunkSize";
-            this.ChunkSize.Size = new System.Drawing.Size(47, 13);
-            this.ChunkSize.TabIndex = 6;
-            this.ChunkSize.Text = "label101";
-            // 
-            // MeshCount
-            // 
-            this.MeshCount.AutoSize = true;
-            this.MeshCount.Location = new System.Drawing.Point(562, 116);
-            this.MeshCount.Name = "MeshCount";
-            this.MeshCount.Size = new System.Drawing.Size(47, 13);
-            this.MeshCount.TabIndex = 7;
-            this.MeshCount.Text = "label101";
-            // 
-            // SkinMeshCount
-            // 
-            this.SkinMeshCount.AutoSize = true;
-            this.SkinMeshCount.Location = new System.Drawing.Point(653, 116);
-            this.SkinMeshCount.Name = "SkinMeshCount";
-            this.SkinMeshCount.Size = new System.Drawing.Size(47, 13);
-            this.SkinMeshCount.TabIndex = 8;
-            this.SkinMeshCount.Text = "label101";
+            this.button8.Location = new System.Drawing.Point(1000, 7);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(188, 39);
+            this.button8.TabIndex = 4;
+            this.button8.Text = "Audio/Video";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // MainWindow
             // 
@@ -4495,7 +4486,6 @@ namespace SSX_Modder
             ((System.ComponentModel.ISupportInitialize)(this.NumToolsColour)).EndInit();
             this.tabSettings.ResumeLayout(false);
             this.tabSettings.PerformLayout();
-            this.tabSSB.ResumeLayout(false);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
@@ -4847,7 +4837,6 @@ namespace SSX_Modder
         private System.Windows.Forms.TabPage tabMPFModel;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.TabPage tabSSB;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button6;
@@ -4857,5 +4846,6 @@ namespace SSX_Modder
         private System.Windows.Forms.Label SkinMeshCount;
         private System.Windows.Forms.Label MeshCount;
         private System.Windows.Forms.Label ChunkSize;
+        private System.Windows.Forms.Button button8;
     }
 }

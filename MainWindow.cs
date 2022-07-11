@@ -2091,37 +2091,6 @@ namespace SSX_Modder
         }
         #endregion
 
-        SSBHandler ssbHandler = new SSBHandler();
-        private void button4_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog
-            {
-                InitialDirectory = workspacePath,
-                Filter = "SSB File (*.ssb)|*.ssb|All files (*.*)|*.*",
-                FilterIndex = 1,
-                RestoreDirectory = false
-            };
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                ssbHandler.load(openFileDialog.FileName);
-            }
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-            SaveFileDialog openFileDialog = new SaveFileDialog
-            {
-                InitialDirectory = workspacePath,
-                Filter = "SSB File (*.ssb)|*.ssb|All files (*.*)|*.*",
-                FilterIndex = 1,
-                RestoreDirectory = false
-            };
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                ssbHandler.Save(openFileDialog.FileName);
-            }
-        }
-
         private void MPFList_SelectedIndexChanged(object sender, EventArgs e)
         {
             if(MPFList.SelectedIndex!=-1)
@@ -2130,6 +2099,12 @@ namespace SSX_Modder
                 MeshCount.Text = modelHandler.ModelList[MPFList.SelectedIndex].MeshCount.ToString();
                 SkinMeshCount.Text = modelHandler.ModelList[MPFList.SelectedIndex].FlexMeshCount.ToString();
             }
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            MusicVideoWindow newwindow = new MusicVideoWindow();
+            newwindow.Show();
         }
     }
 }

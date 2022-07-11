@@ -1,0 +1,17 @@
+go.mpf
+
+4 - Magic Word
+2 - Unknown - 4
+4 - Unknown - 2224
+4 - Unknown - 33554432/2
+4 - Unknown - 12293
+4 - Unknown Count 1 - 541
+
+10 - Blank
+
+
+Unknown 1
+2 - Time?
+
+Unknown 2
+60 - Unknown
