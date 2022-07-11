@@ -2103,7 +2103,7 @@ namespace SSX_Modder
 
         private void button8_Click(object sender, EventArgs e)
         {
-            MusicVideoWindow newwindow = new MusicVideoWindow();
+            MusicWindow newwindow = new MusicWindow();
             newwindow.Show();
         }
     }

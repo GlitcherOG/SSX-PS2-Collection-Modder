@@ -328,6 +328,7 @@ namespace SSX_Modder
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.tabTools = new System.Windows.Forms.TabPage();
+            this.button8 = new System.Windows.Forms.Button();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.ToolsRestoreSSXOnTour = new System.Windows.Forms.Button();
             this.ToolsBackupSSXOnTour = new System.Windows.Forms.Button();
@@ -379,7 +380,6 @@ namespace SSX_Modder
             this.toolStripBuildRun = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.button8 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabModPacks.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -3857,6 +3857,16 @@ namespace SSX_Modder
             this.tabTools.Text = "Tools";
             this.tabTools.UseVisualStyleBackColor = true;
             // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(1000, 3);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(188, 39);
+            this.button8.TabIndex = 4;
+            this.button8.Text = "Audio";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
             // groupBox7
             // 
             this.groupBox7.Controls.Add(this.ToolsRestoreSSXOnTour);
@@ -4385,16 +4395,6 @@ namespace SSX_Modder
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
-            // 
-            // button8
-            // 
-            this.button8.Location = new System.Drawing.Point(1000, 7);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(188, 39);
-            this.button8.TabIndex = 4;
-            this.button8.Text = "Audio/Video";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // MainWindow
             // 

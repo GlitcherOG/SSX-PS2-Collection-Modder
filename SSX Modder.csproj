@@ -267,11 +267,11 @@
     <Compile Include="ModSystem\ModInfo.cs" />
     <Compile Include="ModSystem\ModMakerHandler.cs" />
     <Compile Include="ModSystem\ModMakingInstructions.cs" />
-    <Compile Include="MusicVideoWindow.cs">
+    <Compile Include="MusicWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MusicVideoWindow.Designer.cs">
-      <DependentUpon>MusicVideoWindow.cs</DependentUpon>
+    <Compile Include="MusicWindow.Designer.cs">
+      <DependentUpon>MusicWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Utilities\ByteUtil.cs" />
     <Compile Include="FileHandlers\BigHandler.cs" />
@@ -299,8 +299,8 @@
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MusicVideoWindow.resx">
-      <DependentUpon>MusicVideoWindow.cs</DependentUpon>
+    <EmbeddedResource Include="MusicWindow.resx">
+      <DependentUpon>MusicWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
