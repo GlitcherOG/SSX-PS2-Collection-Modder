@@ -16,6 +16,7 @@ namespace SSX_Modder
     {
         public static Settings settings = new Settings();
         public static string workspacePath = Application.StartupPath + "\\disk\\SSX 3\\";
+        public static string ToolsPath = Application.StartupPath + "\\Tools\\";
         public MainWindow()
         {
             InitializeComponent();
@@ -41,6 +42,25 @@ namespace SSX_Modder
             if (GameType.SelectedIndex == 3)
             {
                 SettingsIsoPath.Text = settings.SSX4ISOPath;
+            }
+
+            Directory.CreateDirectory(ToolsPath);
+
+            if(File.Exists(ToolsPath+"\\chimp.exe"))
+            {
+                SettingsChimp.Checked = true;
+            }
+            if (File.Exists(ToolsPath + "\\ffmpeg.exe"))
+            {
+                Settingsffmpeg.Checked = true;
+            }
+            if (File.Exists(ToolsPath + "\\gx.exe"))
+            {
+                SettingsGX.Checked = true;
+            }
+            if (File.Exists(ToolsPath + "\\sx.exe"))
+            {
+                SettingsSX.Checked = true;
             }
         }
         private void ResetStatus(object sender, EventArgs e)
@@ -2105,6 +2125,83 @@ namespace SSX_Modder
         {
             MusicWindow newwindow = new MusicWindow();
             newwindow.Show();
+        }
+
+        private void ToolsVideoToMPC_Click(object sender, EventArgs e)
+        {
+            string Input = "";
+            string Output = "";
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                //InitialDirectory = workspacePath,
+                Filter = "All files (*.*)|*.*",
+                FilterIndex = 1,
+                RestoreDirectory = false
+            };
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                Input = openFileDialog.FileName;
+            }
+
+            SaveFileDialog saveFileDialog = new SaveFileDialog
+            {
+                //InitialDirectory = workspacePath,
+                Filter = "MPC File (*.mpc)|*.mpc|All files (*.*)|*.*",
+                FilterIndex = 1,
+                RestoreDirectory = false
+            };
+            if (Input!="")
+            {
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    Output = openFileDialog.FileName;
+                }
+            }
+
+            if(Output!="")
+            {
+                Directory.CreateDirectory(Path.Combine(Application.StartupPath, "TempVideo"));
+                Directory.CreateDirectory(Path.Combine(Application.StartupPath, "TempVideo\\Frame"));
+
+                ProcessStartInfo startInfo = new ProcessStartInfo();
+                startInfo.FileName = ToolsPath + "\\ffmpeg.exe";
+                Input = Path.Combine(Input, "");
+                string Arguments = "-i \"" + Input + "\" \"" + Path.Combine(Application.StartupPath , "TempVideo\\Temp_Audio.wav") +"\"";
+                startInfo.Arguments = Arguments;
+                var temp = Process.Start(startInfo);
+                temp.WaitForExit();
+
+                startInfo = new ProcessStartInfo();
+                startInfo.FileName = ToolsPath + "\\ffmpeg.exe";
+                Input = Path.Combine(Input, "");
+                Arguments = "-i \"" + Input + "\" \"" + Path.Combine(Application.StartupPath, "TempVideo\\Frame\\%1d.png") + "\"";
+                startInfo.Arguments = Arguments;
+                //temp = Process.Start(startInfo);
+                //temp.WaitForExit();
+
+                //Run Through CMD
+                Process cmd = new Process();
+                cmd.StartInfo.FileName = "cmd.exe";
+                cmd.StartInfo.RedirectStandardInput = true;
+                cmd.StartInfo.RedirectStandardOutput = true;
+                cmd.StartInfo.CreateNoWindow = true;
+                cmd.StartInfo.UseShellExecute = false;
+                cmd.Start();
+
+                cmd.StandardInput.WriteLine(ToolsPath.Substring(0,2));
+                cmd.StandardInput.WriteLine("cd " + ToolsPath);
+                cmd.StandardInput.WriteLine("sx.exe -v3 -fps29.97 -ps2stream -eaxa_blk \"" + Path.Combine(Application.StartupPath, "TempVideo\\Temp_Audio.wav") + "\" = \"" + Path.Combine(Application.StartupPath, "TempVideo\\Temp_Audio.asf") + "\"");
+                cmd.StandardInput.Flush();
+                cmd.StandardInput.Close();
+                cmd.WaitForExit();
+
+            }
+
+            //Directory.Delete(Path.Combine(Application.StartupPath, "TempVideo"), true);
+            //while (Directory.Exists(Path.Combine(Application.StartupPath, "TempVideo")))
+            {
+
+            }
         }
     }
 }

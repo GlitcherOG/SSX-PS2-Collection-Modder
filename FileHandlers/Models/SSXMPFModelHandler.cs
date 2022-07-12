@@ -260,7 +260,7 @@ namespace SSX_Modder.FileHandlers
                             }
                             modelSplitData.newSplits = TempStrips;
 
-                            //Unknown
+                            //Load Vertices
                             streamMatrix.Position += 46;
                             int TempCount = StreamUtil.ReadByte(streamMatrix);
                             streamMatrix.Position += 1;
@@ -276,7 +276,7 @@ namespace SSX_Modder.FileHandlers
                             modelSplitData.vertices = vertices;
                             StreamUtil.AlignBy16(streamMatrix);
 
-                            //Unknown
+                            //Possible Faces
                             streamMatrix.Position += 46;
                             TempCount = StreamUtil.ReadByte(streamMatrix);
                             streamMatrix.Position += 1;
@@ -591,15 +591,15 @@ namespace SSX_Modder.FileHandlers
             //0-Counter Clocwise
             if (roatation == 1)
             {
-                Index1 = Index;
-                Index2 = Index - 1;
-                Index3 = Index - 2;
+                Index1 = ModelData.uvNormals[Index+1].X;
+                Index2 = ModelData.uvNormals[Index + 0].X;
+                Index3 = ModelData.uvNormals[Index - 1].X;
             }
             if (roatation == 0)
             {
-                Index1 = Index;
-                Index2 = Index - 2;
-                Index3 = Index - 1;
+                Index1 = ModelData.uvNormals[Index + 1].X;
+                Index2 = ModelData.uvNormals[Index - 1].X;
+                Index3 = ModelData.uvNormals[Index + 0].X;
             }
             face.V1 = ModelData.vertices[Index1];
             face.V2 = ModelData.vertices[Index2];

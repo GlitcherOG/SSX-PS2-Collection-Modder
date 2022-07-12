@@ -380,6 +380,12 @@ namespace SSX_Modder
             this.toolStripBuildRun = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.SettingsChimp = new System.Windows.Forms.CheckBox();
+            this.Settingsffmpeg = new System.Windows.Forms.CheckBox();
+            this.SettingsGX = new System.Windows.Forms.CheckBox();
+            this.SettingsSX = new System.Windows.Forms.CheckBox();
+            this.label101 = new System.Windows.Forms.Label();
+            this.ToolsVideoToMPC = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabModPacks.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -538,8 +544,8 @@ namespace SSX_Modder
             // 
             // modSSXElfLdr
             // 
+            this.modSSXElfLdr.AutoCheck = false;
             this.modSSXElfLdr.AutoSize = true;
-            this.modSSXElfLdr.Enabled = false;
             this.modSSXElfLdr.Location = new System.Drawing.Point(461, 124);
             this.modSSXElfLdr.Name = "modSSXElfLdr";
             this.modSSXElfLdr.Size = new System.Drawing.Size(77, 17);
@@ -558,8 +564,8 @@ namespace SSX_Modder
             // 
             // ModNTSCKDemo
             // 
+            this.ModNTSCKDemo.AutoCheck = false;
             this.ModNTSCKDemo.AutoSize = true;
-            this.ModNTSCKDemo.Enabled = false;
             this.ModNTSCKDemo.Location = new System.Drawing.Point(547, 88);
             this.ModNTSCKDemo.Name = "ModNTSCKDemo";
             this.ModNTSCKDemo.Size = new System.Drawing.Size(102, 17);
@@ -569,8 +575,8 @@ namespace SSX_Modder
             // 
             // ModNTSCJDemo
             // 
+            this.ModNTSCJDemo.AutoCheck = false;
             this.ModNTSCJDemo.AutoSize = true;
-            this.ModNTSCJDemo.Enabled = false;
             this.ModNTSCJDemo.Location = new System.Drawing.Point(547, 65);
             this.ModNTSCJDemo.Name = "ModNTSCJDemo";
             this.ModNTSCJDemo.Size = new System.Drawing.Size(100, 17);
@@ -580,8 +586,8 @@ namespace SSX_Modder
             // 
             // ModPalDemo
             // 
+            this.ModPalDemo.AutoCheck = false;
             this.ModPalDemo.AutoSize = true;
-            this.ModPalDemo.Enabled = false;
             this.ModPalDemo.Location = new System.Drawing.Point(547, 19);
             this.ModPalDemo.Name = "ModPalDemo";
             this.ModPalDemo.Size = new System.Drawing.Size(83, 17);
@@ -591,8 +597,8 @@ namespace SSX_Modder
             // 
             // ModNTSCK
             // 
+            this.ModNTSCK.AutoCheck = false;
             this.ModNTSCK.AutoSize = true;
-            this.ModNTSCK.Enabled = false;
             this.ModNTSCK.Location = new System.Drawing.Point(461, 88);
             this.ModNTSCK.Name = "ModNTSCK";
             this.ModNTSCK.Size = new System.Drawing.Size(65, 17);
@@ -602,8 +608,8 @@ namespace SSX_Modder
             // 
             // ModNTSCDemo
             // 
+            this.ModNTSCDemo.AutoCheck = false;
             this.ModNTSCDemo.AutoSize = true;
-            this.ModNTSCDemo.Enabled = false;
             this.ModNTSCDemo.Location = new System.Drawing.Point(547, 42);
             this.ModNTSCDemo.Name = "ModNTSCDemo";
             this.ModNTSCDemo.Size = new System.Drawing.Size(92, 17);
@@ -613,8 +619,8 @@ namespace SSX_Modder
             // 
             // ModNTSCJ
             // 
+            this.ModNTSCJ.AutoCheck = false;
             this.ModNTSCJ.AutoSize = true;
-            this.ModNTSCJ.Enabled = false;
             this.ModNTSCJ.Location = new System.Drawing.Point(461, 65);
             this.ModNTSCJ.Name = "ModNTSCJ";
             this.ModNTSCJ.Size = new System.Drawing.Size(63, 17);
@@ -624,8 +630,8 @@ namespace SSX_Modder
             // 
             // ModNTSC
             // 
+            this.ModNTSC.AutoCheck = false;
             this.ModNTSC.AutoSize = true;
-            this.ModNTSC.Enabled = false;
             this.ModNTSC.Location = new System.Drawing.Point(461, 42);
             this.ModNTSC.Name = "ModNTSC";
             this.ModNTSC.Size = new System.Drawing.Size(55, 17);
@@ -635,8 +641,8 @@ namespace SSX_Modder
             // 
             // ModPal
             // 
+            this.ModPal.AutoCheck = false;
             this.ModPal.AutoSize = true;
-            this.ModPal.Enabled = false;
             this.ModPal.Location = new System.Drawing.Point(461, 19);
             this.ModPal.Name = "ModPal";
             this.ModPal.Size = new System.Drawing.Size(46, 17);
@@ -3845,6 +3851,7 @@ namespace SSX_Modder
             // 
             // tabTools
             // 
+            this.tabTools.Controls.Add(this.ToolsVideoToMPC);
             this.tabTools.Controls.Add(this.button8);
             this.tabTools.Controls.Add(this.groupBox7);
             this.tabTools.Controls.Add(this.groupBox6);
@@ -4077,6 +4084,11 @@ namespace SSX_Modder
             // 
             // tabSettings
             // 
+            this.tabSettings.Controls.Add(this.label101);
+            this.tabSettings.Controls.Add(this.SettingsSX);
+            this.tabSettings.Controls.Add(this.SettingsGX);
+            this.tabSettings.Controls.Add(this.Settingsffmpeg);
+            this.tabSettings.Controls.Add(this.SettingsChimp);
             this.tabSettings.Controls.Add(this.SettingsSave);
             this.tabSettings.Controls.Add(this.SettingsIsoBuilderArg);
             this.tabSettings.Controls.Add(this.SettingsExtractorArg);
@@ -4395,6 +4407,69 @@ namespace SSX_Modder
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
+            // 
+            // SettingsChimp
+            // 
+            this.SettingsChimp.AutoCheck = false;
+            this.SettingsChimp.AutoSize = true;
+            this.SettingsChimp.Location = new System.Drawing.Point(19, 388);
+            this.SettingsChimp.Name = "SettingsChimp";
+            this.SettingsChimp.Size = new System.Drawing.Size(55, 17);
+            this.SettingsChimp.TabIndex = 21;
+            this.SettingsChimp.Text = "Chimp";
+            this.SettingsChimp.UseVisualStyleBackColor = true;
+            // 
+            // Settingsffmpeg
+            // 
+            this.Settingsffmpeg.AutoCheck = false;
+            this.Settingsffmpeg.AutoSize = true;
+            this.Settingsffmpeg.Location = new System.Drawing.Point(105, 388);
+            this.Settingsffmpeg.Name = "Settingsffmpeg";
+            this.Settingsffmpeg.Size = new System.Drawing.Size(64, 17);
+            this.Settingsffmpeg.TabIndex = 22;
+            this.Settingsffmpeg.Text = "FFmpeg";
+            this.Settingsffmpeg.UseVisualStyleBackColor = true;
+            // 
+            // SettingsGX
+            // 
+            this.SettingsGX.AutoCheck = false;
+            this.SettingsGX.AutoSize = true;
+            this.SettingsGX.Location = new System.Drawing.Point(19, 411);
+            this.SettingsGX.Name = "SettingsGX";
+            this.SettingsGX.Size = new System.Drawing.Size(41, 17);
+            this.SettingsGX.TabIndex = 23;
+            this.SettingsGX.Text = "GX";
+            this.SettingsGX.UseVisualStyleBackColor = true;
+            // 
+            // SettingsSX
+            // 
+            this.SettingsSX.AutoCheck = false;
+            this.SettingsSX.AutoSize = true;
+            this.SettingsSX.Location = new System.Drawing.Point(105, 411);
+            this.SettingsSX.Name = "SettingsSX";
+            this.SettingsSX.Size = new System.Drawing.Size(40, 17);
+            this.SettingsSX.TabIndex = 24;
+            this.SettingsSX.Text = "SX";
+            this.SettingsSX.UseVisualStyleBackColor = true;
+            // 
+            // label101
+            // 
+            this.label101.AutoSize = true;
+            this.label101.Location = new System.Drawing.Point(16, 372);
+            this.label101.Name = "label101";
+            this.label101.Size = new System.Drawing.Size(80, 13);
+            this.label101.TabIndex = 25;
+            this.label101.Text = "Tools Detected";
+            // 
+            // ToolsVideoToMPC
+            // 
+            this.ToolsVideoToMPC.Location = new System.Drawing.Point(337, 112);
+            this.ToolsVideoToMPC.Name = "ToolsVideoToMPC";
+            this.ToolsVideoToMPC.Size = new System.Drawing.Size(114, 23);
+            this.ToolsVideoToMPC.TabIndex = 7;
+            this.ToolsVideoToMPC.Text = "Video To MPC";
+            this.ToolsVideoToMPC.UseVisualStyleBackColor = true;
+            this.ToolsVideoToMPC.Click += new System.EventHandler(this.ToolsVideoToMPC_Click);
             // 
             // MainWindow
             // 
@@ -4847,5 +4922,11 @@ namespace SSX_Modder
         private System.Windows.Forms.Label MeshCount;
         private System.Windows.Forms.Label ChunkSize;
         private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Label label101;
+        private System.Windows.Forms.CheckBox SettingsSX;
+        private System.Windows.Forms.CheckBox SettingsGX;
+        private System.Windows.Forms.CheckBox Settingsffmpeg;
+        private System.Windows.Forms.CheckBox SettingsChimp;
+        private System.Windows.Forms.Button ToolsVideoToMPC;
     }
 }
