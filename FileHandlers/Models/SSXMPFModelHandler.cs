@@ -591,15 +591,15 @@ namespace SSX_Modder.FileHandlers
             //0-Counter Clocwise
             if (roatation == 1)
             {
-                Index1 = ModelData.uvNormals[Index+1].X;
-                Index2 = ModelData.uvNormals[Index + 0].X;
-                Index3 = ModelData.uvNormals[Index - 1].X;
+                Index1 = Index;
+                Index2 = Index - 1;
+                Index3 = Index - 2;
             }
             if (roatation == 0)
             {
-                Index1 = ModelData.uvNormals[Index + 1].X;
-                Index2 = ModelData.uvNormals[Index - 1].X;
-                Index3 = ModelData.uvNormals[Index + 0].X;
+                Index1 = Index;
+                Index2 = Index - 2;
+                Index3 = Index - 1;
             }
             face.V1 = ModelData.vertices[Index1];
             face.V2 = ModelData.vertices[Index2];
