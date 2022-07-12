@@ -40,7 +40,7 @@ namespace SSX_Modder.FileHandlers
                     modelHeader.DataStart = StreamUtil.ReadInt32(stream);
 
                     modelHeader.ChunksCount = StreamUtil.ReadInt16(stream);
-                    modelHeader.ModelCount = StreamUtil.ReadInt16(stream);
+                    modelHeader.BoneCount = StreamUtil.ReadInt16(stream);
                     modelHeader.U22 = StreamUtil.ReadInt16(stream);
                     modelHeader.BodyObjectsCount = StreamUtil.ReadByte(stream);
                     modelHeader.RotationAmmount = StreamUtil.ReadByte(stream);
@@ -84,7 +84,7 @@ namespace SSX_Modder.FileHandlers
                 //Read Bone Data
                 streamMatrix.Position = Model.BoneOffset;
                 var bones = new List<Bone>();
-                for (int b = 0; b < Model.ModelCount; b++)
+                for (int b = 0; b < Model.BoneCount; b++)
                 {
                     Bone boneData = new Bone();
                     boneData.boneName = StreamUtil.ReadString(streamMatrix, 16);
@@ -276,7 +276,7 @@ namespace SSX_Modder.FileHandlers
                             modelSplitData.vertices = vertices;
                             StreamUtil.AlignBy16(streamMatrix);
 
-                            //Possible Faces
+                            //Possible Faces/Normal Data
                             streamMatrix.Position += 46;
                             TempCount = StreamUtil.ReadByte(streamMatrix);
                             streamMatrix.Position += 1;
@@ -726,7 +726,7 @@ namespace SSX_Modder.FileHandlers
             public int DataStart;
             //Counts
             public int ChunksCount;
-            public int ModelCount; 
+            public int BoneCount; 
             public int BodyObjectsCount; 
             public int U22;
             public int RotationAmmount; //Possible Rotation Ammount 
