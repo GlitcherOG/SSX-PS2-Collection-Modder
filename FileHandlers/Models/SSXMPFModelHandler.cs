@@ -245,7 +245,7 @@ namespace SSX_Modder.FileHandlers
                             modelSplitData.StripCount = StreamUtil.ReadInt32(streamMatrix);
                             modelSplitData.Unkown1 = StreamUtil.ReadInt32(streamMatrix);
                             modelSplitData.Unkown2 = StreamUtil.ReadInt32(streamMatrix);
-                            modelSplitData.Unkown3 = StreamUtil.ReadInt32(streamMatrix);
+                            modelSplitData.NormalCount = StreamUtil.ReadInt32(streamMatrix);
 
                             //Load Strip Count
                             var TempStrips = modelSplitData.newSplits;
@@ -592,8 +592,8 @@ namespace SSX_Modder.FileHandlers
             if (roatation == 1)
             {
                 Index1 = Index;
-                Index2 = Index - 1;
-                Index3 = Index - 2;
+                Index2 = Index-1;
+                Index3 = Index-2;
             }
             if (roatation == 0)
             {
@@ -623,15 +623,15 @@ namespace SSX_Modder.FileHandlers
                 strip2.Add(strip2[strip2.Count - 1] + item.Split);
                 strip2.Add(strip2[strip2.Count - 1] + item.Unknown2);
             }
-            ModelData.Splits = strip2;
 
             //Make Faces
             ModelData.faces = new List<FlexableFace>();
             int localIndex = 0;
             int Rotation = 0;
+
             for (int b = 0; b < ModelData.vertices.Count; b++)
             {
-                if (InsideSplits(b, ModelData.Splits))
+                if (InsideSplits(b, strip2))
                 {
                     Rotation = 0;
                     localIndex = 1;
@@ -750,7 +750,7 @@ namespace SSX_Modder.FileHandlers
             public int StripCount;
             public int Unkown1;
             public int Unkown2;
-            public int Unkown3;
+            public int NormalCount;
 
             public List<Vertex3> vertices;
             public List<NewSplit> newSplits;
@@ -759,7 +759,6 @@ namespace SSX_Modder.FileHandlers
             public List<UV> uv;
             public List<FlexableFace> faces;
 
-            public List<int> Splits;
         }
 
         public struct NewSplit
