@@ -328,6 +328,7 @@ namespace SSX_Modder
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.tabTools = new System.Windows.Forms.TabPage();
+            this.ToolsVideoToMPC = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.ToolsRestoreSSXOnTour = new System.Windows.Forms.Button();
@@ -349,6 +350,11 @@ namespace SSX_Modder
             this.ToolsColours = new System.Windows.Forms.Button();
             this.NumToolsColour = new System.Windows.Forms.NumericUpDown();
             this.tabSettings = new System.Windows.Forms.TabPage();
+            this.label101 = new System.Windows.Forms.Label();
+            this.SettingsSX = new System.Windows.Forms.CheckBox();
+            this.SettingsGX = new System.Windows.Forms.CheckBox();
+            this.Settingsffmpeg = new System.Windows.Forms.CheckBox();
+            this.SettingsChimp = new System.Windows.Forms.CheckBox();
             this.SettingsSave = new System.Windows.Forms.Button();
             this.SettingsIsoBuilderArg = new System.Windows.Forms.TextBox();
             this.SettingsExtractorArg = new System.Windows.Forms.TextBox();
@@ -380,12 +386,6 @@ namespace SSX_Modder
             this.toolStripBuildRun = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.SettingsChimp = new System.Windows.Forms.CheckBox();
-            this.Settingsffmpeg = new System.Windows.Forms.CheckBox();
-            this.SettingsGX = new System.Windows.Forms.CheckBox();
-            this.SettingsSX = new System.Windows.Forms.CheckBox();
-            this.label101 = new System.Windows.Forms.Label();
-            this.ToolsVideoToMPC = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabModPacks.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -3798,7 +3798,7 @@ namespace SSX_Modder
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(116, 23);
             this.button7.TabIndex = 5;
-            this.button7.Text = "Export Models";
+            this.button7.Text = "Export Model Flex";
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
@@ -3825,7 +3825,7 @@ namespace SSX_Modder
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(116, 23);
             this.button6.TabIndex = 2;
-            this.button6.Text = "Export Models";
+            this.button6.Text = "Export Model Static";
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
@@ -3863,6 +3863,16 @@ namespace SSX_Modder
             this.tabTools.TabIndex = 9;
             this.tabTools.Text = "Tools";
             this.tabTools.UseVisualStyleBackColor = true;
+            // 
+            // ToolsVideoToMPC
+            // 
+            this.ToolsVideoToMPC.Location = new System.Drawing.Point(337, 112);
+            this.ToolsVideoToMPC.Name = "ToolsVideoToMPC";
+            this.ToolsVideoToMPC.Size = new System.Drawing.Size(114, 23);
+            this.ToolsVideoToMPC.TabIndex = 7;
+            this.ToolsVideoToMPC.Text = "Video To MPC";
+            this.ToolsVideoToMPC.UseVisualStyleBackColor = true;
+            this.ToolsVideoToMPC.Click += new System.EventHandler(this.ToolsVideoToMPC_Click);
             // 
             // button8
             // 
@@ -4115,6 +4125,59 @@ namespace SSX_Modder
             this.tabSettings.TabIndex = 10;
             this.tabSettings.Text = "Settings";
             this.tabSettings.UseVisualStyleBackColor = true;
+            // 
+            // label101
+            // 
+            this.label101.AutoSize = true;
+            this.label101.Location = new System.Drawing.Point(16, 372);
+            this.label101.Name = "label101";
+            this.label101.Size = new System.Drawing.Size(80, 13);
+            this.label101.TabIndex = 25;
+            this.label101.Text = "Tools Detected";
+            // 
+            // SettingsSX
+            // 
+            this.SettingsSX.AutoCheck = false;
+            this.SettingsSX.AutoSize = true;
+            this.SettingsSX.Location = new System.Drawing.Point(105, 411);
+            this.SettingsSX.Name = "SettingsSX";
+            this.SettingsSX.Size = new System.Drawing.Size(40, 17);
+            this.SettingsSX.TabIndex = 24;
+            this.SettingsSX.Text = "SX";
+            this.SettingsSX.UseVisualStyleBackColor = true;
+            // 
+            // SettingsGX
+            // 
+            this.SettingsGX.AutoCheck = false;
+            this.SettingsGX.AutoSize = true;
+            this.SettingsGX.Location = new System.Drawing.Point(19, 411);
+            this.SettingsGX.Name = "SettingsGX";
+            this.SettingsGX.Size = new System.Drawing.Size(41, 17);
+            this.SettingsGX.TabIndex = 23;
+            this.SettingsGX.Text = "GX";
+            this.SettingsGX.UseVisualStyleBackColor = true;
+            // 
+            // Settingsffmpeg
+            // 
+            this.Settingsffmpeg.AutoCheck = false;
+            this.Settingsffmpeg.AutoSize = true;
+            this.Settingsffmpeg.Location = new System.Drawing.Point(105, 388);
+            this.Settingsffmpeg.Name = "Settingsffmpeg";
+            this.Settingsffmpeg.Size = new System.Drawing.Size(64, 17);
+            this.Settingsffmpeg.TabIndex = 22;
+            this.Settingsffmpeg.Text = "FFmpeg";
+            this.Settingsffmpeg.UseVisualStyleBackColor = true;
+            // 
+            // SettingsChimp
+            // 
+            this.SettingsChimp.AutoCheck = false;
+            this.SettingsChimp.AutoSize = true;
+            this.SettingsChimp.Location = new System.Drawing.Point(19, 388);
+            this.SettingsChimp.Name = "SettingsChimp";
+            this.SettingsChimp.Size = new System.Drawing.Size(55, 17);
+            this.SettingsChimp.TabIndex = 21;
+            this.SettingsChimp.Text = "Chimp";
+            this.SettingsChimp.UseVisualStyleBackColor = true;
             // 
             // SettingsSave
             // 
@@ -4407,69 +4470,6 @@ namespace SSX_Modder
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
-            // 
-            // SettingsChimp
-            // 
-            this.SettingsChimp.AutoCheck = false;
-            this.SettingsChimp.AutoSize = true;
-            this.SettingsChimp.Location = new System.Drawing.Point(19, 388);
-            this.SettingsChimp.Name = "SettingsChimp";
-            this.SettingsChimp.Size = new System.Drawing.Size(55, 17);
-            this.SettingsChimp.TabIndex = 21;
-            this.SettingsChimp.Text = "Chimp";
-            this.SettingsChimp.UseVisualStyleBackColor = true;
-            // 
-            // Settingsffmpeg
-            // 
-            this.Settingsffmpeg.AutoCheck = false;
-            this.Settingsffmpeg.AutoSize = true;
-            this.Settingsffmpeg.Location = new System.Drawing.Point(105, 388);
-            this.Settingsffmpeg.Name = "Settingsffmpeg";
-            this.Settingsffmpeg.Size = new System.Drawing.Size(64, 17);
-            this.Settingsffmpeg.TabIndex = 22;
-            this.Settingsffmpeg.Text = "FFmpeg";
-            this.Settingsffmpeg.UseVisualStyleBackColor = true;
-            // 
-            // SettingsGX
-            // 
-            this.SettingsGX.AutoCheck = false;
-            this.SettingsGX.AutoSize = true;
-            this.SettingsGX.Location = new System.Drawing.Point(19, 411);
-            this.SettingsGX.Name = "SettingsGX";
-            this.SettingsGX.Size = new System.Drawing.Size(41, 17);
-            this.SettingsGX.TabIndex = 23;
-            this.SettingsGX.Text = "GX";
-            this.SettingsGX.UseVisualStyleBackColor = true;
-            // 
-            // SettingsSX
-            // 
-            this.SettingsSX.AutoCheck = false;
-            this.SettingsSX.AutoSize = true;
-            this.SettingsSX.Location = new System.Drawing.Point(105, 411);
-            this.SettingsSX.Name = "SettingsSX";
-            this.SettingsSX.Size = new System.Drawing.Size(40, 17);
-            this.SettingsSX.TabIndex = 24;
-            this.SettingsSX.Text = "SX";
-            this.SettingsSX.UseVisualStyleBackColor = true;
-            // 
-            // label101
-            // 
-            this.label101.AutoSize = true;
-            this.label101.Location = new System.Drawing.Point(16, 372);
-            this.label101.Name = "label101";
-            this.label101.Size = new System.Drawing.Size(80, 13);
-            this.label101.TabIndex = 25;
-            this.label101.Text = "Tools Detected";
-            // 
-            // ToolsVideoToMPC
-            // 
-            this.ToolsVideoToMPC.Location = new System.Drawing.Point(337, 112);
-            this.ToolsVideoToMPC.Name = "ToolsVideoToMPC";
-            this.ToolsVideoToMPC.Size = new System.Drawing.Size(114, 23);
-            this.ToolsVideoToMPC.TabIndex = 7;
-            this.ToolsVideoToMPC.Text = "Video To MPC";
-            this.ToolsVideoToMPC.UseVisualStyleBackColor = true;
-            this.ToolsVideoToMPC.Click += new System.EventHandler(this.ToolsVideoToMPC_Click);
             // 
             // MainWindow
             // 
