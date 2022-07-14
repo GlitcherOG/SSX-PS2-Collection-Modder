@@ -8,6 +8,9 @@ using SSX_Modder.Utilities;
 
 namespace SSX_Modder.FileHandlers
 {
+    /// <summary>
+    /// NEEDS MASSIVE FIXES AND IS JUST A COPY PASTE OF THE SSX FILE
+    /// </summary>
     public class TrickyMPFModelHandler
     {
         public int HeaderCount;
