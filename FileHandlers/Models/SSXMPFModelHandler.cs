@@ -10,26 +10,25 @@ namespace SSX_Modder.FileHandlers
 {
     public class SSXMPFModelHandler
     {
+        public int U1;
         public int HeaderCount;
         public int HeaderSize;
+        public int FileStart;
         public List<MPFModelHeader> ModelList = new List<MPFModelHeader>();
 
         public void load(string path)
         {
             using (Stream stream = File.Open(path, FileMode.Open))
             {
-                stream.Position += 4;
+                U1= StreamUtil.ReadInt32(stream);
                 HeaderCount = StreamUtil.ReadInt16(stream);
+                HeaderSize = StreamUtil.ReadInt16(stream);
+                FileStart = StreamUtil.ReadInt32(stream);
                 stream.Position = 0;
                 //Load Headers
                 for (int i = 0; i < HeaderCount; i++)
                 {
                     MPFModelHeader modelHeader = new MPFModelHeader();
-
-                    modelHeader.U1 = StreamUtil.ReadInt32(stream);
-                    modelHeader.SubHeaders = StreamUtil.ReadInt16(stream);
-                    modelHeader.HeaderSize = StreamUtil.ReadInt16(stream);
-                    modelHeader.FileStart = StreamUtil.ReadInt32(stream);
 
                     modelHeader.FileName = StreamUtil.ReadString(stream, 16);
                     modelHeader.DataOffset = StreamUtil.ReadInt32(stream);
@@ -44,7 +43,7 @@ namespace SSX_Modder.FileHandlers
                     modelHeader.U22 = StreamUtil.ReadInt16(stream);
                     modelHeader.BodyObjectsCount = StreamUtil.ReadByte(stream);
                     modelHeader.RotationAmmount = StreamUtil.ReadByte(stream);
-                    stream.Position += 4;
+                    stream.Position += 16;
                     ModelList.Add(modelHeader);
                 }
 
