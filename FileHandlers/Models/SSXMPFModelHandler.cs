@@ -24,7 +24,6 @@ namespace SSX_Modder.FileHandlers
                 HeaderCount = StreamUtil.ReadInt16(stream);
                 HeaderSize = StreamUtil.ReadInt16(stream);
                 FileStart = StreamUtil.ReadInt32(stream);
-                stream.Position = 0;
                 //Load Headers
                 for (int i = 0; i < HeaderCount; i++)
                 {
