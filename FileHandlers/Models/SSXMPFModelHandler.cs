@@ -33,15 +33,15 @@ namespace SSX_Modder.FileHandlers
                     modelHeader.DataOffset = StreamUtil.ReadInt32(stream);
                     modelHeader.EntrySize = StreamUtil.ReadInt32(stream);
                     modelHeader.BoneOffset = StreamUtil.ReadInt32(stream);
-                    modelHeader.RotationInfo = StreamUtil.ReadInt32(stream);
+                    modelHeader.IKPoint = StreamUtil.ReadInt32(stream);
                     modelHeader.ChunkOffsets = StreamUtil.ReadInt32(stream);
                     modelHeader.DataStart = StreamUtil.ReadInt32(stream);
 
                     modelHeader.ChunksCount = StreamUtil.ReadInt16(stream);
                     modelHeader.BoneCount = StreamUtil.ReadInt16(stream);
                     modelHeader.U22 = StreamUtil.ReadInt16(stream);
-                    modelHeader.BodyObjectsCount = StreamUtil.ReadByte(stream);
-                    modelHeader.RotationAmmount = StreamUtil.ReadByte(stream);
+                    modelHeader.MaterialCount = StreamUtil.ReadByte(stream);
+                    modelHeader.IKCount = StreamUtil.ReadByte(stream);
                     stream.Position += 16;
                     ModelList.Add(modelHeader);
                 }
@@ -67,16 +67,16 @@ namespace SSX_Modder.FileHandlers
                 streamMatrix.Write(ModelList[i].Matrix, 0, ModelList[i].Matrix.Length);
 
                 //Read BodyObjects
-                Model.bodyObjectsList = new List<BodyObjects>();
+                Model.materialDataList = new List<MaterialData>();
                 streamMatrix.Position = 0;
-                for (int b = 0; b < Model.BodyObjectsCount; b++)
+                for (int b = 0; b < Model.MaterialCount; b++)
                 {
-                    BodyObjects body = new BodyObjects();
+                    MaterialData body = new MaterialData();
                     body.Name = StreamUtil.ReadString(streamMatrix, 4);
                     body.X = StreamUtil.ReadFloat(streamMatrix);
                     body.Y = StreamUtil.ReadFloat(streamMatrix);
                     body.Z = StreamUtil.ReadFloat(streamMatrix);
-                    Model.bodyObjectsList.Add(body);
+                    Model.materialDataList.Add(body);
                 }
 
                 //Read Bone Data
@@ -95,10 +95,10 @@ namespace SSX_Modder.FileHandlers
                 }
                 Model.bone = bones;
 
-                //Read RotationData?
-                streamMatrix.Position = Model.RotationInfo;
+                //Read IK Point?
+                streamMatrix.Position = Model.IKPoint;
                 var Verties = new List<Vertex3>();
-                for (int b = 0; b < Model.RotationAmmount; b++)
+                for (int b = 0; b < Model.IKCount; b++)
                 {
                     Vertex3 v = new Vertex3();
                     v.X = StreamUtil.ReadFloat(streamMatrix);
@@ -719,21 +719,21 @@ namespace SSX_Modder.FileHandlers
             public int DataOffset;
             public int EntrySize;
             public int BoneOffset; 
-            public int RotationInfo; 
+            public int IKPoint; 
             public int ChunkOffsets;
             public int DataStart;
             //Counts
             public int ChunksCount;
             public int BoneCount; 
-            public int BodyObjectsCount; 
             public int U22;
-            public int RotationAmmount; //Possible Rotation Ammount 
+            public int MaterialCount;
+            public int IKCount; //Possible Rotation Ammount 
 
             public byte[] Matrix;
             public List<Vertex3> Unkown;
             //Matrix Data
             public List<Chunk> chunks;
-            public List<BodyObjects> bodyObjectsList;
+            public List<MaterialData> materialDataList;
             public StaticMesh staticMesh;
             public FlexableMesh flexableMesh;
             public List<Bone> bone;
@@ -859,7 +859,7 @@ namespace SSX_Modder.FileHandlers
             public int V3Pos;
         }
 
-        public struct BodyObjects
+        public struct MaterialData
         {
             public string Name;
             public float X;
