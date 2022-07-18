@@ -335,7 +335,6 @@ namespace SSX_Modder.Utilities
                     pos++;
                 }
             }
-
             bool flip = true;
             int LevelCheck = 3;
 

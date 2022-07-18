@@ -2087,7 +2087,7 @@ namespace SSX_Modder
                 };
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    modelHandler.SaveModel(openFileDialog.FileName, MPFList.SelectedIndex);
+                    //modelHandler.SaveModel(openFileDialog.FileName, MPFList.SelectedIndex);
                 }
             }
         }
@@ -2105,7 +2105,7 @@ namespace SSX_Modder
                 };
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    modelHandler.TestSave(openFileDialog.FileName, MPFList.SelectedIndex);
+                    //modelHandler.TestSave(openFileDialog.FileName, MPFList.SelectedIndex);
                 }
             }
         }
