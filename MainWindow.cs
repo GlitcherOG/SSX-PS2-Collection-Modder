@@ -1942,7 +1942,7 @@ namespace SSX_Modder
                 tempEntry.buyable = (int)BoltBuy.Value;
                 tempEntry.menuOrder = (int)BoltMenuOrder.Value;
                 tempEntry.unkownInt5 = (int)BoltUnkown7.Value;
-                tempEntry.fillbar = (int)BoltFillBar.Value;
+                tempEntry.weight = (int)BoltFillBar.Value;
                 tempEntry.cost = (int)BoltCost.Value;
                 tempEntry.unkownInt8 = (int)BoltUnkown8.Value;
 
@@ -2003,7 +2003,7 @@ namespace SSX_Modder
                 BoltBuy.Value = boltPS2.characters[Index1].entries[Index].buyable;
                 BoltMenuOrder.Value = boltPS2.characters[Index1].entries[Index].menuOrder;
                 BoltUnkown7.Value = boltPS2.characters[Index1].entries[Index].unkownInt5;
-                BoltFillBar.Value = boltPS2.characters[Index1].entries[Index].fillbar;
+                BoltFillBar.Value = boltPS2.characters[Index1].entries[Index].weight;
                 BoltCost.Value = boltPS2.characters[Index1].entries[Index].cost;
                 BoltUnkown8.Value = boltPS2.characters[Index1].entries[Index].unkownInt8;
 
@@ -2202,6 +2202,23 @@ namespace SSX_Modder
             {
 
             }
+        }
+
+        TrickyMPFModelHandler trickyMPF = new TrickyMPFModelHandler();
+        private void Mpf2Load_Click(object sender, EventArgs e)
+        {
+                OpenFileDialog openFileDialog = new OpenFileDialog
+                {
+                    InitialDirectory = workspacePath,
+                    Filter = "Model File (*.mpf)|*.mpf|All files (*.*)|*.*",
+                    FilterIndex = 1,
+                    RestoreDirectory = false
+                };
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    trickyMPF = new TrickyMPFModelHandler();
+                    trickyMPF.load(openFileDialog.FileName);
+                }
         }
     }
 }

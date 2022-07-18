@@ -386,6 +386,8 @@ namespace SSX_Modder
             this.toolStripBuildRun = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tabMPFModel2 = new System.Windows.Forms.TabPage();
+            this.Mpf2Load = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabModPacks.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -451,6 +453,7 @@ namespace SSX_Modder
             this.tabSettings.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            this.tabMPFModel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -466,6 +469,7 @@ namespace SSX_Modder
             this.tabControl1.Controls.Add(this.tabMusic);
             this.tabControl1.Controls.Add(this.tabBolt);
             this.tabControl1.Controls.Add(this.tabMPFModel);
+            this.tabControl1.Controls.Add(this.tabMPFModel2);
             this.tabControl1.Controls.Add(this.tabTools);
             this.tabControl1.Controls.Add(this.tabSettings);
             this.tabControl1.Location = new System.Drawing.Point(14, 29);
@@ -3220,7 +3224,7 @@ namespace SSX_Modder
             "29-Abom"});
             this.BoltCharacter.Location = new System.Drawing.Point(4, 4);
             this.BoltCharacter.Name = "BoltCharacter";
-            this.BoltCharacter.Size = new System.Drawing.Size(270, 21);
+            this.BoltCharacter.Size = new System.Drawing.Size(267, 21);
             this.BoltCharacter.TabIndex = 58;
             this.BoltCharacter.SelectedIndexChanged += new System.EventHandler(this.BoltCharacter_SelectedIndexChanged);
             // 
@@ -3406,9 +3410,9 @@ namespace SSX_Modder
             this.label83.AutoSize = true;
             this.label83.Location = new System.Drawing.Point(403, 150);
             this.label83.Name = "label83";
-            this.label83.Size = new System.Drawing.Size(34, 13);
+            this.label83.Size = new System.Drawing.Size(41, 13);
             this.label83.TabIndex = 37;
-            this.label83.Text = "Fillbar";
+            this.label83.Text = "Weight";
             // 
             // label82
             // 
@@ -4471,6 +4475,26 @@ namespace SSX_Modder
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
             // 
+            // tabMPFModel2
+            // 
+            this.tabMPFModel2.Controls.Add(this.Mpf2Load);
+            this.tabMPFModel2.Location = new System.Drawing.Point(4, 22);
+            this.tabMPFModel2.Name = "tabMPFModel2";
+            this.tabMPFModel2.Size = new System.Drawing.Size(1191, 527);
+            this.tabMPFModel2.TabIndex = 15;
+            this.tabMPFModel2.Text = "MPF Model (SSX Tricky)";
+            this.tabMPFModel2.UseVisualStyleBackColor = true;
+            // 
+            // Mpf2Load
+            // 
+            this.Mpf2Load.Location = new System.Drawing.Point(4, 501);
+            this.Mpf2Load.Name = "Mpf2Load";
+            this.Mpf2Load.Size = new System.Drawing.Size(75, 23);
+            this.Mpf2Load.TabIndex = 0;
+            this.Mpf2Load.Text = "Load";
+            this.Mpf2Load.UseVisualStyleBackColor = true;
+            this.Mpf2Load.Click += new System.EventHandler(this.Mpf2Load_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -4565,6 +4589,7 @@ namespace SSX_Modder
             this.toolStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            this.tabMPFModel2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -4928,5 +4953,7 @@ namespace SSX_Modder
         private System.Windows.Forms.CheckBox Settingsffmpeg;
         private System.Windows.Forms.CheckBox SettingsChimp;
         private System.Windows.Forms.Button ToolsVideoToMPC;
+        private System.Windows.Forms.TabPage tabMPFModel2;
+        private System.Windows.Forms.Button Mpf2Load;
     }
 }

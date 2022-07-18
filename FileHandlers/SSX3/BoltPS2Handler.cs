@@ -50,7 +50,7 @@ namespace SSX_Modder.FileHandlers
 
                     temp1.unkownInt5 = stream.ReadByte(); //12
                     
-                    temp1.fillbar = StreamUtil.ReadInt16(stream); //13-14
+                    temp1.weight = StreamUtil.ReadInt16(stream); //13-14
                     temp1.cost = StreamUtil.ReadInt16(stream); //15-16
                     temp1.unkownInt8 = stream.ReadByte(); //17
                     temp1.SpecialID = stream.ReadByte(); //18
@@ -246,7 +246,7 @@ namespace SSX_Modder.FileHandlers
 
                     stream.WriteByte((byte)TempEntry.unkownInt5);
 
-                    StreamUtil.WriteInt16(stream, TempEntry.fillbar);
+                    StreamUtil.WriteInt16(stream, TempEntry.weight);
                     StreamUtil.WriteInt16(stream, TempEntry.cost);
 
                     stream.WriteByte((byte)TempEntry.unkownInt8);
@@ -364,7 +364,7 @@ namespace SSX_Modder.FileHandlers
         public int buyable;
         public int menuOrder;
         public int unkownInt5;
-        public int fillbar;
+        public int weight;
         public int cost;
         public int unkownInt8;
 

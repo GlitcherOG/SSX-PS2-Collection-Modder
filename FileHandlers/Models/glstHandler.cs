@@ -28,7 +28,6 @@ namespace SSX_Modder.FileHandlers
                 var material1 = new MaterialBuilder(TempVar.Name)
                 .WithChannelParam(KnownChannel.BaseColor, KnownProperty.RGBA, new Vector4(TempVar.X, TempVar.Y, TempVar.Z, 1));
                 materialBuilders.Add(material1);
-                var prim = mesh.UsePrimitive(materialBuilders[materialBuilders.Count-1]);
             }
 
 

@@ -142,7 +142,29 @@ namespace SSX_Modder.FileHandlers
                             var ModelData = new StaticMesh();
                             ModelData.ChunkID = n;
                             //Load Main Model Data Header
-                            streamMatrix.Position += 48;
+
+
+                            ModelStripHeader stripHeader = new ModelStripHeader();
+                            stripHeader.RowSize = StreamUtil.ReadInt24(streamMatrix);
+                            stripHeader.Col = StreamUtil.ReadByte(streamMatrix);
+                            stripHeader.Padding = StreamUtil.ReadBytes(streamMatrix,12);
+                            stripHeader.VertexCount = StreamUtil.ReadByte(streamMatrix);
+                            stripHeader.Delcoration = StreamUtil.ReadByte(streamMatrix);
+                            stripHeader.Unknown1 = StreamUtil.ReadInt16(streamMatrix);
+                            stripHeader.Unknown2 = StreamUtil.ReadByte(streamMatrix);
+                            stripHeader.Unknown3 = StreamUtil.ReadByte(streamMatrix);
+                            stripHeader.Unknown4 = StreamUtil.ReadByte(streamMatrix);
+                            stripHeader.Unknown41 = StreamUtil.ReadByte(streamMatrix);
+                            stripHeader.Unknown5 = StreamUtil.ReadBytes(streamMatrix, 5);
+                            stripHeader.ArrayStart = StreamUtil.ReadByte(streamMatrix);
+                            stripHeader.ArraySize = StreamUtil.ReadByte(streamMatrix);
+                            stripHeader.ArrayType = StreamUtil.ReadByte(streamMatrix);
+
+                            stripHeader.Unknown6 = StreamUtil.ReadInt32(streamMatrix);
+                            stripHeader.Unknown7 = StreamUtil.ReadInt32(streamMatrix);
+                            stripHeader.Unknown8 = StreamUtil.ReadInt32(streamMatrix);
+                            stripHeader.Unknown9 = StreamUtil.ReadInt32(streamMatrix);
+
                             if (streamMatrix.Position >= Model.chunks[n].StaticMeshOffsetEnd)
                             {
                                 break;
@@ -766,21 +788,40 @@ namespace SSX_Modder.FileHandlers
         {
             public int ChunkID;
 
+            public ModelStripHeader stripHeader;
             public int StripCount;
             public int EdgeCount;
             public int NormalCount;
             public int VertexCount;
+            public List<int> Strips;
 
             public List<UV> uv;
             public List<Vertex3> vertices;
             public List<Face> faces;
             public List<UVNormal> uvNormals;
-            public List<int> Strips;
         }
 
-        public struct UVHeader
-        { 
-        
+        public struct ModelStripHeader
+        {
+            public int RowSize;
+            public byte Col;
+            public byte[] Padding;
+            public int Unknown1;
+            public byte Unknown2;
+            public byte Unknown3;
+            public byte Unknown4;
+            public byte Unknown41;
+            public byte VertexCount;
+            public byte Delcoration;
+            public byte[] Unknown5;
+            public byte ArrayStart;
+            public byte ArraySize;
+            public byte ArrayType;
+
+            public int Unknown6;
+            public int Unknown7;
+            public int Unknown8;
+            public int Unknown9;
         }
         public struct Bone
         {
