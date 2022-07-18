@@ -2078,12 +2078,14 @@ namespace SSX_Modder
         {
             if (MPFList.SelectedIndex != -1)
             {
-                CommonOpenFileDialog openFileDialog = new CommonOpenFileDialog
+                SaveFileDialog openFileDialog = new SaveFileDialog
                 {
                     InitialDirectory = workspacePath,
-                    IsFolderPicker = true,
+                    Filter = "gltf File (*.gltf)|*.gltf|All files (*.*)|*.*",
+                    FilterIndex = 1,
+                    RestoreDirectory = false
                 };
-                if (openFileDialog.ShowDialog() == CommonFileDialogResult.Ok)
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     modelHandler.SaveModel(openFileDialog.FileName, MPFList.SelectedIndex);
                 }

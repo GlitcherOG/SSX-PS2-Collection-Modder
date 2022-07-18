@@ -54,9 +54,7 @@ namespace SSX_Modder.FileHandlers
             // save the model in different formats
 
             var model = scene.ToGltf2();
-            model.SaveAsWavefront(Output + "/mesh.obj");
-            model.SaveGLB(Output+ "/mesh.glb");
-            model.SaveGLTF(Output + "/mesh.gltf");
+            model.SaveGLTF(Output);
         }
     }
 }
