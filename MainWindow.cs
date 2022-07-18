@@ -2078,16 +2078,14 @@ namespace SSX_Modder
         {
             if (MPFList.SelectedIndex != -1)
             {
-                SaveFileDialog openFileDialog = new SaveFileDialog
+                CommonOpenFileDialog openFileDialog = new CommonOpenFileDialog
                 {
                     InitialDirectory = workspacePath,
-                    Filter = "Obj File (*.obj)|*.obj|All files (*.*)|*.*",
-                    FilterIndex = 1,
-                    RestoreDirectory = false
+                    IsFolderPicker = true,
                 };
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                if (openFileDialog.ShowDialog() == CommonFileDialogResult.Ok)
                 {
-                    //modelHandler.SaveModel(openFileDialog.FileName, MPFList.SelectedIndex);
+                    modelHandler.SaveModel(openFileDialog.FileName, MPFList.SelectedIndex);
                 }
             }
         }

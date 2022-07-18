@@ -116,7 +116,7 @@ namespace SSX_Modder.FileHandlers
                 {
                     Chunk chunk = new Chunk();
                     chunk.ID = StreamUtil.ReadInt32(streamMatrix);
-                    chunk.ChunkID = StreamUtil.ReadInt32(streamMatrix);
+                    chunk.MaterialID = StreamUtil.ReadInt32(streamMatrix);
                     streamMatrix.Position += 4;
                     chunk.StaticMeshOffsetStart = StreamUtil.ReadInt32(streamMatrix);
                     chunk.StaticMeshOffsetEnd = StreamUtil.ReadInt32(streamMatrix);
@@ -313,7 +313,6 @@ namespace SSX_Modder.FileHandlers
                             Model.flexableMesh.Add(modelSplitData);
                         }
                     }
-                    break;
                 }
 
 
@@ -446,134 +445,135 @@ namespace SSX_Modder.FileHandlers
             return face;
         }
 
-        //public void SaveModel(string path, int pos = 0)
-        //{
-        //    string output = "# Exported From SSX Using SSX PS2 Collection Modder by GlitcherOG \n";
-        //    var Model = ModelList[pos];
-        //    var ModelData = Model.staticMesh;
-        //    output += "o " + Model.FileName + "\n";
 
-        //    //Conevert Vertices into List
-        //    List<Vertex3> vertices = new List<Vertex3>();
-        //    for (int i = 0; i < ModelData.faces.Count; i++)
-        //    {
-        //        var Face = ModelData.faces[i];
-        //        if (!vertices.Contains(Face.V1))
-        //        {
-        //            vertices.Add(Face.V1);
-        //        }
-        //        Face.V1Pos = vertices.IndexOf(Face.V1);
+        public void SaveModel(string path, int pos = 0)
+        {
+            string output = "# Exported From SSX Using SSX PS2 Collection Modder by GlitcherOG \n";
+            var Model = ModelList[pos];
+            glstHandler.SaveglST(path, Model);
+        //output += "o " + Model.FileName + "\n";
 
-        //        if (!vertices.Contains(Face.V2))
-        //        {
-        //            vertices.Add(Face.V2);
-        //        }
-        //        Face.V2Pos = vertices.IndexOf(Face.V2);
+            //    //Conevert Vertices into List
+            //    List<Vertex3> vertices = new List<Vertex3>();
+            //    for (int i = 0; i < ModelData.faces.Count; i++)
+            //    {
+            //        var Face = ModelData.faces[i];
+            //        if (!vertices.Contains(Face.V1))
+            //        {
+            //            vertices.Add(Face.V1);
+            //        }
+            //        Face.V1Pos = vertices.IndexOf(Face.V1);
 
-        //        if (!vertices.Contains(Face.V3))
-        //        {
-        //            vertices.Add(Face.V3);
-        //        }
-        //        Face.V3Pos = vertices.IndexOf(Face.V3);
+            //        if (!vertices.Contains(Face.V2))
+            //        {
+            //            vertices.Add(Face.V2);
+            //        }
+            //        Face.V2Pos = vertices.IndexOf(Face.V2);
 
-        //        ModelData.faces[i] = Face;
-        //    }
-        //    //Convert UV Points Into List
-        //    List<UV> UV = new List<UV>();
-        //    if (ModelData.uv.Count != 0)
-        //    {
-        //        for (int i = 0; i < ModelData.faces.Count; i++)
-        //        {
-        //            var Face = ModelData.faces[i];
-        //            if (!UV.Contains(Face.UV1))
-        //            {
-        //                UV.Add(Face.UV1);
-        //            }
-        //            Face.UV1Pos = UV.IndexOf(Face.UV1);
+            //        if (!vertices.Contains(Face.V3))
+            //        {
+            //            vertices.Add(Face.V3);
+            //        }
+            //        Face.V3Pos = vertices.IndexOf(Face.V3);
 
-        //            if (!UV.Contains(Face.UV2))
-        //            {
-        //                UV.Add(Face.UV2);
-        //            }
-        //            Face.UV2Pos = UV.IndexOf(Face.UV2);
+            //        ModelData.faces[i] = Face;
+            //    }
+            //    //Convert UV Points Into List
+            //    List<UV> UV = new List<UV>();
+            //    if (ModelData.uv.Count != 0)
+            //    {
+            //        for (int i = 0; i < ModelData.faces.Count; i++)
+            //        {
+            //            var Face = ModelData.faces[i];
+            //            if (!UV.Contains(Face.UV1))
+            //            {
+            //                UV.Add(Face.UV1);
+            //            }
+            //            Face.UV1Pos = UV.IndexOf(Face.UV1);
 
-        //            if (!UV.Contains(Face.UV3))
-        //            {
-        //                UV.Add(Face.UV3);
-        //            }
-        //            Face.UV3Pos = UV.IndexOf(Face.UV3);
+            //            if (!UV.Contains(Face.UV2))
+            //            {
+            //                UV.Add(Face.UV2);
+            //            }
+            //            Face.UV2Pos = UV.IndexOf(Face.UV2);
 
-        //            ModelData.faces[i] = Face;
-        //        }
-        //    }
+            //            if (!UV.Contains(Face.UV3))
+            //            {
+            //                UV.Add(Face.UV3);
+            //            }
+            //            Face.UV3Pos = UV.IndexOf(Face.UV3);
 
-        //    List<UVNormal> Normals = new List<UVNormal>();
-        //    if (ModelData.uvNormals.Count != 0)
-        //    {
-        //        for (int i = 0; i < ModelData.faces.Count; i++)
-        //        {
-        //            var Face = ModelData.faces[i];
-        //            if (!Normals.Contains(Face.Normal1))
-        //            {
-        //                Normals.Add(Face.Normal1);
-        //            }
-        //            Face.Normal1Pos = Normals.IndexOf(Face.Normal1);
+            //            ModelData.faces[i] = Face;
+            //        }
+            //    }
 
-        //            if (!Normals.Contains(Face.Normal2))
-        //            {
-        //                Normals.Add(Face.Normal2);
-        //            }
-        //            Face.Normal2Pos = Normals.IndexOf(Face.Normal2);
+            //    List<UVNormal> Normals = new List<UVNormal>();
+            //    if (ModelData.uvNormals.Count != 0)
+            //    {
+            //        for (int i = 0; i < ModelData.faces.Count; i++)
+            //        {
+            //            var Face = ModelData.faces[i];
+            //            if (!Normals.Contains(Face.Normal1))
+            //            {
+            //                Normals.Add(Face.Normal1);
+            //            }
+            //            Face.Normal1Pos = Normals.IndexOf(Face.Normal1);
 
-        //            if (!Normals.Contains(Face.Normal3))
-        //            {
-        //                Normals.Add(Face.Normal3);
-        //            }
-        //            Face.Normal3Pos = Normals.IndexOf(Face.Normal3);
+            //            if (!Normals.Contains(Face.Normal2))
+            //            {
+            //                Normals.Add(Face.Normal2);
+            //            }
+            //            Face.Normal2Pos = Normals.IndexOf(Face.Normal2);
 
-        //            ModelData.faces[i] = Face;
-        //        }
-        //    }
+            //            if (!Normals.Contains(Face.Normal3))
+            //            {
+            //                Normals.Add(Face.Normal3);
+            //            }
+            //            Face.Normal3Pos = Normals.IndexOf(Face.Normal3);
 
-        //    for (int i = 0; i < vertices.Count; i++)
-        //    {
-        //        output += "v " + vertices[i].X + " " + vertices[i].Y + " " + vertices[i].Z + "\n";
-        //    }
-        //    //While Math Works Its Wrong
-        //    for (int i = 0; i < UV.Count; i++)
-        //    {
-        //        output += "vt " + (1f - ((float)UV[i].X) / 4096) + " " + (1f - ((float)UV[i].Y) / 4096) + "\n";
-        //    }
+            //            ModelData.faces[i] = Face;
+            //        }
+            //    }
 
-        //    for (int i = 0; i < Normals.Count; i++)
-        //    {
-        //        output += "vn " + (((float)Normals[i].X) / 4096) + " " + (((float)Normals[i].Y) / 4096) + " " + (((float)Normals[i].Z) / 4096) + "\n";
-        //    }
+            //    for (int i = 0; i < vertices.Count; i++)
+            //    {
+            //        output += "v " + vertices[i].X + " " + vertices[i].Y + " " + vertices[i].Z + "\n";
+            //    }
+            //    //While Math Works Its Wrong
+            //    for (int i = 0; i < UV.Count; i++)
+            //    {
+            //        output += "vt " + (1f - ((float)UV[i].X) / 4096) + " " + (1f - ((float)UV[i].Y) / 4096) + "\n";
+            //    }
 
-        //    if (ModelData.uv.Count != 0)
-        //    {
-        //        for (int i = 0; i < ModelData.faces.Count; i++)
-        //        {
-        //            var Face = ModelData.faces[i];
-        //            output += "f " + (Face.V1Pos + 1).ToString() + "/" + (Face.UV1Pos + 1).ToString() + "/" + (Face.Normal1Pos + 1).ToString() + " " + (Face.V2Pos + 1).ToString() + "/" + (Face.UV2Pos + 1).ToString() + "/" + (Face.Normal2Pos + 1).ToString() + " " + (Face.V3Pos + 1).ToString() + "/" + (Face.UV3Pos + 1).ToString() + "/" + (Face.Normal3Pos + 1).ToString() + " " + "\n";
-        //        }
-        //    }
-        //    else
-        //    {
-        //        for (int i = 0; i < ModelData.faces.Count; i++)
-        //        {
-        //            var Face = ModelData.faces[i];
-        //            output += "f " + (Face.V1Pos + 1).ToString() + " " + (Face.V2Pos + 1).ToString() + " " + (Face.V3Pos + 1).ToString() + " " + "\n";
-        //        }
-        //    }
+            //    for (int i = 0; i < Normals.Count; i++)
+            //    {
+            //        output += "vn " + (((float)Normals[i].X) / 4096) + " " + (((float)Normals[i].Y) / 4096) + " " + (((float)Normals[i].Z) / 4096) + "\n";
+            //    }
 
-        //    if (File.Exists(path))
-        //    {
-        //        File.Delete(path);
-        //    }
+            //    if (ModelData.uv.Count != 0)
+            //    {
+            //        for (int i = 0; i < ModelData.faces.Count; i++)
+            //        {
+            //            var Face = ModelData.faces[i];
+            //            output += "f " + (Face.V1Pos + 1).ToString() + "/" + (Face.UV1Pos + 1).ToString() + "/" + (Face.Normal1Pos + 1).ToString() + " " + (Face.V2Pos + 1).ToString() + "/" + (Face.UV2Pos + 1).ToString() + "/" + (Face.Normal2Pos + 1).ToString() + " " + (Face.V3Pos + 1).ToString() + "/" + (Face.UV3Pos + 1).ToString() + "/" + (Face.Normal3Pos + 1).ToString() + " " + "\n";
+            //        }
+            //    }
+            //    else
+            //    {
+            //        for (int i = 0; i < ModelData.faces.Count; i++)
+            //        {
+            //            var Face = ModelData.faces[i];
+            //            output += "f " + (Face.V1Pos + 1).ToString() + " " + (Face.V2Pos + 1).ToString() + " " + (Face.V3Pos + 1).ToString() + " " + "\n";
+            //        }
+            //    }
 
-        //    File.WriteAllText(path, output);
-        //}
+            //    if (File.Exists(path))
+            //    {
+            //        File.Delete(path);
+            //    }
+
+            //    File.WriteAllText(path, output);
+        }
 
 
         public FlexableFace CreateFlexableFace(int Index, FlexableMesh ModelData, int roatation)
@@ -795,7 +795,7 @@ namespace SSX_Modder.FileHandlers
         public struct Chunk
         {
             public int ID;
-            public int ChunkID;
+            public int MaterialID;
             public int StaticMeshOffsetStart;
             public int StaticMeshOffsetEnd;
             public int FlexableMeshOffsetStart;
