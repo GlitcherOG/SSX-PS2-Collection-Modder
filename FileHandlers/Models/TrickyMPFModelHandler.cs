@@ -145,8 +145,22 @@ namespace SSX_Modder.FileHandlers
                     TempChunkData.ID = StreamUtil.ReadInt32(streamMatrix);
                     TempChunkData.MaterialID = StreamUtil.ReadInt32(streamMatrix);
                     TempChunkData.Unknown = StreamUtil.ReadInt32(streamMatrix);
-                    TempChunkData.OffsetCount = StreamUtil.ReadInt32(streamMatrix);
-                    TempChunkData.Offset = StreamUtil.ReadInt32(streamMatrix);
+                    TempChunkData.LinkOffsetCount = StreamUtil.ReadInt32(streamMatrix);
+                    TempChunkData.LinkOffset = StreamUtil.ReadInt32(streamMatrix);
+
+                    int TempPos = (int)streamMatrix.Position;
+                    streamMatrix.Position = TempChunkData.LinkOffset;
+
+                    TempChunkData.LinkOffset2 = StreamUtil.ReadInt32(streamMatrix);
+                    TempChunkData.LinkOffsetCount2 = StreamUtil.ReadInt32(streamMatrix);
+
+                    streamMatrix.Position = TempChunkData.LinkOffset2;
+                    TempChunkData.ModelOffset = StreamUtil.ReadInt32(streamMatrix);
+                    TempChunkData.Unknown2 = StreamUtil.ReadInt32(streamMatrix);
+                    TempChunkData.Unknown3 = StreamUtil.ReadInt32(streamMatrix);
+
+                    streamMatrix.Position = TempPos;
+
                     Model.ChunkDatas.Add(TempChunkData);
                 }
 
@@ -242,8 +256,15 @@ namespace SSX_Modder.FileHandlers
             public int ID;
             public int MaterialID;
             public int Unknown;
-            public int OffsetCount;
-            public int Offset;
+            public int LinkOffsetCount;
+            public int LinkOffset;
+
+            public int LinkOffset2;
+            public int LinkOffsetCount2;
+
+            public int ModelOffset;
+            public int Unknown2;
+            public int Unknown3;
         }
     }
 }
