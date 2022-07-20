@@ -36,8 +36,8 @@ namespace SSX_Modder.FileHandlers
                     modelHeader.DataOffset = StreamUtil.ReadInt32(stream);
                     modelHeader.EntrySize = StreamUtil.ReadInt32(stream);
                     modelHeader.BoneDataOffset = StreamUtil.ReadInt32(stream);
-                    modelHeader.BoneWeightOffset = StreamUtil.ReadInt32(stream);
-                    modelHeader.Unknown1 = StreamUtil.ReadInt32(stream);
+                    modelHeader.IKPointOffset = StreamUtil.ReadInt32(stream);
+                    modelHeader.ChunkOffset = StreamUtil.ReadInt32(stream);
                     modelHeader.MeshDataOffset = StreamUtil.ReadInt32(stream);
                     modelHeader.Unknown2 = StreamUtil.ReadInt32(stream);
                     modelHeader.BoneDataOffset2 = StreamUtil.ReadInt32(stream);
@@ -48,9 +48,9 @@ namespace SSX_Modder.FileHandlers
                     modelHeader.UnknownCount = StreamUtil.ReadInt16(stream);
                     modelHeader.UnknownCount2 = StreamUtil.ReadInt16(stream);
                     modelHeader.UnknownCount3 = StreamUtil.ReadInt16(stream);
-                    modelHeader.UnknownCount4 = StreamUtil.ReadInt16(stream);
-                    modelHeader.UnknownCount5 = StreamUtil.ReadInt16(stream);
-                    modelHeader.UnknownCount6 = StreamUtil.ReadInt16(stream);
+                    modelHeader.BoneDataCount = StreamUtil.ReadInt16(stream);
+                    modelHeader.MaterialCount = StreamUtil.ReadInt16(stream);
+                    modelHeader.IKCount = StreamUtil.ReadInt16(stream);
                     modelHeader.UnknownCount7 = StreamUtil.ReadInt16(stream);
                     modelHeader.UnknownCount8 = StreamUtil.ReadInt16(stream);
                     stream.Position += 4;
@@ -71,10 +71,77 @@ namespace SSX_Modder.FileHandlers
                 }
             }
 
+            for (int i = 0; i < ModelList.Count; i++)
+            {
+                Stream streamMatrix = new MemoryStream();
+                var Model = ModelList[i];
+                streamMatrix.Write(ModelList[i].Matrix, 0, ModelList[i].Matrix.Length);
+                streamMatrix.Position = 0;
 
+                Model.materialDatas = new List<MaterialData>();
+                for (int a = 0; a < Model.MaterialCount; a++)
+                {
+                    var TempMat = new MaterialData();
+                    TempMat.MainTexture = StreamUtil.ReadString(streamMatrix, 4);
+                    TempMat.Texture1 = StreamUtil.ReadString(streamMatrix, 4);
+                    TempMat.Texture2 = StreamUtil.ReadString(streamMatrix, 4);
+                    TempMat.Texture3 = StreamUtil.ReadString(streamMatrix, 4);
+                    TempMat.Texture4 = StreamUtil.ReadString(streamMatrix, 4);
+
+                    TempMat.R = StreamUtil.ReadFloat(streamMatrix);
+                    TempMat.G = StreamUtil.ReadFloat(streamMatrix);
+                    TempMat.B = StreamUtil.ReadFloat(streamMatrix);
+                    Model.materialDatas.Add(TempMat);
+                }
+
+                streamMatrix.Position = Model.BoneDataOffset;
+                Model.boneDatas = new List<BoneData>();
+                for (int a = 0; a < Model.BoneDataCount; a++)
+                {
+                    var TempBoneData = new BoneData();
+                    TempBoneData.BoneName = StreamUtil.ReadString(streamMatrix, 16);
+                    TempBoneData.Unknown = StreamUtil.ReadInt16(streamMatrix);
+                    TempBoneData.ParentBone = StreamUtil.ReadInt16(streamMatrix);
+                    TempBoneData.Unknown2 = StreamUtil.ReadInt16(streamMatrix);
+                    TempBoneData.BoneID = StreamUtil.ReadInt16(streamMatrix);
+                    TempBoneData.XLocation = StreamUtil.ReadFloat(streamMatrix);
+                    TempBoneData.YLocation = StreamUtil.ReadFloat(streamMatrix);
+                    TempBoneData.ZLocation = StreamUtil.ReadFloat(streamMatrix);
+                    TempBoneData.XRadian = StreamUtil.ReadFloat(streamMatrix);
+                    TempBoneData.YRadian = StreamUtil.ReadFloat(streamMatrix);
+                    TempBoneData.ZRadian = StreamUtil.ReadFloat(streamMatrix);
+                    TempBoneData.XRadian2 = StreamUtil.ReadFloat(streamMatrix);
+                    TempBoneData.YRadian2 = StreamUtil.ReadFloat(streamMatrix);
+                    TempBoneData.ZRadian2 = StreamUtil.ReadFloat(streamMatrix);
+
+                    TempBoneData.UnknownFloat1 = StreamUtil.ReadFloat(streamMatrix);
+                    TempBoneData.UnknownFloat2 = StreamUtil.ReadFloat(streamMatrix);
+                    TempBoneData.UnknownFloat3 = StreamUtil.ReadFloat(streamMatrix);
+                    TempBoneData.UnknownFloat4 = StreamUtil.ReadFloat(streamMatrix);
+                    TempBoneData.UnknownFloat5 = StreamUtil.ReadFloat(streamMatrix);
+                    TempBoneData.UnknownFloat6 = StreamUtil.ReadFloat(streamMatrix);
+                    Model.boneDatas.Add(TempBoneData);
+                }
+
+                streamMatrix.Position = Model.IKPointOffset;
+                Model.iKPoints = new List<IKPoint>();
+                for (int a = 0; a < Model.IKCount; a++)
+                {
+                    var TempIKPoint = new IKPoint();
+                    TempIKPoint.X = StreamUtil.ReadFloat(streamMatrix);
+                    TempIKPoint.Y = StreamUtil.ReadFloat(streamMatrix);
+                    TempIKPoint.Z = StreamUtil.ReadFloat(streamMatrix);
+                    streamMatrix.Position += 4;
+                    Model.iKPoints.Add(TempIKPoint);
+                }
+
+                streamMatrix.Position = Model.ChunkOffset;
+                //model
+
+                ModelList[i] = Model;
+            }
 
         }
-
 
 
         public struct MPFModelHeader
@@ -84,8 +151,8 @@ namespace SSX_Modder.FileHandlers
             public int DataOffset;
             public int EntrySize;
             public int BoneDataOffset;
-            public int BoneWeightOffset;
-            public int Unknown1;
+            public int IKPointOffset;
+            public int ChunkOffset;
             public int MeshDataOffset;
             public int Unknown2;
             public int BoneDataOffset2;
@@ -97,14 +164,80 @@ namespace SSX_Modder.FileHandlers
             public int UnknownCount;
             public int UnknownCount2;
             public int UnknownCount3;
-            public int UnknownCount4;
-            public int UnknownCount5;
-            public int UnknownCount6;
+            public int BoneDataCount;
+            public int MaterialCount;
+            public int IKCount;
             public int UnknownCount7;
             public int UnknownCount8;
 
             public byte[] Matrix;
+
+            public List<MaterialData> materialDatas;
+            public List<BoneData> boneDatas;
+            public List<IKPoint> iKPoints;
         }
 
+        public struct MaterialData
+        {
+            public string MainTexture;
+            public string Texture1;
+            public string Texture2;
+            public string Texture3;
+            public string Texture4;
+
+            public float R;
+            public float G;
+            public float B;
+        }
+
+        public struct BoneData
+        {
+            public string BoneName;
+            public int Unknown;
+            public int ParentBone;
+            public int Unknown2;
+            public int BoneID;
+            public float XLocation;
+            public float YLocation;
+            public float ZLocation;
+
+            public float XRadian;
+            public float YRadian;
+            public float ZRadian;
+            public float XRadian2;
+            public float YRadian2;
+            public float ZRadian2;
+
+            public float UnknownFloat1;
+            public float UnknownFloat2;
+            public float UnknownFloat3;
+            public float UnknownFloat4;
+            public float UnknownFloat5;
+            public float UnknownFloat6;
+
+        }
+
+        public struct IKPoint
+        {
+            public float X;
+            public float Y;
+            public float Z;
+        }
+
+        public struct ChunkData
+        {
+            public int ID;
+            public int MaterialID;
+            public int Unknown;
+
+            public int Unknown2;
+            public int Offset;
+            public int Offset2;
+
+            public int Unknown5;
+            public int DataOffset;
+            public int Unknown7;
+            public int Unknown8;
+        }
     }
 }
