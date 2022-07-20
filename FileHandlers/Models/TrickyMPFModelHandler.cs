@@ -47,7 +47,7 @@ namespace SSX_Modder.FileHandlers
 
                     modelHeader.UnknownCount = StreamUtil.ReadInt16(stream);
                     modelHeader.UnknownCount2 = StreamUtil.ReadInt16(stream);
-                    modelHeader.UnknownCount3 = StreamUtil.ReadInt16(stream);
+                    modelHeader.ChunkCount = StreamUtil.ReadInt16(stream);
                     modelHeader.BoneDataCount = StreamUtil.ReadInt16(stream);
                     modelHeader.MaterialCount = StreamUtil.ReadInt16(stream);
                     modelHeader.IKCount = StreamUtil.ReadInt16(stream);
@@ -135,8 +135,20 @@ namespace SSX_Modder.FileHandlers
                     Model.iKPoints.Add(TempIKPoint);
                 }
 
+                //Chunk Data
                 streamMatrix.Position = Model.ChunkOffset;
-                //model
+                Model.ChunkDatas = new List<ChunkData>();
+
+                for (int a = 0; a < Model.ChunkCount; a++)
+                {
+                    var TempChunkData = new ChunkData();
+                    TempChunkData.ID = StreamUtil.ReadInt32(streamMatrix);
+                    TempChunkData.MaterialID = StreamUtil.ReadInt32(streamMatrix);
+                    TempChunkData.Unknown = StreamUtil.ReadInt32(streamMatrix);
+                    TempChunkData.OffsetCount = StreamUtil.ReadInt32(streamMatrix);
+                    TempChunkData.Offset = StreamUtil.ReadInt32(streamMatrix);
+                    Model.ChunkDatas.Add(TempChunkData);
+                }
 
                 ModelList[i] = Model;
             }
@@ -163,7 +175,7 @@ namespace SSX_Modder.FileHandlers
             //Counts
             public int UnknownCount;
             public int UnknownCount2;
-            public int UnknownCount3;
+            public int ChunkCount;
             public int BoneDataCount;
             public int MaterialCount;
             public int IKCount;
@@ -175,6 +187,7 @@ namespace SSX_Modder.FileHandlers
             public List<MaterialData> materialDatas;
             public List<BoneData> boneDatas;
             public List<IKPoint> iKPoints;
+            public List<ChunkData> ChunkDatas;
         }
 
         public struct MaterialData
@@ -229,15 +242,8 @@ namespace SSX_Modder.FileHandlers
             public int ID;
             public int MaterialID;
             public int Unknown;
-
-            public int Unknown2;
+            public int OffsetCount;
             public int Offset;
-            public int Offset2;
-
-            public int Unknown5;
-            public int DataOffset;
-            public int Unknown7;
-            public int Unknown8;
         }
     }
 }
