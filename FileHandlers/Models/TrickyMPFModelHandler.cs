@@ -8,9 +8,6 @@ using SSX_Modder.Utilities;
 
 namespace SSX_Modder.FileHandlers
 {
-    /// <summary>
-    /// NEEDS MASSIVE FIXES AND IS JUST A COPY PASTE OF THE SSX FILE
-    /// </summary>
     public class TrickyMPFModelHandler
     {
         public int U1;
@@ -39,14 +36,28 @@ namespace SSX_Modder.FileHandlers
                     modelHeader.IKPointOffset = StreamUtil.ReadInt32(stream);
                     modelHeader.ChunkOffset = StreamUtil.ReadInt32(stream);
                     modelHeader.MeshDataOffset = StreamUtil.ReadInt32(stream);
-                    modelHeader.Unknown2 = StreamUtil.ReadInt32(stream);
-                    modelHeader.BoneDataOffset2 = StreamUtil.ReadInt32(stream);
+                    modelHeader.MaterialOffset = StreamUtil.ReadInt32(stream);
+
+                    if(modelHeader.MaterialOffset != 0)
+                    {
+                        break; //Break Point here just for testing to ensure im right about it being matieral offset
+                    }
+                    modelHeader.BoneWeightOffet = StreamUtil.ReadInt32(stream);
                     modelHeader.NumberListOffset = StreamUtil.ReadInt32(stream);
+
                     modelHeader.BoneWeightOffset2 = StreamUtil.ReadInt32(stream);
+                    if(modelHeader.BoneWeightOffset2!=0)
+                    {
+                        break;
+                    }
                     modelHeader.Unknown3 = StreamUtil.ReadInt32(stream);
+                    if (modelHeader.Unknown3 != 0)
+                    {
+                        break;
+                    }
 
                     modelHeader.UnknownCount = StreamUtil.ReadInt16(stream);
-                    modelHeader.UnknownCount2 = StreamUtil.ReadInt16(stream);
+                    modelHeader.BoneWeightCount = StreamUtil.ReadInt16(stream);
                     modelHeader.ChunkCount = StreamUtil.ReadInt16(stream);
                     modelHeader.BoneDataCount = StreamUtil.ReadInt16(stream);
                     modelHeader.MaterialCount = StreamUtil.ReadInt16(stream);
@@ -164,6 +175,31 @@ namespace SSX_Modder.FileHandlers
                     Model.ChunkDatas.Add(TempChunkData);
                 }
 
+                //Bone Weight
+                streamMatrix.Position = Model.BoneWeightOffet;
+                Model.boneWeightHeader = new List<BoneWeightHeader>();
+
+                for (int b = 0; b < Model.BoneWeightCount; b++)
+                {
+                    var BoneWeight = new BoneWeightHeader();
+
+                    BoneWeight.length = StreamUtil.ReadInt32(streamMatrix);
+                    BoneWeight.WeightListOffset = StreamUtil.ReadInt32(streamMatrix);
+                    BoneWeight.boneWeights = new List<BoneWeight>();
+                    int TempPos = (int)streamMatrix.Position;
+                    streamMatrix.Position = BoneWeight.WeightListOffset;
+                    for (int a = 0; a < BoneWeight.length; a++)
+                    {
+                        var boneWeight = new BoneWeight();
+                        boneWeight.weight = StreamUtil.ReadInt16(streamMatrix);
+                        boneWeight.ID = StreamUtil.ReadByte(streamMatrix);
+                        boneWeight.unknown = StreamUtil.ReadByte(streamMatrix);
+                        BoneWeight.boneWeights.Add(boneWeight);
+                    }
+                    streamMatrix.Position = TempPos;
+                    Model.boneWeightHeader.Add(BoneWeight);
+                }
+
                 ModelList[i] = Model;
             }
 
@@ -180,15 +216,15 @@ namespace SSX_Modder.FileHandlers
             public int IKPointOffset;
             public int ChunkOffset;
             public int MeshDataOffset;
-            public int Unknown2;
-            public int BoneDataOffset2;
+            public int MaterialOffset;
+            public int BoneWeightOffet;
             public int NumberListOffset;
             public int BoneWeightOffset2;
             public int Unknown3;
 
             //Counts
             public int UnknownCount;
-            public int UnknownCount2;
+            public int BoneWeightCount;
             public int ChunkCount;
             public int BoneDataCount;
             public int MaterialCount;
@@ -202,6 +238,7 @@ namespace SSX_Modder.FileHandlers
             public List<BoneData> boneDatas;
             public List<IKPoint> iKPoints;
             public List<ChunkData> ChunkDatas;
+            public List<BoneWeightHeader> boneWeightHeader;
         }
 
         public struct MaterialData
@@ -265,6 +302,22 @@ namespace SSX_Modder.FileHandlers
             public int ModelOffset;
             public int Unknown2;
             public int Unknown3;
+        }
+
+        public struct BoneWeightHeader
+        {
+            public int length;
+            public int WeightListOffset;
+            public int unknown;
+
+            public List<BoneWeight> boneWeights;
+        }
+
+        public struct BoneWeight
+        {
+            public int weight;
+            public int ID;
+            public int unknown;
         }
     }
 }
