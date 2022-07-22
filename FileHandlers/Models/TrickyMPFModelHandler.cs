@@ -34,31 +34,18 @@ namespace SSX_Modder.FileHandlers
                     modelHeader.EntrySize = StreamUtil.ReadInt32(stream);
                     modelHeader.BoneDataOffset = StreamUtil.ReadInt32(stream);
                     modelHeader.IKPointOffset = StreamUtil.ReadInt32(stream);
-                    modelHeader.ChunkOffset = StreamUtil.ReadInt32(stream);
+                    modelHeader.MeshGroupOffset = StreamUtil.ReadInt32(stream);
                     modelHeader.MeshDataOffset = StreamUtil.ReadInt32(stream);
                     modelHeader.MaterialOffset = StreamUtil.ReadInt32(stream);
-
-                    if(modelHeader.MaterialOffset != 0)
-                    {
-                        break; //Break Point here just for testing to ensure im right about it being matieral offset
-                    }
                     modelHeader.BoneWeightOffet = StreamUtil.ReadInt32(stream);
                     modelHeader.NumberListOffset = StreamUtil.ReadInt32(stream);
 
-                    modelHeader.BoneWeightOffset2 = StreamUtil.ReadInt32(stream);
-                    if(modelHeader.BoneWeightOffset2!=0)
-                    {
-                        break;
-                    }
-                    modelHeader.Unknown3 = StreamUtil.ReadInt32(stream);
-                    if (modelHeader.Unknown3 != 0)
-                    {
-                        break;
-                    }
+                    modelHeader.Unused1 = StreamUtil.ReadInt32(stream);
+                    modelHeader.Unused2 = StreamUtil.ReadInt32(stream);
 
                     modelHeader.UnknownCount = StreamUtil.ReadInt16(stream);
                     modelHeader.BoneWeightCount = StreamUtil.ReadInt16(stream);
-                    modelHeader.ChunkCount = StreamUtil.ReadInt16(stream);
+                    modelHeader.MeshGroupCount = StreamUtil.ReadInt16(stream);
                     modelHeader.BoneDataCount = StreamUtil.ReadInt16(stream);
                     modelHeader.MaterialCount = StreamUtil.ReadInt16(stream);
                     modelHeader.IKCount = StreamUtil.ReadInt16(stream);
@@ -146,13 +133,13 @@ namespace SSX_Modder.FileHandlers
                     Model.iKPoints.Add(TempIKPoint);
                 }
 
-                //Chunk Data
-                streamMatrix.Position = Model.ChunkOffset;
-                Model.ChunkDatas = new List<ChunkData>();
+                //Mesh Group Data
+                streamMatrix.Position = Model.MeshGroupOffset;
+                Model.MeshGroups = new List<MeshGroup>();
 
-                for (int a = 0; a < Model.ChunkCount; a++)
+                for (int a = 0; a < Model.MeshGroupCount; a++)
                 {
-                    var TempChunkData = new ChunkData();
+                    var TempChunkData = new MeshGroup();
                     TempChunkData.ID = StreamUtil.ReadInt32(streamMatrix);
                     TempChunkData.MaterialID = StreamUtil.ReadInt32(streamMatrix);
                     TempChunkData.Unknown = StreamUtil.ReadInt32(streamMatrix);
@@ -161,18 +148,23 @@ namespace SSX_Modder.FileHandlers
 
                     int TempPos = (int)streamMatrix.Position;
                     streamMatrix.Position = TempChunkData.LinkOffset;
+                    TempChunkData.meshGroupSubs = new List<MeshGroupSub>();
+                    for (int b = 0; b < TempChunkData.LinkOffsetCount; b++)
+                    {
+                        var TempSubHeader = new MeshGroupSub();
+                        TempSubHeader.LinkOffset = StreamUtil.ReadInt32(streamMatrix);
+                        TempSubHeader.Unknown = StreamUtil.ReadInt32(streamMatrix);
 
-                    TempChunkData.LinkOffset2 = StreamUtil.ReadInt32(streamMatrix);
-                    TempChunkData.LinkOffsetCount2 = StreamUtil.ReadInt32(streamMatrix);
-
-                    streamMatrix.Position = TempChunkData.LinkOffset2;
-                    TempChunkData.ModelOffset = StreamUtil.ReadInt32(streamMatrix);
-                    TempChunkData.Unknown2 = StreamUtil.ReadInt32(streamMatrix);
-                    TempChunkData.Unknown3 = StreamUtil.ReadInt32(streamMatrix);
+                        streamMatrix.Position = TempSubHeader.LinkOffset;
+                        TempSubHeader.ModelOffset = StreamUtil.ReadInt32(streamMatrix);
+                        TempSubHeader.Unknown2 = StreamUtil.ReadInt32(streamMatrix);
+                        TempSubHeader.Unknown3 = StreamUtil.ReadInt32(streamMatrix);
+                        TempChunkData.meshGroupSubs.Add(TempSubHeader);
+                    }
 
                     streamMatrix.Position = TempPos;
 
-                    Model.ChunkDatas.Add(TempChunkData);
+                    Model.MeshGroups.Add(TempChunkData);
                 }
 
                 //Bone Weight
@@ -200,6 +192,91 @@ namespace SSX_Modder.FileHandlers
                     Model.boneWeightHeader.Add(BoneWeight);
                 }
 
+
+                for (int ax = 0; ax < Model.MeshGroupCount; ax++)
+                {
+                    var GroupHeader = Model.MeshGroups[ax];
+                    for (int bx = 0; bx < GroupHeader.meshGroupSubs.Count; bx++)
+                    {
+                        var SubGroupHeader = GroupHeader.meshGroupSubs[bx];
+                        streamMatrix.Position = SubGroupHeader.ModelOffset;
+
+                        streamMatrix.Position += 48;
+
+                        var ModelData = new StaticMesh();
+                        ModelData.ChunkID = ax;
+
+                        ModelData.StripCount = StreamUtil.ReadInt32(streamMatrix);
+                        ModelData.EdgeCount = StreamUtil.ReadInt32(streamMatrix);
+                        ModelData.NormalCount = StreamUtil.ReadInt32(streamMatrix);
+                        ModelData.VertexCount = StreamUtil.ReadInt32(streamMatrix);
+
+                        //Load Strip Count
+                        List<int> TempStrips = new List<int>();
+                        for (int a = 0; a < ModelData.StripCount; a++)
+                        {
+                            TempStrips.Add(StreamUtil.ReadInt32(streamMatrix));
+                            streamMatrix.Position += 12;
+                        }
+                        streamMatrix.Position += 16;
+                        ModelData.Strips = TempStrips;
+
+                        List<UV> UVs = new List<UV>();
+                        //Read UV Texture Points
+                        if (ModelData.NormalCount != 0)
+                        {
+                            streamMatrix.Position += 48;
+                            for (int a = 0; a < ModelData.VertexCount; a++)
+                            {
+                                UV uv = new UV();
+                                uv.X = StreamUtil.ReadInt16(streamMatrix);
+                                uv.Y = StreamUtil.ReadInt16(streamMatrix);
+                                uv.XU = StreamUtil.ReadInt16(streamMatrix);
+                                uv.YU = StreamUtil.ReadInt16(streamMatrix);
+                                UVs.Add(uv);
+                            }
+                            StreamUtil.AlignBy16(streamMatrix);
+                        }
+                        ModelData.uv = UVs;
+
+                        List<UVNormal> Normals = new List<UVNormal>();
+                        //Read Normals
+                        if (ModelData.NormalCount != 0)
+                        {
+                            streamMatrix.Position += 48;
+                            for (int a = 0; a < ModelData.VertexCount; a++)
+                            {
+                                UVNormal normal = new UVNormal();
+                                normal.X = StreamUtil.ReadInt16(streamMatrix);
+                                normal.Y = StreamUtil.ReadInt16(streamMatrix);
+                                normal.Z = StreamUtil.ReadInt16(streamMatrix);
+                                Normals.Add(normal);
+                            }
+                            StreamUtil.AlignBy16(streamMatrix);
+                        }
+                        ModelData.uvNormals = Normals;
+
+                        List<Vertex3> vertices = new List<Vertex3>();
+                        //Load Vertex
+                        if (ModelData.VertexCount != 0)
+                        {
+                            streamMatrix.Position += 48;
+                            for (int a = 0; a < ModelData.VertexCount; a++)
+                            {
+                                Vertex3 vertex = new Vertex3();
+                                vertex.X = StreamUtil.ReadFloat(streamMatrix);
+                                vertex.Y = StreamUtil.ReadFloat(streamMatrix);
+                                vertex.Z = StreamUtil.ReadFloat(streamMatrix);
+                                vertices.Add(vertex);
+                            }
+                            StreamUtil.AlignBy16(streamMatrix);
+                        }
+                        ModelData.vertices = vertices;
+
+                        streamMatrix.Position += 16;
+                        Model.staticMesh.Add(ModelData);
+                    }
+                }
                 ModelList[i] = Model;
             }
 
@@ -214,18 +291,18 @@ namespace SSX_Modder.FileHandlers
             public int EntrySize;
             public int BoneDataOffset;
             public int IKPointOffset;
-            public int ChunkOffset;
+            public int MeshGroupOffset;
             public int MeshDataOffset;
             public int MaterialOffset;
             public int BoneWeightOffet;
             public int NumberListOffset;
-            public int BoneWeightOffset2;
-            public int Unknown3;
+            public int Unused1;
+            public int Unused2;
 
             //Counts
             public int UnknownCount;
             public int BoneWeightCount;
-            public int ChunkCount;
+            public int MeshGroupCount;
             public int BoneDataCount;
             public int MaterialCount;
             public int IKCount;
@@ -237,8 +314,9 @@ namespace SSX_Modder.FileHandlers
             public List<MaterialData> materialDatas;
             public List<BoneData> boneDatas;
             public List<IKPoint> iKPoints;
-            public List<ChunkData> ChunkDatas;
+            public List<MeshGroup> MeshGroups;
             public List<BoneWeightHeader> boneWeightHeader;
+            public List<StaticMesh> staticMesh;
         }
 
         public struct MaterialData
@@ -288,7 +366,7 @@ namespace SSX_Modder.FileHandlers
             public float Z;
         }
 
-        public struct ChunkData
+        public struct MeshGroup
         {
             public int ID;
             public int MaterialID;
@@ -296,8 +374,13 @@ namespace SSX_Modder.FileHandlers
             public int LinkOffsetCount;
             public int LinkOffset;
 
-            public int LinkOffset2;
-            public int LinkOffsetCount2;
+            public List<MeshGroupSub> meshGroupSubs;
+        }
+
+        public struct MeshGroupSub
+        {
+            public int LinkOffset;
+            public int Unknown;
 
             public int ModelOffset;
             public int Unknown2;
@@ -318,6 +401,72 @@ namespace SSX_Modder.FileHandlers
             public int weight;
             public int ID;
             public int unknown;
+        }
+
+        public struct StaticMesh
+        {
+            public int ChunkID;
+
+            public int StripCount;
+            public int EdgeCount;
+            public int NormalCount;
+            public int VertexCount;
+            public List<int> Strips;
+
+            public List<UV> uv;
+            public List<Vertex3> vertices;
+            public List<Face> faces;
+            public List<UVNormal> uvNormals;
+        }
+
+        public struct Vertex3
+        {
+            public float X;
+            public float Y;
+            public float Z;
+        }
+
+        //Since there both int 16's They need to be divided by 4096
+        public struct UV
+        {
+            public int X;
+            public int Y;
+            public int XU;
+            public int YU;
+        }
+
+        public struct UVNormal
+        {
+            public int X;
+            public int Y;
+            public int Z;
+        }
+
+        public struct Face
+        {
+            public Vertex3 V1;
+            public Vertex3 V2;
+            public Vertex3 V3;
+
+            public int V1Pos;
+            public int V2Pos;
+            public int V3Pos;
+
+            public UV UV1;
+            public UV UV2;
+            public UV UV3;
+
+            public int UV1Pos;
+            public int UV2Pos;
+            public int UV3Pos;
+
+            public UVNormal Normal1;
+            public UVNormal Normal2;
+            public UVNormal Normal3;
+
+            public int Normal1Pos;
+            public int Normal2Pos;
+            public int Normal3Pos;
         }
     }
 }
