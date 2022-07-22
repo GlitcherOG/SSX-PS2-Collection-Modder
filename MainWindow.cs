@@ -2207,18 +2207,45 @@ namespace SSX_Modder
         TrickyMPFModelHandler trickyMPF = new TrickyMPFModelHandler();
         private void Mpf2Load_Click(object sender, EventArgs e)
         {
-                OpenFileDialog openFileDialog = new OpenFileDialog
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                InitialDirectory = workspacePath,
+                Filter = "Model File (*.mpf)|*.mpf|All files (*.*)|*.*",
+                FilterIndex = 1,
+                RestoreDirectory = false
+            };
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                trickyMPF = new TrickyMPFModelHandler();
+                trickyMPF.load(openFileDialog.FileName);
+                for (int i = 0; i < trickyMPF.ModelList.Count; i++)
+                {
+                    listBox1.Items.Add(trickyMPF.ModelList[i].FileName);
+                }
+            }
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            if (listBox1.SelectedIndex != -1)
+            {
+                SaveFileDialog openFileDialog = new SaveFileDialog
                 {
                     InitialDirectory = workspacePath,
-                    Filter = "Model File (*.mpf)|*.mpf|All files (*.*)|*.*",
+                    Filter = "gltf File (*.obj)|*.obj|All files (*.*)|*.*",
                     FilterIndex = 1,
                     RestoreDirectory = false
                 };
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    trickyMPF = new TrickyMPFModelHandler();
-                    trickyMPF.load(openFileDialog.FileName);
+                    trickyMPF.SaveModel(openFileDialog.FileName, listBox1.SelectedIndex);
                 }
+            }
         }
     }
 }

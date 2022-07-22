@@ -327,6 +327,8 @@ namespace SSX_Modder
             this.button6 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.tabMPFModel2 = new System.Windows.Forms.TabPage();
+            this.Mpf2Load = new System.Windows.Forms.Button();
             this.tabTools = new System.Windows.Forms.TabPage();
             this.ToolsVideoToMPC = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
@@ -386,8 +388,8 @@ namespace SSX_Modder
             this.toolStripBuildRun = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tabMPFModel2 = new System.Windows.Forms.TabPage();
-            this.Mpf2Load = new System.Windows.Forms.Button();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.button9 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabModPacks.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -444,6 +446,7 @@ namespace SSX_Modder
             ((System.ComponentModel.ISupportInitialize)(this.BoltUnlock)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BoltUnkownOne)).BeginInit();
             this.tabMPFModel.SuspendLayout();
+            this.tabMPFModel2.SuspendLayout();
             this.tabTools.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -453,7 +456,6 @@ namespace SSX_Modder
             this.tabSettings.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
-            this.tabMPFModel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -3853,6 +3855,28 @@ namespace SSX_Modder
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // tabMPFModel2
+            // 
+            this.tabMPFModel2.Controls.Add(this.button9);
+            this.tabMPFModel2.Controls.Add(this.listBox1);
+            this.tabMPFModel2.Controls.Add(this.Mpf2Load);
+            this.tabMPFModel2.Location = new System.Drawing.Point(4, 22);
+            this.tabMPFModel2.Name = "tabMPFModel2";
+            this.tabMPFModel2.Size = new System.Drawing.Size(1191, 527);
+            this.tabMPFModel2.TabIndex = 15;
+            this.tabMPFModel2.Text = "MPF Model (SSX Tricky)";
+            this.tabMPFModel2.UseVisualStyleBackColor = true;
+            // 
+            // Mpf2Load
+            // 
+            this.Mpf2Load.Location = new System.Drawing.Point(4, 501);
+            this.Mpf2Load.Name = "Mpf2Load";
+            this.Mpf2Load.Size = new System.Drawing.Size(75, 23);
+            this.Mpf2Load.TabIndex = 0;
+            this.Mpf2Load.Text = "Load";
+            this.Mpf2Load.UseVisualStyleBackColor = true;
+            this.Mpf2Load.Click += new System.EventHandler(this.Mpf2Load_Click);
+            // 
             // tabTools
             // 
             this.tabTools.Controls.Add(this.ToolsVideoToMPC);
@@ -4475,25 +4499,24 @@ namespace SSX_Modder
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
             // 
-            // tabMPFModel2
+            // listBox1
             // 
-            this.tabMPFModel2.Controls.Add(this.Mpf2Load);
-            this.tabMPFModel2.Location = new System.Drawing.Point(4, 22);
-            this.tabMPFModel2.Name = "tabMPFModel2";
-            this.tabMPFModel2.Size = new System.Drawing.Size(1191, 527);
-            this.tabMPFModel2.TabIndex = 15;
-            this.tabMPFModel2.Text = "MPF Model (SSX Tricky)";
-            this.tabMPFModel2.UseVisualStyleBackColor = true;
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(4, 4);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(215, 485);
+            this.listBox1.TabIndex = 1;
+            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
-            // Mpf2Load
+            // button9
             // 
-            this.Mpf2Load.Location = new System.Drawing.Point(4, 501);
-            this.Mpf2Load.Name = "Mpf2Load";
-            this.Mpf2Load.Size = new System.Drawing.Size(75, 23);
-            this.Mpf2Load.TabIndex = 0;
-            this.Mpf2Load.Text = "Load";
-            this.Mpf2Load.UseVisualStyleBackColor = true;
-            this.Mpf2Load.Click += new System.EventHandler(this.Mpf2Load_Click);
+            this.button9.Location = new System.Drawing.Point(1113, 501);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(75, 23);
+            this.button9.TabIndex = 2;
+            this.button9.Text = "button9";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // MainWindow
             // 
@@ -4577,6 +4600,7 @@ namespace SSX_Modder
             ((System.ComponentModel.ISupportInitialize)(this.BoltUnkownOne)).EndInit();
             this.tabMPFModel.ResumeLayout(false);
             this.tabMPFModel.PerformLayout();
+            this.tabMPFModel2.ResumeLayout(false);
             this.tabTools.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
@@ -4589,7 +4613,6 @@ namespace SSX_Modder
             this.toolStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            this.tabMPFModel2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -4955,5 +4978,7 @@ namespace SSX_Modder
         private System.Windows.Forms.Button ToolsVideoToMPC;
         private System.Windows.Forms.TabPage tabMPFModel2;
         private System.Windows.Forms.Button Mpf2Load;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Button button9;
     }
 }
