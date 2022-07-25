@@ -34,10 +34,6 @@ This is a modding tool I came up and started making when I caught COVID as a way
 - MPF Extractor
 
 ### MPC Extractor/Maker
-- FFMpeg Paths
-- SX Checker
-- GX Checker
-- Chimp Checker
 - Extracting
 - Making
 
