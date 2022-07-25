@@ -66,6 +66,9 @@ This is a modding tool I came up and started making when I caught COVID as a way
 
 
 ## Special Thanks
-https://github.com/Erickson400/SSXTrickyModelExporter
-https://github.com/WouterBaeyens/Ssx3SshConverter
-https://github.com/SSXModding/bigfile
+https://github.com/Erickson400/SSXTrickyModelExporter <br>
+https://github.com/WouterBaeyens/Ssx3SshConverter <br>
+https://github.com/SSXModding/bigfile <br>
+
+## Donate
+[![Donate](https://www.paypalobjects.com/en_AU/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/donate/?business=VT6TG8KKZM98E&no_recurring=0&currency_code=AUD)

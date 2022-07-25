@@ -274,7 +274,7 @@ namespace SSX_Modder.FileHandlers
                         }
                         ModelData.vertices = vertices;
 
-                        streamMatrix.Position += 16;
+                        streamMatrix.Position += 16*2;
                         Model.staticMesh.Add(ModelData);
                     }
                 }
