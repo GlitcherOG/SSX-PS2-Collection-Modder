@@ -45,15 +45,27 @@ namespace SSX_Modder.FileHandlers
                     TempPos1.Position.Y = Face.V1.Y;
                     TempPos1.Position.Z = Face.V1.Z;
 
+                    TempPos1.Normal.X = (float)Face.Normal1.X / 4096f;
+                    TempPos1.Normal.Y = (float)Face.Normal1.Y / 4096f;
+                    TempPos1.Normal.Z = (float)Face.Normal1.Z / 4096f;
+
                     VertexPositionNormal TempPos2 = new VertexPositionNormal();
                     TempPos2.Position.X = Face.V2.X;
                     TempPos2.Position.Y = Face.V2.Y;
                     TempPos2.Position.Z = Face.V2.Z;
 
+                    TempPos2.Normal.X = (float)Face.Normal2.X/4096f;
+                    TempPos2.Normal.Y = (float)Face.Normal2.Y/4096f;
+                    TempPos2.Normal.Z = (float)Face.Normal2.Z/4096f;
+
                     VertexPositionNormal TempPos3 = new VertexPositionNormal();
                     TempPos3.Position.X = Face.V3.X;
                     TempPos3.Position.Y = Face.V3.Y;
                     TempPos3.Position.Z = Face.V3.Z;
+
+                    TempPos3.Normal.X = (float)Face.Normal3.X / 4096f;
+                    TempPos3.Normal.Y = (float)Face.Normal3.Y / 4096f;
+                    TempPos3.Normal.Z = (float)Face.Normal3.Z / 4096f;
 
                     VertexTexture1 TempTexture1 = new VertexTexture1();
                     TempTexture1.TexCoord.X = (float)Face.UV1.X/4096f;

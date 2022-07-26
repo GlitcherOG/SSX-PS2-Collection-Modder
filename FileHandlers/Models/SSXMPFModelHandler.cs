@@ -159,11 +159,13 @@ namespace SSX_Modder.FileHandlers
                             stripHeader.ArrayStart = StreamUtil.ReadByte(streamMatrix);
                             stripHeader.ArraySize = StreamUtil.ReadByte(streamMatrix);
                             stripHeader.ArrayType = StreamUtil.ReadByte(streamMatrix);
-
+                            //Model Row Header
                             stripHeader.Unknown6 = StreamUtil.ReadInt32(streamMatrix);
                             stripHeader.Unknown7 = StreamUtil.ReadInt32(streamMatrix);
                             stripHeader.Unknown8 = StreamUtil.ReadInt32(streamMatrix);
                             stripHeader.Unknown9 = StreamUtil.ReadInt32(streamMatrix);
+
+                            ModelData.stripHeader = stripHeader;
 
                             if (streamMatrix.Position >= Model.chunks[n].StaticMeshOffsetEnd)
                             {
@@ -793,12 +795,13 @@ namespace SSX_Modder.FileHandlers
             public int EdgeCount;
             public int NormalCount;
             public int VertexCount;
-            public List<int> Strips;
 
+            public List<int> Strips;
             public List<UV> uv;
             public List<Vertex3> vertices;
-            public List<Face> faces;
             public List<UVNormal> uvNormals;
+
+            public List<Face> faces;
         }
 
         public struct ModelStripHeader

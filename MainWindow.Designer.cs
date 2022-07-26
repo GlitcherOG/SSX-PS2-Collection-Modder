@@ -328,6 +328,8 @@ namespace SSX_Modder
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.tabMPFModel2 = new System.Windows.Forms.TabPage();
+            this.button9 = new System.Windows.Forms.Button();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.Mpf2Load = new System.Windows.Forms.Button();
             this.tabTools = new System.Windows.Forms.TabPage();
             this.ToolsVideoToMPC = new System.Windows.Forms.Button();
@@ -388,8 +390,6 @@ namespace SSX_Modder
             this.toolStripBuildRun = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.button9 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabModPacks.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -3815,6 +3815,7 @@ namespace SSX_Modder
             this.MPFModelList.Name = "MPFModelList";
             this.MPFModelList.Size = new System.Drawing.Size(175, 459);
             this.MPFModelList.TabIndex = 4;
+            this.MPFModelList.SelectedIndexChanged += new System.EventHandler(this.MPFModelList_SelectedIndexChanged);
             // 
             // MPFList
             // 
@@ -3866,6 +3867,25 @@ namespace SSX_Modder
             this.tabMPFModel2.TabIndex = 15;
             this.tabMPFModel2.Text = "MPF Model (SSX Tricky)";
             this.tabMPFModel2.UseVisualStyleBackColor = true;
+            // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(1113, 501);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(75, 23);
+            this.button9.TabIndex = 2;
+            this.button9.Text = "button9";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(4, 4);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(215, 485);
+            this.listBox1.TabIndex = 1;
+            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // Mpf2Load
             // 
@@ -4498,25 +4518,6 @@ namespace SSX_Modder
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
-            // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(4, 4);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(215, 485);
-            this.listBox1.TabIndex = 1;
-            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
-            // 
-            // button9
-            // 
-            this.button9.Location = new System.Drawing.Point(1113, 501);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(75, 23);
-            this.button9.TabIndex = 2;
-            this.button9.Text = "button9";
-            this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // MainWindow
             // 

@@ -2096,17 +2096,18 @@ namespace SSX_Modder
         {
             if (MPFList.SelectedIndex != -1)
             {
-                SaveFileDialog openFileDialog = new SaveFileDialog
-                {
-                    InitialDirectory = workspacePath,
-                    Filter = "Obj File (*.obj)|*.obj|All files (*.*)|*.*",
-                    FilterIndex = 1,
-                    RestoreDirectory = false
-                };
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    //modelHandler.TestSave(openFileDialog.FileName, MPFList.SelectedIndex);
-                }
+                var temp = modelHandler.ModelList[MPFList.SelectedIndex].staticMesh[MPFModelList.SelectedIndex].stripHeader;
+                //SaveFileDialog openFileDialog = new SaveFileDialog
+                //{
+                //    InitialDirectory = workspacePath,
+                //    Filter = "Obj File (*.obj)|*.obj|All files (*.*)|*.*",
+                //    FilterIndex = 1,
+                //    RestoreDirectory = false
+                //};
+                //if (openFileDialog.ShowDialog() == DialogResult.OK)
+                //{
+                //    //modelHandler.TestSave(openFileDialog.FileName, MPFList.SelectedIndex);
+                //}
             }
         }
         #endregion
@@ -2118,6 +2119,12 @@ namespace SSX_Modder
                 ChunkSize.Text = modelHandler.ModelList[MPFList.SelectedIndex].ChunksCount.ToString();
                 MeshCount.Text = modelHandler.ModelList[MPFList.SelectedIndex].MeshCount.ToString();
                 SkinMeshCount.Text = modelHandler.ModelList[MPFList.SelectedIndex].FlexMeshCount.ToString();
+
+                MPFModelList.Items.Clear();
+                for (int i = 0; i < modelHandler.ModelList[MPFList.SelectedIndex].staticMesh.Count; i++)
+                {
+                    MPFModelList.Items.Add(i);
+                }
             }
         }
 
@@ -2246,6 +2253,11 @@ namespace SSX_Modder
                     trickyMPF.SaveModel(openFileDialog.FileName, listBox1.SelectedIndex);
                 }
             }
+        }
+
+        private void MPFModelList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
