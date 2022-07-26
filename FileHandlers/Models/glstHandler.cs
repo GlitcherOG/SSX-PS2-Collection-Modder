@@ -9,15 +9,15 @@ using SharpGLTF.Geometry.VertexTypes;
 using SharpGLTF.Materials;
 using SharpGLTF.Schema2;
 
+//https://github.com/vpenades/SharpGLTF/blob/master/src/SharpGLTF.Toolkit/Geometry/readme.md
 namespace SSX_Modder.FileHandlers
 {
-    using VERTEX = SharpGLTF.Geometry.VertexTypes.VertexPosition;
 
     public class glstHandler
     {
-        public static void SaveglST(string Output, SSXMPFModelHandler.MPFModelHeader modelHeader)
+        public static void SaveOGglTF(string Output, SSXMPFModelHandler.MPFModelHeader modelHeader)
         {
-            var mesh = new MeshBuilder<VERTEX>(modelHeader.FileName);
+            var mesh = new MeshBuilder<VertexPositionNormal, VertexTexture1, VertexEmpty>(modelHeader.FileName);
             //Make Materials
 
             List<MaterialBuilder> materialBuilders = new List<MaterialBuilder>();
@@ -36,12 +36,38 @@ namespace SSX_Modder.FileHandlers
                 var Data = modelHeader.staticMesh[i];
                 int tempInt = Data.ChunkID;
                 int MatId = modelHeader.chunks[tempInt].MaterialID;
-                var prim = mesh.UsePrimitive(materialBuilders[MatId]);
 
                 for (int b = 0; b < Data.faces.Count; b++)
                 {
                     var Face = Data.faces[b];
-                    prim.AddTriangle(new VERTEX(Face.V1.X, Face.V1.Y, Face.V1.Z), new VERTEX(Face.V2.X, Face.V2.Y, Face.V2.Z), new VERTEX(Face.V3.X, Face.V3.Y, Face.V3.Z));
+                    VertexPositionNormal TempPos1 = new VertexPositionNormal();
+                    TempPos1.Position.X = Face.V1.X;
+                    TempPos1.Position.Y = Face.V1.Y;
+                    TempPos1.Position.Z = Face.V1.Z;
+
+                    VertexPositionNormal TempPos2 = new VertexPositionNormal();
+                    TempPos2.Position.X = Face.V2.X;
+                    TempPos2.Position.Y = Face.V2.Y;
+                    TempPos2.Position.Z = Face.V2.Z;
+
+                    VertexPositionNormal TempPos3 = new VertexPositionNormal();
+                    TempPos3.Position.X = Face.V3.X;
+                    TempPos3.Position.Y = Face.V3.Y;
+                    TempPos3.Position.Z = Face.V3.Z;
+
+                    VertexTexture1 TempTexture1 = new VertexTexture1();
+                    TempTexture1.TexCoord.X = (float)Face.UV1.X/4096f;
+                    TempTexture1.TexCoord.Y = (float)Face.UV1.Y/4096f;
+
+                    VertexTexture1 TempTexture2 = new VertexTexture1();
+                    TempTexture2.TexCoord.X = (float)Face.UV2.X / 4096f;
+                    TempTexture2.TexCoord.Y = (float)Face.UV2.Y / 4096f;
+
+                    VertexTexture1 TempTexture3 = new VertexTexture1();
+                    TempTexture3.TexCoord.X = (float)Face.UV3.X / 4096f;
+                    TempTexture3.TexCoord.Y = (float)Face.UV3.Y / 4096f;
+
+                    mesh.UsePrimitive(materialBuilders[MatId]).AddTriangle((TempPos1, TempTexture1), (TempPos2, TempTexture2), (TempPos3, TempTexture3));
                 }
 
             }
