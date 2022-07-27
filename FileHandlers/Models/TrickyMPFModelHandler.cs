@@ -201,81 +201,89 @@ namespace SSX_Modder.FileHandlers
                     {
                         var SubGroupHeader = GroupHeader.meshGroupSubs[bx];
                         streamMatrix.Position = SubGroupHeader.ModelOffset;
-
-                        streamMatrix.Position += 48;
-
-                        var ModelData = new StaticMesh();
-                        ModelData.ChunkID = ax;
-
-                        ModelData.StripCount = StreamUtil.ReadInt32(streamMatrix);
-                        ModelData.EdgeCount = StreamUtil.ReadInt32(streamMatrix);
-                        ModelData.NormalCount = StreamUtil.ReadInt32(streamMatrix);
-                        ModelData.VertexCount = StreamUtil.ReadInt32(streamMatrix);
-
-                        //Load Strip Count
-                        List<int> TempStrips = new List<int>();
-                        for (int a = 0; a < ModelData.StripCount; a++)
+                        while (true)
                         {
-                            TempStrips.Add(StreamUtil.ReadInt32(streamMatrix));
-                            streamMatrix.Position += 12;
-                        }
-                        streamMatrix.Position += 16;
-                        ModelData.Strips = TempStrips;
 
-                        List<UV> UVs = new List<UV>();
-                        //Read UV Texture Points
-                        if (ModelData.NormalCount != 0)
-                        {
-                            streamMatrix.Position += 48;
-                            for (int a = 0; a < ModelData.VertexCount; a++)
+                            streamMatrix.Position += 29;
+                            byte Temp = StreamUtil.ReadByte(streamMatrix);
+                            if (Temp != 0x80)
                             {
-                                UV uv = new UV();
-                                uv.X = StreamUtil.ReadInt16(streamMatrix);
-                                uv.Y = StreamUtil.ReadInt16(streamMatrix);
-                                uv.XU = StreamUtil.ReadInt16(streamMatrix);
-                                uv.YU = StreamUtil.ReadInt16(streamMatrix);
-                                UVs.Add(uv);
+                                break;
                             }
-                            StreamUtil.AlignBy16(streamMatrix);
-                        }
-                        ModelData.uv = UVs;
+                            streamMatrix.Position += 18;
+                            var ModelData = new StaticMesh();
+                            ModelData.ChunkID = ax;
 
-                        List<UVNormal> Normals = new List<UVNormal>();
-                        //Read Normals
-                        if (ModelData.NormalCount != 0)
-                        {
-                            streamMatrix.Position += 48;
-                            for (int a = 0; a < ModelData.VertexCount; a++)
+                            ModelData.StripCount = StreamUtil.ReadInt32(streamMatrix);
+                            ModelData.EdgeCount = StreamUtil.ReadInt32(streamMatrix);
+                            ModelData.NormalCount = StreamUtil.ReadInt32(streamMatrix);
+                            ModelData.VertexCount = StreamUtil.ReadInt32(streamMatrix);
+
+                            //Load Strip Count
+                            List<int> TempStrips = new List<int>();
+                            for (int a = 0; a < ModelData.StripCount; a++)
                             {
-                                UVNormal normal = new UVNormal();
-                                normal.X = StreamUtil.ReadInt16(streamMatrix);
-                                normal.Y = StreamUtil.ReadInt16(streamMatrix);
-                                normal.Z = StreamUtil.ReadInt16(streamMatrix);
-                                Normals.Add(normal);
+                                TempStrips.Add(StreamUtil.ReadInt32(streamMatrix));
+                                streamMatrix.Position += 12;
                             }
-                            StreamUtil.AlignBy16(streamMatrix);
-                        }
-                        ModelData.uvNormals = Normals;
+                            streamMatrix.Position += 16;
+                            ModelData.Strips = TempStrips;
 
-                        List<Vertex3> vertices = new List<Vertex3>();
-                        //Load Vertex
-                        if (ModelData.VertexCount != 0)
-                        {
-                            streamMatrix.Position += 48;
-                            for (int a = 0; a < ModelData.VertexCount; a++)
+                            List<UV> UVs = new List<UV>();
+                            //Read UV Texture Points
+                            if (ModelData.NormalCount != 0)
                             {
-                                Vertex3 vertex = new Vertex3();
-                                vertex.X = StreamUtil.ReadFloat(streamMatrix);
-                                vertex.Y = StreamUtil.ReadFloat(streamMatrix);
-                                vertex.Z = StreamUtil.ReadFloat(streamMatrix);
-                                vertices.Add(vertex);
+                                streamMatrix.Position += 48;
+                                for (int a = 0; a < ModelData.VertexCount; a++)
+                                {
+                                    UV uv = new UV();
+                                    uv.X = StreamUtil.ReadInt16(streamMatrix);
+                                    uv.Y = StreamUtil.ReadInt16(streamMatrix);
+                                    uv.XU = StreamUtil.ReadInt16(streamMatrix);
+                                    uv.YU = StreamUtil.ReadInt16(streamMatrix);
+                                    UVs.Add(uv);
+                                }
+                                StreamUtil.AlignBy16(streamMatrix);
                             }
-                            StreamUtil.AlignBy16(streamMatrix);
-                        }
-                        ModelData.vertices = vertices;
+                            ModelData.uv = UVs;
 
-                        streamMatrix.Position += 16*2;
-                        Model.staticMesh.Add(ModelData);
+                            List<UVNormal> Normals = new List<UVNormal>();
+                            //Read Normals
+                            if (ModelData.NormalCount != 0)
+                            {
+                                streamMatrix.Position += 48;
+                                for (int a = 0; a < ModelData.VertexCount; a++)
+                                {
+                                    UVNormal normal = new UVNormal();
+                                    normal.X = StreamUtil.ReadInt16(streamMatrix);
+                                    normal.Y = StreamUtil.ReadInt16(streamMatrix);
+                                    normal.Z = StreamUtil.ReadInt16(streamMatrix);
+                                    Normals.Add(normal);
+                                }
+                                StreamUtil.AlignBy16(streamMatrix);
+                            }
+                            ModelData.uvNormals = Normals;
+
+                            List<Vertex3> vertices = new List<Vertex3>();
+                            //Load Vertex
+                            if (ModelData.VertexCount != 0)
+                            {
+                                streamMatrix.Position += 48;
+                                for (int a = 0; a < ModelData.VertexCount; a++)
+                                {
+                                    Vertex3 vertex = new Vertex3();
+                                    vertex.X = StreamUtil.ReadFloat(streamMatrix);
+                                    vertex.Y = StreamUtil.ReadFloat(streamMatrix);
+                                    vertex.Z = StreamUtil.ReadFloat(streamMatrix);
+                                    vertices.Add(vertex);
+                                }
+                                StreamUtil.AlignBy16(streamMatrix);
+                            }
+                            ModelData.vertices = vertices;
+
+                            streamMatrix.Position += 16 * 2;
+                            Model.staticMesh.Add(ModelData);
+                        }
                     }
                 }
 
@@ -397,131 +405,8 @@ namespace SSX_Modder.FileHandlers
 
         public void SaveModel(string path, int pos = 0)
         {
-            string output = "# Exported From SSX Using SSX PS2 Collection Modder by GlitcherOG \n";
             var Model = ModelList[pos];
-            //glstHandler.SaveglST(path, Model);
-            output += "o " + Model.FileName + "\n";
-            var ModelData = Model.staticMesh[0];
-            //Conevert Vertices into List
-            List<Vertex3> vertices = new List<Vertex3>();
-            for (int i = 0; i < ModelData.faces.Count; i++)
-            {
-                var Face = ModelData.faces[i];
-                if (!vertices.Contains(Face.V1))
-                {
-                    vertices.Add(Face.V1);
-                }
-                Face.V1Pos = vertices.IndexOf(Face.V1);
-
-                if (!vertices.Contains(Face.V2))
-                {
-                    vertices.Add(Face.V2);
-                }
-                Face.V2Pos = vertices.IndexOf(Face.V2);
-
-                if (!vertices.Contains(Face.V3))
-                {
-                    vertices.Add(Face.V3);
-                }
-                Face.V3Pos = vertices.IndexOf(Face.V3);
-
-                ModelData.faces[i] = Face;
-            }
-            //Convert UV Points Into List
-            List<UV> UV = new List<UV>();
-            if (ModelData.uv.Count != 0)
-            {
-                for (int i = 0; i < ModelData.faces.Count; i++)
-                {
-                    var Face = ModelData.faces[i];
-                    if (!UV.Contains(Face.UV1))
-                    {
-                        UV.Add(Face.UV1);
-                    }
-                    Face.UV1Pos = UV.IndexOf(Face.UV1);
-
-                    if (!UV.Contains(Face.UV2))
-                    {
-                        UV.Add(Face.UV2);
-                    }
-                    Face.UV2Pos = UV.IndexOf(Face.UV2);
-
-                    if (!UV.Contains(Face.UV3))
-                    {
-                        UV.Add(Face.UV3);
-                    }
-                    Face.UV3Pos = UV.IndexOf(Face.UV3);
-
-                    ModelData.faces[i] = Face;
-                }
-            }
-
-            List<UVNormal> Normals = new List<UVNormal>();
-            if (ModelData.uvNormals.Count != 0)
-            {
-                for (int i = 0; i < ModelData.faces.Count; i++)
-                {
-                    var Face = ModelData.faces[i];
-                    if (!Normals.Contains(Face.Normal1))
-                    {
-                        Normals.Add(Face.Normal1);
-                    }
-                    Face.Normal1Pos = Normals.IndexOf(Face.Normal1);
-
-                    if (!Normals.Contains(Face.Normal2))
-                    {
-                        Normals.Add(Face.Normal2);
-                    }
-                    Face.Normal2Pos = Normals.IndexOf(Face.Normal2);
-
-                    if (!Normals.Contains(Face.Normal3))
-                    {
-                        Normals.Add(Face.Normal3);
-                    }
-                    Face.Normal3Pos = Normals.IndexOf(Face.Normal3);
-
-                    ModelData.faces[i] = Face;
-                }
-            }
-
-            for (int i = 0; i < vertices.Count; i++)
-            {
-                output += "v " + vertices[i].X + " " + vertices[i].Y + " " + vertices[i].Z + "\n";
-            }
-            //While Math Works Its Wrong
-            for (int i = 0; i < UV.Count; i++)
-            {
-                output += "vt " + (1f - ((float)UV[i].X) / 4096) + " " + (1f - ((float)UV[i].Y) / 4096) + "\n";
-            }
-
-            for (int i = 0; i < Normals.Count; i++)
-            {
-                output += "vn " + (((float)Normals[i].X) / 4096) + " " + (((float)Normals[i].Y) / 4096) + " " + (((float)Normals[i].Z) / 4096) + "\n";
-            }
-
-            if (ModelData.uv.Count != 0)
-            {
-                for (int i = 0; i < ModelData.faces.Count; i++)
-                {
-                    var Face = ModelData.faces[i];
-                    output += "f " + (Face.V1Pos + 1).ToString() + "/" + (Face.UV1Pos + 1).ToString() + "/" + (Face.Normal1Pos + 1).ToString() + " " + (Face.V2Pos + 1).ToString() + "/" + (Face.UV2Pos + 1).ToString() + "/" + (Face.Normal2Pos + 1).ToString() + " " + (Face.V3Pos + 1).ToString() + "/" + (Face.UV3Pos + 1).ToString() + "/" + (Face.Normal3Pos + 1).ToString() + " " + "\n";
-                }
-            }
-            else
-            {
-                for (int i = 0; i < ModelData.faces.Count; i++)
-                {
-                    var Face = ModelData.faces[i];
-                    output += "f " + (Face.V1Pos + 1).ToString() + " " + (Face.V2Pos + 1).ToString() + " " + (Face.V3Pos + 1).ToString() + " " + "\n";
-                }
-            }
-
-            if (File.Exists(path))
-            {
-                File.Delete(path);
-            }
-
-            File.WriteAllText(path, output);
+            glstHandler.SaveTrickyglTF(path, Model);
         }
 
 

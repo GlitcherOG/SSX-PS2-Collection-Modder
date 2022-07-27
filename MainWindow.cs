@@ -2244,7 +2244,7 @@ namespace SSX_Modder
                 SaveFileDialog openFileDialog = new SaveFileDialog
                 {
                     InitialDirectory = workspacePath,
-                    Filter = "gltf File (*.obj)|*.obj|All files (*.*)|*.*",
+                    Filter = "gltf File (*.gltf)|*.gltf|All files (*.*)|*.*",
                     FilterIndex = 1,
                     RestoreDirectory = false
                 };
