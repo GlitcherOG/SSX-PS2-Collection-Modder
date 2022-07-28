@@ -2239,8 +2239,6 @@ namespace SSX_Modder
 
         private void button9_Click(object sender, EventArgs e)
         {
-            if (listBox1.SelectedIndex != -1)
-            {
                 SaveFileDialog openFileDialog = new SaveFileDialog
                 {
                     InitialDirectory = workspacePath,
@@ -2250,9 +2248,8 @@ namespace SSX_Modder
                 };
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    trickyMPF.SaveModel(openFileDialog.FileName, listBox1.SelectedIndex);
+                    trickyMPF.SaveModel(openFileDialog.FileName);
                 }
-            }
         }
 
         private void MPFModelList_SelectedIndexChanged(object sender, EventArgs e)

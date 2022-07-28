@@ -413,10 +413,9 @@ namespace SSX_Modder.FileHandlers
             return face;
         }
 
-        public void SaveModel(string path, int pos = 0)
+        public void SaveModel(string path)
         {
-            var Model = ModelList[pos];
-            glstHandler.SaveTrickyglTF(path, Model);
+            glstHandler.SaveTrickyglTF(path, this);
         }
 
 
