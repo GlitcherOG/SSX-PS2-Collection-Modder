@@ -43,7 +43,7 @@ namespace SSX_Modder.FileHandlers
                     modelHeader.Unused1 = StreamUtil.ReadInt32(stream);
                     modelHeader.Unused2 = StreamUtil.ReadInt32(stream);
 
-                    modelHeader.UnknownCount = StreamUtil.ReadInt16(stream);
+                    modelHeader.NumberListCount = StreamUtil.ReadInt16(stream);
                     modelHeader.BoneWeightCount = StreamUtil.ReadInt16(stream);
                     modelHeader.MeshGroupCount = StreamUtil.ReadInt16(stream);
                     modelHeader.BoneDataCount = StreamUtil.ReadInt16(stream);
@@ -198,6 +198,31 @@ namespace SSX_Modder.FileHandlers
                     streamMatrix.Position = TempPos;
                     Model.boneWeightHeader.Add(BoneWeight);
                 }
+
+                //Number List Ref
+                streamMatrix.Position = Model.NumberListOffset;
+                Model.numberListRefs = new List<NumberListRef>();
+                for (int b = 0; b < Model.NumberListCount; b++)
+                {
+                    var NumberListRef = new NumberListRef();
+                    NumberListRef.SubCount = StreamUtil.ReadInt32(streamMatrix);
+                    NumberListRef.Offset = StreamUtil.ReadInt32(streamMatrix);
+                    NumberListRef.Unknown1 = StreamUtil.ReadInt32(streamMatrix);
+                    NumberListRef.subNumberRefs = new List<SubNumberRef>();
+
+                    int TempPos = (int)streamMatrix.Position;
+                    streamMatrix.Position = NumberListRef.Offset;
+                    for (int c = 0; c < NumberListRef.SubCount; c++)
+                    {
+                        var SubNumberRef = new SubNumberRef();
+                        SubNumberRef.Unknown = StreamUtil.ReadInt16(streamMatrix);
+                        SubNumberRef.Unknown1 = StreamUtil.ReadInt16(streamMatrix);
+                        NumberListRef.subNumberRefs.Add(SubNumberRef);
+                    }
+                    streamMatrix.Position = TempPos;
+                    Model.numberListRefs.Add(NumberListRef);
+                }
+
 
                 Model.staticMesh = new List<StaticMesh>();
 
@@ -436,7 +461,7 @@ namespace SSX_Modder.FileHandlers
             public int Unused2;
 
             //Counts
-            public int UnknownCount;
+            public int NumberListCount;
             public int BoneWeightCount;
             public int MeshGroupCount;
             public int BoneDataCount;
@@ -453,6 +478,21 @@ namespace SSX_Modder.FileHandlers
             public List<GroupMainHeader> MeshGroups;
             public List<BoneWeightHeader> boneWeightHeader;
             public List<StaticMesh> staticMesh;
+            public List<NumberListRef> numberListRefs;
+        }
+
+        public struct NumberListRef
+        {
+            public int SubCount;
+            public int Offset;
+            public int Unknown1;
+
+            public List<SubNumberRef> subNumberRefs;
+        }
+        public struct SubNumberRef
+        {
+            public int Unknown;
+            public int Unknown1;
         }
 
         public struct MaterialData

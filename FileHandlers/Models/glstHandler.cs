@@ -102,7 +102,7 @@ namespace SSX_Modder.FileHandlers
             for (int ax = 0; ax < Handler.ModelList.Count; ax++)
             {
                 var modelHeader = Handler.ModelList[ax];
-
+                //VertexJoints4
                 var mesh = new MeshBuilder<VertexPositionNormal, VertexTexture1, VertexEmpty>(modelHeader.FileName);
 
                 List<MaterialBuilder> materialBuilders = new List<MaterialBuilder>();
@@ -111,10 +111,9 @@ namespace SSX_Modder.FileHandlers
                 {
                     var TempVar = modelHeader.materialDatas[i];
                     var material1 = new MaterialBuilder(TempVar.MainTexture)
-                    .WithChannelParam(KnownChannel.BaseColor, KnownProperty.RGBA, new Vector4(TempVar.R, TempVar.G, TempVar.B, 1));
+                    .WithChannelParam(KnownChannel.BaseColor, KnownProperty.RGBA, new Vector4(TempVar.R, TempVar.G, TempVar.B,1));
                     materialBuilders.Add(material1);
                 }
-
 
                 for (int i = 0; i < modelHeader.staticMesh.Count; i++)
                 {
@@ -156,6 +155,7 @@ namespace SSX_Modder.FileHandlers
                         TempTexture1.TexCoord.X = (float)Face.UV1.X / 4096f;
                         TempTexture1.TexCoord.Y = (float)Face.UV1.Y / 4096f;
 
+
                         VertexTexture1 TempTexture2 = new VertexTexture1();
                         TempTexture2.TexCoord.X = (float)Face.UV2.X / 4096f;
                         TempTexture2.TexCoord.Y = (float)Face.UV2.Y / 4096f;
@@ -175,7 +175,7 @@ namespace SSX_Modder.FileHandlers
             // save the model in different formats
 
             var model = scene.ToGltf2();
-            model.SaveGLTF(Output);
+            model.SaveGLB(Output);
         }
     }
 }
