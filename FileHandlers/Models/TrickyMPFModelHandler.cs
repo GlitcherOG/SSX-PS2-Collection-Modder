@@ -302,16 +302,33 @@ namespace SSX_Modder.FileHandlers
                                 //Load Vertex
                                 if (ModelData.VertexCount != 0)
                                 {
-                                    streamMatrix.Position += 48;
-                                    for (int a = 0; a < ModelData.VertexCount; a++)
+                                    streamMatrix.Position += 47;
+                                    //Can also make it use normal but this seems safer
+                                    if (StreamUtil.ReadByte(streamMatrix) != 0x6C)
                                     {
-                                        Vertex3 vertex = new Vertex3();
-                                        vertex.X = StreamUtil.ReadFloat(streamMatrix);
-                                        vertex.Y = StreamUtil.ReadFloat(streamMatrix);
-                                        vertex.Z = StreamUtil.ReadFloat(streamMatrix);
-                                        vertices.Add(vertex);
+                                        for (int a = 0; a < ModelData.VertexCount; a++)
+                                        {
+                                            Vertex3 vertex = new Vertex3();
+                                            vertex.X = StreamUtil.ReadFloat(streamMatrix);
+                                            vertex.Y = StreamUtil.ReadFloat(streamMatrix);
+                                            vertex.Z = StreamUtil.ReadFloat(streamMatrix);
+                                            vertices.Add(vertex);
+                                        }
+                                        StreamUtil.AlignBy16(streamMatrix);
                                     }
-                                    StreamUtil.AlignBy16(streamMatrix);
+                                    else
+                                    {
+                                        for (int a = 0; a < ModelData.VertexCount; a++)
+                                        {
+                                            Vertex3 vertex = new Vertex3();
+                                            vertex.X = StreamUtil.ReadFloat(streamMatrix);
+                                            vertex.Y = StreamUtil.ReadFloat(streamMatrix);
+                                            vertex.Z = StreamUtil.ReadFloat(streamMatrix);
+                                            vertex.Unknown = StreamUtil.ReadFloat(streamMatrix);
+                                            vertices.Add(vertex);
+                                        }
+                                        StreamUtil.AlignBy16(streamMatrix);
+                                    }
                                 }
                                 ModelData.vertices = vertices;
 
@@ -605,6 +622,8 @@ namespace SSX_Modder.FileHandlers
             public float X;
             public float Y;
             public float Z;
+
+            public float Unknown;
         }
 
         //Since there both int 16's They need to be divided by 4096
