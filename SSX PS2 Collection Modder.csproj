@@ -7,7 +7,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{77905404-BB40-4CB4-BC22-88137F10238A}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>SSX_Modder</RootNamespace>
+    <RootNamespace>SSX_PS2_Modder</RootNamespace>
     <AssemblyName>SSX PS2 Collection Modder</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -280,7 +280,6 @@
     <Compile Include="MusicWindow.Designer.cs">
       <DependentUpon>MusicWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="Utilities\ByteUtil.cs" />
     <Compile Include="FileHandlers\BigHandler.cs" />
     <Compile Include="FileHandlers\SSX3\CHARDBLHandler.cs" />
     <Compile Include="FileHandlers\LOCHandler.cs" />
@@ -300,6 +299,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="FileHandlers\CSVHandler.cs" />
+    <Compile Include="Utilities\ByteUtil.cs" />
     <Compile Include="Utilities\ImageUtil.cs" />
     <Compile Include="Utilities\Settings.cs" />
     <Compile Include="Utilities\StreamUtil.cs" />
@@ -317,6 +317,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
