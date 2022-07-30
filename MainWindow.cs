@@ -7,6 +7,7 @@ using Microsoft.WindowsAPICodePack.Dialogs;
 using System.Drawing;
 using System.Drawing.Imaging;
 using SSX_Modder.Utilities;
+using SSX_Modder.FileHandlers.MapEditor;
 using SSX_Modder.ModSystem;
 using System.Collections.Generic;
 
@@ -2255,6 +2256,39 @@ namespace SSX_Modder
         private void MPFModelList_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+
+        PBDHandler pBDHandler = new PBDHandler();
+        private void button10_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                InitialDirectory = workspacePath,
+                Filter = "Model File (*.pbd)|*.pbd|All files (*.*)|*.*",
+                FilterIndex = 1,
+                RestoreDirectory = false
+            };
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                pBDHandler = new PBDHandler();
+                pBDHandler.load(openFileDialog.FileName);
+            }
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog openFileDialog = new SaveFileDialog
+            {
+                InitialDirectory = workspacePath,
+                Filter = "gltf File (*.gltf)|*.gltf|All files (*.*)|*.*",
+                FilterIndex = 1,
+                RestoreDirectory = false
+            };
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                pBDHandler.SaveModel(openFileDialog.FileName);
+            }
         }
     }
 }

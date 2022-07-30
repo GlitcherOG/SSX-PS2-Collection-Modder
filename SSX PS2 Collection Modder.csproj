@@ -263,6 +263,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FileHandlers\MapEditor\PBDHandler.cs" />
     <Compile Include="FileHandlers\Models\glstHandler.cs" />
     <Compile Include="FileHandlers\SSX3\BoltPS2Handler.cs" />
     <Compile Include="FileHandlers\ISOHandler.cs" />
@@ -378,6 +379,7 @@
     <Content Include="Guides\SSB.txt" />
     <Content Include="SSX31.ico" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

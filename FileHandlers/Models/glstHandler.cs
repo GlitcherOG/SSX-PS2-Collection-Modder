@@ -8,6 +8,7 @@ using SharpGLTF.Geometry;
 using SharpGLTF.Geometry.VertexTypes;
 using SharpGLTF.Materials;
 using SharpGLTF.Schema2;
+using SSX_Modder.FileHandlers.MapEditor;
 
 //https://github.com/vpenades/SharpGLTF/blob/master/src/SharpGLTF.Toolkit/Geometry/readme.md
 namespace SSX_Modder.FileHandlers
@@ -173,6 +174,46 @@ namespace SSX_Modder.FileHandlers
             }
 
             // save the model in different formats
+
+            var model = scene.ToGltf2();
+            model.SaveGLB(Output);
+        }
+
+        public static void SavePBDglTF(string Output, PBDHandler Handler)
+        {
+            var scene = new SharpGLTF.Scenes.SceneBuilder();
+            var material = new MaterialBuilder("Default").WithChannelParam(KnownChannel.BaseColor, KnownProperty.RGBA, new Vector4(1, 1, 1, 1));
+            var mesh = new MeshBuilder<VertexPosition, VertexEmpty, VertexEmpty>("Ground");
+            for (int i = 0; i < Handler.Faces.Count; i++)
+            {
+                var modelHeader = Handler.Faces[i];
+
+                VertexPosition TempPos1 = new VertexPosition();
+                TempPos1.Position.X = modelHeader.vertex3s[0].X;
+                TempPos1.Position.Y = modelHeader.vertex3s[0].Z;
+                TempPos1.Position.Z = modelHeader.vertex3s[0].Y;
+
+                VertexPosition TempPos2 = new VertexPosition();
+                TempPos2.Position.X = modelHeader.vertex3s[1].X;
+                TempPos2.Position.Y = modelHeader.vertex3s[1].Z;
+                TempPos2.Position.Z = modelHeader.vertex3s[1].Y;
+
+                VertexPosition TempPos3 = new VertexPosition();
+                TempPos3.Position.X = modelHeader.vertex3s[2].X;
+                TempPos3.Position.Y = modelHeader.vertex3s[2].Z;
+                TempPos3.Position.Z = modelHeader.vertex3s[2].Y;
+
+                VertexPosition TempPos4 = new VertexPosition();
+                TempPos4.Position.X = modelHeader.vertex3s[3].X;
+                TempPos4.Position.Y = modelHeader.vertex3s[3].Z;
+                TempPos4.Position.Z = modelHeader.vertex3s[3].Y;
+
+                mesh.UsePrimitive(material).AddTriangle(TempPos1, TempPos2, TempPos3);
+
+                mesh.UsePrimitive(material).AddTriangle(TempPos3, TempPos2, TempPos4);
+
+            }
+            scene.AddRigidMesh(mesh, Matrix4x4.Identity);
 
             var model = scene.ToGltf2();
             model.SaveGLB(Output);
