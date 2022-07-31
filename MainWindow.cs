@@ -2260,19 +2260,21 @@ namespace SSX_Modder
 
 
         PBDHandler pBDHandler = new PBDHandler();
+        MapHandler mapHandler = new MapHandler();
         private void button10_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
                 InitialDirectory = workspacePath,
-                Filter = "Model File (*.pbd)|*.pbd|All files (*.*)|*.*",
+                Filter = "Model File (*.map)|*.map|All files (*.*)|*.*",
                 FilterIndex = 1,
                 RestoreDirectory = false
             };
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                pBDHandler = new PBDHandler();
-                pBDHandler.loadandsave(openFileDialog.FileName);
+                mapHandler.Load(openFileDialog.FileName);
+                //pBDHandler = new PBDHandler();
+                //pBDHandler.loadandsave(openFileDialog.FileName);
             }
         }
 

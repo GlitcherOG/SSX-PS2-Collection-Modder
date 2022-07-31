@@ -263,6 +263,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FileHandlers\MapEditor\MapHandler.cs" />
     <Compile Include="FileHandlers\MapEditor\PBDHandler.cs" />
     <Compile Include="FileHandlers\Models\glstHandler.cs" />
     <Compile Include="FileHandlers\SSX3\BoltPS2Handler.cs" />

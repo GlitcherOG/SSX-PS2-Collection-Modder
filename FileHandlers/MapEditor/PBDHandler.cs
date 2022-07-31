@@ -108,6 +108,7 @@ namespace SSX_Modder.FileHandlers.MapEditor
                 models = new List<Model>();
                 Model model = new Model();
                 model.staticMeshes = new List<StaticMesh>();
+                int count = 0;
                 while (true)
                 {
                     var temp = ReadMesh(stream);
@@ -115,6 +116,7 @@ namespace SSX_Modder.FileHandlers.MapEditor
                     {
                         break;
                     }
+                    count++;
                     model.staticMeshes.Add(GenerateFaces(temp));
                     stream.Position += 31;
                     if(StreamUtil.ReadByte(stream)==0x6C)
@@ -203,9 +205,9 @@ namespace SSX_Modder.FileHandlers.MapEditor
             {
                 Vertex3 vertex = new Vertex3();
                 //Float 16's
-                vertex.X = StreamUtil.ReadInt16(stream) / 4096f;
-                vertex.Y = StreamUtil.ReadInt16(stream) / 4096f;
-                vertex.Z = StreamUtil.ReadInt16(stream) / 4096f;
+                vertex.X = (float)StreamUtil.ReadInt16(stream) / 4096f;
+                vertex.Y = (float)StreamUtil.ReadInt16(stream) / 4096f;
+                vertex.Z = (float)StreamUtil.ReadInt16(stream) / 4096f;
                 vertices.Add(vertex);
             }
             StreamUtil.AlignBy16(stream);

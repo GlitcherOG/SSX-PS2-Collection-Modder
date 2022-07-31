@@ -226,7 +226,7 @@ namespace SSX_Modder.FileHandlers
 
             for (int ax = 0; ax < Handler.models.Count; ax++)
             {
-                var mesh = new MeshBuilder<VertexPositionNormal, VertexTexture1, VertexEmpty>(ax.ToString());
+                var mesh = new MeshBuilder<VertexPositionNormal, VertexTexture1, VertexEmpty>(ax.ToString() + " " + Handler.models[ax].staticMeshes.Count);
 
                 for (int i = 0; i < Handler.models[ax].staticMeshes.Count; i++)
                 {
