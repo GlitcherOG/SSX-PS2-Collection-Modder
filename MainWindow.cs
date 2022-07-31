@@ -2272,7 +2272,7 @@ namespace SSX_Modder
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 pBDHandler = new PBDHandler();
-                pBDHandler.load(openFileDialog.FileName);
+                pBDHandler.loadandsave(openFileDialog.FileName);
             }
         }
 
