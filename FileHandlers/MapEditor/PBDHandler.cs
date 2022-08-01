@@ -23,7 +23,7 @@ namespace SSX_Modder.FileHandlers.MapEditor
         public int Unknown10;
         public int ContextCount;
         public int ParticleModelCount;
-        public int Unknown13;
+        public int Unknown13; 
 
         public int Unknown14;
         public int Unknown15;
@@ -328,10 +328,12 @@ namespace SSX_Modder.FileHandlers.MapEditor
             Patch face = new Patch();
 
             face.UnknownPoint1 = ReadVertices(stream, true);
-            face.UnknownPoint2 = ReadVertices(stream, true);
-            face.UnknownPoint3 = ReadVertices(stream, true);
-            face.UnknownPoint4 = ReadVertices(stream, true);
-            face.UnknownPoint5 = ReadVertices(stream, true);
+
+            face.UVPoint1 = ReadVertices(stream, true);
+            face.UVPoint2 = ReadVertices(stream, true);
+            face.UVPoint3 = ReadVertices(stream, true);
+            face.UVPoint4 = ReadVertices(stream, true);
+
             face.UnknownPoint6 = ReadVertices(stream, true);
             face.UnknownPoint7 = ReadVertices(stream, true);
             face.UnknownPoint8 = ReadVertices(stream, true);
@@ -347,7 +349,7 @@ namespace SSX_Modder.FileHandlers.MapEditor
             face.UnknownPoint18 = ReadVertices(stream, true);
             face.UnknownPoint19 = ReadVertices(stream, true);
             face.UnknownPoint20 = ReadVertices(stream, true);
-            face.UnknownPoint21 = ReadVertices(stream, true);
+            face.CenterPoint = ReadVertices(stream, true);
 
             face.UnknownV1 = ReadVertices(stream);
             face.UnknownV2 = ReadVertices(stream);
@@ -359,7 +361,8 @@ namespace SSX_Modder.FileHandlers.MapEditor
 
             face.PatchStyle = StreamUtil.ReadInt32(stream);
             face.Unknown2 = StreamUtil.ReadInt32(stream); //Material/Lighting
-            face.TextureAssigment = StreamUtil.ReadInt32(stream);
+            face.TextureAssigment = StreamUtil.ReadInt16(stream);
+            face.Unknown3 = StreamUtil.ReadInt16(stream);
 
             //Always the same
             face.Unknown4 = StreamUtil.ReadInt32(stream); //Negitive one
@@ -456,10 +459,10 @@ namespace SSX_Modder.FileHandlers.MapEditor
     {
         public Vertex3 UnknownPoint1; //Possition?
 
-        public Vertex3 UnknownPoint2;  //UV Point
-        public Vertex3 UnknownPoint3; //UV Point
-        public Vertex3 UnknownPoint4; //UV Point
-        public Vertex3 UnknownPoint5; //UV Point
+        public Vertex3 UVPoint1;  //UV Point
+        public Vertex3 UVPoint2; //UV Point
+        public Vertex3 UVPoint3; //UV Point
+        public Vertex3 UVPoint4; //UV Point
         //Potenitally Offsets Point
         public Vertex3 UnknownPoint6; //Point Curve
         public Vertex3 UnknownPoint7; //Point Curve
@@ -480,7 +483,7 @@ namespace SSX_Modder.FileHandlers.MapEditor
         public Vertex3 UnknownPoint19;
         public Vertex3 UnknownPoint20;
 
-        public Vertex3 UnknownPoint21; //Panel Translation
+        public Vertex3 CenterPoint;
         //1-Unknown
         //2- UV Point
 
@@ -515,6 +518,7 @@ namespace SSX_Modder.FileHandlers.MapEditor
 
         public int Unknown2; // Some Kind of material Assignment Or Lighting
         public int TextureAssigment; // Texture Assigment 
+        public int Unknown3;
         public int Unknown4; //Negative one
         public int Unknown5; //Same
         public int Unknown6; //Same
@@ -522,14 +526,14 @@ namespace SSX_Modder.FileHandlers.MapEditor
 
 
 
-//0 - Centre Point?/Start Point?
+    //0 - Centre Point?/Start Point?
 
-//Possibly normal Makes a square
+    //Possibly normal Makes a square
 
-//1 - All Basically 0,0,0
-//2 - All Basically 0,0,0
-//3 - All Basically 0,0,0
-//4 - All Basically 0,0,0
+    //1 - All Basically 0,0,0
+    //2 - All Basically 0,0,0
+    //3 - All Basically 0,0,0
+    //4 - All Basically 0,0,0
 
 
     //5 - Unknown
@@ -551,7 +555,7 @@ namespace SSX_Modder.FileHandlers.MapEditor
     //18 - Unknown
     //19 - Unknown
     //20 - Point on Model
-
+    [System.Serializable]
     public struct Vertex3
     {
         public float X;

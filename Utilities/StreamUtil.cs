@@ -218,19 +218,19 @@ namespace SSX_Modder.Utilities
             stream.Write(tempByte, 0, tempByte.Length);
         }
 
-        public static void WriteFloat32(Stream stream, float Float)
-        {
-            byte[] tempByte = new byte[4];
-            BitConverter.GetBytes(Float).CopyTo(tempByte, 0);
-            stream.Write(tempByte, 0, tempByte.Length);
-        }
-
         public static void WriteInt32Big(Stream stream, int Int)
         {
             byte[] tempByte = new byte[4];
             BitConverter.GetBytes(Int).CopyTo(tempByte, 0);
             if (BitConverter.IsLittleEndian)
                 Array.Reverse(tempByte);
+            stream.Write(tempByte, 0, tempByte.Length);
+        }
+
+        public static void WriteFloat32(Stream stream, float Float)
+        {
+            byte[] tempByte = new byte[4];
+            BitConverter.GetBytes(Float).CopyTo(tempByte, 0);
             stream.Write(tempByte, 0, tempByte.Length);
         }
 
