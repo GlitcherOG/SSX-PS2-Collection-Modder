@@ -327,13 +327,18 @@ namespace SSX_Modder.FileHandlers.MapEditor
         {
             Patch face = new Patch();
 
-            face.UnknownPoint1 = ReadVertices(stream, true);
+            face.ScalePoint = ReadVertices(stream, true);
 
             face.UVPoint1 = ReadVertices(stream, true);
             face.UVPoint2 = ReadVertices(stream, true);
             face.UVPoint3 = ReadVertices(stream, true);
             face.UVPoint4 = ReadVertices(stream, true);
 
+            face.UnknownPoint1 = ReadVertices(stream, true);
+            face.UnknownPoint2 = ReadVertices(stream, true);
+            face.UnknownPoint3 = ReadVertices(stream, true);
+            face.UnknownPoint4 = ReadVertices(stream, true);
+            face.UnknownPoint5 = ReadVertices(stream, true);
             face.UnknownPoint6 = ReadVertices(stream, true);
             face.UnknownPoint7 = ReadVertices(stream, true);
             face.UnknownPoint8 = ReadVertices(stream, true);
@@ -344,15 +349,10 @@ namespace SSX_Modder.FileHandlers.MapEditor
             face.UnknownPoint13 = ReadVertices(stream, true);
             face.UnknownPoint14 = ReadVertices(stream, true);
             face.UnknownPoint15 = ReadVertices(stream, true);
-            face.UnknownPoint16 = ReadVertices(stream, true);
-            face.UnknownPoint17 = ReadVertices(stream, true);
-            face.UnknownPoint18 = ReadVertices(stream, true);
-            face.UnknownPoint19 = ReadVertices(stream, true);
-            face.UnknownPoint20 = ReadVertices(stream, true);
             face.CenterPoint = ReadVertices(stream, true);
 
-            face.UnknownV1 = ReadVertices(stream);
-            face.UnknownV2 = ReadVertices(stream);
+            face.LowestXYZ = ReadVertices(stream);
+            face.HighestXYZ = ReadVertices(stream);
 
             face.Point1 = ReadVertices(stream, true);
             face.Point2 = ReadVertices(stream, true);
@@ -457,38 +457,35 @@ namespace SSX_Modder.FileHandlers.MapEditor
 
     public struct Patch
     {
-        public Vertex3 UnknownPoint1; //Possition?
+        public Vertex3 ScalePoint; 
 
-        public Vertex3 UVPoint1;  //UV Point
-        public Vertex3 UVPoint2; //UV Point
-        public Vertex3 UVPoint3; //UV Point
-        public Vertex3 UVPoint4; //UV Point
-        //Potenitally Offsets Point
-        public Vertex3 UnknownPoint6; //Point Curve
-        public Vertex3 UnknownPoint7; //Point Curve
-        public Vertex3 UnknownPoint8; //Point Curve
-        public Vertex3 UnknownPoint9; //Point Curve
+        public Vertex3 UVPoint1;  
+        public Vertex3 UVPoint2; 
+        public Vertex3 UVPoint3; 
+        public Vertex3 UVPoint4; 
 
-        public Vertex3 UnknownPoint10; //Point Curve
-        public Vertex3 UnknownPoint11; //Point Curve
+        public Vertex3 UnknownPoint1; 
+        public Vertex3 UnknownPoint2; 
+        public Vertex3 UnknownPoint3; 
+        public Vertex3 UnknownPoint4; 
+        public Vertex3 UnknownPoint5;
+        public Vertex3 UnknownPoint6; 
+        public Vertex3 UnknownPoint7;
+        public Vertex3 UnknownPoint8;
+        public Vertex3 UnknownPoint9; 
+        public Vertex3 UnknownPoint10;
+        public Vertex3 UnknownPoint11;
         public Vertex3 UnknownPoint12;
-        public Vertex3 UnknownPoint13;
-
-        public Vertex3 UnknownPoint14; //Curve Intensity?
+        public Vertex3 UnknownPoint13; 
+        public Vertex3 UnknownPoint14;
         public Vertex3 UnknownPoint15;
-        public Vertex3 UnknownPoint16;
-        public Vertex3 UnknownPoint17;
-
-        public Vertex3 UnknownPoint18; //IDK Possibly Translation of one of the main edges
-        public Vertex3 UnknownPoint19;
-        public Vertex3 UnknownPoint20;
 
         public Vertex3 CenterPoint;
         //1-Unknown
         //2- UV Point
 
-        public Vertex3 UnknownV1;
-        public Vertex3 UnknownV2;
+        public Vertex3 LowestXYZ;
+        public Vertex3 HighestXYZ;
 
         //Main Corners After all the maths is done to them
         //Probably just used for Rendering
@@ -498,22 +495,24 @@ namespace SSX_Modder.FileHandlers.MapEditor
         public Vertex3 Point4;
 
         //0 - Reset
-        //1 - Standard?
-        //2 - Standard?
+        //1 - Standard Snow
+        //2 - Standard Off Track?
         //3 - Powered Snow
         //4 - Slow Powered Snow
-        //5 - Speed Standard?
-        //6 - Bounce/Unskiiable
-        //7 - Ice? (No Trail)
-        //8 - Glidy(Lots Of snow particels)
-        //9 - Sparks
-        //10 - Bounce/Unskiiable
-        //11 - No Trail, Ice Crunch Sound Effect
-        //12 - No Sound, No Trail, Small particle Wake
-        //13 - Slidly Slow, Metal Grinding sounds, Sparks
-        //14 - Speed, Grinding Sound
-        //15 - Standard?
-        //16 - ^
+        //5 - Ice Standard
+        //6 - Bounce/Unskiiable //
+        //7 - Ice/Water No Trail
+        //8 - Glidy(Lots Of snow particels) //
+        //9 - Rock 
+        //10 - Wall
+        //11 - No Trail, Ice Crunch Sound Effect//
+        //12 - No Sound, No Trail, Small particle Wake//
+        //13 - Off Track Metal (Slidly Slow, Metal Grinding sounds, Sparks)
+        //14 - Speed, Grinding Sound//
+        //15 - Standard?//
+        //16 - Standard Sand
+        //17 - ?//
+        //18 - Show Off Ramp/Metal
         public int PatchStyle; //Type
 
         public int Unknown2; // Some Kind of material Assignment Or Lighting
@@ -564,5 +563,8 @@ namespace SSX_Modder.FileHandlers.MapEditor
 
         public float W;
     }
+    enum Styles
+    {
 
+    }
 }
