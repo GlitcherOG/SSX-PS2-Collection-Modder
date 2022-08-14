@@ -97,7 +97,6 @@ namespace SSX_Modder.FileHandlers
 
         public static void SaveTrickyglTF(string Output, TrickyMPFModelHandler Handler)
         {
-
             var scene = new SharpGLTF.Scenes.SceneBuilder();
 
             for (int ax = 0; ax < Handler.ModelList.Count; ax++)
@@ -105,9 +104,8 @@ namespace SSX_Modder.FileHandlers
                 var modelHeader = Handler.ModelList[ax];
                 //VertexJoints4
                 var mesh = new MeshBuilder<VertexPositionNormal, VertexTexture1, VertexEmpty>(modelHeader.FileName);
-
+                //var bindings = new List<Node>();
                 List<MaterialBuilder> materialBuilders = new List<MaterialBuilder>();
-
                 for (int i = 0; i < modelHeader.materialDatas.Count; i++)
                 {
                     var TempVar = modelHeader.materialDatas[i];
@@ -115,7 +113,14 @@ namespace SSX_Modder.FileHandlers
                     .WithChannelParam(KnownChannel.BaseColor, KnownProperty.RGBA, new Vector4(TempVar.R, TempVar.G, TempVar.B, 1));
                     materialBuilders.Add(material1);
                 }
-
+                SharpGLTF.Scenes.NodeBuilder Binding = new SharpGLTF.Scenes.NodeBuilder();
+                for (int i = 0; i < modelHeader.boneDatas.Count; i++)
+                {
+                    Binding = Binding.CreateNode(modelHeader.boneDatas[i].BoneName);
+                    //Binding.
+                    Binding.LocalTransform = Matrix4x4.CreateTranslation(modelHeader.boneDatas[i].XLocation, modelHeader.boneDatas[i].YLocation, modelHeader.boneDatas[i].ZLocation);
+                    Binding.AddNode(Binding);
+                }
                 for (int i = 0; i < modelHeader.staticMesh.Count; i++)
                 {
                     var Data = modelHeader.staticMesh[i];
@@ -156,7 +161,6 @@ namespace SSX_Modder.FileHandlers
                         TempTexture1.TexCoord.X = (float)Face.UV1.X / 4096f;
                         TempTexture1.TexCoord.Y = (float)Face.UV1.Y / 4096f;
 
-
                         VertexTexture1 TempTexture2 = new VertexTexture1();
                         TempTexture2.TexCoord.X = (float)Face.UV2.X / 4096f;
                         TempTexture2.TexCoord.Y = (float)Face.UV2.Y / 4096f;
@@ -165,12 +169,14 @@ namespace SSX_Modder.FileHandlers
                         TempTexture3.TexCoord.X = (float)Face.UV3.X / 4096f;
                         TempTexture3.TexCoord.Y = (float)Face.UV3.Y / 4096f;
 
+                        //VertexJoints4 temp = new VertexJoints4();
+                          
                         mesh.UsePrimitive(materialBuilders[MatId]).AddTriangle((TempPos1, TempTexture1), (TempPos2, TempTexture2), (TempPos3, TempTexture3));
                     }
 
                 }
 
-                scene.AddRigidMesh(mesh, Matrix4x4.Identity);
+                scene.AddSkinnedMesh(mesh, Matrix4x4.CreateTranslation(0, 0, 0), Binding);
             }
 
             // save the model in different formats

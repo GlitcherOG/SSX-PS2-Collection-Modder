@@ -11,99 +11,164 @@ namespace SSX_Modder.FileHandlers.MapEditor
     public class PBDHandler
     {
         public byte[] MagicBytes;
-        public int Unknown1;
-        public int PatchCount;
-        public int InternalInstancesCount;
-        public int ParticleInstancesCount;
-        public int Unknown5;
-        public int ModelCount; //Model And Context Count Could be the wrong way around
-        public int LightCount;
-        public int SplinesCount;
-        public int Unknown9;
-        public int Unknown10;
-        public int ContextCount;
-        public int ParticleModelCount;
-        public int Unknown13; 
+        public int NumPlayerStarts;
+        public int NumPatches;
+        public int NumInstances;
+        public int NumParticleInstances;
+        public int NumMaterials;
+        public int NumMaterialBlocks;
+        public int NumLights;
+        public int NumSplines;
+        public int NumSplineSegments;
+        public int NumTextureFlips;
+        public int NumModels;
+        public int Unknown;
+        public int NumTextures; 
 
-        public int Unknown14;
-        public int Unknown15;
+        public int NumCameras;
+        public int LightMapSize;
 
-        public int Unknown17;
+        public int PlayerStartOffset;
         public int PatchOffset;
-        public int Unknown18;
-        public int ParticleInstancesOffset;
-        public int UnknownOffset5;
-        public int Unknown21;
-        public int Unknown22;
-        public int Unknown23;
-        public int Unknown24;
-        public int Unknown25;
-        public int Unknown26;
-        public int Unknown27;
+        public int InstanceOffset;
+        public int Unknown2;
+        public int MaterialOffset;
+        public int MaterialBlocksOffset;
+        public int LightsOffset;
+        public int SplineOffset;
+        public int SplineSegmentOffset;
+        public int TextureFlipOffset;
+        public int ModelPointerOffset;
+        public int ModelsOffset;
 
 
-        public int Unknown28;
-        public int Unknown29;
-        public int Unknown30;
-        public int Unknown31;
-        public int Unknown32;
+        public int ParticleModelPointerOffset;
+        public int ParticleModelsOffset;
+        public int CameraPointerOffset;
+        public int CamerasOffset;
+        public int HashOffset;
         public int ModelDataOffset;
         public int Unknown34;
         public int Unknown35;
 
         public List<Patch> Patches;
         public List<Model> models;
+        public List<Spline> splines;
+        public List<SplinesSegments> splinesSegments;
 
         public void loadandsave(string path)
         {
             using (Stream stream = File.Open(path, FileMode.Open))
             {
                 MagicBytes = StreamUtil.ReadBytes(stream, 4);
-                Unknown1 = StreamUtil.ReadInt32(stream);
-                PatchCount = StreamUtil.ReadInt32(stream);
-                InternalInstancesCount = StreamUtil.ReadInt32(stream);
-                ParticleInstancesCount = StreamUtil.ReadInt32(stream);
-                Unknown5 = StreamUtil.ReadInt32(stream);
-                ModelCount = StreamUtil.ReadInt32(stream);
-                LightCount = StreamUtil.ReadInt32(stream);
-                SplinesCount = StreamUtil.ReadInt32(stream);
-                Unknown9 = StreamUtil.ReadInt32(stream);
-                Unknown10 = StreamUtil.ReadInt32(stream);
-                ContextCount = StreamUtil.ReadInt32(stream);
-                ParticleModelCount = StreamUtil.ReadInt32(stream);
-                Unknown13 = StreamUtil.ReadInt32(stream);
-                Unknown14 = StreamUtil.ReadInt32(stream);
-                Unknown15 = StreamUtil.ReadInt32(stream);
-                Unknown17 = StreamUtil.ReadInt32(stream);
-                PatchOffset = StreamUtil.ReadInt32(stream);
-                Unknown18 = StreamUtil.ReadInt32(stream);
-                ParticleInstancesOffset = StreamUtil.ReadInt32(stream);
-                UnknownOffset5 = StreamUtil.ReadInt32(stream);
-                Unknown21 = StreamUtil.ReadInt32(stream);
-                Unknown22 = StreamUtil.ReadInt32(stream);
-                Unknown23 = StreamUtil.ReadInt32(stream);
-                Unknown24 = StreamUtil.ReadInt32(stream);
-                Unknown25 = StreamUtil.ReadInt32(stream);
-                Unknown26 = StreamUtil.ReadInt32(stream);
-                Unknown27 = StreamUtil.ReadInt32(stream);
+                NumPlayerStarts = StreamUtil.ReadInt32(stream);
+                NumPatches = StreamUtil.ReadInt32(stream);
+                NumInstances = StreamUtil.ReadInt32(stream);
+                NumParticleInstances = StreamUtil.ReadInt32(stream);
+                NumMaterials = StreamUtil.ReadInt32(stream);
+                NumMaterialBlocks = StreamUtil.ReadInt32(stream);
+                NumLights = StreamUtil.ReadInt32(stream);
+                NumSplines = StreamUtil.ReadInt32(stream);
+                NumSplineSegments = StreamUtil.ReadInt32(stream);
+                NumTextureFlips = StreamUtil.ReadInt32(stream);
+                NumModels = StreamUtil.ReadInt32(stream);
+                Unknown = StreamUtil.ReadInt32(stream);
+                NumTextures = StreamUtil.ReadInt32(stream);
+                NumCameras = StreamUtil.ReadInt32(stream);
+                LightMapSize = StreamUtil.ReadInt32(stream);
 
-                Unknown28 = StreamUtil.ReadInt32(stream);
-                Unknown29 = StreamUtil.ReadInt32(stream);
-                Unknown30 = StreamUtil.ReadInt32(stream);
-                Unknown31 = StreamUtil.ReadInt32(stream);
-                Unknown32 = StreamUtil.ReadInt32(stream);
+                PlayerStartOffset = StreamUtil.ReadInt32(stream);
+                PatchOffset = StreamUtil.ReadInt32(stream);
+                InstanceOffset = StreamUtil.ReadInt32(stream);
+                Unknown2 = StreamUtil.ReadInt32(stream);
+                MaterialOffset = StreamUtil.ReadInt32(stream);
+                MaterialBlocksOffset = StreamUtil.ReadInt32(stream);
+                LightsOffset = StreamUtil.ReadInt32(stream);
+                SplineOffset = StreamUtil.ReadInt32(stream);
+                SplineSegmentOffset = StreamUtil.ReadInt32(stream);
+                TextureFlipOffset = StreamUtil.ReadInt32(stream);
+                ModelPointerOffset = StreamUtil.ReadInt32(stream);
+                ModelsOffset = StreamUtil.ReadInt32(stream);
+
+                ParticleModelPointerOffset = StreamUtil.ReadInt32(stream);
+                ParticleModelsOffset = StreamUtil.ReadInt32(stream);
+                CameraPointerOffset = StreamUtil.ReadInt32(stream);
+                CamerasOffset = StreamUtil.ReadInt32(stream);
+                HashOffset = StreamUtil.ReadInt32(stream);
                 ModelDataOffset = StreamUtil.ReadInt32(stream);
                 Unknown34 = StreamUtil.ReadInt32(stream);
                 Unknown35 = StreamUtil.ReadInt32(stream);
 
+                //Patch Loading
                 stream.Position = PatchOffset;
                 Patches = new List<Patch>();
-                for (int i = 0; i < PatchCount; i++)
+                for (int i = 0; i < NumPatches; i++)
                 {
                     Patch patch = LoadPatch(stream);
                     Patches.Add(patch);
                 }
 
+                //Spline Data
+                stream.Position = SplineOffset;
+                splines = new List<Spline>();
+                for (int i = 0; i < NumSplines; i++)
+                {
+                    Spline spline = new Spline();
+                    spline.X1 = StreamUtil.ReadFloat(stream);
+                    spline.Y1 = StreamUtil.ReadFloat(stream);
+                    spline.Z1 = StreamUtil.ReadFloat(stream);
+                    spline.X2 = StreamUtil.ReadFloat(stream);
+                    spline.Y2 = StreamUtil.ReadFloat(stream);
+                    spline.Z2 = StreamUtil.ReadFloat(stream);
+                    spline.Unknown7 = StreamUtil.ReadInt32(stream);
+                    spline.Unknown8 = StreamUtil.ReadInt32(stream);
+                    spline.Unknown9 = StreamUtil.ReadInt32(stream);
+                    spline.Unknown10 = StreamUtil.ReadInt32(stream);
+                    splines.Add(spline);
+                }
+
+                //Spline Segments
+                stream.Position = SplineSegmentOffset;
+                splinesSegments = new List<SplinesSegments>();
+                for (int i = 0; i < NumSplineSegments; i++)
+                {
+                    SplinesSegments splinesSegment = new SplinesSegments();
+                    splinesSegment.Unknown1 = StreamUtil.ReadFloat(stream);
+                    splinesSegment.Unknown2 = StreamUtil.ReadFloat(stream);
+                    splinesSegment.Unknown3 = StreamUtil.ReadFloat(stream);
+                    splinesSegment.Unknown4 = StreamUtil.ReadFloat(stream);
+                    splinesSegment.Unknown5 = StreamUtil.ReadFloat(stream);
+                    splinesSegment.Unknown6 = StreamUtil.ReadFloat(stream);
+                    splinesSegment.Unknown7 = StreamUtil.ReadFloat(stream);
+                    splinesSegment.Unknown8 = StreamUtil.ReadFloat(stream);
+                    splinesSegment.Unknown9 = StreamUtil.ReadFloat(stream);
+                    splinesSegment.Unknown10 = StreamUtil.ReadFloat(stream);
+                    splinesSegment.Unknown11 = StreamUtil.ReadFloat(stream);
+                    splinesSegment.Unknown12 = StreamUtil.ReadFloat(stream);
+                    splinesSegment.Unknown13 = StreamUtil.ReadFloat(stream);
+                    splinesSegment.Unknown14 = StreamUtil.ReadFloat(stream);
+                    splinesSegment.Unknown15 = StreamUtil.ReadFloat(stream);
+                    splinesSegment.Unknown16 = StreamUtil.ReadFloat(stream);
+                    splinesSegment.Unknown17 = StreamUtil.ReadFloat(stream);
+                    splinesSegment.Unknown18 = StreamUtil.ReadFloat(stream);
+                    splinesSegment.Unknown19 = StreamUtil.ReadFloat(stream);
+                    splinesSegment.Unknown20 = StreamUtil.ReadFloat(stream);
+                    splinesSegment.Unknown21 = StreamUtil.ReadInt32(stream);
+                    splinesSegment.Unknown22 = StreamUtil.ReadInt32(stream);
+                    splinesSegment.Unknown23 = StreamUtil.ReadInt32(stream);
+                    splinesSegment.Unknown24 = StreamUtil.ReadFloat(stream);
+                    splinesSegment.Unknown25 = StreamUtil.ReadFloat(stream);
+                    splinesSegment.Unknown26 = StreamUtil.ReadFloat(stream);
+                    splinesSegment.Unknown27 = StreamUtil.ReadFloat(stream);
+                    splinesSegment.Unknown28 = StreamUtil.ReadFloat(stream);
+                    splinesSegment.Unknown29 = StreamUtil.ReadFloat(stream);
+                    splinesSegment.Unknown30 = StreamUtil.ReadFloat(stream);
+                    splinesSegment.Unknown31 = StreamUtil.ReadFloat(stream);
+                    splinesSegment.Unknown32 = StreamUtil.ReadInt32(stream);
+                    splinesSegments.Add(splinesSegment);
+                }
+
+                //ModelData
                 stream.Position = ModelDataOffset;
                 models = new List<Model>();
                 Model model = new Model();
@@ -134,7 +199,7 @@ namespace SSX_Modder.FileHandlers.MapEditor
             }
         }
 
-
+        #region Standard Mesh Stuff
         public StaticMesh ReadMesh(Stream stream)
         {
             var ModelData = new StaticMesh();
@@ -217,7 +282,6 @@ namespace SSX_Modder.FileHandlers.MapEditor
             return ModelData;
         }
 
-        #region Standard Mesh Stuff
         public StaticMesh GenerateFaces(StaticMesh models)
         {
             var ModelData = models;
@@ -334,22 +398,22 @@ namespace SSX_Modder.FileHandlers.MapEditor
             face.UVPoint3 = ReadVertices(stream, true);
             face.UVPoint4 = ReadVertices(stream, true);
 
-            face.UnknownPoint1 = ReadVertices(stream, true);
-            face.UnknownPoint2 = ReadVertices(stream, true);
-            face.UnknownPoint3 = ReadVertices(stream, true);
-            face.UnknownPoint4 = ReadVertices(stream, true);
-            face.UnknownPoint5 = ReadVertices(stream, true);
-            face.UnknownPoint6 = ReadVertices(stream, true);
-            face.UnknownPoint7 = ReadVertices(stream, true);
-            face.UnknownPoint8 = ReadVertices(stream, true);
-            face.UnknownPoint9 = ReadVertices(stream, true);
-            face.UnknownPoint10 = ReadVertices(stream, true);
-            face.UnknownPoint11 = ReadVertices(stream, true);
-            face.UnknownPoint12 = ReadVertices(stream, true);
-            face.UnknownPoint13 = ReadVertices(stream, true);
-            face.UnknownPoint14 = ReadVertices(stream, true);
-            face.UnknownPoint15 = ReadVertices(stream, true);
-            face.CenterPoint = ReadVertices(stream, true);
+            face.R4C4 = ReadVertices(stream, true);
+            face.R4C3 = ReadVertices(stream, true);
+            face.R4C2 = ReadVertices(stream, true);
+            face.R4C1 = ReadVertices(stream, true);
+            face.R3C4 = ReadVertices(stream, true);
+            face.R3C3 = ReadVertices(stream, true);
+            face.R3C2 = ReadVertices(stream, true);
+            face.R3C1 = ReadVertices(stream, true);
+            face.R2C4 = ReadVertices(stream, true);
+            face.R2C3 = ReadVertices(stream, true);
+            face.R2C2 = ReadVertices(stream, true);
+            face.R2C1 = ReadVertices(stream, true);
+            face.R1C4 = ReadVertices(stream, true);
+            face.R1C3 = ReadVertices(stream, true);
+            face.R1C2 = ReadVertices(stream, true);
+            face.R1C1 = ReadVertices(stream, true);
 
             face.LowestXYZ = ReadVertices(stream);
             face.HighestXYZ = ReadVertices(stream);
@@ -389,6 +453,56 @@ namespace SSX_Modder.FileHandlers.MapEditor
         {
             glstHandler.SavePDBModelglTF(path, this);
         }
+    }
+
+    public struct Spline
+    {
+        public float X1;
+        public float Y1;
+        public float Z1;
+        public float X2;
+        public float Y2;
+        public float Z2;
+        public int Unknown7;
+        public int Unknown8;
+        public int Unknown9;
+        public int Unknown10;
+    }
+
+    public struct SplinesSegments
+    {
+        public float Unknown1;
+        public float Unknown2;
+        public float Unknown3;
+        public float Unknown4;
+        public float Unknown5;
+        public float Unknown6;
+        public float Unknown7;
+        public float Unknown8;
+        public float Unknown9;
+        public float Unknown10;
+        public float Unknown11;
+        public float Unknown12;
+        public float Unknown13;
+        public float Unknown14;
+        public float Unknown15;
+        public float Unknown16;
+        public float Unknown17;
+        public float Unknown18;
+        public float Unknown19;
+        public float Unknown20;
+        public int Unknown21;
+        public int Unknown22;
+        public int Unknown23;
+        public float Unknown24;
+        public float Unknown25;
+        public float Unknown26;
+        public float Unknown27;
+        public float Unknown28;
+        public float Unknown29;
+        public float Unknown30;
+        public float Unknown31;
+        public int Unknown32;
     }
 
     public struct Model
@@ -464,31 +578,26 @@ namespace SSX_Modder.FileHandlers.MapEditor
         public Vertex3 UVPoint3; 
         public Vertex3 UVPoint4; 
 
-        public Vertex3 UnknownPoint1; 
-        public Vertex3 UnknownPoint2; 
-        public Vertex3 UnknownPoint3; 
-        public Vertex3 UnknownPoint4; 
-        public Vertex3 UnknownPoint5;
-        public Vertex3 UnknownPoint6; 
-        public Vertex3 UnknownPoint7;
-        public Vertex3 UnknownPoint8;
-        public Vertex3 UnknownPoint9; 
-        public Vertex3 UnknownPoint10;
-        public Vertex3 UnknownPoint11;
-        public Vertex3 UnknownPoint12;
-        public Vertex3 UnknownPoint13; 
-        public Vertex3 UnknownPoint14;
-        public Vertex3 UnknownPoint15;
-
-        public Vertex3 CenterPoint;
-        //1-Unknown
-        //2- UV Point
+        public Vertex3 R4C4; 
+        public Vertex3 R4C3; 
+        public Vertex3 R4C2; 
+        public Vertex3 R4C1; 
+        public Vertex3 R3C4;
+        public Vertex3 R3C3; 
+        public Vertex3 R3C2;
+        public Vertex3 R3C1;
+        public Vertex3 R2C4; 
+        public Vertex3 R2C3;
+        public Vertex3 R2C2;
+        public Vertex3 R2C1;
+        public Vertex3 R1C4; 
+        public Vertex3 R1C3;
+        public Vertex3 R1C2;
+        public Vertex3 R1C1;
 
         public Vertex3 LowestXYZ;
         public Vertex3 HighestXYZ;
 
-        //Main Corners After all the maths is done to them
-        //Probably just used for Rendering
         public Vertex3 Point1;
         public Vertex3 Point2;
         public Vertex3 Point3;
@@ -523,37 +632,6 @@ namespace SSX_Modder.FileHandlers.MapEditor
         public int Unknown6; //Same
     }
 
-
-
-    //0 - Centre Point?/Start Point?
-
-    //Possibly normal Makes a square
-
-    //1 - All Basically 0,0,0
-    //2 - All Basically 0,0,0
-    //3 - All Basically 0,0,0
-    //4 - All Basically 0,0,0
-
-
-    //5 - Unknown
-    //6 - Unknown
-    //7 - Unknown
-    //8 - Unknown
-
-    //9 - Unknown
-    //10 - Unknown
-    //11 - Unknown
-    //12 - Unknown
-
-    //13 - Unknown
-    //14 - Unknown
-    //15 - Unknown
-    //16 - Unknown
-
-    //17 - Unknown
-    //18 - Unknown
-    //19 - Unknown
-    //20 - Point on Model
     [System.Serializable]
     public struct Vertex3
     {
@@ -562,9 +640,5 @@ namespace SSX_Modder.FileHandlers.MapEditor
         public float Z;
 
         public float W;
-    }
-    enum Styles
-    {
-
     }
 }

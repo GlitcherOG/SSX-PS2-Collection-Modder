@@ -37,14 +37,14 @@ namespace SSX_Modder.FileHandlers
                     modelHeader.MeshGroupOffset = StreamUtil.ReadInt32(stream);
                     modelHeader.MeshDataOffset = StreamUtil.ReadInt32(stream);
                     modelHeader.MaterialOffset = StreamUtil.ReadInt32(stream);
-                    modelHeader.BoneWeightOffet = StreamUtil.ReadInt32(stream);
                     modelHeader.NumberListOffset = StreamUtil.ReadInt32(stream);
+                    modelHeader.BoneWeightOffet = StreamUtil.ReadInt32(stream);
 
                     modelHeader.Unused1 = StreamUtil.ReadInt32(stream);
                     modelHeader.Unused2 = StreamUtil.ReadInt32(stream);
 
-                    modelHeader.NumberListCount = StreamUtil.ReadInt16(stream);
                     modelHeader.BoneWeightCount = StreamUtil.ReadInt16(stream);
+                    modelHeader.NumberListCount = StreamUtil.ReadInt16(stream);
                     modelHeader.MeshGroupCount = StreamUtil.ReadInt16(stream);
                     modelHeader.BoneDataCount = StreamUtil.ReadInt16(stream);
                     modelHeader.MaterialCount = StreamUtil.ReadInt16(stream);
@@ -143,19 +143,19 @@ namespace SSX_Modder.FileHandlers
                     TempChunkData.ID = StreamUtil.ReadInt32(streamMatrix);
                     TempChunkData.MaterialID = StreamUtil.ReadInt32(streamMatrix);
                     TempChunkData.Unknown = StreamUtil.ReadInt32(streamMatrix);
-                    TempChunkData.Unknown1 = StreamUtil.ReadInt32(streamMatrix);
+                    TempChunkData.LinkCount = StreamUtil.ReadInt32(streamMatrix);
                     TempChunkData.LinkOffset = StreamUtil.ReadInt32(streamMatrix);
 
                     int TempPos = (int)streamMatrix.Position;
                     streamMatrix.Position = TempChunkData.LinkOffset;
                     TempChunkData.meshGroupSubs = new List<GroupSubHeader>();
-                    for (int b = 0; b < TempChunkData.Unknown1; b++)
+                    for (int b = 0; b < TempChunkData.LinkCount; b++)
                     {
                         var TempSubHeader = new GroupSubHeader();
                         TempSubHeader.LinkOffset = StreamUtil.ReadInt32(streamMatrix);
                         TempSubHeader.LinkCount = StreamUtil.ReadInt32(streamMatrix);
                         int TempPos1 = (int)streamMatrix.Position;
-                        TempSubHeader.subSub = new List<MeshGroupHeader>();
+                        TempSubHeader.MeshGroupHeaders = new List<MeshGroupHeader>();
                         streamMatrix.Position = TempSubHeader.LinkOffset;
                         for (int c = 0; c < TempSubHeader.LinkCount; c++)
                         {
@@ -163,7 +163,7 @@ namespace SSX_Modder.FileHandlers
                             TempMeshGroupHeader.ModelOffset = StreamUtil.ReadInt32(streamMatrix);
                             TempMeshGroupHeader.Unknown2 = StreamUtil.ReadInt32(streamMatrix);
                             TempMeshGroupHeader.Unknown3 = StreamUtil.ReadInt32(streamMatrix);
-                            TempSubHeader.subSub.Add(TempMeshGroupHeader);
+                            TempSubHeader.MeshGroupHeaders.Add(TempMeshGroupHeader);
                         }
                         streamMatrix.Position = TempPos1;
                         TempChunkData.meshGroupSubs.Add(TempSubHeader);
@@ -184,6 +184,7 @@ namespace SSX_Modder.FileHandlers
 
                     BoneWeight.length = StreamUtil.ReadInt32(streamMatrix);
                     BoneWeight.WeightListOffset = StreamUtil.ReadInt32(streamMatrix);
+                    BoneWeight.unknown = StreamUtil.ReadInt32(streamMatrix);
                     BoneWeight.boneWeights = new List<BoneWeight>();
                     int TempPos = (int)streamMatrix.Position;
                     streamMatrix.Position = BoneWeight.WeightListOffset;
@@ -207,7 +208,6 @@ namespace SSX_Modder.FileHandlers
                     var NumberListRef = new NumberListRef();
                     NumberListRef.SubCount = StreamUtil.ReadInt32(streamMatrix);
                     NumberListRef.Offset = StreamUtil.ReadInt32(streamMatrix);
-                    NumberListRef.Unknown1 = StreamUtil.ReadInt32(streamMatrix);
                     NumberListRef.subNumberRefs = new List<SubNumberRef>();
 
                     int TempPos = (int)streamMatrix.Position;
@@ -215,8 +215,7 @@ namespace SSX_Modder.FileHandlers
                     for (int c = 0; c < NumberListRef.SubCount; c++)
                     {
                         var SubNumberRef = new SubNumberRef();
-                        SubNumberRef.Unknown = StreamUtil.ReadInt16(streamMatrix);
-                        SubNumberRef.Unknown1 = StreamUtil.ReadInt16(streamMatrix);
+                        SubNumberRef.Unknown = StreamUtil.ReadInt32(streamMatrix);
                         NumberListRef.subNumberRefs.Add(SubNumberRef);
                     }
                     streamMatrix.Position = TempPos;
@@ -232,10 +231,11 @@ namespace SSX_Modder.FileHandlers
                     for (int bx = 0; bx < GroupHeader.meshGroupSubs.Count; bx++)
                     {
                         var SubGroupHeader = GroupHeader.meshGroupSubs[bx];
-                        for (int cx = 0; cx < SubGroupHeader.subSub.Count; cx++)
+                        for (int cx = 0; cx < SubGroupHeader.MeshGroupHeaders.Count; cx++)
                         {
-                            var SubSubGroupHeader = SubGroupHeader.subSub[cx];
+                            var SubSubGroupHeader = SubGroupHeader.MeshGroupHeaders[cx];
                             streamMatrix.Position = SubSubGroupHeader.ModelOffset;
+                            int z = 0;
                             while (true)
                             {
                                 streamMatrix.Position += 31;
@@ -247,6 +247,10 @@ namespace SSX_Modder.FileHandlers
                                 streamMatrix.Position += 16;
                                 var ModelData = new StaticMesh();
                                 ModelData.ChunkID = ax;
+                                ModelData.GroupID = bx;
+                                ModelData.SubGroupID = cx;
+                                ModelData.SubGroupPosition = z;
+                                z++;
 
                                 ModelData.StripCount = StreamUtil.ReadInt32(streamMatrix);
                                 ModelData.EdgeCount = StreamUtil.ReadInt32(streamMatrix);
@@ -472,14 +476,14 @@ namespace SSX_Modder.FileHandlers
             public int MeshGroupOffset;
             public int MeshDataOffset;
             public int MaterialOffset;
-            public int BoneWeightOffet;
             public int NumberListOffset;
+            public int BoneWeightOffet;
             public int Unused1;
             public int Unused2;
 
             //Counts
-            public int NumberListCount;
             public int BoneWeightCount;
+            public int NumberListCount;
             public int MeshGroupCount;
             public int BoneDataCount;
             public int MaterialCount;
@@ -502,14 +506,12 @@ namespace SSX_Modder.FileHandlers
         {
             public int SubCount;
             public int Offset;
-            public int Unknown1;
 
             public List<SubNumberRef> subNumberRefs;
         }
         public struct SubNumberRef
         {
             public int Unknown;
-            public int Unknown1;
         }
 
         public struct MaterialData
@@ -564,7 +566,7 @@ namespace SSX_Modder.FileHandlers
             public int ID;
             public int MaterialID;
             public int Unknown;
-            public int Unknown1;
+            public int LinkCount;
             public int LinkOffset;
 
             public List<GroupSubHeader> meshGroupSubs;
@@ -575,7 +577,7 @@ namespace SSX_Modder.FileHandlers
             public int LinkOffset;
             public int LinkCount;
 
-            public List<MeshGroupHeader> subSub;
+            public List<MeshGroupHeader> MeshGroupHeaders;
         }
 
         public struct MeshGroupHeader
@@ -604,6 +606,9 @@ namespace SSX_Modder.FileHandlers
         public struct StaticMesh
         {
             public int ChunkID;
+            public int GroupID;
+            public int SubGroupID;
+            public int SubGroupPosition;
 
             public int StripCount;
             public int EdgeCount;

@@ -2266,15 +2266,15 @@ namespace SSX_Modder
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
                 InitialDirectory = workspacePath,
-                Filter = "Model File (*.map)|*.map|All files (*.*)|*.*",
+                Filter = "Model File (*.pbd)|*.pbd|All files (*.*)|*.*",
                 FilterIndex = 1,
                 RestoreDirectory = false
             };
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                mapHandler.Load(openFileDialog.FileName);
-                //pBDHandler = new PBDHandler();
-                //pBDHandler.loadandsave(openFileDialog.FileName);
+                //mapHandler.Load(openFileDialog.FileName);
+                pBDHandler = new PBDHandler();
+                pBDHandler.loadandsave(openFileDialog.FileName);
             }
         }
 
