@@ -1,5 +1,9 @@
 
-# SSX PS2 Collection MODDER
+# SSX PS2 Collection MODDER (Outdated)
+
+**Note** <br>
+This is an outdated tool and has been redone <br>
+https://github.com/GlitcherOG/SSX-Collection-Multitool <br>
 
 This is a modding tool I came up and started making when I caught COVID as a way to keep busy, and kept working on it to support the main 3 SSX Games on the PS2.
 
